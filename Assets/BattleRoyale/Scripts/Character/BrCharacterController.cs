@@ -173,4 +173,9 @@ public class BrCharacterController : MonoBehaviour
     }
 
     #endregion
+
+    #region FootStep
+    private void FootStep() { }
+    #endregion
+
 }

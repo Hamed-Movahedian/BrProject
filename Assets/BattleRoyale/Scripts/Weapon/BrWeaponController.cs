@@ -14,13 +14,15 @@ public class BrWeaponController : MonoBehaviour
 
     private bool _armed = false;
 
-    public bool Armed { set
+    public bool Armed
+    {
+        set
         {
-            if(_armed!=value)
+            if (_armed != value)
             {
                 _controller.Animator.SetBool("Armed", value);
             }
-            _armed = false;
+            _armed = value;
         }
         get { return _armed; }
     }
@@ -32,34 +34,38 @@ public class BrWeaponController : MonoBehaviour
 
     #endregion
 
-    public BrWeapon ActiveWeapon => CurrentWeaponIndex == -1 ? null : _weaponList[CurrentWeaponIndex];
+    public BrWeapon CurrWeapon => CurrentWeaponIndex == -1 ? null : _weaponList[CurrentWeaponIndex];
 
     internal void PickWeapon(string weaponName)
     {
+        if (CurrWeapon && CurrWeapon.name == weaponName)
+        {
+            AddBullets(CurrWeapon.InitialBullets);
+            return;
+        }
+
         for (int i = 0; i < _weaponList.Length; i++)
         {
             if (_weaponList[i].name == weaponName)
             {
-                if (CurrentWeaponIndex == i)
-                {
-                    AddBullets(ActiveWeapon.InitialBullets);
-                }
-                else
-                {
-                    ChangeWeapon(i);
-                }
+                ChangeWeapon(i);
+                BulletCount = Mathf.Min(BulletCount, CurrWeapon.InitialBullets);
+                return;
             }
         }
     }
 
     private void ChangeWeapon(int index)
     {
-        if (ActiveWeapon)
-            ActiveWeapon.SetActive(false);
+        if (CurrWeapon)
+            CurrWeapon.SetActive(false);
 
         CurrentWeaponIndex = index;
 
-        ActiveWeapon.SetActive(true);
+        if (CurrWeapon)
+            CurrWeapon.SetActive(true);
+
+        Armed = CurrWeapon != null;
 
     }
 
@@ -67,9 +73,9 @@ public class BrWeaponController : MonoBehaviour
     {
         BulletCount += amount;
 
-        if (ActiveWeapon)
-            if (BulletCount > ActiveWeapon.MaxBullets)
-                BulletCount = ActiveWeapon.MaxBullets;
+        if (CurrWeapon)
+            if (BulletCount > CurrWeapon.MaxBullets)
+                BulletCount = CurrWeapon.MaxBullets;
     }
 
     void Start()

@@ -74,7 +74,6 @@ public class BrPickupBase : MonoBehaviour
             _timeToGetReward = 0;
             if (Image)
                 Image.fillAmount = 0;
-
         }
     }
 
