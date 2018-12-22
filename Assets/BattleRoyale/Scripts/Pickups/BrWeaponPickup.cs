@@ -1,0 +1,15 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BrWeaponPickup : BrPickupBase
+{
+    public string WeaponName;
+
+    protected override void GetReward(BrCharacterController player)
+    {
+        base.GetReward(player);
+
+        player.WeaponController.PickWeapon(WeaponName);
+    }
+}
