@@ -6,8 +6,8 @@ public class BrWeaponNodeHelper : MonoBehaviour {
 
     [Header("Display & Debug Settings")]
     public Mesh WeaponReference;
-    public float meshScale = 1.0f;
 
+    public bool Show = true;
     // Use this for initialization
     void Start () {
 		
@@ -20,8 +20,11 @@ public class BrWeaponNodeHelper : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawMesh(WeaponReference, transform.position, transform.rotation, Vector3.one * meshScale);
-        
+        if (Show)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawMesh(WeaponReference, transform.position, transform.rotation, transform.localScale);
+
+        }        
     }
 }

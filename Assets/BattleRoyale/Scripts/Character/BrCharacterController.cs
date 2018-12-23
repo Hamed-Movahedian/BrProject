@@ -12,6 +12,11 @@ public class BrCharacterController : MonoBehaviour
     public LayerMask EnviromentLayerMask;
     public RaycastHit GroundHitInfo;
 
+    [Header("Look IK")]
+    public bool LookIK = true;
+    public Transform LookTarget;
+    public float HeadRotationSpeed = 2;
+    public bool LineOfSightGizmo = false;
     #endregion
 
     #region States
@@ -32,13 +37,13 @@ public class BrCharacterController : MonoBehaviour
     public Vector3 MovVector => BrUIController.Instance.MovementJoystick.Value3;
     public Vector3 AimVector => BrUIController.Instance.AimJoystick.Value3;
     internal BrWeaponController WeaponController { get; set; }
+    public bool IsAiming => CurrentState == CharacterStateEnum.GroundedAim;
 
     #endregion
 
     #region Privates
 
     private Dictionary<CharacterStateEnum, BrCharacterStateBase> _stateDic;
-
     #endregion
 
     // ********************** Methods
@@ -143,6 +148,12 @@ public class BrCharacterController : MonoBehaviour
             Rotate(rotationSpeed, direction);
 
             Move(moveSpeed, transform.forward * magnitude);
+            //Move(moveSpeed, direction);
+        }
+        else
+        {
+            Rotate(rotationSpeed, transform.forward);
+
         }
     }
 
@@ -159,12 +170,43 @@ public class BrCharacterController : MonoBehaviour
 
     private void Rotate(float rotationSpeed, Vector3 direction)
     {
-        transform.rotation = Quaternion.Lerp(
+        direction.y = 0;
+        
+        var lookRotation = Quaternion.LookRotation(direction);
+
+        //Body rotation
+        var bodyRotation = Quaternion.Lerp(
             transform.rotation,
-            Quaternion.LookRotation(direction),
+            lookRotation,
             Time.deltaTime * rotationSpeed);
 
-        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+        var headRotation = Quaternion.Lerp(
+            LookTarget.rotation,
+            lookRotation,
+            Time.deltaTime * HeadRotationSpeed);
+
+        transform.rotation = bodyRotation;
+        LookTarget.rotation = headRotation;
+
+        /*
+        transform.localEulerAngles = new Vector3(0, bodyRotY, 0);
+
+        // Head rotation
+        float headRotY = Quaternion.Lerp(
+            LookTarget.rotation,
+            lookRotation,
+            Time.deltaTime * HeadRotationSpeed).eulerAngles.y;
+        if (Mathf.Abs(headRotY - bodyRotY) > 70)
+        {
+            if (headRotY < bodyRotY)
+                headRotY = bodyRotY - 70;
+            else
+                headRotY = bodyRotY + 70;
+        }
+
+        LookTarget.localEulerAngles = new Vector3(0, headRotY, 0); */
+
+
     }
 
     private void Move(float moveSpeed, Vector3 direction)
@@ -172,10 +214,39 @@ public class BrCharacterController : MonoBehaviour
         transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
     }
 
+
+
+    #endregion
+
+    #region Gizmo
+    private void OnDrawGizmos()
+    {
+        if (LineOfSightGizmo)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(LookTarget.position, LookTarget.position + LookTarget.forward * 3);
+
+        }    }
     #endregion
 
     #region FootStep
     private void FootStep() { }
     #endregion
 
+    #region IK
+    void OnAnimatorIK()
+    {
+        if (LookIK)
+        {
+            Animator.SetLookAtWeight(1);
+            Animator.SetLookAtPosition(LookTarget.position + LookTarget.forward * 3);
+        }
+        else
+        {
+            Animator.SetLookAtWeight(0);
+        }
+
+    }
+
+    #endregion
 }

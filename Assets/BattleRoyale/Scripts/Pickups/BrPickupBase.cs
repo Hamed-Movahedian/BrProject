@@ -53,12 +53,17 @@ public class BrPickupBase : MonoBehaviour
 
         var controller = other.GetComponent<BrCharacterController>();
 
-        if (controller)
+        if (controller && CanPickup(controller))
         {
             _currentPlayer = controller;
             _timeToGetReward = Duration;
         }
 
+    }
+
+    protected virtual bool CanPickup(BrCharacterController controller)
+    {
+        return true;
     }
 
     private void OnTriggerExit(Collider other)
