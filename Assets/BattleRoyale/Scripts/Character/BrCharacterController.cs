@@ -147,7 +147,7 @@ public class BrCharacterController : MonoBehaviour
 
             Rotate(rotationSpeed, direction);
 
-            Move(moveSpeed, transform.forward * magnitude);
+            //Move(moveSpeed, transform.forward * magnitude);
             //Move(moveSpeed, direction);
         }
         else
@@ -161,7 +161,7 @@ public class BrCharacterController : MonoBehaviour
     {
         Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * MovVector;
 
-        Move(moveSpeed, direction);
+        //Move(moveSpeed, direction);
 
         direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * AimVector;
 
@@ -187,26 +187,7 @@ public class BrCharacterController : MonoBehaviour
 
         transform.rotation = bodyRotation;
         LookTarget.rotation = headRotation;
-
-        /*
-        transform.localEulerAngles = new Vector3(0, bodyRotY, 0);
-
-        // Head rotation
-        float headRotY = Quaternion.Lerp(
-            LookTarget.rotation,
-            lookRotation,
-            Time.deltaTime * HeadRotationSpeed).eulerAngles.y;
-        if (Mathf.Abs(headRotY - bodyRotY) > 70)
-        {
-            if (headRotY < bodyRotY)
-                headRotY = bodyRotY - 70;
-            else
-                headRotY = bodyRotY + 70;
-        }
-
-        LookTarget.localEulerAngles = new Vector3(0, headRotY, 0); */
-
-
+       
     }
 
     private void Move(float moveSpeed, Vector3 direction)
