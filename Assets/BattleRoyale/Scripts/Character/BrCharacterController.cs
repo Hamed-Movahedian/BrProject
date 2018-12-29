@@ -2,11 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BrCharacterController : MonoBehaviour
+public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 {
+    #region Static fields
+
+    public static BrCharacterController MasterCharacter;
+    #endregion
+
     #region Public Fields
 
     public LayerMask EnviromentLayerMask;
@@ -28,14 +34,13 @@ public class BrCharacterController : MonoBehaviour
 
     #region Properties
     public CharacterStateEnum CurrentState { get; private set; }
-
     public Animator Animator { get; set; }
     public Rigidbody RigidBody { get; set; }
     public CapsuleCollider CapsuleCollider { get; set; }
     public bool IsGrounded { get; set; }
     public float GroundDistance { get; set; }
-    public Vector3 MovVector => BrUIController.Instance.MovementJoystick.Value3;
-    public Vector3 AimVector => BrUIController.Instance.AimJoystick.Value3;
+    public Vector3 MovVector { get; set; }
+    public Vector3 AimVector { get; set; }
     internal BrWeaponController WeaponController { get; set; }
     public bool IsAiming => CurrentState == CharacterStateEnum.GroundedAim;
 
@@ -48,7 +53,17 @@ public class BrCharacterController : MonoBehaviour
 
     // ********************** Methods
 
-    #region Start
+    #region Start/Awake
+
+    private void Awake()
+    {
+        if (photonView.IsMine)
+            MasterCharacter = this;
+
+        var pos = JsonUtility.FromJson<Vector3>((string)photonView.Owner.CustomProperties["Pos"]);
+        transform.position = new Vector3(pos.x * 17, 5, pos.y * 17);
+    }
+
     void Start()
     {
         #region Get necessary components
@@ -72,10 +87,12 @@ public class BrCharacterController : MonoBehaviour
         _stateDic.Values.ToList().ForEach(s => s.Initialize(this));
 
         // Register to camera
-        BrCamera.Instance.SetCharacter(this);
+        if (photonView.IsMine)
+            BrCamera.Instance.SetCharacter(this);
 
         // State Start
-        _stateDic.Values.ToList().ForEach(s => s.Start());
+        if (photonView.IsMine)
+            _stateDic.Values.ToList().ForEach(s => s.Start());
     }
 
     #endregion
@@ -83,14 +100,22 @@ public class BrCharacterController : MonoBehaviour
     #region Updates
     void Update()
     {
-        GroundCheck();
+        if (photonView.IsMine)
+        {
+            MovVector = BrUIController.Instance.MovementJoystick.Value3;
+            AimVector = BrUIController.Instance.AimJoystick.Value3;
 
-        _stateDic[CurrentState].Update();
+            GroundCheck();
+
+            _stateDic[CurrentState].Update();
+        }
+
     }
 
     private void FixedUpdate()
     {
-        _stateDic[CurrentState].FixedUpdate();
+        if (photonView.IsMine)
+            _stateDic[CurrentState].FixedUpdate();
     }
 
     #endregion
@@ -171,7 +196,7 @@ public class BrCharacterController : MonoBehaviour
     private void Rotate(float rotationSpeed, Vector3 direction)
     {
         direction.y = 0;
-        
+
         var lookRotation = Quaternion.LookRotation(direction);
 
         //Body rotation
@@ -187,7 +212,7 @@ public class BrCharacterController : MonoBehaviour
 
         transform.rotation = bodyRotation;
         LookTarget.rotation = headRotation;
-       
+
     }
 
     private void Move(float moveSpeed, Vector3 direction)
@@ -207,7 +232,8 @@ public class BrCharacterController : MonoBehaviour
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(LookTarget.position, LookTarget.position + LookTarget.forward * 3);
 
-        }    }
+        }
+    }
     #endregion
 
     #region FootStep
@@ -229,5 +255,26 @@ public class BrCharacterController : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Photon
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(MovVector);
+            stream.SendNext(AimVector);
+            stream.SendNext(CurrentState);
+        }
+        else
+        {
+            MovVector = (Vector3)stream.ReceiveNext();
+            AimVector = (Vector3)stream.ReceiveNext();
+            CurrentState = (CharacterStateEnum)stream.ReceiveNext();
+/*            var state = (CharacterStateEnum)stream.ReceiveNext();
+            if (state != CurrentState)
+                SetState(state);*/
+        }
+    }
     #endregion
 }
