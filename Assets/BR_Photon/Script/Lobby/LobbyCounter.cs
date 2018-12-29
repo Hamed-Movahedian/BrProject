@@ -9,6 +9,9 @@ namespace BR.Lobby
     public class LobbyCounter : MonoBehaviourPunCallbacks,IPunObservable
     {
         public Text Text;
+
+        public int MaxPlayer = 2;
+        public int Counter = 3;
         // Use this for initialization
         void Start ()
         {
@@ -25,8 +28,7 @@ namespace BR.Lobby
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
-
-            if (PhotonNetwork.CurrentRoom.PlayerCount+1 == PhotonNetwork.CurrentRoom.MaxPlayers)
+            if (PhotonNetwork.CurrentRoom.PlayerCount == MaxPlayer)
             {
                 PhotonNetwork.CurrentRoom.IsOpen = false;
                 StartCoroutine(Count());
@@ -36,7 +38,7 @@ namespace BR.Lobby
 
         private IEnumerator Count()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < Counter; i++)
             {
                 Text.text = i.ToString();
                 yield return new WaitForSeconds(1);

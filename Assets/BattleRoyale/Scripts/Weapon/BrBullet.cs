@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
-public class BrBullet : MonoBehaviour
+public class BrBullet : MonoBehaviourPunCallbacks
 {
     public float Speed;
     public LayerMask CollitionMask;
@@ -14,6 +15,9 @@ public class BrBullet : MonoBehaviour
 
     private void Update()
     {
+        if (!photonView.IsMine)
+            return;
+
         if(Time.deltaTime<0)
             return;
 
@@ -28,7 +32,7 @@ public class BrBullet : MonoBehaviour
             transform.position = hitInfo.point;
 
             if (hitInfo.collider.tag == "Player")
-                HitPlayer();
+                HitPlayer(hitInfo.collider.GetComponent<>());
             else
                 HitEnviroment();
         }
@@ -39,7 +43,7 @@ public class BrBullet : MonoBehaviour
             _range -= moveDist;
 
             if(_range<=0)
-                DestroyBullet();
+                PhotonNetwork.Destroy(gameObject);
         }
     }
 
@@ -49,6 +53,15 @@ public class BrBullet : MonoBehaviour
     }
 
     private void HitEnviroment()
+    {
+        enabled = false;
+        BulletModel.gameObject.SetActive(false);
+        HitFx.gameObject.SetActive(true);
+        Invoke("DestroyBullet",HitFixDuration);
+        photonView.RPC("HitEnviromentRpc",RpcTarget.Others);
+    }
+    [PunRPC]
+    private void HitEnviromentRpc()
     {
         enabled = false;
         BulletModel.gameObject.SetActive(false);
@@ -66,4 +79,5 @@ public class BrBullet : MonoBehaviour
         OwnerCharacterController = weapon.WeaponController.CharacterController;
         _range = weapon.BulletRange;
     }
+
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SphereCollider))]
-public class BrPickupBase : MonoBehaviour
+public class BrPickupBase : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float Duration = 2;
     public Image Image;
@@ -18,7 +19,10 @@ public class BrPickupBase : MonoBehaviour
     {
         if (Image)
             Image.fillAmount = 0;
-
+/*
+        if(PhotonNetwork.IsMasterClient)
+            PhotonNetwork.AllocateSceneViewID(photonView);
+*/
     }
 
     // Update is called once per frame
@@ -39,13 +43,16 @@ public class BrPickupBase : MonoBehaviour
 
     protected virtual void GetReward(BrCharacterController currentPlayer)
     {
+
+        photonView.RPC("DisablePickup", RpcTarget.All);
+    } 
+
+    [PunRPC]
+    protected virtual void DisablePickup()
+    {
         gameObject.SetActive(false);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-    }
-
+ 
     private void OnTriggerStay(Collider other)
     {
         if (_currentPlayer)
@@ -53,7 +60,7 @@ public class BrPickupBase : MonoBehaviour
 
         var controller = other.GetComponent<BrCharacterController>();
 
-        if (controller && CanPickup(controller))
+        if (controller && controller.IsMine && CanPickup(controller))
         {
             _currentPlayer = controller;
             _timeToGetReward = Duration;
@@ -82,4 +89,8 @@ public class BrPickupBase : MonoBehaviour
         }
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        
+    }
 }

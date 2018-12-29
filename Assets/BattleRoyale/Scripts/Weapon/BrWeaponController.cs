@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class BrWeaponController : MonoBehaviour
+public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region Publics
     public Transform WeaponSlot;
@@ -22,7 +23,9 @@ public class BrWeaponController : MonoBehaviour
         {
             if (_armed != value)
             {
-                CharacterController.Animator.SetBool("Armed", value);
+                if(IsMine)
+                    CharacterController.Animator.SetBool("Armed", value);
+
                 _targetArmIk = value ? 1 : 0;
             }
             _armed = value;
@@ -38,6 +41,7 @@ public class BrWeaponController : MonoBehaviour
 
     public BrWeapon CurrWeapon => CurrentWeaponIndex == -1 ? null : _weaponList[CurrentWeaponIndex];
 
+    public bool IsMine => photonView.IsMine;
     #endregion
 
     #region privates
@@ -50,7 +54,7 @@ public class BrWeaponController : MonoBehaviour
     // ************** Methods
 
     #region Pickup/Change/Holster weapon
-    internal void PickWeapon(string weaponName)
+    internal void PickupWeapon(string weaponName)
     {
         if (CurrWeapon && CurrWeapon.name == weaponName)
         {
@@ -146,6 +150,13 @@ public class BrWeaponController : MonoBehaviour
     #region Update
     void Update()
     {
+        ArmIK = Mathf.Lerp(ArmIK, _targetArmIk, 5*Time.deltaTime);
+
+/*        if (!IsMine)
+            return;*/
+
+        // Owner code ...
+
         if (_timeToNextShot > 0)
             _timeToNextShot -= Time.deltaTime;
 
@@ -156,8 +167,6 @@ public class BrWeaponController : MonoBehaviour
                 Fire();
             }
         }
-
-        ArmIK = Mathf.Lerp(ArmIK, _targetArmIk, 5*Time.deltaTime);
     }
 
     #endregion
@@ -165,13 +174,18 @@ public class BrWeaponController : MonoBehaviour
     #region Fire
     private void Fire()
     {
-        BulletCount--;
-
         CurrWeapon.Fire();
 
-        CharacterController.Animator.SetTrigger("Shoot");
-
         _timeToNextShot = CurrWeapon.FireRate;
+
+        if(!IsMine)
+            return;
+
+        // Owner
+
+        BulletCount--;
+
+        CharacterController.Animator.SetTrigger("Shoot");
 
         if (BulletCount <= 0)
             HolsterWeapon();
@@ -225,5 +239,26 @@ public class BrWeaponController : MonoBehaviour
         return CurrWeapon != null;
     }
 
+    #endregion
+
+    #region Photon
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(CurrentWeaponIndex);
+            stream.SendNext(BulletCount);
+            stream.SendNext(Armed);
+        }
+        else
+        {
+            var wIndex=(int) stream.ReceiveNext();
+            if(wIndex!=CurrentWeaponIndex)
+                ChangeWeapon(wIndex);
+
+            BulletCount=(int) stream.ReceiveNext();
+            Armed=(bool) stream.ReceiveNext();
+        }
+    }
     #endregion
 }

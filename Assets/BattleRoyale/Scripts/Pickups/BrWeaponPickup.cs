@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class BrWeaponPickup : BrPickupBase
@@ -10,6 +11,13 @@ public class BrWeaponPickup : BrPickupBase
     {
         base.GetReward(player);
 
-        player.WeaponController.PickWeapon(WeaponName);
+        player.WeaponController.PickupWeapon(WeaponName);
+    }
+
+    [PunRPC]
+
+    protected override void DisablePickup()
+    {
+        base.DisablePickup();
     }
 }

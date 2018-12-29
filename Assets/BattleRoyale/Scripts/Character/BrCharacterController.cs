@@ -43,6 +43,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public Vector3 AimVector { get; set; }
     internal BrWeaponController WeaponController { get; set; }
     public bool IsAiming => CurrentState == CharacterStateEnum.GroundedAim;
+    public bool IsMine => photonView.IsMine;
 
     #endregion
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,6 +26,7 @@ public class BrWeapon : MonoBehaviour
 
     public BrWeaponController WeaponController { get; set; }
 
+    public bool IsMine => WeaponController.IsMine;
     // Use this for initialization
     void Start () {
 		
@@ -51,9 +53,14 @@ public class BrWeapon : MonoBehaviour
     {
         Muzzle.gameObject.SetActive(true);
 
-        BulletParticleSystem.Emit(30);
+        BulletParticleSystem.Emit(1);
 
         ShotAudio.Play();
+
+        if(!IsMine)
+            return;
+
+        // Owner code
 
         for (int i = 0; i < BulletPerShot; i++)
         {
@@ -65,11 +72,11 @@ public class BrWeapon : MonoBehaviour
     {
         var muzzleRot = Quaternion.Euler(0, Muzzle.eulerAngles.y, 0);
 
-        var bullet = Instantiate(
-            BulletPrefab,
+        var bullet = PhotonNetwork.Instantiate(
+            BulletPrefab.name,
             Muzzle.transform.position,
             muzzleRot*Quaternion.Euler(ShotAngle * Random.Range(-1f, 1f)));
 
-        bullet.Initialize(this);
+        bullet.GetComponent<BrBullet>().Initialize(this);
     }
 }
