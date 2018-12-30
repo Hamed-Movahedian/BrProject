@@ -18,6 +18,12 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public LayerMask EnviromentLayerMask;
     public RaycastHit GroundHitInfo;
 
+    [Header("Stat")]
+    public int Health = 100;
+    public int MaxHealth = 100;
+    public int Shield = 0;
+    public int MaxShield = 100;
+
     [Header("Look IK")]
     public bool LookIK = true;
     public Transform LookTarget;
@@ -278,4 +284,10 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
     #endregion
+
+    public void TakeDamage(int damage, Vector3 point, Vector3 bulletDir)
+    {
+        Health -= damage;
+
+    }
 }

@@ -12,6 +12,7 @@ public class BrBullet : MonoBehaviourPunCallbacks
     public BrCharacterController OwnerCharacterController { get; set; }
 
     private float _range;
+    private BrWeapon _weapon;
 
     private void Update()
     {
@@ -32,7 +33,7 @@ public class BrBullet : MonoBehaviourPunCallbacks
             transform.position = hitInfo.point;
 
             if (hitInfo.collider.tag == "Player")
-                HitPlayer(hitInfo.collider.GetComponent<>());
+                HitPlayer(hitInfo);
             else
                 HitEnviroment();
         }
@@ -69,14 +70,18 @@ public class BrBullet : MonoBehaviourPunCallbacks
         Invoke("DestroyBullet",HitFixDuration);
     }
 
-    private void HitPlayer()
+    private void HitPlayer(RaycastHit hitInfo)
     {
-        
+        var controller = hitInfo.collider.GetComponent<BrCharacterController>();
+        if (controller)
+            controller.TakeDamage(_weapon.BulletDamage, hitInfo.point, transform.forward);
+        PhotonNetwork.Destroy(gameObject);
     }
 
     public void Initialize(BrWeapon weapon)
     {
         OwnerCharacterController = weapon.WeaponController.CharacterController;
+        _weapon = weapon;
         _range = weapon.BulletRange;
     }
 

@@ -22,7 +22,7 @@ public class BrWeapon : MonoBehaviour
     public int BulletPerShot = 6;
     public Vector2 ShotAngle = new Vector2(5, 15);
     public float BulletRange = 6;
-    public float BulletDamage = 10;
+    public int BulletDamage = 10;
 
     public BrWeaponController WeaponController { get; set; }
 
