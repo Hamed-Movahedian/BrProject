@@ -20,7 +20,7 @@ public class BrGroundedAimCharacterState : BrCharacterStateBase
     public override void Update()
     {
         // Goto not aim state if not aiming
-        if (_controller.AimVector.magnitude ==0)
+        if (_controller.AimVector.magnitude <=0.1)
         {
             _controller.SetState(CharacterStateEnum.Grounded);
             return;

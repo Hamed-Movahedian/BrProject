@@ -15,7 +15,6 @@ public class BrWeaponPickup : BrPickupBase
     }
 
     [PunRPC]
-
     protected override void DisablePickup()
     {
         base.DisablePickup();

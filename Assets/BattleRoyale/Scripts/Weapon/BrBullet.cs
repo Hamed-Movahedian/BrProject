@@ -19,10 +19,10 @@ public class BrBullet : MonoBehaviourPunCallbacks
         if (!photonView.IsMine)
             return;
 
-        if(Time.deltaTime<0)
+        if (Time.deltaTime < 0)
             return;
 
-        float moveDist= Speed * Time.deltaTime;
+        float moveDist = Speed * Time.deltaTime;
 
         var moveVector = transform.forward * moveDist;
 
@@ -43,7 +43,7 @@ public class BrBullet : MonoBehaviourPunCallbacks
 
             _range -= moveDist;
 
-            if(_range<=0)
+            if (_range <= 0)
                 PhotonNetwork.Destroy(gameObject);
         }
     }
@@ -58,8 +58,8 @@ public class BrBullet : MonoBehaviourPunCallbacks
         enabled = false;
         BulletModel.gameObject.SetActive(false);
         HitFx.gameObject.SetActive(true);
-        Invoke("DestroyBullet",HitFixDuration);
-        photonView.RPC("HitEnviromentRpc",RpcTarget.Others);
+        Invoke("DestroyBullet", HitFixDuration);
+        photonView.RPC("HitEnviromentRpc", RpcTarget.Others);
     }
     [PunRPC]
     private void HitEnviromentRpc()
@@ -67,14 +67,16 @@ public class BrBullet : MonoBehaviourPunCallbacks
         enabled = false;
         BulletModel.gameObject.SetActive(false);
         HitFx.gameObject.SetActive(true);
-        Invoke("DestroyBullet",HitFixDuration);
+        Invoke("DestroyBullet", HitFixDuration);
     }
 
     private void HitPlayer(RaycastHit hitInfo)
     {
         var controller = hitInfo.collider.GetComponent<BrCharacterController>();
-        if (controller)
-            controller.TakeDamage(_weapon.BulletDamage, hitInfo.point, transform.forward);
+
+        if (controller && controller != OwnerCharacterController)
+            controller.TakeDamage(_weapon.BulletDamage,transform.forward);
+
         PhotonNetwork.Destroy(gameObject);
     }
 

@@ -35,11 +35,15 @@ public class BrFallingCharacterState : BrCharacterStateBase
             _controller.RigidBody.velocity = Vector3.down * StartFallingSpeed;
 
             // Force camera to state
-            BrCamera.Instance.ForceToState(CharacterStateEnum.Falling);
+            if(isMine)
+                BrCamera.Instance.ForceToState(CharacterStateEnum.Falling);
 
-            // Disable joyistics
-            BrUIController.Instance.SetMovementJoyisticActive(false);
-            BrUIController.Instance.SetAimJoyisticActive(false);
+            // Disable joysticks
+            if (isMine)
+            {
+                BrUIController.Instance.SetMovementJoyisticActive(false);
+                BrUIController.Instance.SetAimJoyisticActive(false);
+            }
         }
         else
         {
@@ -53,11 +57,15 @@ public class BrFallingCharacterState : BrCharacterStateBase
             _controller.RigidBody.velocity = Vector3.zero;
 
             // Force camera to state
-            BrCamera.Instance.ForceToState(CharacterStateEnum.Grounded);
+            if(isMine)
+                BrCamera.Instance.ForceToState(CharacterStateEnum.Grounded);
 
-            // Enable Joyistics
-            BrUIController.Instance.SetMovementJoyisticActive(true);
-            BrUIController.Instance.SetAimJoyisticActive(true);
+            // Enable Joysticks
+            if (isMine)
+            {
+                BrUIController.Instance.SetMovementJoyisticActive(true);
+                BrUIController.Instance.SetAimJoyisticActive(true); 
+            }
         }
     }
 

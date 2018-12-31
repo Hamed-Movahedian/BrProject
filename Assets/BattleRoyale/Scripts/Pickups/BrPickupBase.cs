@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SphereCollider))]
-public class BrPickupBase : MonoBehaviourPunCallbacks, IPunObservable
+public class BrPickupBase : MonoBehaviourPunCallbacks
 {
     public float Duration = 2;
     public Image Image;

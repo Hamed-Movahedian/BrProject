@@ -16,8 +16,9 @@ namespace BR.Lobby
         void Start ()
         {
             Text.text = "";
+            check();
         }
-	
+
         // Update is called once per frame
         void Update ()
         {
@@ -26,14 +27,19 @@ namespace BR.Lobby
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
-            if (!PhotonNetwork.IsMasterClient)
-                return;
+            //if (!PhotonNetwork.IsMasterClient)
+            //    return;
+            check();
+
+        }
+
+        private void check()
+        {
             if (PhotonNetwork.CurrentRoom.PlayerCount == MaxPlayer)
             {
                 PhotonNetwork.CurrentRoom.IsOpen = false;
                 StartCoroutine(Count());
             }
-
         }
 
         private IEnumerator Count()

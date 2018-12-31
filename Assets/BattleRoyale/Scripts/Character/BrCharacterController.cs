@@ -98,7 +98,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             BrCamera.Instance.SetCharacter(this);
 
         // State Start
-        if (photonView.IsMine)
+        //if (photonView.IsMine)
             _stateDic.Values.ToList().ForEach(s => s.Start());
     }
 
@@ -112,11 +112,10 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             MovVector = BrUIController.Instance.MovementJoystick.Value3;
             AimVector = BrUIController.Instance.AimJoystick.Value3;
 
-            GroundCheck();
-
-            _stateDic[CurrentState].Update();
         }
+        GroundCheck();
 
+        _stateDic[CurrentState].Update();
     }
 
     private void FixedUpdate()
@@ -172,7 +171,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         var magnitude = MovVector.magnitude;
 
-        if (magnitude > 0)
+        if (magnitude > 0.1)
 
         {
             Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * MovVector;
@@ -277,17 +276,40 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         {
             MovVector = (Vector3)stream.ReceiveNext();
             AimVector = (Vector3)stream.ReceiveNext();
-            CurrentState = (CharacterStateEnum)stream.ReceiveNext();
-/*            var state = (CharacterStateEnum)stream.ReceiveNext();
+            //CurrentState = (CharacterStateEnum)stream.ReceiveNext();
+            var state = (CharacterStateEnum)stream.ReceiveNext();
             if (state != CurrentState)
-                SetState(state);*/
+                SetState(state);
         }
     }
     #endregion
 
-    public void TakeDamage(int damage, Vector3 point, Vector3 bulletDir)
+    #region TakeDamage
+    public void TakeDamage(int damage, Vector3 bulletDir)
     {
-        Health -= damage;
+        photonView.RPC(
+            "TakeDamageRpc",
+            RpcTarget.All,
+            damage,
+            bulletDir);
 
     }
+    [PunRPC]
+    public void TakeDamageRpc(int damage, Vector3 bulletDir)
+    {
+        Health -= damage;
+        if (Health < 0)
+            Health = 0;
+    }
+
+    #endregion
+
+    #region Health
+    public void AddHealth(int health)
+    {
+        Health += health;
+        if (Health > MaxHealth)
+            Health = MaxHealth;
+    } 
+    #endregion
 }
