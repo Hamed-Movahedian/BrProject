@@ -28,6 +28,7 @@ public class BrParachuteCharacterState : BrCharacterStateBase
         {
             if (_canMove)
                 _controller.MoveAndRotate(Speed, RotationSpeed);
+
         }
     }
 

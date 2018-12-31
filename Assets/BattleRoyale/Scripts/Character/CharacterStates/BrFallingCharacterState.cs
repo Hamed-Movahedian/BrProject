@@ -73,5 +73,11 @@ public class BrFallingCharacterState : BrCharacterStateBase
     {
         if (_controller.GroundDistance < _controller.ParachuteState.OpenParaDistance)
             _controller.SetState(CharacterStateEnum.Parachute);
+        else
+        {
+            _controller.transform.position += Vector3.down * StartFallingSpeed * Time.deltaTime;
+
+            StartFallingSpeed += 10 * Time.deltaTime;
+        }
     }
 }
