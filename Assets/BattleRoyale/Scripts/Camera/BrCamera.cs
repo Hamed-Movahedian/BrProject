@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,7 +49,7 @@ public class BrCamera : MonoBehaviour
     }
 
 	
-	void Update ()
+	void LateUpdate ()
 	{
 		if(!_character)
             return;
@@ -70,8 +71,10 @@ public class BrCamera : MonoBehaviour
         }
 
 	    //transform.position = Vector3.Lerp(transform.position, _character.transform.position, CharacterFollowSpeed * Time.deltaTime);
-        transform.position = _character.transform.position;
+        transform.position = _character.CameraTargetPos;
     }
+
+
 
     private void CameraLerp(Camera camera, float value)
     {
@@ -82,10 +85,13 @@ public class BrCamera : MonoBehaviour
             value );
 
         // Rotation
-        MainCamera.transform.rotation = Quaternion.Lerp(
-            MainCamera.transform.rotation,
-            camera.transform.rotation,
-            value );
+        //MainCamera.transform.rotation = Quaternion.Lerp(
+        //    MainCamera.transform.rotation,
+        //    camera.transform.rotation,
+        //    value);
+
+        // Rotation
+        MainCamera.transform.LookAt(transform.position);
 
         // FieldOfView
         MainCamera.fieldOfView = Mathf.Lerp(
@@ -93,6 +99,7 @@ public class BrCamera : MonoBehaviour
             camera.fieldOfView,
             value );
     }
+
 
     public void SetCharacter(BrCharacterController characterController)
     {

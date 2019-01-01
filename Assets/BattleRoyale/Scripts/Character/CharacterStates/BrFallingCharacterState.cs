@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class BrFallingCharacterState : BrCharacterStateBase
 {
     public bool FallingOnStart = true;
-    public float StartFallingSpeed = 100;
+    public float FallingSpeed = 70;
     public float FallingHeight = 300;
 
     public UnityEvent OnStartFalling;
@@ -29,13 +29,13 @@ public class BrFallingCharacterState : BrCharacterStateBase
             _controller.SetState(CharacterStateEnum.Falling);
 
             // Falling height
-            _controller.transform.position=_controller.transform.position + Vector3.up * (FallingHeight - _controller.GroundDistance);
+            _controller.transform.position = _controller.transform.position + Vector3.up * (FallingHeight - _controller.GroundDistance);
 
             // Start Falling speed
-            _controller.RigidBody.velocity = Vector3.down * StartFallingSpeed;
+            _controller.RigidBody.velocity = Vector3.down * FallingSpeed;
 
             // Force camera to state
-            if(isMine)
+            if (isMine)
                 BrCamera.Instance.ForceToState(CharacterStateEnum.Falling);
 
             // Disable joysticks
@@ -57,14 +57,14 @@ public class BrFallingCharacterState : BrCharacterStateBase
             _controller.RigidBody.velocity = Vector3.zero;
 
             // Force camera to state
-            if(isMine)
+            if (isMine)
                 BrCamera.Instance.ForceToState(CharacterStateEnum.Grounded);
 
             // Enable Joysticks
             if (isMine)
             {
                 BrUIController.Instance.SetMovementJoyisticActive(true);
-                BrUIController.Instance.SetAimJoyisticActive(true); 
+                BrUIController.Instance.SetAimJoyisticActive(true);
             }
         }
     }
@@ -75,9 +75,13 @@ public class BrFallingCharacterState : BrCharacterStateBase
             _controller.SetState(CharacterStateEnum.Parachute);
         else
         {
-            _controller.transform.position += Vector3.down * StartFallingSpeed * Time.deltaTime;
+            _controller.transform.position += Vector3.down * FallingSpeed * Time.deltaTime;
 
-            StartFallingSpeed += 10 * Time.deltaTime;
+            //FallingSpeed += 10 * Time.deltaTime;
         }
+    }
+    public override void OnEnter()
+    {
+        OnStartFalling.Invoke();
     }
 }

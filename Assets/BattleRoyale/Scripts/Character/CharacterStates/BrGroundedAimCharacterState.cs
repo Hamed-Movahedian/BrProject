@@ -5,7 +5,6 @@ using UnityEngine;
 public class BrGroundedAimCharacterState : BrCharacterStateBase
 {
     public float RotationSpeed = 10;
-    public float MoveSpeed = 5;
     public float AnimatorDampValue = 0.2f;
 
     public override void OnEnter()
@@ -34,6 +33,10 @@ public class BrGroundedAimCharacterState : BrCharacterStateBase
         _controller.Animator.SetFloat("X", direction.x, AnimatorDampValue, Time.deltaTime);
         _controller.Animator.SetFloat("Y", direction.z, AnimatorDampValue, Time.deltaTime);
 
-        _controller.MoveAndRotateToAim(MoveSpeed, RotationSpeed);
+        // stick to ground
+        if (_controller.GroundDistance > 0)
+            _controller.transform.position = _controller.GroundHitInfo.point;
+
+        _controller.MoveAndRotateToAim(0, RotationSpeed);
     }
 }

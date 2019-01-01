@@ -29,9 +29,15 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public Transform LookTarget;
     public float HeadRotationSpeed = 2;
     public bool LineOfSightGizmo = false;
+
+    [Header("Camera")]
+    public Transform CameraTarget;
     #endregion
 
     #region States
+
+    [Header("States")]
+
     public BrFallingCharacterState FallingState;
     public BrParachuteCharacterState ParachuteState;
     public BrGroundedCharacterState GroundedState;
@@ -50,6 +56,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     internal BrWeaponController WeaponController { get; set; }
     public bool IsAiming => CurrentState == CharacterStateEnum.GroundedAim;
     public bool IsMine => photonView.IsMine;
+
+    public Vector3 CameraTargetPos => CameraTarget.position;
 
     #endregion
 
@@ -99,7 +107,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         // State Start
         //if (photonView.IsMine)
-            _stateDic.Values.ToList().ForEach(s => s.Start());
+        _stateDic.Values.ToList().ForEach(s => s.Start());
     }
 
     #endregion
@@ -111,8 +119,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         {
             MovVector = BrUIController.Instance.MovementJoystick.Value3;
             AimVector = BrUIController.Instance.AimJoystick.Value3;
-
         }
+
         GroundCheck();
 
         _stateDic[CurrentState].Update();
@@ -146,7 +154,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             {
                 IsGrounded = true;
                 if (GroundDistance < 0)
-                    RigidBody.MovePosition(GroundHitInfo.point);
+                    transform.position = GroundHitInfo.point;
+                GroundDistance = 0;
             }
         }
         else
@@ -168,7 +177,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Move and rotate
     public void MoveAndRotate(float moveSpeed, float rotationSpeed)
     {
-
         var magnitude = MovVector.magnitude;
 
         if (magnitude > 0.1)
@@ -178,8 +186,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
             Rotate(rotationSpeed, direction);
 
-            //Move(moveSpeed, transform.forward * magnitude);
-            //Move(moveSpeed, direction);
+            if (moveSpeed > 0)
+                Move(moveSpeed, direction);
         }
         else
         {
@@ -191,8 +199,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public void MoveAndRotateToAim(float moveSpeed, float rotationSpeed)
     {
         Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * MovVector;
-
-        //Move(moveSpeed, direction);
 
         direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * AimVector;
 
@@ -310,6 +316,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         Health += health;
         if (Health > MaxHealth)
             Health = MaxHealth;
-    } 
+    }
     #endregion
 }

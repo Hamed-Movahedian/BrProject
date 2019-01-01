@@ -27,6 +27,14 @@ public class BrPlayerUI : MonoBehaviour
             HealthSlider.value = Character.Health / (float)Character.MaxHealth;
             AmmoText.text=Character.WeaponController.BulletCount.ToString();
         }
-    } 
+    }
     #endregion
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
 }
