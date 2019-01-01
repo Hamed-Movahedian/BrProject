@@ -276,13 +276,14 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         {
             stream.SendNext(MovVector);
             stream.SendNext(AimVector);
+            stream.SendNext(Health);
             stream.SendNext(CurrentState);
         }
         else
         {
             MovVector = (Vector3)stream.ReceiveNext();
             AimVector = (Vector3)stream.ReceiveNext();
-            //CurrentState = (CharacterStateEnum)stream.ReceiveNext();
+            Health = (int) stream.ReceiveNext();
             var state = (CharacterStateEnum)stream.ReceiveNext();
             if (state != CurrentState)
                 SetState(state);
