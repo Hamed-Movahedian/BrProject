@@ -55,7 +55,7 @@ namespace BR
                 new Hashtable()
                 {
                     {"ID",userId },
-                    {"Color",JsonUtility.ToJson(Color.white) },
+                    {"Color",JsonUtility.ToJson(Random.ColorHSV()) },
                     {"Pos",JsonUtility.ToJson(Vector3.one*0.5f) }
                 });
         }
@@ -74,7 +74,6 @@ namespace BR
         {
             if (_isConnecting)
             {
-                Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
                 PhotonNetwork.JoinRandomRoom();
             }
         }
@@ -84,15 +83,11 @@ namespace BR
         {
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);
-            Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
             _isConnecting = false;
         }
 
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
-            Debug.Log("PUN Basics Tutorial/Launcher:OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
-
-            // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
             var success = PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
         }
 
@@ -121,6 +116,14 @@ namespace BR
             _isConnecting = true;
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);
+
+            // set profile to custom property
+            PhotonNetwork.LocalPlayer.SetCustomProperties(
+                new Hashtable()
+                {
+                    {"Profile",ProfileManager.Instance().PlayerProfile.Serialize()} 
+                });
+
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {

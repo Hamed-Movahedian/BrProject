@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9bd7739fe083944a9e90715717bb3cb, type: 3}
+  m_Name: M-Controller
+  m_EditorClassIdentifier: 
+  Name: M-Controller
+  Icon: {fileID: 2800000, guid: 4328534129cd67e4b9045a6a63b2e602, type: 3}
+  Texture: {fileID: 2800000, guid: 3ff3041d26e84b247b1a900206562e65, type: 3}
+  ParaModel: {fileID: 4300000, guid: dd2a30c9b984c47429d7ad5c8d441988, type: 3}
+  RiserModel: {fileID: 4300000, guid: d5a52543433eff94895fb363b487f48d, type: 3}
+  ParaOffsetPos: {x: 0, y: 3.8, z: 0.22}

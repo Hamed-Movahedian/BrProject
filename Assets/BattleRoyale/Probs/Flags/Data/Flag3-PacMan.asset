@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d00ad7fb5e732a4faa829f48a7aea88, type: 3}
+  m_Name: Flag3-PacMan
+  m_EditorClassIdentifier: 
+  Name: Flag3-PacMan
+  Icon: {fileID: 2800000, guid: 74125bc1e6f754b438d9d5e52a2a7463, type: 3}
+  Image: {fileID: 2800000, guid: 00ce366cadb7e2f40a0b64a1b91f8a46, type: 3}

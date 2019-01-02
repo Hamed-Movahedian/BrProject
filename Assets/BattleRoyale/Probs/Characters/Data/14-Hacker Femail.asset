@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4648a659a354d34cb27e9c9636e43f4, type: 3}
+  m_Name: 14-Hacker Femail
+  m_EditorClassIdentifier: 
+  Name: 14-Hacker Femail
+  FaceIcon: {fileID: 2800000, guid: 4414dd86530b8274fa16d08e0ee96ade, type: 3}
+  BodyIcon: {fileID: 2800000, guid: fd29783b92feea243ad3a6076f78f991, type: 3}
+  BodySkinnedMesh: {fileID: 1189353972192656, guid: 200bc6ccceeac474080a49c821b89775,
+    type: 2}
+  BodyMaterial: {fileID: 2100000, guid: 5846f1c3c4e5f1e42b95451831844600, type: 2}
+  HeadMesh: {fileID: 0}
+  HeadMaterial: {fileID: 0}
+  FaceAttachmentMesh: {fileID: 0}
+  FaceAttachmentMaterial: {fileID: 0}
+  HipAttachmentMesh: {fileID: 0}
+  HipAttachmentMaterial: {fileID: 0}
+  HipPosisionOffset: {x: 0, y: 0, z: 0}

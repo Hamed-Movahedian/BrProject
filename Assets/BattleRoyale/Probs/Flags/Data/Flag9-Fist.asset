@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d00ad7fb5e732a4faa829f48a7aea88, type: 3}
+  m_Name: Flag9-Fist
+  m_EditorClassIdentifier: 
+  Name: Flag9-Fist
+  Icon: {fileID: 2800000, guid: 37aee804b1836a942913fca17b749dbf, type: 3}
+  Image: {fileID: 2800000, guid: 852a3b1fbc4581349915d0dca2a27a01, type: 3}

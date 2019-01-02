@@ -64,6 +64,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Privates
 
     private Dictionary<CharacterStateEnum, BrCharacterStateBase> _stateDic;
+    private BrCharacterModel _characterModel;
+
     #endregion
 
     // ********************** Methods
@@ -75,7 +77,14 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
             MasterCharacter = this;
 
+
         var pos = JsonUtility.FromJson<Vector3>((string)photonView.Owner.CustomProperties["Pos"]);
+
+        var profile = Profile.Deserialize((string)photonView.Owner.CustomProperties["Profile"]);
+
+        _characterModel = GetComponent<BrCharacterModel>();
+        _characterModel.SetProfile(profile);
+
         transform.position = new Vector3(pos.x * 17, 5, pos.y * 17);
     }
 
