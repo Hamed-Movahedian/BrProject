@@ -54,6 +54,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public Vector3 MovVector { get; set; }
     public Vector3 AimVector { get; set; }
     internal BrWeaponController WeaponController { get; set; }
+
+
     public bool IsAiming => CurrentState == CharacterStateEnum.GroundedAim;
     public bool IsMine => photonView.IsMine;
 
@@ -65,6 +67,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     private Dictionary<CharacterStateEnum, BrCharacterStateBase> _stateDic;
     private BrCharacterModel _characterModel;
+    private BrCharacterHitEffect hitEffect;
 
     #endregion
 
@@ -95,6 +98,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         CapsuleCollider = GetComponent<CapsuleCollider>();
         Animator = GetComponent<Animator>();
         WeaponController = GetComponent<BrWeaponController>();
+        hitEffect = GetComponent<BrCharacterHitEffect>();
         #endregion
 
         #region Create state dictionary
@@ -137,7 +141,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     private void FixedUpdate()
     {
-        if (photonView.IsMine)
+        //if (photonView.IsMine)
             _stateDic[CurrentState].FixedUpdate();
     }
 
@@ -283,6 +287,9 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
+            var pos=transform.position;
+            pos.y = transform.eulerAngles.y;
+            stream.SendNext(pos);
             stream.SendNext(MovVector);
             stream.SendNext(AimVector);
             stream.SendNext(Health);
@@ -290,6 +297,15 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
+            var pos=(Vector3)stream.ReceiveNext();
+            var oldpos = transform.position;
+            oldpos.x = pos.x;
+            oldpos.z = pos.z;
+            transform.position = oldpos;
+            oldpos=transform.eulerAngles;
+            oldpos.y = pos.y;
+            transform.eulerAngles = oldpos;
+
             MovVector = (Vector3)stream.ReceiveNext();
             AimVector = (Vector3)stream.ReceiveNext();
             Health = (int) stream.ReceiveNext();
@@ -310,9 +326,11 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             bulletDir);
 
     }
+
     [PunRPC]
     public void TakeDamageRpc(int damage, Vector3 bulletDir)
     {
+        hitEffect.Hit();
         Health -= damage;
         if (Health < 0)
             Health = 0;
