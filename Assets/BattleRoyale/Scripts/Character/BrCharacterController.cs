@@ -101,6 +101,9 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         hitEffect = GetComponent<BrCharacterHitEffect>();
         #endregion
 
+        // root motion off for non locals
+        Animator.applyRootMotion = photonView.IsMine;
+
         #region Create state dictionary
         _stateDic = new Dictionary<CharacterStateEnum, BrCharacterStateBase>()
         {
@@ -190,12 +193,15 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Move and rotate
     public void MoveAndRotate(float moveSpeed, float rotationSpeed)
     {
+        if (!IsMine)
+            return;
         var magnitude = MovVector.magnitude;
 
         if (magnitude > 0.1)
 
         {
             Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * MovVector;
+
 
             Rotate(rotationSpeed, direction);
 
@@ -211,6 +217,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     public void MoveAndRotateToAim(float moveSpeed, float rotationSpeed)
     {
+        if (!IsMine)
+            return;
         Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * MovVector;
 
         direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * AimVector;
@@ -287,9 +295,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
-            var pos=transform.position;
-            pos.y = transform.eulerAngles.y;
-            stream.SendNext(pos);
             stream.SendNext(MovVector);
             stream.SendNext(AimVector);
             stream.SendNext(Health);
@@ -297,15 +302,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            var pos=(Vector3)stream.ReceiveNext();
-            var oldpos = transform.position;
-            oldpos.x = pos.x;
-            oldpos.z = pos.z;
-            transform.position = oldpos;
-            oldpos=transform.eulerAngles;
-            oldpos.y = pos.y;
-            transform.eulerAngles = oldpos;
-
             MovVector = (Vector3)stream.ReceiveNext();
             AimVector = (Vector3)stream.ReceiveNext();
             Health = (int) stream.ReceiveNext();
@@ -332,8 +328,21 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     {
         hitEffect.Hit();
         Health -= damage;
-        if (Health < 0)
-            Health = 0;
+        if (Health <= 0)
+            Death();
+    }
+
+    private void Death()
+    {
+        enabled = false;
+        WeaponController.enabled = false;
+        Animator.SetTrigger("Dead");
+        CapsuleCollider.enabled = false;
+        if (IsMine)
+        {
+            BrUIController.Instance.SetMovementJoyisticActive(false);
+            BrUIController.Instance.SetAimJoyisticActive(false);
+        }
     }
 
     #endregion

@@ -22,6 +22,7 @@ public class BrGroundedCharacterState : BrCharacterStateBase
         }
 
         _controller.Animator.SetFloat("Speed", _controller.MovVector.magnitude * 1.3f,AnimatorDampValue,Time.deltaTime);
+        //_controller.Animator.SetFloat("Speed", _controller.MovVector.magnitude * 1.3f);
 
         // stick to ground
         if (_controller.GroundDistance > 0)

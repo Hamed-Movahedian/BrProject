@@ -31,6 +31,9 @@ public class BrParachuteCharacterState : BrCharacterStateBase
 
     public override void FixedUpdate()
     {
+        if (!_controller.IsMine)
+            return;
+
         _controller.transform.position += Vector3.down * FallingSpeed * Time.deltaTime;
 
         FallingSpeed += 1 * Time.deltaTime;
@@ -46,6 +49,10 @@ public class BrParachuteCharacterState : BrCharacterStateBase
         {
             BrUIController.Instance.SetMovementJoyisticActive(true);
             BrUIController.Instance.SetAimJoyisticActive(false);
+        }
+        else
+        {
+            _controller.gameObject.SetActive(true);
         }
     }
 

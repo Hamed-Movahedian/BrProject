@@ -1,6 +1,7 @@
 ﻿using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace BR
 {
@@ -55,6 +56,7 @@ namespace BR
         public void LeaveRoom()
         {
             PhotonNetwork.LeaveRoom();
+            SceneManager.LoadScene(1);
         }
 /*        void LoadArena()
         {
