@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BrCharacterStateBase
 {
     protected BrCharacterController _controller;
-    protected bool isMine => _controller.IsMine;
+    protected bool isMine => _controller.isMine;
     public void Initialize(BrCharacterController characterController)
     {
         _controller = characterController;

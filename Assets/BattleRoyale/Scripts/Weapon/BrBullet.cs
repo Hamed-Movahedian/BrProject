@@ -79,7 +79,7 @@ public class BrBullet : MonoBehaviourPunCallbacks
         var controller = hitInfo.collider.GetComponent<BrCharacterController>();
 
         if (controller && controller != OwnerCharacterController)
-            controller.TakeDamage(_weapon.BulletDamage, transform.forward);
+            controller.TakeDamage(_weapon.BulletDamage, transform.forward,OwnerCharacterController,_weapon.name);
 
         PhotonNetwork.Destroy(gameObject);
     }

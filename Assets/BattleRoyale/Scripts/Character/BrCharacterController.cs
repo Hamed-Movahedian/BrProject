@@ -32,6 +32,10 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     [Header("Camera")]
     public Transform CameraTarget;
+
+    [HideInInspector]
+    public Profile profile;
+
     #endregion
 
     #region States
@@ -57,7 +61,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
 
     public bool IsAiming => CurrentState == CharacterStateEnum.GroundedAim;
-    public bool IsMine => photonView.IsMine;
+    public bool isMine => photonView.IsMine;
 
     public Vector3 CameraTargetPos => CameraTarget.position;
 
@@ -68,6 +72,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     private Dictionary<CharacterStateEnum, BrCharacterStateBase> _stateDic;
     private BrCharacterModel _characterModel;
     private BrCharacterHitEffect hitEffect;
+
+
 
     #endregion
 
@@ -83,11 +89,11 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         var pos = JsonUtility.FromJson<Vector3>((string)photonView.Owner.CustomProperties["Pos"]);
 
-        var profile = Profile.Deserialize((string)photonView.Owner.CustomProperties["Profile"]);
+        profile = Profile.Deserialize((string)photonView.Owner.CustomProperties["Profile"]);
 
         _characterModel = GetComponent<BrCharacterModel>();
         _characterModel.SetProfile(profile);
-
+        _characterModel.
         transform.position = new Vector3(pos.x * 17, 5, pos.y * 17);
     }
 
@@ -119,7 +125,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         // Register to camera
         if (photonView.IsMine)
-            BrCamera.Instance.SetCharacter(this);
+            BrDeathTracker.instance.SetActivePlayer(this);
 
         // State Start
         //if (photonView.IsMine)
@@ -193,7 +199,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Move and rotate
     public void MoveAndRotate(float moveSpeed, float rotationSpeed)
     {
-        if (!IsMine)
+        if (!isMine)
             return;
         var magnitude = MovVector.magnitude;
 
@@ -217,7 +223,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     public void MoveAndRotateToAim(float moveSpeed, float rotationSpeed)
     {
-        if (!IsMine)
+        if (!isMine)
             return;
         Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * MovVector;
 
@@ -313,40 +319,63 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #endregion
 
     #region TakeDamage
-    public void TakeDamage(int damage, Vector3 bulletDir)
+    internal void TakeDamage(int bulletDamage, Vector3 bulletDir, BrCharacterController killer, string weaponName)
     {
         photonView.RPC(
             "TakeDamageRpc",
             RpcTarget.All,
-            damage,
-            bulletDir);
-
+            bulletDamage,
+            bulletDir,
+            killer.photonView.ViewID,
+            weaponName
+            );
     }
 
     [PunRPC]
-    public void TakeDamageRpc(int damage, Vector3 bulletDir)
+    public void TakeDamageRpc(int damage, Vector3 bulletDir,int killerViewID, string weaponName)
     {
+        if (Health <= 0)
+            return;
+
         hitEffect.Hit();
         Health -= damage;
         if (Health <= 0)
-            Death();
+            Death(killerViewID,weaponName);
     }
 
-    private void Death()
+    #endregion
+
+    #region Death
+    private void Death(int killerViewID, string weaponName)
     {
         enabled = false;
         WeaponController.enabled = false;
         Animator.SetTrigger("Dead");
         CapsuleCollider.enabled = false;
-        if (IsMine)
+
+        BrDeathTracker.instance.PlayerDead(photonView.ViewID, killerViewID, weaponName);
+
+        ShowFlag(killerViewID);
+
+        if (isMine)
         {
+
             BrUIController.Instance.SetMovementJoyisticActive(false);
             BrUIController.Instance.SetAimJoyisticActive(false);
         }
     }
 
-    #endregion
+    private void ShowFlag(int killerViewID)
+    {
+        var flag = GetComponentInChildren<Flag>(true);
 
+        var killerProfile = PhotonNetwork.GetPhotonView(killerViewID).GetComponent<BrCharacterController>().profile;
+        flag.flagsList.Flags[killerProfile.CurrentFlag].SetToFlag(flag);
+        flag.transform.SetParent(null);
+        flag.transform.eulerAngles = new Vector3(-90, 0, 45);
+        flag.gameObject.SetActive(true);
+    }
+    #endregion
     #region Health
     public void AddHealth(int health)
     {

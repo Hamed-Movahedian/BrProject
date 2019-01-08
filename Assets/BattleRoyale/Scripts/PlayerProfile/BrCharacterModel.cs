@@ -44,9 +44,11 @@ public class BrCharacterModel : MonoBehaviour
         Data.SetToCharacter(this);
     }
 
+    public Para para;
     public void SetProfile(Profile profile)
     {
         CharactersList.Characters[profile.CurrentCharacter].SetToCharacter(this);
+        para.parasList.Paras[profile.CurrentPara].SetToPara(para);
         _profile = profile;
     }
 }

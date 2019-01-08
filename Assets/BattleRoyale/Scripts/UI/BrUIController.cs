@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,14 @@ public class BrUIController : MonoBehaviour
 
     public BrJoystick MovementJoystick;
     public BrJoystick AimJoystick;
+    public BrKillAnnouncement killAnnouncement;
+    public BrActivePlayerStatUI activePlayerStatUI;
+
+    internal void ShowActivePlayerStat()
+    {
+        activePlayerStatUI.Show();
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -15,15 +24,16 @@ public class BrUIController : MonoBehaviour
 
 
     // Use this for initialization
-    void Start ()
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void SetMovementJoyisticActive(bool b)
     {
@@ -32,5 +42,15 @@ public class BrUIController : MonoBehaviour
     public void SetAimJoyisticActive(bool b)
     {
         AimJoystick.gameObject.SetActive(b);
+    }
+
+    internal void ActivePlayerIsDead(BrCharacterController victomPlayer, BrCharacterController killerPlayer, string weponName)
+    {
+        if (victomPlayer.isMine)
+        {
+            killAnnouncement.Announce(victomPlayer, killerPlayer, weponName);
+        }
+        else
+            activePlayerStatUI.Show();
     }
 }

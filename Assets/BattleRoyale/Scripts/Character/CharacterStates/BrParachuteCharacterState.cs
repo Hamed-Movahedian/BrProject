@@ -31,7 +31,7 @@ public class BrParachuteCharacterState : BrCharacterStateBase
 
     public override void FixedUpdate()
     {
-        if (!_controller.IsMine)
+        if (!_controller.isMine)
             return;
 
         _controller.transform.position += Vector3.down * FallingSpeed * Time.deltaTime;

@@ -8,7 +8,7 @@ public class Para : MonoBehaviour
 
     public bool IsOwner = true;
     public ParaData Data;
-
+    public ParasList parasList;
     public Texture2D Texture;
     public MeshFilter ParaModel;
     public MeshFilter RiserModel;

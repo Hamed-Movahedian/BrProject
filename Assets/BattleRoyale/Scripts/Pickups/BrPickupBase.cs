@@ -60,7 +60,7 @@ public class BrPickupBase : MonoBehaviourPunCallbacks
 
         var controller = other.GetComponent<BrCharacterController>();
 
-        if (controller && controller.IsMine && CanPickup(controller))
+        if (controller && controller.isMine && CanPickup(controller))
         {
             _currentPlayer = controller;
             _timeToGetReward = Duration;

@@ -75,7 +75,7 @@ public class BrFallingCharacterState : BrCharacterStateBase
             _controller.SetState(CharacterStateEnum.Parachute);
         else
         {
-            if(_controller.IsMine)
+            if(_controller.isMine)
             _controller.transform.position += Vector3.down * FallingSpeed * Time.deltaTime;
 
             //FallingSpeed += 10 * Time.deltaTime;
@@ -83,7 +83,7 @@ public class BrFallingCharacterState : BrCharacterStateBase
     }
     public override void OnEnter()
     {
-        if (!_controller.IsMine)
+        if (!_controller.isMine)
             _controller.gameObject.SetActive(false);
             OnStartFalling.Invoke();
     }

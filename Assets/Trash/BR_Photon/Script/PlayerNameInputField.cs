@@ -61,6 +61,7 @@ namespace BR
                 Debug.LogError("Player Name is null or empty");
                 return;
             }
+            ProfileManager.Instance().PlayerProfile.UserID=value;
             PhotonNetwork.NickName = value;
 
 

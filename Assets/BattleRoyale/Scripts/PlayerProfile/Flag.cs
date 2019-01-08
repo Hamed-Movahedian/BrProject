@@ -5,6 +5,7 @@ using UnityEngine;
 public class Flag : MonoBehaviour
 {
     public FlagData Data;
+    public FlagsList flagsList;
     public MeshFilter FlagMesh;
 
     private int _currentFlag;
