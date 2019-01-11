@@ -8,16 +8,19 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     public BrRing currCenter;
     public BrRing targetCenter;
 
-    public float TimeToNextRing=15;
+    public float TimeToNextRing = 15;
     public float ChangeTime = 10;
 
-    private float _shrinkTime=-1;
-	void Start ()
-	{
+    private float _shrinkTime = -1;
+    void Start()
+    {
         gameObject.SetActive(false);
-	    if (PhotonNetwork.IsMasterClient)
-	        CreateNextCircle();
-	}
+        if (PhotonNetwork.IsMasterClient)
+        {
+            targetCenter.gameObject.SetActive(true);
+            CreateNextCircle();
+        }
+    }
 
     private void CreateNextCircle()
     {
@@ -37,7 +40,7 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         if (_shrinkTime < 0)
             return;
@@ -53,17 +56,17 @@ public class BrKillZone : MonoBehaviourPunCallbacks
 
         }
 
-        if (_shrinkTime <= ChangeTime)
+        else if (_shrinkTime <= ChangeTime)
         {
             currCenter.transform.localPosition = Vector3.Lerp(
                 currCenter.transform.localPosition,
                 targetCenter.transform.localPosition,
-                _shrinkTime / ChangeTime);
+                (ChangeTime-_shrinkTime- Time.deltaTime) *Time.deltaTime /ChangeTime);
 
             currCenter.radious = Mathf.Lerp(
                 currCenter.radious,
                 targetCenter.radious,
-                _shrinkTime / ChangeTime);
+                (ChangeTime - _shrinkTime- Time.deltaTime) * Time.deltaTime / ChangeTime);
         }
     }
 }

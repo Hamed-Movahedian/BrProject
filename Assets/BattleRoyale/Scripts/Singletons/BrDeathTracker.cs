@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class BrDeathTracker : MonoBehaviourPunCallbacks
 {
-    public static BrDeathTracker instance;
     public BrCharacterController activePlayer;
+
+    public static BrDeathTracker instance;
 
 
     private void Awake()

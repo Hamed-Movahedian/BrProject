@@ -93,8 +93,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         _characterModel = GetComponent<BrCharacterModel>();
         _characterModel.SetProfile(profile);
-        _characterModel.
-        transform.position = new Vector3(pos.x * 17, 5, pos.y * 17);
+
+        transform.position = BrLevelCoordinator.instance.GetLevelPos(pos);
     }
 
     void Start()
@@ -376,6 +376,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         flag.gameObject.SetActive(true);
     }
     #endregion
+
     #region Health
     public void AddHealth(int health)
     {

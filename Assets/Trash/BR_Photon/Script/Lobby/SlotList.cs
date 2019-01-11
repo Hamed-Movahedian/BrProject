@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
@@ -10,7 +11,7 @@ namespace BR.Lobby
 {
     public class SlotList : MonoBehaviourPunCallbacks
     {
-        private const int PlayerCount = 3;
+        private const int PlayerCount = 10;
         public List<Image> SlotImages;
 
         private readonly Player[] _players=new Player[PlayerCount];
@@ -20,8 +21,10 @@ namespace BR.Lobby
         // Use this for initialization
         void Start ()
         {
-            _bgColor = SlotImages[0].color;
+            SlotImages = GetComponentsInChildren<Image>().ToList();
 
+            _bgColor = SlotImages[0].color;
+            
             for (int i = 0; i < PlayerCount; i++)
             {
                 _players[i] = null;

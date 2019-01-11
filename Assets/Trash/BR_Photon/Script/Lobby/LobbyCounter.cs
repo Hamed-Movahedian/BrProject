@@ -6,40 +6,28 @@ using UnityEngine.UI;
 
 namespace BR.Lobby
 {
-    public class LobbyCounter : MonoBehaviourPunCallbacks,IPunObservable
+    public class LobbyCounter : MonoBehaviourPunCallbacks, IPunObservable
     {
         public Text Text;
 
-        public int MaxPlayer = 2;
         public int Counter = 3;
         // Use this for initialization
-        void Start ()
+        void Start()
         {
             Text.text = "";
-            check();
         }
 
         // Update is called once per frame
-        void Update ()
+        void Update()
         {
-		
-        }
-
-        public override void OnPlayerEnteredRoom(Player newPlayer)
-        {
-            //if (!PhotonNetwork.IsMasterClient)
-            //    return;
-            check();
 
         }
 
-        private void check()
+
+        public void CloseRoom()
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount == MaxPlayer)
-            {
-                PhotonNetwork.CurrentRoom.IsOpen = false;
-                StartCoroutine(Count());
-            }
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            StartCoroutine(Count());
         }
 
         private IEnumerator Count()
@@ -60,7 +48,7 @@ namespace BR.Lobby
             }
             else
             {
-                Text.text = (string) stream.ReceiveNext();
+                Text.text = (string)stream.ReceiveNext();
             }
         }
     }

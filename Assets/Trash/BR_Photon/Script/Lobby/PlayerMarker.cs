@@ -23,6 +23,7 @@ namespace BR.Lobby
                     Random.Range(-0.5f, 0.5f),
                     Random.Range(-0.5f, 0.5f),
                     0);
+                SaveToProperty();
 
                 LobbyManager.Instance.MarkerParent.GetComponent<Button>().onClick.AddListener(SetTarget);
             }
@@ -36,14 +37,18 @@ namespace BR.Lobby
         public void SetTarget()
         {
             transform.position = Input.mousePosition;
+            SaveToProperty();
 
+        }
+
+        private void SaveToProperty()
+        {
             PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable
             {
                 {"Pos", JsonUtility.ToJson(transform.localPosition)}
             });
-
-            print(transform.localPosition);
         }
+
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
