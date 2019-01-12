@@ -38,4 +38,13 @@ public class BrLevelCoordinator : MonoBehaviour
             levelBound.center.z + levelBound.extents.z * pos.y
             );
     }
+
+    public Vector3 NormalizePos(Vector3 pos)
+    {
+        return new Vector3(
+            2*(pos.x - levelBound.center.x )/ levelBound.extents.x,
+            2*(pos.z - levelBound.center.z )/ levelBound.extents.z,
+            0
+            );
+    }
 }

@@ -55,7 +55,7 @@ namespace BR
                 new Hashtable()
                 {
                     {"ID",userId },
-                    {"Color",JsonUtility.ToJson(Random.ColorHSV()) },
+                    {"Color",JsonUtility.ToJson(Random.ColorHSV(0,1,.5f,1,0.7f,1,1,1)) },
                     {"Pos",JsonUtility.ToJson(Vector3.one*0.5f) }
                 });
         }
