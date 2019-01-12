@@ -2,17 +2,19 @@
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BR.Lobby
 {
     public class PlayerMarker : MonoBehaviourPunCallbacks, IPunObservable
     {
-        public Text Text;
+        public List<Image> Markers;
 
         // Use this for initialization
         void Start ()
         {
-            Text.color = JsonUtility.FromJson<Color>((string) photonView.Owner.CustomProperties["Color"]);
+            Markers.ForEach(m=>m.color = JsonUtility.FromJson<Color>((string) photonView.Owner.CustomProperties["Color"]));
             RectTransform rectTransform = transform as RectTransform;
 
             rectTransform.SetParent(LobbyManager.Instance.MarkerParent);

@@ -28,4 +28,9 @@ public class BrLogManager : MonoBehaviour
     {
         text.text += kuserID1 + " " + weaponName + " " + vuserID2+"\n";
     }
+
+    internal void LogKill(string userID)
+    {
+        text.text += userID + " is dead";
+    }
 }

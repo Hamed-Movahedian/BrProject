@@ -22,4 +22,10 @@ public class BrKillAnnouncement : MonoBehaviour
         text.text=killerPlayer.profile.UserID + " kill " + victomPlayer.profile.UserID + " by " + weponName;
         window.gameObject.SetActive(true);
     }
+
+    internal void Announce(BrCharacterController victomPlayer)
+    {
+        text.text = victomPlayer.profile.UserID + " is dead!!";
+        window.gameObject.SetActive(true);
+    }
 }

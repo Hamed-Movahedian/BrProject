@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BrDeathTracker : MonoBehaviourPunCallbacks
@@ -18,44 +19,72 @@ public class BrDeathTracker : MonoBehaviourPunCallbacks
 
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    internal void PlayerDead(int victomViewID, int killerViewID, string weaponName)    
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    internal void PlayerDead(int victomViewID, int killerViewID, string weaponName)
     {
         var victomPhotonView = PhotonNetwork.GetPhotonView(victomViewID);
-        var killerPhotonView = PhotonNetwork.GetPhotonView(killerViewID);
+        var victomPlayer = victomPhotonView.GetComponent<BrCharacterController>();
 
-        var victomProfile = Profile.Deserialize((string)victomPhotonView.Owner.CustomProperties["Profile"]);
-        var killerProfile = Profile.Deserialize((string)killerPhotonView.Owner.CustomProperties["Profile"]);
+        BrCharacterController killerPlayer = null;
 
-        var victomPlayer= victomPhotonView.GetComponent<BrCharacterController>();
-        var killerPlayer = killerPhotonView.GetComponent<BrCharacterController>();
+        if (killerViewID != -1)
+        {
+            var killerPhotonView = PhotonNetwork.GetPhotonView(killerViewID);
 
-        // Log 
-        BrLogManager.instance.LogKill(killerProfile.UserID, weaponName, victomProfile.UserID);
+            killerPlayer = killerPhotonView.GetComponent<BrCharacterController>();
+            // Log 
+            BrLogManager.instance.LogKill(killerPlayer.profile.UserID, weaponName, victomPlayer.profile.UserID);
+        }
+        else
+        {
+            BrLogManager.instance.LogKill(victomPlayer.profile.UserID);
+        }
+
+
 
         // chage active player
         if (victomViewID == activePlayer.photonView.ViewID)
         {
-            SetActivePlayer(killerPlayer);
-            BrUIController.Instance.ActivePlayerIsDead(victomPlayer,killerPlayer,weaponName);
+            if (killerViewID != -1)
+            {
+                SetActivePlayer(killerPlayer);
+                BrUIController.Instance.ActivePlayerIsDead(victomPlayer, killerPlayer, weaponName);
+            }
+            else
+            {
+                SetActivePlayer(null);
+                BrUIController.Instance.ActivePlayerIsDead(victomPlayer);
+            }
         }
     }
 
     internal void SetActivePlayer(BrCharacterController player)
     {
+        if (player == null)
+        {
+            player = FindObjectsOfType<BrCharacterController>()
+                .Where(c => c.IsAlive && c != activePlayer)
+                .OrderBy(c => Vector3.Distance(c.transform.position, activePlayer.transform.position))
+                .FirstOrDefault();
+        }
         activePlayer = player;
 
-        BrCamera.Instance.SetCharacter(player);
+        if (player == null)
+            return;
+
+        if(activePlayer)
+            BrCamera.Instance.SetCharacter(player);
     }
 
-    
+
 }

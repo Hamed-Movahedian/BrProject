@@ -15,11 +15,11 @@ public class BrRing : MonoBehaviour
 	}
 
     private void OnValidate()
-    {
+    { 
         setup();
     }
 
-    private void setup()
+    private void setup() 
     {
         Inner.localScale = Vector3.one * radious;
         Outter.localScale = Vector3.one * (radious + thickness);

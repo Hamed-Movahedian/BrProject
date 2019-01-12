@@ -13,6 +13,7 @@ namespace BR.Lobby
     {
         private const int PlayerCount = 10;
         public List<Image> SlotImages;
+        public CharactersList CharactersList;
 
         private readonly Player[] _players=new Player[PlayerCount];
 
@@ -21,7 +22,7 @@ namespace BR.Lobby
         // Use this for initialization
         void Start ()
         {
-            SlotImages = GetComponentsInChildren<Image>().ToList();
+            //SlotImages = GetComponentsInChildren<Image>().ToList();
 
             _bgColor = SlotImages[0].color;
             
@@ -43,9 +44,14 @@ namespace BR.Lobby
                 if (_players[i] == null)
                 {
                     _players[i] = player;
-                    
-                    SlotImages[i].color= JsonUtility.FromJson<Color>((string)player.CustomProperties["Color"]);
-                    return;
+
+                    var profile = Profile.Deserialize((string)player.CustomProperties["Profile"]);
+
+                    SlotImages[i].sprite = CharactersList[profile.CurrentCharacter].FaceSprite;
+                    SlotImages[i].color = Color.white;
+                    SlotImages[i].transform.GetChild(0).GetComponent<Image>().color= 
+                        JsonUtility.FromJson<Color>((string)player.CustomProperties["Color"]);
+            return;
                 }
             }
         }

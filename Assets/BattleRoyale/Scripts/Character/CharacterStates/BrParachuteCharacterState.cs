@@ -60,6 +60,7 @@ public class BrParachuteCharacterState : BrCharacterStateBase
     {
         _controller.Animator.SetBool("OnGround", true);
         OnLanding.Invoke();
+        _controller.RigidBody.isKinematic = !isMine;
         // Enable Joysticks
         if (isMine)
         {

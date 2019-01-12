@@ -8,6 +8,7 @@ public class CharacterData : ScriptableObject
 {
     public string Name;
     public Texture2D FaceIcon;
+    public Sprite FaceSprite;
     public Texture2D BodyIcon;
 
 

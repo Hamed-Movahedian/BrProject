@@ -53,4 +53,14 @@ public class BrUIController : MonoBehaviour
         else
             activePlayerStatUI.Show();
     }
+
+    internal void ActivePlayerIsDead(BrCharacterController victomPlayer)
+    {
+        if (victomPlayer.isMine)
+        {
+            killAnnouncement.Announce(victomPlayer);
+        }
+        else
+            activePlayerStatUI.Show();
+    }
 }

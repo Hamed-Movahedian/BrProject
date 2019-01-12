@@ -64,6 +64,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public bool isMine => photonView.IsMine;
 
     public Vector3 CameraTargetPos => CameraTarget.position;
+    public bool IsAlive => Health > 0;
 
     #endregion
 
@@ -82,7 +83,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Start/Awake
 
     private void Awake()
-    {
+    { 
         if (photonView.IsMine)
             MasterCharacter = this;
 
@@ -326,7 +327,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             RpcTarget.All,
             bulletDamage,
             bulletDir,
-            killer.photonView.ViewID,
+            killer ? killer.photonView.ViewID : -1,
             weaponName
             );
     }
@@ -355,7 +356,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         BrDeathTracker.instance.PlayerDead(photonView.ViewID, killerViewID, weaponName);
 
-        ShowFlag(killerViewID);
+        if(killerViewID!=-1)
+            ShowFlag(killerViewID);
 
         if (isMine)
         {

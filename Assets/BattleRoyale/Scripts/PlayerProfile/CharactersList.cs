@@ -6,5 +6,9 @@ using UnityEngine;
 public class CharactersList : ScriptableObject
 {
     public CharacterData[] Characters;
-
+    public CharacterData this[int index]
+    {
+        get { return Characters[index]; }
+        set { Characters[index] = value; }
+    }
 }
