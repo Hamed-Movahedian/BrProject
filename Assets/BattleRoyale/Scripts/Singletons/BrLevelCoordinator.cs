@@ -8,6 +8,7 @@ public class BrLevelCoordinator : MonoBehaviour
     public Bounds levelBound=new Bounds();
 
     public static BrLevelCoordinator instance;
+    public Vector3 Center => levelBound.center;
 
     private void Awake()
     {
