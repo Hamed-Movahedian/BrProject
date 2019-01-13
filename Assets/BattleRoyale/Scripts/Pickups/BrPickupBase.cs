@@ -6,8 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SphereCollider))]
-public class BrPickupBase : MonoBehaviourPunCallbacks
+public class BrPickupBase : MonoBehaviour
 {
+    [Range(0,100)]
+    public int Chance=50;
     public float Duration = 2;
     public Image Image;
 
@@ -19,10 +21,6 @@ public class BrPickupBase : MonoBehaviourPunCallbacks
     {
         if (Image)
             Image.fillAmount = 0;
-/*
-        if(PhotonNetwork.IsMasterClient)
-            PhotonNetwork.AllocateSceneViewID(photonView);
-*/
     }
 
     // Update is called once per frame
@@ -43,12 +41,10 @@ public class BrPickupBase : MonoBehaviourPunCallbacks
 
     protected virtual void GetReward(BrCharacterController currentPlayer)
     {
+        BrPickupManager.instance.DisablePickup(this);
+    }
 
-        photonView.RPC("DisablePickup", RpcTarget.All);
-    } 
-
-    [PunRPC]
-    protected virtual void DisablePickup()
+    public void DisablePickup()
     {
         gameObject.SetActive(false);
     }

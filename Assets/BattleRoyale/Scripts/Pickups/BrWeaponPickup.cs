@@ -14,9 +14,5 @@ public class BrWeaponPickup : BrPickupBase
         player.WeaponController.PickupWeapon(WeaponName);
     }
 
-    [PunRPC]
-    protected override void DisablePickup()
-    {
-        base.DisablePickup();
-    }
+ 
 }

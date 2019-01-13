@@ -14,10 +14,6 @@ class BrAmmoPickup : BrPickupBase
         return (controller.WeaponController.CanPickupAmmo());
     }
 
-    [PunRPC]
-    protected override void DisablePickup()
-    {
-        base.DisablePickup();
-    }
+
 
 }

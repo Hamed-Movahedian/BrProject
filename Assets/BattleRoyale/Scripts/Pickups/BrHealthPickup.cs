@@ -10,10 +10,6 @@ class BrHealthPickup : BrPickupBase
     }
     
 
-    [PunRPC]
-    protected override void DisablePickup()
-    {
-        base.DisablePickup();
-    }
+ 
 
 }
