@@ -121,12 +121,11 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         };
         #endregion
 
-        // Initialize
+        // Initialize states
         _stateDic.Values.ToList().ForEach(s => s.Initialize(this));
 
         // Register to camera
-        if (photonView.IsMine)
-            BrDeathTracker.instance.SetActivePlayer(this);
+        BrPlayerTracker.instance.RegisterPlayer(this);
 
         // State Start
         //if (photonView.IsMine)
@@ -354,7 +353,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         Animator.SetTrigger("Dead");
         CapsuleCollider.enabled = false;
 
-        BrDeathTracker.instance.PlayerDead(photonView.ViewID, killerViewID, weaponName);
+        BrPlayerTracker.instance.PlayerDead(photonView.ViewID, killerViewID, weaponName);
 
         if(killerViewID!=-1)
             ShowFlag(killerViewID);

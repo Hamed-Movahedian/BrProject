@@ -4,13 +4,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class BrDeathTracker : MonoBehaviourPunCallbacks
+public class BrPlayerTracker : MonoBehaviourPunCallbacks
 {
+    public delegate void PlayerDeadDelegate(BrCharacterController victom, BrCharacterController killer, string weaponName);
+    public delegate void PlayerRegisterDelegate(BrCharacterController player);
+    public PlayerDeadDelegate OnPlayerDead;
+    public PlayerRegisterDelegate OnPlayerRegisterd;
+
+    [HideInInspector]
     public BrCharacterController activePlayer;
 
-    public static BrDeathTracker instance;
+    public static BrPlayerTracker instance;
 
+    private List<BrCharacterController> alivePlayers=new List<BrCharacterController>();
+
+    public int PlayerCounter => alivePlayers.Count;
 
     private void Awake()
     {
@@ -32,16 +42,16 @@ public class BrDeathTracker : MonoBehaviourPunCallbacks
 
     internal void PlayerDead(int victomViewID, int killerViewID, string weaponName)
     {
-        var victomPhotonView = PhotonNetwork.GetPhotonView(victomViewID);
-        var victomPlayer = victomPhotonView.GetComponent<BrCharacterController>();
+        var victomPlayer = GetPlayerByViewID(victomViewID);
+
+        alivePlayers.Remove(victomPlayer);
+        
 
         BrCharacterController killerPlayer = null;
 
         if (killerViewID != -1)
         {
-            var killerPhotonView = PhotonNetwork.GetPhotonView(killerViewID);
-
-            killerPlayer = killerPhotonView.GetComponent<BrCharacterController>();
+            killerPlayer = GetPlayerByViewID(killerViewID);
             // Log 
             BrLogManager.instance.LogKill(killerPlayer.profile.UserID, weaponName, victomPlayer.profile.UserID);
         }
@@ -50,9 +60,9 @@ public class BrDeathTracker : MonoBehaviourPunCallbacks
             BrLogManager.instance.LogKill(victomPlayer.profile.UserID);
         }
 
+        OnPlayerDead(victomPlayer, killerPlayer, weaponName);
 
-
-        // chage active player
+        // change active player
         if (victomViewID == activePlayer.photonView.ViewID)
         {
             if (killerViewID != -1)
@@ -68,11 +78,18 @@ public class BrDeathTracker : MonoBehaviourPunCallbacks
         }
     }
 
+    private static BrCharacterController GetPlayerByViewID(int victomViewID)
+    {
+        return PhotonNetwork
+                    .GetPhotonView(victomViewID)
+                    .GetComponent<BrCharacterController>();
+    }
+
     internal void SetActivePlayer(BrCharacterController player)
     {
         if (player == null)
         {
-            player = FindObjectsOfType<BrCharacterController>()
+            player = alivePlayers
                 .Where(c => c.IsAlive && c != activePlayer)
                 .OrderBy(c => Vector3.Distance(c.transform.position, activePlayer.transform.position))
                 .FirstOrDefault();
@@ -87,4 +104,11 @@ public class BrDeathTracker : MonoBehaviourPunCallbacks
     }
 
 
+    public void RegisterPlayer(BrCharacterController player)
+    {
+        if(player.isMine)
+            SetActivePlayer(player);
+        alivePlayers.Add(player);
+        OnPlayerRegisterd(player);
+    }
 }

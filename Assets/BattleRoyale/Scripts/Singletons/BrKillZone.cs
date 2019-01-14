@@ -14,6 +14,9 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     public int DamageAmount = 10;
     public float DamageRate = 1;
     private float _shrinkTime = -1;
+    private Vector3 currCenter;
+    private float currRadious;
+
     void Start()
     {
         gameObject.SetActive(false);
@@ -48,6 +51,9 @@ public class BrKillZone : MonoBehaviourPunCallbacks
         targetRing.transform.localPosition = center;
         targetRing.radious = radious;
         _shrinkTime = TimeToNextRing + ChangeTime;
+
+        currCenter = currRing.transform.localPosition;
+        currRadious = currRing.radious;
     }
 
     // Update is called once per frame
@@ -71,14 +77,14 @@ public class BrKillZone : MonoBehaviourPunCallbacks
         else if (_shrinkTime <= ChangeTime)
         {
             currRing.transform.localPosition = Vector3.Lerp(
-                currRing.transform.localPosition,
+                currCenter,
                 targetRing.transform.localPosition,
-                (ChangeTime - _shrinkTime) * Time.deltaTime / ChangeTime);
+                (ChangeTime - _shrinkTime) / ChangeTime);
 
             currRing.radious = Mathf.Lerp(
-                currRing.radious,
+                currRadious,
                 targetRing.radious,
-                (ChangeTime - _shrinkTime) * Time.deltaTime / ChangeTime);
+                (ChangeTime - _shrinkTime) / ChangeTime);
         }
     }
 }

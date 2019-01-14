@@ -10,6 +10,6 @@ public class BrActivePlayerStatUI : MonoBehaviour
     {
         panle.gameObject.SetActive(true);
         text.gameObject.SetActive(true);
-        text.text = BrDeathTracker.instance.activePlayer ? BrDeathTracker.instance.activePlayer.profile.UserID : "";
+        text.text = BrPlayerTracker.instance.activePlayer ? BrPlayerTracker.instance.activePlayer.profile.UserID : "";
     }
 }
