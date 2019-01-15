@@ -19,9 +19,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public RaycastHit GroundHitInfo;
 
     [Header("Stat")]
-    public int Health = 100;
     public int MaxHealth = 100;
-    public int Shield = 0;
     public int MaxShield = 100;
 
     [Header("Look IK")]
@@ -66,6 +64,34 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public Vector3 CameraTargetPos => CameraTarget.position;
     public bool IsAlive => Health > 0;
 
+    public int Health
+    {
+        get
+        {
+            return health;
+        }
+
+        set
+        {
+            health = value;
+            OnStatChange(this);
+        }
+    }
+
+    public int Shield
+    {
+        get
+        {
+            return shield;
+        }
+
+        set
+        {
+            shield = value;
+            OnStatChange(this);
+        }
+    }
+
     #endregion
 
     #region Privates
@@ -73,11 +99,17 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     private Dictionary<CharacterStateEnum, BrCharacterStateBase> _stateDic;
     private BrCharacterModel _characterModel;
     private BrCharacterHitEffect hitEffect;
+    private int health;
+    private int shield;
 
 
 
     #endregion
 
+    #region Events
+    public delegate void PlayerStatChangeDelegate(BrCharacterController player);
+    public PlayerStatChangeDelegate OnStatChange;
+    #endregion
     // ********************** Methods
 
     #region Start/Awake
@@ -88,14 +120,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             MasterCharacter = this;
 
 
-        var pos = JsonUtility.FromJson<Vector3>((string)photonView.Owner.CustomProperties["Pos"]);
-
-        profile = Profile.Deserialize((string)photonView.Owner.CustomProperties["Profile"]);
-
-        _characterModel = GetComponent<BrCharacterModel>();
-        _characterModel.SetProfile(profile);
-
-        transform.position = BrLevelCoordinator.instance.GetLevelPos(pos);
     }
 
     void Start()
@@ -106,6 +130,17 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         Animator = GetComponent<Animator>();
         WeaponController = GetComponent<BrWeaponController>();
         hitEffect = GetComponent<BrCharacterHitEffect>();
+        #endregion
+
+        #region Get custom properties
+        var pos = JsonUtility.FromJson<Vector3>((string)photonView.Owner.CustomProperties["Pos"]);
+
+        profile = Profile.Deserialize((string)photonView.Owner.CustomProperties["Profile"]);
+
+        _characterModel = GetComponent<BrCharacterModel>();
+        _characterModel.SetProfile(profile);
+
+        transform.position = BrLevelCoordinator.instance.GetLevelPos(pos);
         #endregion
 
         // root motion off for non locals
@@ -127,8 +162,11 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         // Register to camera
         BrPlayerTracker.instance.RegisterPlayer(this);
 
+        // set player stat
+        Health = MaxHealth;
+        Shield = 0;
+
         // State Start
-        //if (photonView.IsMine)
         _stateDic.Values.ToList().ForEach(s => s.Start());
     }
 

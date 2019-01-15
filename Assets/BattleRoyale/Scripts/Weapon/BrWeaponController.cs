@@ -23,7 +23,7 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (_armed != value)
             {
-                if(IsMine)
+                if (IsMine)
                     CharacterController.Animator.SetBool("Armed", value);
 
                 _targetArmIk = value ? 1 : 0;
@@ -34,12 +34,43 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
     }
     #endregion
 
-    public int CurrentWeaponIndex { get; set; } = -1;
-    public int BulletCount { get; set; } = 0;
-
+    private int _currentWeaponIndex=-1;
+    public int CurrentWeaponIndex
+    {
+        get
+        {
+            return _currentWeaponIndex;
+        }
+        set
+        {
+            _currentWeaponIndex = value;
+            OnStatChange(this);
+        }
+    }
+    private int _bulletCount;
+    public int BulletCount
+    {
+        get
+        {
+            return _bulletCount;
+        }
+        set
+        {
+            _bulletCount = value;
+            OnStatChange(this);
+        }
+    }
     public BrCharacterController CharacterController { get; set; }
 
-    public BrWeapon CurrWeapon => CurrentWeaponIndex == -1 ? null : _weaponList[CurrentWeaponIndex];
+    public BrWeapon CurrWeapon
+    {
+        get
+        {
+            return CurrentWeaponIndex == -1 ? 
+                null :
+                _weaponList!=null ? _weaponList[CurrentWeaponIndex] : null;
+        }
+    }
 
     public bool IsMine => photonView.IsMine;
     #endregion
@@ -51,6 +82,10 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
 
     #endregion
 
+    #region Events
+    public delegate void WeaponStatChangeDelegate(BrWeaponController weapon);
+    public WeaponStatChangeDelegate OnStatChange;
+    #endregion
     // ************** Methods
 
     #region Pickup/Change/Holster weapon
@@ -90,7 +125,7 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
     private void HolsterWeapon()
     {
         Armed = false;
-     
+
         CharacterController.Animator.SetTrigger("PutBackWeapon");
     }
 
@@ -137,6 +172,8 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
         // Get weapon list
         _weaponList = WeaponSlot.GetComponentsInChildren<BrWeapon>();
 
+        CurrentWeaponIndex = -1;
+
         // Initialize weapons
         foreach (var weapon in _weaponList)
         {
@@ -150,10 +187,10 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
     #region Update
     void Update()
     {
-        ArmIK = Mathf.Lerp(ArmIK, _targetArmIk, 5*Time.deltaTime);
+        ArmIK = Mathf.Lerp(ArmIK, _targetArmIk, 5 * Time.deltaTime);
 
-/*        if (!IsMine)
-            return;*/
+        /*        if (!IsMine)
+                    return;*/
 
         // Owner code ...
 
@@ -178,7 +215,7 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
 
         _timeToNextShot = CurrWeapon.FireRate;
 
-        if(!IsMine)
+        if (!IsMine)
             return;
 
         // Owner
@@ -252,12 +289,12 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            var wIndex=(int) stream.ReceiveNext();
-            if(wIndex!=CurrentWeaponIndex)
+            var wIndex = (int)stream.ReceiveNext();
+            if (wIndex != CurrentWeaponIndex)
                 ChangeWeapon(wIndex);
 
-            BulletCount=(int) stream.ReceiveNext();
-            Armed=(bool) stream.ReceiveNext();
+            BulletCount = (int)stream.ReceiveNext();
+            Armed = (bool)stream.ReceiveNext();
         }
     }
     #endregion

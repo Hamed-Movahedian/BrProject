@@ -23,10 +23,13 @@ public class BrWeapon : MonoBehaviour
     public Vector2 ShotAngle = new Vector2(5, 15);
     public float BulletRange = 6;
     public int BulletDamage = 10;
+    public Sprite Icon;
 
     public BrWeaponController WeaponController { get; set; }
 
     public bool IsMine => WeaponController.IsMine;
+
+
     // Use this for initialization
     void Start () {
 		
@@ -72,7 +75,7 @@ public class BrWeapon : MonoBehaviour
     {
         var muzzleRot = Quaternion.Euler(0, Muzzle.eulerAngles.y, 0);
 
-        var bullet = PhotonNetwork.Instantiate(
+        var bullet = BrPoolManager.insance.Instantiate(
             BulletPrefab.name,
             Muzzle.transform.position,
             muzzleRot*Quaternion.Euler(ShotAngle * Random.Range(-1f, 1f)));
