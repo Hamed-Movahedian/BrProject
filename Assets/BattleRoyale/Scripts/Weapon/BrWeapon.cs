@@ -60,8 +60,8 @@ public class BrWeapon : MonoBehaviour
 
         ShotAudio.Play();
 
-        if(!IsMine)
-            return;
+        //if(!IsMine)
+        //    return;
 
         // Owner code
 

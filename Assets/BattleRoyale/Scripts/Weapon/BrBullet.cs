@@ -43,7 +43,11 @@ public class BrBullet : MonoBehaviour
             _range -= moveDist;
 
             if (_range <= 0)
+            {
+                enabled = true;
+
                 BrPoolManager.insance.Destroy(gameObject);
+            }
         }
     }
 
@@ -56,6 +60,9 @@ public class BrBullet : MonoBehaviour
 
     private void HitEnviroment()
     {
+        if (!enabled)
+            return;
+
         enabled = false;
         
         BulletModel.gameObject.SetActive(false);
@@ -65,6 +72,9 @@ public class BrBullet : MonoBehaviour
 
     private void HitPlayer(RaycastHit hitInfo)
     {
+        if (!enabled)
+            return;
+
         enabled = false;
 
         if (IsMine)
@@ -80,6 +90,7 @@ public class BrBullet : MonoBehaviour
 
     public void Initialize(BrWeapon weapon)
     {
+        enabled = true;
         OwnerCharacterController = weapon.WeaponController.CharacterController;
         _weapon = weapon;
         _range = weapon.BulletRange;
