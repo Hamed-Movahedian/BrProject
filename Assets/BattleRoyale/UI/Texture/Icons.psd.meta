@@ -12,6 +12,7 @@ TextureImporter:
     21300014: Panle
     21300016: melle_icon
     21300018: Rifle_icon
+    21300020: Panel
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -289,6 +290,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: b269012f816efb54b828d73dd19cad18
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Panel
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 239
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 8, y: 9, z: 9, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 151e50155a6deae439bc729c8a33b6d2
       vertices: []
       indices: 
       edges: []

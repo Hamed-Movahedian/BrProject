@@ -1,18 +1,17 @@
-﻿using Photon.Pun;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-class BrHealthPickup : BrPickupBase
+public class BrShieldPickup : BrPickupBase
 {
-    public int Health=50;
+    public int Sheild = 50;
     protected override void GetReward(BrCharacterController currentPlayer)
     {
         base.GetReward(currentPlayer);
-        currentPlayer.AddHealth(Health);
+        currentPlayer.AddShield(Sheild);
     }
-
     protected override bool CanPickup(BrCharacterController controller)
     {
         return (controller.NeedHealth);
     }
-
-
 }

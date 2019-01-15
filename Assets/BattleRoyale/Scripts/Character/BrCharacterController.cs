@@ -11,6 +11,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Static fields
 
     public static BrCharacterController MasterCharacter;
+
+    
     #endregion
 
     #region Public Fields
@@ -91,6 +93,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             OnStatChange(this);
         }
     }
+
+    public bool NeedHealth => Health < MaxHealth;
 
     #endregion
 
@@ -376,7 +380,18 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             return;
 
         hitEffect.Hit();
-        Health -= damage;
+        if(Shield>0)
+        {
+            Shield -= damage;
+            if(Shield<0)
+            {
+                Health += Shield;
+                Shield = 0;
+            }
+        }
+        else
+            Health -= damage;
+
         if (Health <= 0)
             Death(killerViewID,weaponName);
     }
@@ -416,12 +431,19 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     }
     #endregion
 
-    #region Health
+    #region Health/shield
     public void AddHealth(int health)
     {
         Health += health;
         if (Health > MaxHealth)
             Health = MaxHealth;
+    }
+    internal void AddShield(int sheild)
+    {
+        Shield += sheild;
+
+        if (Shield > MaxShield)
+            Shield = MaxShield;
     }
     #endregion
 }
