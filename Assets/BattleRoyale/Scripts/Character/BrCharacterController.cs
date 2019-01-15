@@ -76,7 +76,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         set
         {
             health = value;
-            OnStatChange(this);
+            OnStatChange?.Invoke(this);
         }
     }
 
@@ -90,7 +90,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         set
         {
             shield = value;
-            OnStatChange(this);
+            OnStatChange?.Invoke(this);
         }
     }
 

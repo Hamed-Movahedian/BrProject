@@ -16,7 +16,7 @@ namespace BR
             {
                 Text.text = "";
             }
-            Text.text += " " + BrCharacterController.MasterCharacter.profile.UserID;
+            Text.text += " " + BrCharacterController.MasterCharacter?.profile?.UserID;
         }
     }
 }

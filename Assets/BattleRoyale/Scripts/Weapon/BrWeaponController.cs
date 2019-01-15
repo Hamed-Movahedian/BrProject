@@ -44,7 +44,7 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
         set
         {
             _currentWeaponIndex = value;
-            OnStatChange(this);
+            OnStatChange?.Invoke(this);
         }
     }
     private int _bulletCount;
@@ -57,7 +57,7 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
         set
         {
             _bulletCount = value;
-            OnStatChange(this);
+            OnStatChange?.Invoke(this);
         }
     }
     public BrCharacterController CharacterController { get; set; }
