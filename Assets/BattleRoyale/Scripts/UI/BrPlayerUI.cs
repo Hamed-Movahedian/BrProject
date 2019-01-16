@@ -17,6 +17,7 @@ public class BrPlayerUI : MonoBehaviour
     void Start()
     {
         ActiveUI(false);
+
         BrPlayerTracker.instance.OnPlayerDead += PlayerDead;
         BrPlayerTracker.instance.OnPlayerRegisterd += PlayerRegister;
     }
@@ -28,6 +29,7 @@ public class BrPlayerUI : MonoBehaviour
             _player = player;
 
             _player.OnStatChange += PlayerStatChange;
+
             _player.ParachuteState.OnLanding.AddListener(() => 
             {
                 ActiveUI(true);

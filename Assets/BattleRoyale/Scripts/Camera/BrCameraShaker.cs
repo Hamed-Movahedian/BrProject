@@ -58,6 +58,7 @@ public class BrCameraShaker : MonoBehaviour
     {
         if (fallingShake)
         {
+            //transform.localPosition = transform.localPosition + CalculateRandomShake(FallingShakeFactor, false);
             Vector3 newPos = transform.localPosition + CalculateRandomShake(FallingShakeFactor, false);
             transform.localPosition = Vector3.Lerp(transform.localPosition, newPos, FallingShakeSmoothness * Time.deltaTime);
 
@@ -67,7 +68,7 @@ public class BrCameraShaker : MonoBehaviour
             if (actualShakeTimer >= 0.0f)
             {
                 actualShakeTimer -= Time.deltaTime;
-                Vector3 newPos = CalculateRandomShake(shakeFactor, false);
+                Vector3 newPos = transform.localPosition + CalculateRandomShake(shakeFactor, false);
                 transform.localPosition = Vector3.Lerp(transform.localPosition, newPos, shakeSmoothness * Time.deltaTime);
             }
             else
@@ -90,11 +91,8 @@ public class BrCameraShaker : MonoBehaviour
                 actualExpShakeTimer = shakeExpTimer;
             }
         }
-        else
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, 1 * Time.deltaTime);
 
-        }
+        transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, 1 * Time.deltaTime);
     }
     // Use this for initialization
     void Start ()
