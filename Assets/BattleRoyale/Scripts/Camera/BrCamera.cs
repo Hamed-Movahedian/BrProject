@@ -8,6 +8,7 @@ public class BrCamera : MonoBehaviour
     public static BrCamera Instance;
 
     public Camera MainCamera;
+    public Transform MainCameraTransform;
 
     #region Auxiliary Cameras
 
@@ -79,8 +80,8 @@ public class BrCamera : MonoBehaviour
     private void CameraLerp(Camera camera, float value)
     {
         // Position
-        MainCamera.transform.position = Vector3.Lerp(
-            MainCamera.transform.position,
+        MainCameraTransform.position = Vector3.Lerp(
+            MainCameraTransform.position,
             camera.transform.position,
             value );
 
@@ -91,7 +92,7 @@ public class BrCamera : MonoBehaviour
         //    value);
 
         // Rotation
-        MainCamera.transform.LookAt(transform.position);
+        MainCameraTransform.LookAt(transform.position);
 
         // FieldOfView
         MainCamera.fieldOfView = Mathf.Lerp(

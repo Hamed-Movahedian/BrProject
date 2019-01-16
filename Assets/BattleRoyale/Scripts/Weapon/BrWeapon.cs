@@ -25,6 +25,10 @@ public class BrWeapon : MonoBehaviour
     public int BulletDamage = 10;
     public Sprite Icon;
 
+    [Header("Shake")]
+    public float ShakeFactor=3;
+    public float ShakeDuration=0.2f;
+
     public BrWeaponController WeaponController { get; set; }
 
     public bool IsMine => WeaponController.IsMine;
@@ -60,8 +64,8 @@ public class BrWeapon : MonoBehaviour
 
         ShotAudio.Play();
 
-        //if(!IsMine)
-        //    return;
+        if (IsMine)
+            BrCameraShaker.instance.Shake(ShakeFactor, ShakeDuration);
 
         // Owner code
 
