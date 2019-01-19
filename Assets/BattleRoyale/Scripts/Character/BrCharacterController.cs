@@ -125,12 +125,13 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     { 
-        if (photonView.IsMine)
-            MasterCharacter = this;
     }
 
     void Start()
     {
+        if (photonView.IsMine)
+            MasterCharacter = this;
+
         #region Get necessary components
         RigidBody = GetComponent<Rigidbody>();
         CapsuleCollider = GetComponent<CapsuleCollider>();
@@ -387,7 +388,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         var killer = killerViewID==-1 ? null : PhotonNetwork.GetPhotonView(killerViewID).GetComponent<BrCharacterController>();
 
         if (isMine || (killer && killer.isMine))
-            takeDamage(damage, Shield>0 ? 1 : 0);
+            takeDamage(damage, Shield>0 ? 0 : 1);
 
         if (Shield > 0)
         {
