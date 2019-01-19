@@ -96,6 +96,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     public bool NeedHealth => Health < MaxHealth;
 
+    public string UserID => profile.UserID;
+
     #endregion
 
     #region Privates
@@ -113,6 +115,9 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Events
     public delegate void PlayerStatChangeDelegate(BrCharacterController player);
     public PlayerStatChangeDelegate OnStatChange;
+
+    public delegate void TakeDamageDelegate(int amount,int type);
+    public TakeDamageDelegate takeDamage;
     #endregion
     // ********************** Methods
 
@@ -122,8 +127,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     { 
         if (photonView.IsMine)
             MasterCharacter = this;
-
-
     }
 
     void Start()
@@ -164,7 +167,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         _stateDic.Values.ToList().ForEach(s => s.Initialize(this));
 
         // Register to camera
-        BrPlayerTracker.instance.RegisterPlayer(this);
+        BrPlayerTracker.Instance.RegisterPlayer(this);
 
         // set player stat
         Health = MaxHealth;
@@ -181,8 +184,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            MovVector = BrUIController.Instance.MovementJoystick.Value3;
-            AimVector = BrUIController.Instance.AimJoystick.Value3;
+            MovVector = BrJoystickController.Instance.MovementJoystick.Value3;
+            AimVector = BrJoystickController.Instance.AimJoystick.Value3;
         }
 
         GroundCheck();
@@ -380,10 +383,16 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             return;
 
         hitEffect.Hit();
-        if(Shield>0)
+
+        var killer = killerViewID==-1 ? null : PhotonNetwork.GetPhotonView(killerViewID).GetComponent<BrCharacterController>();
+
+        if (isMine || (killer && killer.isMine))
+            takeDamage(damage, Shield>0 ? 1 : 0);
+
+        if (Shield > 0)
         {
             Shield -= damage;
-            if(Shield<0)
+            if (Shield < 0)
             {
                 Health += Shield;
                 Shield = 0;
@@ -406,17 +415,11 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         Animator.SetTrigger("Dead");
         CapsuleCollider.enabled = false;
 
-        BrPlayerTracker.instance.PlayerDead(photonView.ViewID, killerViewID, weaponName);
+        BrPlayerTracker.Instance.PlayerDead(photonView.ViewID, killerViewID, weaponName);
 
         if(killerViewID!=-1)
             ShowFlag(killerViewID);
 
-        if (isMine)
-        {
-
-            BrUIController.Instance.SetMovementJoyisticActive(false);
-            BrUIController.Instance.SetAimJoyisticActive(false);
-        }
     }
 
     private void ShowFlag(int killerViewID)

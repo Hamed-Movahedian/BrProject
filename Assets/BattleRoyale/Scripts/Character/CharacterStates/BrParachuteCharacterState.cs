@@ -44,16 +44,7 @@ public class BrParachuteCharacterState : BrCharacterStateBase
         OnOpenPara.Invoke();
         _controller.Animator.SetTrigger("OpenPara");
 
-        // Enable Joysticks
-        if (isMine)
-        {
-            BrUIController.Instance.SetMovementJoyisticActive(true);
-            BrUIController.Instance.SetAimJoyisticActive(false);
-        }
-        else
-        {
-            _controller.gameObject.SetActive(true);
-        }
+        _controller.gameObject.SetActive(true);
     }
 
     public override void OnExit()
@@ -61,11 +52,5 @@ public class BrParachuteCharacterState : BrCharacterStateBase
         _controller.Animator.SetBool("OnGround", true);
         OnLanding.Invoke();
         _controller.RigidBody.isKinematic = !isMine;
-        // Enable Joysticks
-        if (isMine)
-        {
-            BrUIController.Instance.SetMovementJoyisticActive(true);
-            BrUIController.Instance.SetAimJoyisticActive(true);
-        }
     }
 }

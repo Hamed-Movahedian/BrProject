@@ -97,7 +97,7 @@ public class BrCameraShaker : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        BrPlayerTracker.instance.OnPlayerRegisterd += PlayerRegister;
+        BrPlayerTracker.Instance.OnPlayerRegisterd += PlayerRegister;
 	}
 
     private void Awake()

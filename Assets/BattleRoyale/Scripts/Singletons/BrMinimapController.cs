@@ -90,9 +90,9 @@ public class BrMinimapController : MonoBehaviour
 	    if (isExpanded)
 	        return;
 
-	    if (BrPlayerTracker.instance.activePlayer)
+	    if (BrPlayerTracker.Instance.ActivePlayer)
 	    {
-	        var position = BrPlayerTracker.instance.activePlayer.transform.position;
+	        var position = BrPlayerTracker.Instance.ActivePlayer.transform.position;
 	        position.y = MiniCamera.transform.position.y;
 	        MiniCamera.transform.position = position;
 

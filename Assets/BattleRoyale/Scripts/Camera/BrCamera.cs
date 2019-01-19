@@ -47,10 +47,20 @@ public class BrCamera : MonoBehaviour
             {CharacterStateEnum.Grounded,GroundCamera },
             {CharacterStateEnum.GroundedAim,GroundAimCamera },
         };
+
+        BrPlayerTracker.Instance.OnActivePlayerChange += OnActivePlayerChange;
     }
 
-	
-	void LateUpdate ()
+    private void OnActivePlayerChange(BrCharacterController preActivePlayer, BrCharacterController nextActivePlayer)
+    {
+        if (!nextActivePlayer)
+            return;
+
+        _character = nextActivePlayer;
+        transform.position = _character.transform.position; 
+    }
+
+    void LateUpdate ()
 	{
 		if(!_character)
             return;
@@ -86,12 +96,6 @@ public class BrCamera : MonoBehaviour
             value );
 
         // Rotation
-        //MainCamera.transform.rotation = Quaternion.Lerp(
-        //    MainCamera.transform.rotation,
-        //    camera.transform.rotation,
-        //    value);
-
-        // Rotation
         MainCameraTransform.LookAt(transform.position);
 
         // FieldOfView
@@ -100,15 +104,7 @@ public class BrCamera : MonoBehaviour
             camera.fieldOfView,
             value );
     }
-
-
-    public void SetCharacter(BrCharacterController characterController)
-    {
-        _character = characterController;
-        transform.position = _character.transform.position;
-
-    }
-
+    
     public void ForceToState(CharacterStateEnum state)
     {
         CameraLerp(_camStateDic[state],1);

@@ -20,7 +20,7 @@ public class BrWeapon : MonoBehaviour
     [Header("Bullet")]
     public BrBullet BulletPrefab;
     public int BulletPerShot = 6;
-    public Vector2 ShotAngle = new Vector2(5, 15);
+    public float ShotAngle = 15;
     public float BulletRange = 6;
     public int BulletDamage = 10;
     public Sprite Icon;
@@ -67,22 +67,23 @@ public class BrWeapon : MonoBehaviour
         if (IsMine)
             BrCameraShaker.instance.Shake(ShakeFactor, ShakeDuration);
 
-        // Owner code
+        var angle = -ShotAngle / 2;
+        var delta = ShotAngle / (BulletPerShot-1);
 
         for (int i = 0; i < BulletPerShot; i++)
         {
-            InstantiateBullet();
+            InstantiateBullet(angle);
+            angle += delta;
         }
     }
 
-    private void InstantiateBullet()
+    private void InstantiateBullet(float angle)
     {
-        var muzzleRot = Quaternion.Euler(0, Muzzle.eulerAngles.y, 0);
-
         var bullet = BrPoolManager.insance.Instantiate(
             BulletPrefab.name,
             Muzzle.transform.position,
-            muzzleRot*Quaternion.Euler(ShotAngle * Random.Range(-1f, 1f)));
+            Quaternion.Euler(0, WeaponController.transform.eulerAngles.y + angle, 0)
+            );
 
         bullet.GetComponent<BrBullet>().Initialize(this);
     }

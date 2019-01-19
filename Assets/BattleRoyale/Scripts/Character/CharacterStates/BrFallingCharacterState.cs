@@ -37,13 +37,6 @@ public class BrFallingCharacterState : BrCharacterStateBase
             // Force camera to state
             if (isMine)
                 BrCamera.Instance.ForceToState(CharacterStateEnum.Falling);
-
-            // Disable joysticks
-            if (isMine)
-            {
-                BrUIController.Instance.SetMovementJoyisticActive(false);
-                BrUIController.Instance.SetAimJoyisticActive(false);
-            }
         }
         else
         {
@@ -60,12 +53,6 @@ public class BrFallingCharacterState : BrCharacterStateBase
             if (isMine)
                 BrCamera.Instance.ForceToState(CharacterStateEnum.Grounded);
 
-            // Enable Joysticks
-            if (isMine)
-            {
-                BrUIController.Instance.SetMovementJoyisticActive(true);
-                BrUIController.Instance.SetAimJoyisticActive(true);
-            }
         }
     }
 

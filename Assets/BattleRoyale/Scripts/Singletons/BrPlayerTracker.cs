@@ -13,74 +13,69 @@ public class BrPlayerTracker : MonoBehaviourPunCallbacks
     public PlayerDeadDelegate OnPlayerDead;
     public PlayerRegisterDelegate OnPlayerRegisterd;
 
-    [HideInInspector]
-    public BrCharacterController activePlayer;
+    #region Instance
+    private static BrPlayerTracker instance;
+    public static BrPlayerTracker Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<BrPlayerTracker>();
+            return instance;
+        }
+    }
 
-    public static BrPlayerTracker instance;
+    #endregion
 
-    private List<BrCharacterController> alivePlayers=new List<BrCharacterController>();
+    private List<BrCharacterController> alivePlayers = new List<BrCharacterController>();
 
     public int PlayerCounter => alivePlayers.Count;
+
+    #region Active player
+    public delegate void ActivePlayerChangeDelegate(BrCharacterController preActivePlayer, BrCharacterController nextActivePlayer);
+    public ActivePlayerChangeDelegate OnActivePlayerChange;
+    private BrCharacterController activePlayer;
+    public BrCharacterController ActivePlayer
+    {
+        get => activePlayer;
+        set
+        {
+            if (activePlayer != value)
+            {
+                var preAP = activePlayer;
+                activePlayer = value;
+                OnActivePlayerChange(preAP, activePlayer);
+            }
+        }
+    }
+
+    #endregion
 
     private void Awake()
     {
         instance = this;
     }
 
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     internal void PlayerDead(int victomViewID, int killerViewID, string weaponName)
     {
         var victomPlayer = GetPlayerByViewID(victomViewID);
+        var killerPlayer = GetPlayerByViewID(killerViewID);
 
         alivePlayers.Remove(victomPlayer);
         
-
-        BrCharacterController killerPlayer = null;
-
-        if (killerViewID != -1)
-        {
-            killerPlayer = GetPlayerByViewID(killerViewID);
-            // Log 
-            BrLogManager.instance.LogKill(killerPlayer.profile.UserID, weaponName, victomPlayer.profile.UserID);
-        }
-        else
-        {
-            BrLogManager.instance.LogKill(victomPlayer.profile.UserID);
-        }
-
         OnPlayerDead(victomPlayer, killerPlayer, weaponName);
 
         // change active player
-        if (victomViewID == activePlayer.photonView.ViewID)
-        {
-            if (killerViewID != -1)
-            {
-                SetActivePlayer(killerPlayer);
-                BrUIController.Instance.ActivePlayerIsDead(victomPlayer, killerPlayer, weaponName);
-            }
-            else
-            {
-                SetActivePlayer(null);
-                BrUIController.Instance.ActivePlayerIsDead(victomPlayer);
-            }
-        }
+        if (victomPlayer == ActivePlayer)
+            SetActivePlayer(killerPlayer);
     }
 
     private static BrCharacterController GetPlayerByViewID(int victomViewID)
     {
-        return PhotonNetwork
+
+        return victomViewID==-1 ? 
+            null :
+            PhotonNetwork
                     .GetPhotonView(victomViewID)
                     .GetComponent<BrCharacterController>();
     }
@@ -90,25 +85,22 @@ public class BrPlayerTracker : MonoBehaviourPunCallbacks
         if (player == null)
         {
             player = alivePlayers
-                .Where(c => c.IsAlive && c != activePlayer)
-                .OrderBy(c => Vector3.Distance(c.transform.position, activePlayer.transform.position))
+                .Where(c => c.IsAlive && c != ActivePlayer)
+                .OrderBy(c => Vector3.Distance(c.transform.position, ActivePlayer.transform.position))
                 .FirstOrDefault();
         }
-        activePlayer = player;
-
-        if (player == null)
-            return;
-
-        if(activePlayer)
-            BrCamera.Instance.SetCharacter(player);
+        ActivePlayer = player;
+       
     }
 
 
     public void RegisterPlayer(BrCharacterController player)
     {
-        if(player.isMine)
+        if (player.isMine)
             SetActivePlayer(player);
+
         alivePlayers.Add(player);
+
         OnPlayerRegisterd(player);
     }
 }

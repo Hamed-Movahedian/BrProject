@@ -12,8 +12,8 @@ public class BrUIPlayerCounter : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        BrPlayerTracker.instance.OnPlayerRegisterd += PlayerRegistered;
-        BrPlayerTracker.instance.OnPlayerDead += PlayerDead;
+        BrPlayerTracker.Instance.OnPlayerRegisterd += PlayerRegistered;
+        BrPlayerTracker.Instance.OnPlayerDead += PlayerDead;
 	}
 
     private void PlayerRegistered(BrCharacterController player)
@@ -30,7 +30,7 @@ public class BrUIPlayerCounter : MonoBehaviour
     {
         text.text =
             textShadow.text =
-                BrPlayerTracker.instance.PlayerCounter.ToString();
+                BrPlayerTracker.Instance.PlayerCounter.ToString();
     }
 
 }

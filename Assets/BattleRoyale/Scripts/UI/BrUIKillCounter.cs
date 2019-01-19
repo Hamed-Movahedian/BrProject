@@ -13,7 +13,7 @@ public class BrUIKillCounter : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        BrPlayerTracker.instance.OnPlayerDead += PlayerDead;
+        BrPlayerTracker.Instance.OnPlayerDead += PlayerDead;
         UpdateTexts(0);
     }
 

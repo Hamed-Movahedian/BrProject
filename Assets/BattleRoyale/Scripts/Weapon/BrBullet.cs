@@ -91,6 +91,8 @@ public class BrBullet : MonoBehaviour
     public void Initialize(BrWeapon weapon)
     {
         enabled = true;
+        BulletModel.gameObject.SetActive(true);
+        HitFx.gameObject.SetActive(false);
         OwnerCharacterController = weapon.WeaponController.CharacterController;
         _weapon = weapon;
         _range = weapon.BulletRange;

@@ -181,6 +181,8 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         _targetArmIk = ArmIK;
+
+
     }
     #endregion
 

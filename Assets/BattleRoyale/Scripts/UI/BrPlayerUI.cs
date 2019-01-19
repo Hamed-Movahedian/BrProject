@@ -18,8 +18,8 @@ public class BrPlayerUI : MonoBehaviour
     {
         ActiveUI(false);
 
-        BrPlayerTracker.instance.OnPlayerDead += PlayerDead;
-        BrPlayerTracker.instance.OnPlayerRegisterd += PlayerRegister;
+        BrPlayerTracker.Instance.OnPlayerDead += PlayerDead;
+        BrPlayerTracker.Instance.OnPlayerRegisterd += PlayerRegister;
     }
 
     private void PlayerRegister(BrCharacterController player)

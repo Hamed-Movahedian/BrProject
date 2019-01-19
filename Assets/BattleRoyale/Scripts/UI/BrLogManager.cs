@@ -7,30 +7,23 @@ using UnityEngine.UI;
 public class BrLogManager : MonoBehaviour
 {
     public static BrLogManager instance;
-    public GameObject panle;
     public Text text;
     private void Awake()
     {
         instance = this;
+        BrPlayerTracker.Instance.OnPlayerDead += OnPlayerDead;
+
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    internal void LogKill(string kuserID1, string weaponName, string vuserID2)
+    private void OnPlayerDead(BrCharacterController victom, BrCharacterController killer, string weaponName)
     {
-        text.text += kuserID1 + " " + weaponName + " " + vuserID2+"\n";
-    }
+        if(killer)
+        {
+            text.text += killer.UserID + " " + weaponName + " " + victom.UserID + "\n";
+        }
+        else
+            text.text += victom.UserID + " is dead";
 
-    internal void LogKill(string userID)
-    {
-        text.text += userID + " is dead";
     }
+ 
 }

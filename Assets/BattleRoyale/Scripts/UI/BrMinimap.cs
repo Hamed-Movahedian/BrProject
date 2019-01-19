@@ -17,8 +17,8 @@ public class BrMinimap : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (BrPlayerTracker.instance.activePlayer != null)
+        if (BrPlayerTracker.Instance.ActivePlayer != null)
             MapImage.localPosition = coordinator.NormalizePos(
-                BrPlayerTracker.instance.activePlayer.transform.position) *-200;
+                BrPlayerTracker.Instance.ActivePlayer.transform.position) *-200;
     }
 }

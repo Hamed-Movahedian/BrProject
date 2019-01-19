@@ -5,10 +5,24 @@ using UnityEngine;
 
 public class BrKillZone : MonoBehaviourPunCallbacks
 {
+    #region Instance
+    private static BrKillZone instance;
+    public static BrKillZone Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<BrKillZone>();
+            return instance;
+        }
+    }
+
+    #endregion
+
     public BrRing currRing;
     public BrRing targetRing;
 
-    public float StartTime = 10;
+    public float StartNewCircleDelay = 10;
     public float TimeToNextRing = 15;
     public float ChangeTime = 10;
     public int DamageAmount = 10;
@@ -17,13 +31,25 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     private Vector3 currCenter;
     private float currRadious;
 
+
+
+    #region Events
+    public delegate void NewCircle(Vector3 center, float Radious);
+    public delegate void WaitForShrink(int time);
+
+    public delegate void Shirinking(int time);
+    public NewCircle OnNewCircle;
+    public Shirinking Shrinking;
+    public WaitForShrink OnWaitForShrink; 
+    #endregion
+
     void Start()
     {
         gameObject.SetActive(false);
         if (PhotonNetwork.IsMasterClient)
-            Invoke("CreateNextCircle", StartTime);
+            Invoke("CreateNextCircle", StartNewCircleDelay);
 
-        InvokeRepeating("DamageToPlayer", StartTime, DamageRate);
+        InvokeRepeating("DamageToPlayer", StartNewCircleDelay, DamageRate);
     }
 
     private void DamageToPlayer()
@@ -40,11 +66,11 @@ public class BrKillZone : MonoBehaviourPunCallbacks
         var nextR = currRing.radious * .7f;
         Vector3 nextCenter = Random.insideUnitCircle * (currRing.radious - nextR);
         nextCenter = new Vector3(nextCenter.x, 0, nextCenter.y) + currRing.transform.localPosition;
-        photonView.RPC("NewCircle", RpcTarget.AllViaServer, nextCenter, nextR);
+        photonView.RPC("NewCircleRPC", RpcTarget.AllViaServer, nextCenter, nextR);
     }
 
     [PunRPC]
-    public void NewCircle(Vector3 center, float radious)
+    public void NewCircleRPC(Vector3 center, float radious)
     {
         targetRing.gameObject.SetActive(true);
         gameObject.SetActive(true);
@@ -54,6 +80,7 @@ public class BrKillZone : MonoBehaviourPunCallbacks
 
         currCenter = currRing.transform.localPosition;
         currRadious = currRing.radious;
+        OnNewCircle(targetRing.transform.position, radious);
     }
 
     // Update is called once per frame
@@ -62,6 +89,7 @@ public class BrKillZone : MonoBehaviourPunCallbacks
 
         if (_shrinkTime < 0)
             return;
+
         _shrinkTime -= Time.deltaTime;
 
         if (_shrinkTime <= 0)
@@ -69,8 +97,9 @@ public class BrKillZone : MonoBehaviourPunCallbacks
             currRing.transform.localPosition = targetRing.transform.localPosition;
             currRing.radious = targetRing.radious;
 
+            Shrinking(0);
             if (PhotonNetwork.IsMasterClient)
-                CreateNextCircle();
+                Invoke("CreateNextCircle", StartNewCircleDelay);
 
         }
 
@@ -85,6 +114,9 @@ public class BrKillZone : MonoBehaviourPunCallbacks
                 currRadious,
                 targetRing.radious,
                 (ChangeTime - _shrinkTime) / ChangeTime);
+            Shrinking((int)_shrinkTime);
         }
+        else
+            OnWaitForShrink((int)(_shrinkTime - ChangeTime));
     }
 }

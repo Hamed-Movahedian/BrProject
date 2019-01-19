@@ -10,22 +10,34 @@ public class BrKillAnnouncement : MonoBehaviour
 
     private void Awake()
     {
+        BrPlayerTracker.Instance.OnPlayerDead += OnPlayerDead;
+        
+        // show active player stat button
         continueButton.onClick.AddListener(() =>
         {
-            BrUIController.Instance.ShowActivePlayerStat();
+            BrActivePlayerStatUI.instance.Show();
             window.gameObject.SetActive(false);
         });
+
+        window.gameObject.SetActive(false);
+
     }
 
-    internal void Announce(BrCharacterController victomPlayer, BrCharacterController killerPlayer, string weponName)
+    private void OnPlayerDead(BrCharacterController victomPlayer, BrCharacterController killerPlayer, string weponName)
     {
-        text.text=killerPlayer.profile.UserID + " kill " + victomPlayer.profile.UserID + " by " + weponName;
-        window.gameObject.SetActive(true);
-    }
+        if (victomPlayer.isMine)
+        {
+            if (killerPlayer == null)
+            {   // no killer
+                text.text = victomPlayer.profile.UserID + " is dead!!";
+            }
+            else // has killer
+            {
+                text.text=killerPlayer.profile.UserID + " kill " + victomPlayer.profile.UserID + " by " + weponName;
+            }
 
-    internal void Announce(BrCharacterController victomPlayer)
-    {
-        text.text = victomPlayer.profile.UserID + " is dead!!";
-        window.gameObject.SetActive(true);
+            window.gameObject.SetActive(true);
+
+        }
     }
 }
