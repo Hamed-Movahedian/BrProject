@@ -18,40 +18,40 @@ public class BrKillZoneUI : MonoBehaviour
 
     private void Awake()
     {
-        BrKillZone.Instance.OnNewCircle += NewCircle;
-        BrKillZone.Instance.Shrinking += Shrinking;
-        BrKillZone.Instance.OnWaitForShrink += OnWaitForShrink;
+        // New circle
+        BrKillZone.Instance.OnNewCircle += (center, radoious) =>
+        {
+            this.center = center;
+            this.radoious = radoious;
+            NewArea.SetActive(true);
+            Invoke("DisableNewAreaGameObject", 1);
+        };
+
+        // Shrinking
+        BrKillZone.Instance.Shrinking += time =>
+        {
+            if (time == 0)
+            {
+                ring.gameObject.SetActive(false);
+                return;
+            }
+            counter.text = time.ToString() + "s";
+
+            ring.color =
+                counter.color =
+                    arrowImage.color = Color.red;
+        };
+
+        // Wait for shrink
+        BrKillZone.Instance.OnWaitForShrink += time =>
+        {
+            counter.text = time.ToString() + "s";
+        };
 
         ring.gameObject.SetActive(false);
 
     }
-
-    private void OnWaitForShrink(int time)
-    {
-        counter.text = time.ToString() + "s";
-    }
-
-    private void Shrinking(int time)
-    {
-        if (time == 0)
-        {
-            ring.gameObject.SetActive(false);
-            return;
-        }
-        counter.text = time.ToString() + "s";
-        ring.color =
-            counter.color =
-            arrowImage.color = Color.red;
-    }
-
-    private void NewCircle(Vector3 center, float Radious)
-    {
-        this.center = center;
-        this.radoious = Radious;
-        NewArea.SetActive(true);
-        Invoke("DisableNewAreaGameObject", 1);
-    }
-
+    
     private void DisableNewAreaGameObject()
     {
         NewArea.SetActive(false);
