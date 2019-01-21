@@ -7,9 +7,6 @@ namespace BR
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
-        public static GameManager Instance;
-    
-        [Tooltip("The prefab to use for representing the player")]
         public GameObject playerPrefab;
         void Start()
         {
@@ -20,6 +17,7 @@ namespace BR
             }
             else
             {
+                //Debug.Log("TestLog !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
             }
         }
