@@ -41,7 +41,7 @@ public class ProfileManager : MonoBehaviour
         string fileName = "settings.txt";
 
 #if UNITY_EDITOR
-        var _filePath = string.Format(@"Assets/StreamingAssets/{0}", fileName);
+        var filepath = string.Format(@"Assets/StreamingAssets/{0}", fileName);
 #else
         // check if file exists in Application.persistentDataPath
         var filepath = string.Format("{0}/{1}", Application.persistentDataPath, fileName);
@@ -80,11 +80,10 @@ public class ProfileManager : MonoBehaviour
             Debug.Log("Database written");
         }
 
-        var _filePath = filepath;
 #endif
+        _filePath = filepath;
         string profileString = File.ReadAllText(_filePath);
         PlayerProfile = JsonUtility.FromJson<Profile>(profileString);
-        Debug.Log(profileString);
         StartCoroutine(LoadMainMenu());
     }
 
