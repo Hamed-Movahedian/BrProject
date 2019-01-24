@@ -12,6 +12,6 @@ public class BrShieldPickup : BrPickupBase
     }
     protected override bool CanPickup(BrCharacterController controller)
     {
-        return (controller.NeedHealth);
+        return (controller.NeedShield);
     }
 }

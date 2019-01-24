@@ -95,6 +95,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     public bool NeedHealth => Health < MaxHealth;
+    public bool NeedShield => Shield < MaxShield;
 
     public string UserID => profile.UserID;
 
