@@ -20,6 +20,6 @@ public class BrDamageText : MonoBehaviour
     }
     public void Disable()
     {
-        BrPoolManager.insance.Destroy(gameObject);
+        BrPoolManager.Instance.Destroy(gameObject);
     }
 }

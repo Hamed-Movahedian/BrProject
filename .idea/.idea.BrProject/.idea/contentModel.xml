@@ -5,6 +5,7 @@
     <e p="C:\Users\Hamed\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-1566460626.00" t="ExcludeRecursive" />
     <e p="C:\Users\Hamed\Documents\Projects\BrProject" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="BattleRoyale" t="Include">
@@ -338,6 +339,597 @@
                 <e p="TextButtonTransition.cs" t="Include" />
                 <e p="TextToggleIsOnTransition.cs" t="Include" />
               </e>
+            </e>
+          </e>
+        </e>
+        <e p="Plugins" t="Include">
+          <e p="Android" t="Include">
+            <e p="AndroidManifest.xml" t="Include" />
+            <e p="play-services-base-11.8.0" t="Include">
+              <e p="AndroidManifest.xml" t="Include" />
+              <e p="bin" t="Include">
+                <e p="AndroidManifest.xml" t="Include" />
+                <e p="R.txt" t="Include" />
+              </e>
+              <e p="proguard.txt" t="Include" />
+              <e p="res" t="Include">
+                <e p="color" t="Include">
+                  <e p="common_google_signin_btn_text_dark.xml" t="Include" />
+                  <e p="common_google_signin_btn_text_light.xml" t="Include" />
+                  <e p="common_google_signin_btn_tint.xml" t="Include" />
+                </e>
+                <e p="drawable" t="Include">
+                  <e p="common_google_signin_btn_icon_dark.xml" t="Include" />
+                  <e p="common_google_signin_btn_icon_dark_focused.xml" t="Include" />
+                  <e p="common_google_signin_btn_icon_dark_normal.xml" t="Include" />
+                  <e p="common_google_signin_btn_icon_disabled.xml" t="Include" />
+                  <e p="common_google_signin_btn_icon_light.xml" t="Include" />
+                  <e p="common_google_signin_btn_icon_light_focused.xml" t="Include" />
+                  <e p="common_google_signin_btn_icon_light_normal.xml" t="Include" />
+                  <e p="common_google_signin_btn_text_dark.xml" t="Include" />
+                  <e p="common_google_signin_btn_text_dark_focused.xml" t="Include" />
+                  <e p="common_google_signin_btn_text_dark_normal.xml" t="Include" />
+                  <e p="common_google_signin_btn_text_disabled.xml" t="Include" />
+                  <e p="common_google_signin_btn_text_light.xml" t="Include" />
+                  <e p="common_google_signin_btn_text_light_focused.xml" t="Include" />
+                  <e p="common_google_signin_btn_text_light_normal.xml" t="Include" />
+                </e>
+                <e p="values" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-af" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-am" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ar" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-az" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-b+sr+Latn" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-be" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-bg" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-bn" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-bs" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ca" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-cs" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-da" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-de" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-el" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-en-rGB" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-es" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-es-rUS" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-et" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-eu" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-fa" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-fi" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-fr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-fr-rCA" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-gl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-gu" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-hi" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-hr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-hu" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-hy" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-in" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-is" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-it" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-iw" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ja" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ka" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-kk" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-km" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-kn" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ko" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ky" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-lo" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-lt" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-lv" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-mk" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ml" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-mn" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-mr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ms" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-my" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-nb" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ne" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-nl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-pa" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-pl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-pt-rBR" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-pt-rPT" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ro" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ru" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-si" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sk" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sq" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sv" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sw" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ta" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-te" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-th" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-tl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-tr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-uk" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ur" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-uz" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-vi" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-zh-rCN" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-zh-rHK" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-zh-rTW" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-zu" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="play-services-basement-11.8.0" t="Include">
+              <e p="AndroidManifest.xml" t="Include" />
+              <e p="bin" t="Include">
+                <e p="AndroidManifest.xml" t="Include" />
+                <e p="R.txt" t="Include" />
+              </e>
+              <e p="proguard.txt" t="Include" />
+              <e p="R.txt" t="Include" />
+              <e p="res" t="Include">
+                <e p="values" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-af" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-am" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ar" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-az" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-b+sr+Latn" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-be" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-bg" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-bn" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-bs" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ca" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-cs" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-da" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-de" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-el" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-en-rGB" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-es" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-es-rUS" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-et" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-eu" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-fa" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-fi" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-fr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-fr-rCA" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-gl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-gu" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-hi" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-hr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-hu" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-hy" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-in" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-is" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-it" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-iw" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ja" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ka" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-kk" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-km" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-kn" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ko" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ky" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-lo" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-lt" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-lv" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-mk" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ml" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-mn" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-mr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ms" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-my" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-nb" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ne" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-nl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-pa" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-pl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-pt-rBR" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-pt-rPT" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ro" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ru" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-si" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sk" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sq" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sv" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-sw" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ta" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-te" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-th" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-tl" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-tr" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-uk" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-ur" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-uz" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-vi" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-zh-rCN" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-zh-rHK" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-zh-rTW" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-zu" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="Pushe" t="Include">
+              <e p="AndroidManifest.xml" t="Include" />
+              <e p="bin" t="Include">
+                <e p="AndroidManifest.xml" t="Include" />
+                <e p="R.txt" t="Include" />
+              </e>
+              <e p="proguard.txt" t="Include" />
+              <e p="R.txt" t="Include" />
+              <e p="res" t="Include">
+                <e p="drawable" t="Include">
+                  <e p="pushe_border.xml" t="Include" />
+                  <e p="pushe_btn_selector.xml" t="Include" />
+                </e>
+                <e p="layout" t="Include">
+                  <e p="pushe_custom_dialog.xml" t="Include" />
+                  <e p="pushe_custom_notification.xml" t="Include" />
+                  <e p="pushe_webview_layout.xml" t="Include" />
+                </e>
+                <e p="values" t="Include">
+                  <e p="values.xml" t="Include" />
+                </e>
+                <e p="values-en" t="Include">
+                  <e p="values-en.xml" t="Include" />
+                </e>
+                <e p="values-mcc432" t="Include">
+                  <e p="values-mcc432.xml" t="Include" />
+                </e>
+                <e p="xml" t="Include">
+                  <e p="provider_paths.xml" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="res" t="Include">
+              <e p="drawable" t="Include">
+                <e p="pushe_border.xml" t="Include" />
+                <e p="pushe_btn_selector.xml" t="Include" />
+              </e>
+              <e p="layout" t="Include">
+                <e p="pushe_custom_dialog.xml" t="Include" />
+                <e p="pushe_custom_notification.xml" t="Include" />
+                <e p="pushe_webview_layout.xml" t="Include" />
+              </e>
+              <e p="values" t="Include">
+                <e p="values.xml" t="Include" />
+              </e>
+              <e p="values-en" t="Include">
+                <e p="values-en.xml" t="Include" />
+              </e>
+              <e p="values-mcc432" t="Include">
+                <e p="values-mcc432.xml" t="Include" />
+              </e>
+              <e p="xml" t="Include">
+                <e p="provider_paths.xml" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="IngameDebugConsole" t="Include">
+            <e p="readme.txt" t="Include" />
+            <e p="Scripts" t="Include">
+              <e p="ConsoleMethodAttribute.cs" t="Include" />
+              <e p="DebugLogConsole.cs" t="Include" />
+              <e p="DebugLogEntry.cs" t="Include" />
+              <e p="DebugLogIndexList.cs" t="Include" />
+              <e p="DebugLogItem.cs" t="Include" />
+              <e p="DebugLogLogcatListener.cs" t="Include" />
+              <e p="DebugLogManager.cs" t="Include" />
+              <e p="DebugLogPopup.cs" t="Include" />
+              <e p="DebugLogRecycledListView.cs" t="Include" />
+              <e p="DebugsOnScrollListener.cs" t="Include" />
             </e>
           </e>
         </e>

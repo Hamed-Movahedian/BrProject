@@ -17,6 +17,7 @@ public class BrCharacterHitEffect : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         _defaultColor = renderer.material.GetColor("_EmissionColor");
         animator = GetComponent<Animator>();
 

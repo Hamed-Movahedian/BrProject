@@ -46,7 +46,7 @@ public class BrBullet : MonoBehaviour
             {
                 enabled = true;
 
-                BrPoolManager.insance.Destroy(gameObject);
+                BrPoolManager.Instance.Destroy(gameObject);
             }
         }
     }
@@ -55,7 +55,7 @@ public class BrBullet : MonoBehaviour
     {
         enabled = true;
 
-        BrPoolManager.insance.Destroy(gameObject);
+        BrPoolManager.Instance.Destroy(gameObject);
     }
 
     private void HitEnviroment()

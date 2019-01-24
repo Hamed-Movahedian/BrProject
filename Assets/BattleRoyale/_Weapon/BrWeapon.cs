@@ -79,7 +79,7 @@ public class BrWeapon : MonoBehaviour
 
     private void InstantiateBullet(float angle)
     {
-        var bullet = BrPoolManager.insance.Instantiate(
+        var bullet = BrPoolManager.Instance.Instantiate(
             BulletPrefab.name,
             Muzzle.transform.position,
             Quaternion.Euler(0, WeaponController.transform.eulerAngles.y + angle, 0)

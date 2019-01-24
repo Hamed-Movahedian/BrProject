@@ -6,14 +6,25 @@ using UnityEngine;
 
 public class BrPoolManager : MonoBehaviour, IPunPrefabPool
 {
-    internal static BrPoolManager insance;
+    #region Instance
+    private static BrPoolManager instance;
+    public static BrPoolManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<BrPoolManager>();
+            return instance;
+        }
+    }
+
+    #endregion
     public List<GameObject> prefabList = new List<GameObject>();
 
     private Dictionary<string, Queue<GameObject>> pool = new Dictionary<string, Queue<GameObject>>();
     public void Awake()
     {
-        PhotonNetwork.PrefabPool = this;
-        insance = this;
+        //PhotonNetwork.PrefabPool = this;
     }
 
     public void Destroy(GameObject gameObject)

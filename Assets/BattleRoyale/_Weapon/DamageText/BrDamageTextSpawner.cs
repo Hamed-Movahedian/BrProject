@@ -20,7 +20,7 @@ public class BrDamageTextSpawner : MonoBehaviour
     {
         var pos = Random.insideUnitSphere * radious;
         pos.y = 0;
-        var dt = BrPoolManager.insance.Instantiate(DamageTextPrefab.name, transform.position + pos, Quaternion.identity)
+        var dt = BrPoolManager.Instance.Instantiate(DamageTextPrefab.name, transform.position + pos, Quaternion.identity)
             .GetComponent<BrDamageText>();
         dt.Initialize(amount, colors[type]);
 
