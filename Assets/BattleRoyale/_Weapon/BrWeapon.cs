@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Playables;
 using Random = UnityEngine.Random;
 
 public class BrWeapon : MonoBehaviour
@@ -11,11 +12,10 @@ public class BrWeapon : MonoBehaviour
     public int InitialBullets=50;
     public int MaxBullets=200;
     public float FireRate = 1;
-
-    [Header("FX")]
-    public Transform Muzzle;
-    public ParticleSystem BulletParticleSystem;
-    public AudioSource ShotAudio;
+    public Transform FireLocation;
+    
+    [Header("FX")] 
+    public List<PlayableDirector> FXDirectorList;
 
     [Header("Bullet")]
     public BrBullet BulletPrefab;
@@ -28,6 +28,7 @@ public class BrWeapon : MonoBehaviour
     [Header("Shake")]
     public float ShakeFactor=3;
     public float ShakeDuration=0.2f;
+    private int currentFXDir=0;
 
     public BrWeaponController WeaponController { get; set; }
 
@@ -58,12 +59,10 @@ public class BrWeapon : MonoBehaviour
 
     public void Fire()
     {
-        Muzzle.gameObject.SetActive(true);
+        FXDirectorList[currentFXDir++].Play();
 
-        BulletParticleSystem.Emit(1);
-
-        ShotAudio.Play();
-
+        currentFXDir = currentFXDir % FXDirectorList.Count;
+        
         if (IsMine)
             BrCameraShaker.instance.Shake(ShakeFactor, ShakeDuration);
 
@@ -81,7 +80,7 @@ public class BrWeapon : MonoBehaviour
     {
         var bullet = BrPoolManager.Instance.Instantiate(
             BulletPrefab.name,
-            Muzzle.transform.position,
+            FireLocation.position,
             Quaternion.Euler(0, WeaponController.transform.eulerAngles.y + angle, 0)
             );
 

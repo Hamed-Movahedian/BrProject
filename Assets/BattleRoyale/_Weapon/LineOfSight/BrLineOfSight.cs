@@ -31,7 +31,7 @@ public class BrLineOfSight : MonoBehaviour
         var weapon = WeaponController.CurrWeapon;
         if (BrJoystickController.Instance.AimJoystick.Value3.sqrMagnitude > 0 && weapon!=null)
         {
-            var start = weapon.Muzzle.transform.position;
+            var start = weapon.FireLocation.position;
             Vector3 dir = WeaponController.transform.forward;
             dir.y = 0;
             var end = start + dir * weapon.BulletRange;
