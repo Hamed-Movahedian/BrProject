@@ -32,7 +32,7 @@ public class BrActivePlayerStatUI : MonoBehaviour
     {
         panle.gameObject.SetActive(true);
         text.gameObject.SetActive(true);
-
+        GetComponent<Animator>().SetTrigger("Show");
         if(player)
             text.text = player.UserID;
     }
