@@ -12,7 +12,6 @@
           <e p="__Controllers" t="Include">
             <e p="Camera" t="Include">
               <e p="BrCamera.cs" t="Include" />
-              <e p="BrCameraShaker.cs" t="Include" />
             </e>
             <e p="Game manager" t="Include">
               <e p="GameManager.cs" t="Include" />
