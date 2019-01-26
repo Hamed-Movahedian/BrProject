@@ -63,8 +63,10 @@ public class BrWeapon : MonoBehaviour
 
         currentFXDir = currentFXDir % FXDirectorList.Count;
         
+/*
         if (IsMine)
             BrCameraShaker.instance.Shake(ShakeFactor, ShakeDuration);
+*/
 
         var angle = -ShotAngle / 2;
         var delta = ShotAngle / (BulletPerShot-1);
