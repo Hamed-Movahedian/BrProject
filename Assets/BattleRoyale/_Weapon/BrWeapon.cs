@@ -35,15 +35,6 @@ public class BrWeapon : MonoBehaviour
     public bool IsMine => WeaponController.IsMine;
 
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     internal void Initialize(BrWeaponController controller)
     {
@@ -87,5 +78,10 @@ public class BrWeapon : MonoBehaviour
             );
 
         bullet.GetComponent<BrBullet>().Initialize(this);
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }

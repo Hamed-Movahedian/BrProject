@@ -12,6 +12,10 @@
           <e p="__Controllers" t="Include">
             <e p="Camera" t="Include">
               <e p="BrCamera.cs" t="Include" />
+              <e p="BrPlayerCamera.cs" t="Include" />
+            </e>
+            <e p="Cut_Scenes" t="Include">
+              <e p="BrFlyCutScene.cs" t="Include" />
             </e>
             <e p="Game manager" t="Include">
               <e p="GameManager.cs" t="Include" />
@@ -72,6 +76,7 @@
               </e>
               <e p="MiniMap" t="Include">
                 <e p="BrMinimapController.cs" t="Include" />
+                <e p="BrPlayerMiniMap.cs" t="Include" />
               </e>
               <e p="Reproters" t="Include">
                 <e p="Death Reproter" t="Include">

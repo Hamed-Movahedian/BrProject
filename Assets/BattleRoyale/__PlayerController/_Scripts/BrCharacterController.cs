@@ -119,6 +119,9 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     public delegate void TakeDamageDelegate(int amount,int type);
     public TakeDamageDelegate takeDamage;
+    
+    public UnityEvent OnDead;
+
     #endregion
     // ********************** Methods
 
@@ -416,6 +419,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         WeaponController.enabled = false;
         Animator.SetTrigger("Dead");
         CapsuleCollider.enabled = false;
+
+        OnDead.Invoke();
 
         BrPlayerTracker.Instance.PlayerDead(photonView.ViewID, killerViewID, weaponName);
 

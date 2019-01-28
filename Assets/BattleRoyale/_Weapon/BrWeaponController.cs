@@ -182,6 +182,13 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
 
         _targetArmIk = ArmIK;
 
+        CharacterController.OnDead.AddListener((() =>
+        {
+            enabled = false;
+            if (Armed && CurrWeapon != null)
+                CurrWeapon.Hide();
+
+        }));
 
     }
     #endregion
