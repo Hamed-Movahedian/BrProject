@@ -16,9 +16,13 @@ public class BrKillZoneUI : MonoBehaviour
 
     private Vector3 center;
     private float radoious;
+    private BrCharacterController masterCharacter;
 
     private void Awake()
     {
+        // Get local player
+        BrPlayerTracker.Instance.OnMasterPlayerRegister += player => masterCharacter = player;
+        
         // New circle
         BrKillZone.Instance.OnNewCircle += (center, radoious) =>
         {
@@ -65,7 +69,6 @@ public class BrKillZoneUI : MonoBehaviour
 
     private void Update()
     {
-        BrCharacterController masterCharacter = BrCharacterController.MasterCharacter;
         if (masterCharacter == null)
             return;
 

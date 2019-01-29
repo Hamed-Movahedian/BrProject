@@ -7,16 +7,11 @@ namespace BR
     public class CheckMaster : MonoBehaviour
     {
         public Text Text;
+        
         // Update is called once per frame
-        void Update ()
+        void FixedUpdate ()
         {
-            if (PhotonNetwork.IsMasterClient)
-                Text.text = "Master";
-            else
-            {
-                Text.text = "";
-            }
-            Text.text += " " + BrCharacterController.MasterCharacter?.profile?.UserID;
+            Text.text = PhotonNetwork.IsMasterClient ? "Master" : "Normal";
         }
     }
 }

@@ -12,7 +12,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     public static BrCharacterController MasterCharacter;
 
-    
     #endregion
 
     #region Public Fields
@@ -20,39 +19,36 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public LayerMask EnviromentLayerMask;
     public RaycastHit GroundHitInfo;
 
-    [Header("Stat")]
-    public int MaxHealth = 100;
+    [Header("Stat")] public int MaxHealth = 100;
     public int MaxShield = 100;
 
-    [Header("Look IK")]
-    public bool LookIK = true;
+    [Header("Look IK")] public bool LookIK = true;
     public Transform LookTarget;
     public float HeadRotationSpeed = 2;
     public bool LineOfSightGizmo = false;
 
-    [Header("Camera")]
-    public Transform CameraTarget;
+    [Header("Camera")] public Transform CameraTarget;
 
-    [HideInInspector]
-    public Profile profile;
+    [HideInInspector] public Profile profile;
 
     #endregion
 
     #region States
 
-    [Header("States")]
-
-    public BrFallingCharacterState FallingState;
+    [Header("States")] public BrFallingCharacterState FallingState;
     public BrParachuteCharacterState ParachuteState;
     public BrGroundedCharacterState GroundedState;
     public BrGroundedAimCharacterState GroundedAimState;
+
     #endregion
 
     #region Properties
+
     public CharacterStateEnum CurrentState { get; private set; }
     public Animator Animator { get; set; }
     public Rigidbody RigidBody { get; set; }
     public CapsuleCollider CapsuleCollider { get; set; }
+    public BrCharacterModel characterModel { get; set; }
     public bool IsGrounded { get; set; }
     public float GroundDistance { get; set; }
     public Vector3 MovVector { get; set; }
@@ -68,10 +64,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     public int Health
     {
-        get
-        {
-            return health;
-        }
+        get { return health; }
 
         set
         {
@@ -82,10 +75,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     public int Shield
     {
-        get
-        {
-            return shield;
-        }
+        get { return shield; }
 
         set
         {
@@ -104,31 +94,32 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Privates
 
     private Dictionary<CharacterStateEnum, BrCharacterStateBase> _stateDic;
-    private BrCharacterModel _characterModel;
     private BrCharacterHitEffect hitEffect;
     private int health;
     private int shield;
 
-
-
     #endregion
 
     #region Events
+
     public delegate void PlayerStatChangeDelegate(BrCharacterController player);
+
     public PlayerStatChangeDelegate OnStatChange;
 
-    public delegate void TakeDamageDelegate(int amount,int type);
+    public delegate void TakeDamageDelegate(int amount, int type);
+
     public TakeDamageDelegate takeDamage;
-    
+
     public UnityEvent OnDead;
 
     #endregion
+
     // ********************** Methods
 
     #region Start/Awake
 
     private void Awake()
-    { 
+    {
     }
 
     void Start()
@@ -137,28 +128,29 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             MasterCharacter = this;
 
         #region Get necessary components
+
         RigidBody = GetComponent<Rigidbody>();
         CapsuleCollider = GetComponent<CapsuleCollider>();
         Animator = GetComponent<Animator>();
         WeaponController = GetComponent<BrWeaponController>();
         hitEffect = GetComponent<BrCharacterHitEffect>();
+
         #endregion
 
-        #region Get custom properties
-        var pos = JsonUtility.FromJson<Vector3>((string)photonView.Owner.CustomProperties["Pos"]);
+        #region Set Profile
 
-        profile = Profile.Deserialize((string)photonView.Owner.CustomProperties["Profile"]);
+        profile = Profile.Deserialize((string) photonView.Owner.CustomProperties["Profile"]);
 
-        _characterModel = GetComponent<BrCharacterModel>();
-        _characterModel.SetProfile(profile);
+        characterModel = GetComponent<BrCharacterModel>();
+        characterModel.SetProfile(profile);
 
-        transform.position = BrLevelBound.Instance.GetLevelPos(pos);
         #endregion
 
         // root motion off for non locals
         Animator.applyRootMotion = photonView.IsMine;
 
         #region Create state dictionary
+
         _stateDic = new Dictionary<CharacterStateEnum, BrCharacterStateBase>()
         {
             {CharacterStateEnum.Falling, FallingState},
@@ -166,13 +158,11 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             {CharacterStateEnum.Grounded, GroundedState},
             {CharacterStateEnum.GroundedAim, GroundedAimState}
         };
+
         #endregion
 
         // Initialize states
         _stateDic.Values.ToList().ForEach(s => s.Initialize(this));
-
-        // Register to camera
-        BrPlayerTracker.Instance.RegisterPlayer(this);
 
         // set player stat
         Health = MaxHealth;
@@ -180,11 +170,18 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         // State Start
         _stateDic.Values.ToList().ForEach(s => s.Start());
+
+        CurrentState = CharacterStateEnum.Falling;
+        _stateDic[CurrentState].OnEnter();
+
+        // Register player
+        BrPlayerTracker.Instance.RegisterPlayer(this);
     }
 
     #endregion
 
     #region Updates
+
     void Update()
     {
         if (photonView.IsMine)
@@ -193,7 +190,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             AimVector = BrJoystickController.Instance.AimJoystick.Value3;
         }
 
-        GroundCheck();
+        //GroundCheck();
 
         _stateDic[CurrentState].Update();
     }
@@ -201,7 +198,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     private void FixedUpdate()
     {
         //if (photonView.IsMine)
-            _stateDic[CurrentState].FixedUpdate();
+        _stateDic[CurrentState].FixedUpdate();
     }
 
     #endregion
@@ -237,6 +234,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #endregion
 
     #region SetState
+
     public void SetState(CharacterStateEnum state)
     {
         _stateDic[CurrentState].OnExit();
@@ -247,6 +245,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #endregion
 
     #region Move and rotate
+
     public void MoveAndRotate(float moveSpeed, float rotationSpeed)
     {
         if (!isMine)
@@ -256,7 +255,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         if (magnitude > 0.1)
 
         {
-            Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * MovVector;
+            Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) *
+                                MovVector;
 
 
             Rotate(rotationSpeed, direction);
@@ -267,7 +267,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             Rotate(rotationSpeed, transform.forward);
-
         }
     }
 
@@ -275,7 +274,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (!isMine)
             return;
-        Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * MovVector;
+        Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) *
+                            MovVector;
 
         direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * AimVector;
 
@@ -301,7 +301,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         transform.rotation = bodyRotation;
         LookTarget.rotation = headRotation;
-
     }
 
     private void Move(float moveSpeed, Vector3 direction)
@@ -309,27 +308,31 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
     }
 
-
-
     #endregion
 
     #region Gizmo
+
     private void OnDrawGizmos()
     {
         if (LineOfSightGizmo)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(LookTarget.position, LookTarget.position + LookTarget.forward * 3);
-
         }
     }
+
     #endregion
 
     #region FootStep
-    private void FootStep() { }
+
+    private void FootStep()
+    {
+    }
+
     #endregion
 
     #region IK
+
     void OnAnimatorIK()
     {
         if (LookIK)
@@ -341,12 +344,12 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         {
             Animator.SetLookAtWeight(0);
         }
-
     }
 
     #endregion
 
     #region Photon
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -358,17 +361,19 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            MovVector = (Vector3)stream.ReceiveNext();
-            AimVector = (Vector3)stream.ReceiveNext();
+            MovVector = (Vector3) stream.ReceiveNext();
+            AimVector = (Vector3) stream.ReceiveNext();
             Health = (int) stream.ReceiveNext();
-            var state = (CharacterStateEnum)stream.ReceiveNext();
+            var state = (CharacterStateEnum) stream.ReceiveNext();
             if (state != CurrentState)
                 SetState(state);
         }
     }
+
     #endregion
 
     #region TakeDamage
+
     internal void TakeDamage(int bulletDamage, Vector3 bulletDir, BrCharacterController killer, string weaponName)
     {
         photonView.RPC(
@@ -378,21 +383,23 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             bulletDir,
             killer ? killer.photonView.ViewID : -1,
             weaponName
-            );
+        );
     }
 
     [PunRPC]
-    public void TakeDamageRpc(int damage, Vector3 bulletDir,int killerViewID, string weaponName)
+    public void TakeDamageRpc(int damage, Vector3 bulletDir, int killerViewID, string weaponName)
     {
         if (Health <= 0)
             return;
 
         hitEffect.Hit();
 
-        var killer = killerViewID==-1 ? null : PhotonNetwork.GetPhotonView(killerViewID).GetComponent<BrCharacterController>();
+        var killer = killerViewID == -1
+            ? null
+            : PhotonNetwork.GetPhotonView(killerViewID).GetComponent<BrCharacterController>();
 
         if (isMine || (killer && killer.isMine))
-            takeDamage(damage, Shield>0 ? 0 : 1);
+            takeDamage(damage, Shield > 0 ? 0 : 1);
 
         if (Shield > 0)
         {
@@ -407,12 +414,13 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             Health -= damage;
 
         if (Health <= 0)
-            Death(killerViewID,weaponName);
+            Death(killerViewID, weaponName);
     }
 
     #endregion
 
     #region Death
+
     private void Death(int killerViewID, string weaponName)
     {
         enabled = false;
@@ -424,9 +432,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         BrPlayerTracker.Instance.PlayerDead(photonView.ViewID, killerViewID, weaponName);
 
-        if(killerViewID!=-1)
+        if (killerViewID != -1)
             ShowFlag(killerViewID);
-
     }
 
     private void ShowFlag(int killerViewID)
@@ -439,15 +446,18 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         flag.transform.eulerAngles = new Vector3(-90, 0, 45);
         flag.gameObject.SetActive(true);
     }
+
     #endregion
 
     #region Health/shield
+
     public void AddHealth(int health)
     {
         Health += health;
         if (Health > MaxHealth)
             Health = MaxHealth;
     }
+
     internal void AddShield(int sheild)
     {
         Shield += sheild;
@@ -455,5 +465,41 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         if (Shield > MaxShield)
             Shield = MaxShield;
     }
+
+    #endregion
+
+    #region OpenPara / Landing
+
+    public void OpenPara()
+    {
+        OpenParaRpc();
+        photonView.RPC("OpenParaRpc", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    public void OpenParaRpc()
+    {
+        SetState(CharacterStateEnum.Parachute);
+    }
+
+    public void Land()
+    {
+        LandRPC();
+        photonView.RPC("LandRPC", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    public void LandRPC()
+    {
+        SetState(CharacterStateEnum.Grounded);
+        enabled = false;
+        Invoke("EndLandig", 0.5f);
+    }
+
+    private void EndLandig()
+    {
+        enabled = true;
+    }
+
     #endregion
 }
