@@ -17,9 +17,6 @@
             <e p="Cut_Scenes" t="Include">
               <e p="BrFlyCutScene.cs" t="Include" />
             </e>
-            <e p="Game manager" t="Include">
-              <e p="GameManager.cs" t="Include" />
-            </e>
             <e p="KillZone" t="Include">
               <e p="BrKillZone.cs" t="Include" />
               <e p="BrRing.cs" t="Include" />
@@ -29,6 +26,9 @@
             </e>
             <e p="Pickup" t="Include">
               <e p="BrPickupManager.cs" t="Include" />
+            </e>
+            <e p="PlayerSpawner" t="Include">
+              <e p="BrPlayerSpanner.cs" t="Include" />
             </e>
             <e p="PlayerTracker" t="Include">
               <e p="BrPlayerTracker.cs" t="Include" />
@@ -151,7 +151,13 @@
           <e p="_Profile" t="Include">
             <e p="ProfileManager.cs" t="Include" />
           </e>
+          <e p="_tools" t="Include">
+            <e p="Editor" t="Include">
+              <e p="BrRunIntro.cs" t="Include" />
+            </e>
+          </e>
           <e p="_Weapon" t="Include">
+            <e p="BrMelleAttack.cs" t="Include" />
             <e p="BrWeapon.cs" t="Include" />
             <e p="BrWeaponController.cs" t="Include" />
             <e p="BrWeaponNodeHelper.cs" t="Include" />
@@ -954,6 +960,10 @@
             </e>
             <e p="SimpleJSON.cs" t="Include" />
           </e>
+          <e p="Editor" t="Include">
+            <e p="SetArabicTextExample.cs" t="Include" />
+          </e>
+          <e p="PersianFixer.cs" t="Include" />
           <e p="Scripts" t="Include">
             <e p="AdVideoManager.cs" t="Include" />
             <e p="PurchaseManager.cs" t="Include" />

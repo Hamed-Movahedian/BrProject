@@ -6,9 +6,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BrPlayerTracker : MonoBehaviourPunCallbacks
+public class BrPlayerTracker : MonoBehaviour
 {
-    public delegate void PlayerDeadDelegate(BrCharacterController victom, BrCharacterController killer, string weaponName);
+    public delegate void PlayerDeadDelegate(BrCharacterController victim, BrCharacterController killer, string weaponName);
     public delegate void PlayerRegisterDelegate(BrCharacterController player);
     public PlayerDeadDelegate OnPlayerDead;
     public PlayerRegisterDelegate OnPlayerRegisterd;
@@ -51,22 +51,30 @@ public class BrPlayerTracker : MonoBehaviourPunCallbacks
 
     #endregion
 
+    #region OnMasterPlayerRegister
+
+    public delegate void OnMasterPlayerRegisterDel(BrCharacterController masterPlayer);
+
+    public OnMasterPlayerRegisterDel OnMasterPlayerRegister;
+
+    #endregion
+    
     private void Awake()
     {
         instance = this;
     }
 
-    internal void PlayerDead(int victomViewID, int killerViewID, string weaponName)
+    internal void PlayerDead(int victimViewID, int killerViewID, string weaponName)
     {
-        var victomPlayer = GetPlayerByViewID(victomViewID);
+        var victimPlayer = GetPlayerByViewID(victimViewID);
         var killerPlayer = GetPlayerByViewID(killerViewID);
 
-        alivePlayers.Remove(victomPlayer);
+        alivePlayers.Remove(victimPlayer);
         
-        OnPlayerDead(victomPlayer, killerPlayer, weaponName);
+        OnPlayerDead(victimPlayer, killerPlayer, weaponName);
 
         // change active player
-        if (victomPlayer == ActivePlayer)
+        if (victimPlayer == ActivePlayer)
             SetActivePlayer(killerPlayer);
     }
 
@@ -97,7 +105,10 @@ public class BrPlayerTracker : MonoBehaviourPunCallbacks
     public void RegisterPlayer(BrCharacterController player)
     {
         if (player.isMine)
+        {
             SetActivePlayer(player);
+            OnMasterPlayerRegister(player);
+        }
 
         alivePlayers.Add(player);
 

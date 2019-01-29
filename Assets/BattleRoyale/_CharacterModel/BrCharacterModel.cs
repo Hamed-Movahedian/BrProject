@@ -51,5 +51,14 @@ public class BrCharacterModel : MonoBehaviour
         para.parasList.Paras[profile.CurrentPara].SetToPara(para);
         _profile = profile;
     }
+
+    public void Hide()
+    {
+        BodySkinnedMesh.gameObject.SetActive(false);
+    }
+    public void Show()
+    {
+        BodySkinnedMesh.gameObject.SetActive(true);
+    }
 }
 
