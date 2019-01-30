@@ -161,6 +161,7 @@ public class Profile
 [Serializable]
 public struct Statistics
 {
+    public int Level;
     public int TotalBattles;
     public int TotalWins;
     public int TotalKills;

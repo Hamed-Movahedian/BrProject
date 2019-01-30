@@ -51,6 +51,11 @@
                 <e p="CharacterStateEnum.cs" t="Include" />
               </e>
             </e>
+            <e p="Shader" t="Include">
+              <e p="SeeBehind.shader" t="Include" />
+              <e p="silhouette.shader" t="Include" />
+              <e p="Unlit test.shader" t="Include" />
+            </e>
           </e>
           <e p="__UI" t="Include">
             <e p="HUD" t="Include">
