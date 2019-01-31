@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class BrDeathReport : MonoBehaviour
 {
+    public string NoKillerText;
     public Text rankText;
-    public Text KillerText;
-    public Text WeaponText;
+    public Text KillText;
     public PlayableDirector Director;
     public Button continueButton;
     public BrCharacterModel CharacterModel;
@@ -24,14 +24,14 @@ public class BrDeathReport : MonoBehaviour
                 
                 if (killer == null)
                 {   // no killer
-                    KillerText.text = "?";
-                    WeaponText.text = "?";
+                    KillText.text = "شما کشته شدید";
                     OnReportNoKiller.Invoke();
                 }
                 else // has killer
                 {
-                    KillerText.text = killer.profile.UserID;
-                    WeaponText.text = weaponName;
+                    KillText.text = KillText.text
+                        .Replace("***",killer.profile.UserID)
+                        .Replace("###",weaponName);
                     CharacterModel.SetProfile(killer.profile);
                     OnReport.Invoke();
                 }
@@ -39,13 +39,6 @@ public class BrDeathReport : MonoBehaviour
                 Director.Play();
             }
         };
-
-        // show active player stat button
-        continueButton.onClick.AddListener(() =>
-        {
-            Director.Resume();
-        });
-
     }
 
     public void EndShow()
