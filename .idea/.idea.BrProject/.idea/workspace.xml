@@ -8,13 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b445652-54cf-4dd0-85d0-63e4f7633852" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BrProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BrProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTimelineEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTimelineEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_Map/Scenes/Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_Map/Scenes/Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Controllers ----------------.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Controllers ----------------.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/Kill Zone UI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/Kill Zone UI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/Scenes -------------------------/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/Scenes -------------------------/MainMenu.unity" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +114,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrPlayerUI.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1960">
@@ -143,11 +137,26 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
+              <folding>
+                <marker date="1549021647899" expanded="false" signature="6:78" ph="..." />
+                <marker date="1549021647899" expanded="true" signature="125:432" ph="{...}" />
+                <marker date="1549021647899" expanded="true" signature="226:247" ph="{...}" />
+                <marker date="1549021647899" expanded="true" signature="305:430" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-493">
-              <caret line="49" column="42" lean-forward="true" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
+              <caret line="49" column="42" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
               <folding>
                 <marker date="1549015855220" expanded="false" signature="6:96" ph="..." />
                 <marker date="1549015855220" expanded="true" signature="149:3582" ph="{...}" />
@@ -249,6 +258,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/BrDeathReport.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrMelleAttack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/PlayerSpawner/BrPlayerSpanner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/CharacterData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -304,6 +314,7 @@
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTimelineEvent.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs" />
       </list>
     </option>
   </component>
@@ -368,12 +379,12 @@
       <workItem from="1548858077858" duration="76000" />
       <workItem from="1548858199252" duration="4723000" />
       <workItem from="1548933999566" duration="1675000" />
-      <workItem from="1549009450725" duration="6976000" />
+      <workItem from="1549009450725" duration="7667000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13450000" />
+    <option name="totallyTimeSpent" value="14141000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1281,7 +1292,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-493">
-          <caret line="49" column="42" lean-forward="true" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
+          <caret line="49" column="42" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
           <folding>
             <marker date="1549015855220" expanded="false" signature="6:96" ph="..." />
             <marker date="1549015855220" expanded="true" signature="149:3582" ph="{...}" />
@@ -1336,6 +1347,19 @@
             <marker date="1548069899265" expanded="true" signature="1609:1759" ph="{...}" />
             <marker date="1548069899265" expanded="true" signature="1867:1935" ph="{...}" />
             <marker date="1548069899265" expanded="true" signature="1974:2023" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
+          <folding>
+            <marker date="1549021647899" expanded="false" signature="6:78" ph="..." />
+            <marker date="1549021647899" expanded="true" signature="125:432" ph="{...}" />
+            <marker date="1549021647899" expanded="true" signature="226:247" ph="{...}" />
+            <marker date="1549021647899" expanded="true" signature="305:430" ph="{...}" />
           </folding>
         </state>
       </provider>
