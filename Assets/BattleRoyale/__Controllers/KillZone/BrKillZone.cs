@@ -47,9 +47,9 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     {
         gameObject.SetActive(false);
         if (PhotonNetwork.IsMasterClient)
-            Invoke("CreateNextCircle", StartNewCircleDelay);
+            Invoke(nameof(CreateNextCircle), StartNewCircleDelay);
 
-        InvokeRepeating("DamageToPlayer", StartNewCircleDelay, DamageRate);
+        InvokeRepeating(nameof(DamageToPlayer), StartNewCircleDelay, DamageRate);
     }
 
     private void DamageToPlayer()
@@ -97,10 +97,8 @@ public class BrKillZone : MonoBehaviourPunCallbacks
             currRing.transform.localPosition = targetRing.transform.localPosition;
             currRing.radious = targetRing.radious;
 
-            Shrinking(0);
             if (PhotonNetwork.IsMasterClient)
-                Invoke("CreateNextCircle", StartNewCircleDelay);
-
+                CreateNextCircle();
         }
 
         else if (_shrinkTime <= ChangeTime)
@@ -114,6 +112,7 @@ public class BrKillZone : MonoBehaviourPunCallbacks
                 currRadious,
                 targetRing.radious,
                 (ChangeTime - _shrinkTime) / ChangeTime);
+            
             Shrinking((int)_shrinkTime);
         }
         else

@@ -3,49 +3,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class BrKillZoneUI : MonoBehaviour
 {
-    public Image ring;
-    public Image arrowImage;
     public Text counter;
-    public GameObject NewArea;
     public RectTransform Arrow;
-    public UnityEvent OnNewcircle;
+
+    public UnityEvent OnFirstArea;
+    public UnityEvent OnNewArea;
+    public UnityEvent OnStartShrinking;
 
     private Vector3 center;
     private float radoious;
     private BrCharacterController masterCharacter;
+    private bool firstTime = true;
+    private bool isShirinking = false;
 
     private void Awake()
     {
         // Get local player
         BrPlayerTracker.Instance.OnMasterPlayerRegister += player => masterCharacter = player;
-        
+
         // New circle
         BrKillZone.Instance.OnNewCircle += (center, radoious) =>
         {
             this.center = center;
             this.radoious = radoious;
-            OnNewcircle.Invoke();
-            NewArea.SetActive(true);
-            Invoke("DisableNewAreaGameObject", 1);
+
+            if (firstTime)
+                OnFirstArea.Invoke();
+            else
+                OnNewArea.Invoke();
+
+            firstTime = false;
+            isShirinking = false;
         };
 
         // Shrinking
         BrKillZone.Instance.Shrinking += time =>
         {
-            if (time == 0)
+            if (!isShirinking)
             {
-                ring.gameObject.SetActive(false);
-                return;
+                OnStartShrinking.Invoke();
+                isShirinking = true;
             }
-            counter.text = time.ToString() + "s";
 
-            ring.color =
-                counter.color =
-                    arrowImage.color = Color.red;
+            counter.text = time.ToString() + "s";
         };
 
         // Wait for shrink
@@ -53,18 +58,6 @@ public class BrKillZoneUI : MonoBehaviour
         {
             counter.text = time.ToString() + "s";
         };
-
-        ring.gameObject.SetActive(false);
-
-    }
-    
-    private void DisableNewAreaGameObject()
-    {
-        NewArea.SetActive(false);
-        ring.gameObject.SetActive(true);
-        ring.color =
-            counter.color =
-            arrowImage.color = Color.white;
     }
 
     private void Update()
@@ -77,11 +70,10 @@ public class BrKillZoneUI : MonoBehaviour
         if (dir.sqrMagnitude > radoious * radoious)
         {
             Arrow.gameObject.SetActive(true);
-
-            var rot = Quaternion.LookRotation(dir).eulerAngles;
+            
             Arrow.eulerAngles = new Vector3(0, 0,
                 BrCamera.Instance.MainCamera.transform.eulerAngles.y - Quaternion.LookRotation(dir).eulerAngles.y
-                );
+            );
         }
         else
             Arrow.gameObject.SetActive(false);

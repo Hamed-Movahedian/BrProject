@@ -16,6 +16,7 @@ public class BrTimelineEvent : MonoBehaviour
     {
         director = GetComponent<PlayableDirector>();
     }
+    
     private void OnValidate()
     {
         if(director==null)
@@ -24,23 +25,25 @@ public class BrTimelineEvent : MonoBehaviour
 
     public void Play()
     {
-        if(director!=null)
+        if (director && director.state==PlayState.Playing)
             director.Play();
     }
     public void Pause()
     {
-        if(director!=null)
+        if (director && director.state==PlayState.Playing)
+        {
             director.Pause();
+        }
     }
     public void Resume()
     {
-        if(director!=null)
+        if (director && director.state==PlayState.Playing)
             director.Resume();
     }
 
-    public void SetCondition(bool value)
+    public void SetCondition(int value)
     {
-        Condition = value;
+        Condition = value==1;
     }
 
     public void ToggleCondition()
@@ -50,18 +53,26 @@ public class BrTimelineEvent : MonoBehaviour
     
     public void ConditionalJump(int frame)
     {
-        if(Condition)
+        if (Condition&&director && director.state==PlayState.Playing)
             Jump(frame);
-    }
+    }        
+
     public void Jump(int frame)
     {
-        if (director)
+        if (director && director.state==PlayState.Playing)
+        {
+            director.Pause();
             director.time = frame / 60d;
+            director.Evaluate();
+            director.Play();
+        }
     }
+
 
     public void CustomEvent(string Name)
     {
-        Events.FirstOrDefault(e=>e.Name==Name)?.Action.Invoke();
+        if (director && director.state==PlayState.Playing)
+            Events.FirstOrDefault(e=>e.Name==Name)?.Action.Invoke();
     }
 }
 [Serializable]
