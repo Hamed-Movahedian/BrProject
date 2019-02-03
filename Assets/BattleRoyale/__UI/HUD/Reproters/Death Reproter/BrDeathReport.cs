@@ -24,7 +24,7 @@ public class BrDeathReport : MonoBehaviour
                 
                 if (killer == null)
                 {   // no killer
-                    KillText.text = "شما کشته شدید";
+                    KillText.text = PersianFixer.Fix("شما کشته شدید");
                     OnReportNoKiller.Invoke();
                 }
                 else // has killer
