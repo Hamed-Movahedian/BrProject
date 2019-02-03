@@ -43,14 +43,15 @@ public class BrDeathReport : MonoBehaviour
 
     public void EndShow()
     {
-        if (Application.isEditor)
+        if (!Application.isPlaying)
             return;
+            
         Director.Pause();
     }
 
     public void EndHide()
     {
-        if (Application.isEditor)
+        if (!Application.isPlaying)
             return;
         BrActivePlayerStatUI.Instance.Show();
     }

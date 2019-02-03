@@ -108,7 +108,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     public delegate void TakeDamageDelegate(int amount, int type);
 
-    public TakeDamageDelegate takeDamage;
+    public TakeDamageDelegate OnTakeDamage;
 
     public UnityEvent OnDead;
 
@@ -399,8 +399,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             : PhotonNetwork.GetPhotonView(killerViewID).GetComponent<BrCharacterController>();
 
         if (isMine || (killer && killer.isMine))
-            takeDamage(damage, Shield > 0 ? 0 : 1);
-
+            OnTakeDamage(damage, Shield > 0 ? 0 : 1);
+        
         if (Shield > 0)
         {
             Shield -= damage;
@@ -427,6 +427,9 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         WeaponController.enabled = false;
         Animator.SetTrigger("Dead");
         CapsuleCollider.enabled = false;
+        RigidBody.useGravity = false;
+        RigidBody.isKinematic = true;
+        
 
         OnDead.Invoke();
 
@@ -434,6 +437,13 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         if (killerViewID != -1)
             ShowFlag(killerViewID);
+        
+        
+    }
+
+    public void EndDieing()
+    {
+        gameObject.SetActive(false);
     }
 
     private void ShowFlag(int killerViewID)

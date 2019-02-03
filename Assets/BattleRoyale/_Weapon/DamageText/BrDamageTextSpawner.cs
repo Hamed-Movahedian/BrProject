@@ -13,7 +13,7 @@ public class BrDamageTextSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterController.takeDamage += takeDamage;
+        characterController.OnTakeDamage += takeDamage;
     }
 
     private void takeDamage(int amount, int type)
