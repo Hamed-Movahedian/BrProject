@@ -78,4 +78,9 @@ public class BrKillZoneUI : MonoBehaviour
         else
             Arrow.gameObject.SetActive(false);
     }
+
+    public void SetText(Text text)
+    {
+        text.text = "23u";
+    }
 }

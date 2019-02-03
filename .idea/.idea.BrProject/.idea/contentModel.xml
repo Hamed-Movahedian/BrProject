@@ -116,7 +116,9 @@
             <e p="BrPhotonEvents.cs" t="Include" />
             <e p="BrRotatorByInput.cs" t="Include" />
             <e p="BrSimpleRotator.cs" t="Include" />
+            <e p="BrTextCounter.cs" t="Include" />
             <e p="BrTimelineEvent.cs" t="Include" />
+            <e p="BrUnityEvents.cs" t="Include" />
             <e p="CheckMaster.cs" t="Include" />
             <e p="LookAtCamera.cs" t="Include" />
           </e>
