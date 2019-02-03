@@ -85,6 +85,9 @@
                 <e p="Death Reproter" t="Include">
                   <e p="BrDeathReport.cs" t="Include" />
                 </e>
+                <e p="Kill" t="Include">
+                  <e p="BrKillReport.cs" t="Include" />
+                </e>
               </e>
             </e>
             <e p="Lobby" t="Include">
