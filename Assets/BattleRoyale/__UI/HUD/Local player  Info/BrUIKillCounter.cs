@@ -25,7 +25,7 @@ public class BrUIKillCounter : MonoBehaviour
 
     private void PlayerDead(BrCharacterController victom, BrCharacterController killer, string weaponName)
     {
-        if (killer.isMine)
+        if (killer && killer.isMine)
             UpdateTexts(++killCount);
 
         if (victom.isMine)

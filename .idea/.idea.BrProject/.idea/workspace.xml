@@ -8,21 +8,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b445652-54cf-4dd0-85d0-63e4f7633852" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BrProject/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BrProject/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BrProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BrProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonScifi_01_A.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonScifi_01_A.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonScifi_02_A.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonScifi_02_A.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonScifi_03_A.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonScifi_03_A.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonWestern_Material_01_B.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonWestern_Material_01_B.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonWestern_Material_01_C.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonWestern_Material_01_C.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonWestern_Texture_Mike.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Materials/PolygonWestern_Texture_Mike.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/Scenes -------------------------/Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/Scenes -------------------------/Arena.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/Scenes -------------------------/Intro.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/Scenes -------------------------/Intro.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_Map/Prefabes/_General/Cover/SM_Env_Tree_02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_Map/Prefabes/_General/Cover/SM_Env_Tree_02.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_Map/Sky.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_Map/Sky.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_Map/Scenes/Arena.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/_Map/Scenes/Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/_Map/Scenes/Arena.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrPlayerCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrPlayerCamera.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Controllers ----------------.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Controllers ----------------.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/Lobby/Resources/PlayerMarker.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/Lobby/Resources/PlayerMarker.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/settings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/settings.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Cut_Scenes/Falling CutSceneTimeline.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Cut_Scenes/Falling CutSceneTimeline.playable" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/PlayerSpawner/PlayerSpawner.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/PlayerSpawner/PlayerSpawner.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Pool/Pool Manager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Pool/Pool Manager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Resources/PlayerController.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Resources/PlayerController.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterHitEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterHitEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Active player info/Active Player stat.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Active player info/Active Player stat.playable" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/Kill Zone UI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/Kill Zone UI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrUIKillCounter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrUIKillCounter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/BrDeathReport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/BrDeathReport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/Player dead report.playable" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/Player dead report.playable" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/Player dead report.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/Player dead report.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Temp.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,79 +43,97 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTimelineEvent.cs">
+        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Active player info/BrActivePlayerStatUI.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="312">
+              <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
               <folding>
-                <marker date="1549013813535" expanded="false" signature="6:166" ph="..." />
-                <marker date="1549013813535" expanded="true" signature="212:1670" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="347:412" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="447:507" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="531:631" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="655:776" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="720:770" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="801:903" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="944:986" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="1021:1065" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="1113:1220" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="1261:1485" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="1326:1479" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="1528:1668" ph="{...}" />
-                <marker date="1549013813535" expanded="true" signature="1709:1767" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrUIKillCounter.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <marker date="1548069899266" expanded="false" signature="6:114" ph="..." />
-                <marker date="1548069899266" expanded="true" signature="160:769" ph="{...}" />
-                <marker date="1548069899266" expanded="true" signature="294:391" ph="{...}" />
-                <marker date="1548069899266" expanded="true" signature="432:512" ph="{...}" />
-                <marker date="1548069899266" expanded="true" signature="620:767" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
-              <caret line="83" column="26" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
-              <folding>
-                <marker date="1549098898462" expanded="false" signature="6:173" ph="..." />
-                <marker date="1549098898462" expanded="true" signature="216:2155" ph="{...}" />
-                <marker date="1549098898462" expanded="true" signature="592:1529" ph="{...}" />
-                <marker date="1549098898462" expanded="true" signature="809:1086" ph="{...}" />
-                <marker date="1549098898462" expanded="true" signature="1158:1368" ph="{...}" />
-                <marker date="1549098898462" expanded="true" signature="1199:1307" ph="{...}" />
-                <marker date="1549098898462" expanded="true" signature="1452:1522" ph="{...}" />
-                <marker date="1549098898462" expanded="true" signature="1556:2078" ph="{...}" />
-                <marker date="1549098898462" expanded="true" signature="1754:2012" ph="{...}" />
-                <marker date="1549098898462" expanded="true" signature="2114:2153" ph="{...}" />
+                <marker date="1548831259250" expanded="false" signature="6:83" ph="..." />
+                <marker date="1548831259250" expanded="true" signature="134:1648" ph="{...}" />
+                <marker date="1548831259250" expanded="false" signature="404:652" ph="Instance" />
+                <marker date="1548831259250" expanded="true" signature="678:931" ph="{...}" />
+                <marker date="1548831259250" expanded="true" signature="780:924" ph="{...}" />
+                <marker date="1548831259250" expanded="true" signature="957:1170" ph="{...}" />
+                <marker date="1548831259250" expanded="true" signature="1201:1550" ph="{...}" />
+                <marker date="1548831259250" expanded="true" signature="1582:1646" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTextCounter.cs">
+        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1186">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="-173">
+              <caret line="194" column="31" selection-start-line="194" selection-start-column="31" selection-end-line="194" selection-end-column="31" />
               <folding>
-                <marker date="1549099791048" expanded="true" signature="6:126" ph="..." />
-                <marker date="1549099791048" expanded="true" signature="170:740" ph="{...}" />
-                <marker date="1549099791048" expanded="true" signature="317:375" ph="{...}" />
-                <marker date="1549099791048" expanded="true" signature="404:478" ph="{...}" />
-                <marker date="1549099791048" expanded="true" signature="510:608" ph="{...}" />
-                <marker date="1549099791048" expanded="true" signature="639:738" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="6:155" ph="..." />
+                <marker date="1549206604735" expanded="true" signature="235:12364" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="242:337" ph="Static fields" />
+                <marker date="1549206604735" expanded="false" signature="343:811" ph="Public Fields" />
+                <marker date="1549206604735" expanded="false" signature="817:1077" ph="States" />
+                <marker date="1549206604735" expanded="true" signature="1083:2325" ph="Properties" />
+                <marker date="1549206604735" expanded="true" signature="1852:1996" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="1902:1990" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="2019:2163" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="2069:2157" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="2331:2532" ph="Privates" />
+                <marker date="1549206604735" expanded="false" signature="2538:2845" ph="Events" />
+                <marker date="1549206604735" expanded="true" signature="2890:4574" ph="Start/Awake" />
+                <marker date="1549206604735" expanded="true" signature="2935:2947" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="2965:4558" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="3048:3373" ph="Get necessary components" />
+                <marker date="1549206604735" expanded="false" signature="3383:3621" ph="Set Profile" />
+                <marker date="1549206604735" expanded="false" signature="3728:4117" ph="Create state dictionary" />
+                <marker date="1549206604735" expanded="true" signature="3848:4096" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="4580:5041" ph="Updates" />
+                <marker date="1549206604735" expanded="true" signature="4614:4900" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="4651:4824" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="4932:5025" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="5047:5778" ph="GroundCheck" />
+                <marker date="1549206604735" expanded="true" signature="5097:5762" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="5351:5690" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="5479:5680" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="5784:5995" ph="SetState" />
+                <marker date="1549206604735" expanded="true" signature="5852:5979" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="6001:7794" ph="Move and rotate" />
+                <marker date="1549206604735" expanded="true" signature="6093:6611" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="6216:6518" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="6531:6605" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="6685:7046" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="7111:7625" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="7684:7778" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="7800:8061" ph="Gizmo" />
+                <marker date="1549206604735" expanded="true" signature="7846:8045" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="7882:8039" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="8067:8140" ph="FootStep" />
+                <marker date="1549206604735" expanded="true" signature="8112:8124" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="8146:8450" ph="IK" />
+                <marker date="1549206604735" expanded="true" signature="8181:8434" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="8207:8354" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="8367:8428" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="8456:9211" ph="Photon" />
+                <marker date="1549206604735" expanded="true" signature="8554:9195" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="8590:8807" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="8820:9189" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="9217:10363" ph="TakeDamage" />
+                <marker date="1549206604735" expanded="true" signature="9351:9578" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="9690:10347" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="10059:10227" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="10127:10217" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="10369:11429" ph="Death" />
+                <marker date="1549206604735" expanded="true" signature="10443:10889" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="10918:10967" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="11012:11413" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="11435:11757" ph="Health/shield" />
+                <marker date="1549206604735" expanded="true" signature="11495:11597" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="11638:11741" ph="{...}" />
+                <marker date="1549206604735" expanded="false" signature="11763:12362" ph="OpenPara / Landing" />
+                <marker date="1549206604735" expanded="true" signature="11817:11909" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="11953:12013" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="12037:12121" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="12161:12280" ph="{...}" />
+                <marker date="1549206604735" expanded="true" signature="12310:12346" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -117,123 +142,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrPlayerUI.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+            <state relative-caret-position="-926">
               <folding>
-                <marker date="1548069899265" expanded="false" signature="6:114" ph="..." />
-                <marker date="1548069899265" expanded="true" signature="155:2027" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="358:527" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="590:1048" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="623:1042" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="783:945" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="1110:1544" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="1158:1276" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="1289:1538" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="1609:1759" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="1867:1935" ph="{...}" />
-                <marker date="1548069899265" expanded="true" signature="1974:2023" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
-              <folding>
-                <marker date="1549021647899" expanded="false" signature="6:78" ph="..." />
-                <marker date="1549021647899" expanded="true" signature="125:432" ph="{...}" />
-                <marker date="1549021647899" expanded="true" signature="226:247" ph="{...}" />
-                <marker date="1549021647899" expanded="true" signature="305:430" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrUnityEvents.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding>
-                <marker date="1549098457396" expanded="true" signature="6:118" ph="..." />
-                <marker date="1549098457396" expanded="true" signature="186:190" ph="{...}" />
-                <marker date="1549098457396" expanded="true" signature="240:244" ph="{...}" />
-                <marker date="1549098457396" expanded="true" signature="298:302" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
-              <folding>
-                <marker date="1549098599017" expanded="false" signature="6:96" ph="..." />
-                <marker date="1549098599017" expanded="true" signature="175:3608" ph="{...}" />
-                <marker date="1549098599017" expanded="false" signature="182:458" ph="Instance" />
-                <marker date="1549098599017" expanded="true" signature="276:442" ph="{...}" />
-                <marker date="1549098599017" expanded="true" signature="294:436" ph="{...}" />
-                <marker date="1549098599017" expanded="false" signature="807:1111" ph="Events" />
-                <marker date="1549098599017" expanded="true" signature="1129:1370" ph="{...}" />
-                <marker date="1549098599017" expanded="true" signature="1405:1791" ph="{...}" />
-                <marker date="1549098599017" expanded="true" signature="1519:1785" ph="{...}" />
-                <marker date="1549098599017" expanded="true" signature="1828:2150" ph="{...}" />
-                <marker date="1549098599017" expanded="true" signature="2224:2618" ph="{...}" />
-                <marker date="1549098599017" expanded="true" signature="2676:3606" ph="{...}" />
-                <marker date="1549098599017" expanded="true" signature="2803:3040" ph="{...}" />
-                <marker date="1549098599017" expanded="true" signature="3085:3525" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/PlayerTracker/BrPlayerTracker.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-              <folding>
-                <marker date="1548773505177" expanded="false" signature="6:155" ph="..." />
-                <marker date="1548773505177" expanded="true" signature="201:3224" ph="{...}" />
-                <marker date="1548773505177" expanded="false" signature="509:800" ph="Instance" />
-                <marker date="1548773505177" expanded="true" signature="613:784" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="631:778" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="950:1552" ph="Active player" />
-                <marker date="1548773505177" expanded="true" signature="1257:1536" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="1304:1530" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="1353:1520" ph="{...}" />
-                <marker date="1548773505177" expanded="false" signature="1558:1755" ph="OnMasterPlayerRegister" />
-                <marker date="1548773505177" expanded="true" signature="1785:1822" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="1907:2272" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="2350:2552" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="2617:2948" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="2651:2903" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="3011:3222" ph="{...}" />
-                <marker date="1548773505177" expanded="true" signature="3044:3145" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Active player info/BrActivePlayerStatUI.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
-              <folding>
-                <marker date="1548852011484" expanded="false" signature="6:83" ph="..." />
-                <marker date="1548852011484" expanded="true" signature="134:1648" ph="{...}" />
-                <marker date="1548852011484" expanded="false" signature="404:652" ph="Instance" />
-                <marker date="1548852011484" expanded="true" signature="678:931" ph="{...}" />
-                <marker date="1548852011484" expanded="true" signature="780:924" ph="{...}" />
-                <marker date="1548852011484" expanded="true" signature="957:1170" ph="{...}" />
-                <marker date="1548852011484" expanded="true" signature="1201:1550" ph="{...}" />
-                <marker date="1548852011484" expanded="true" signature="1582:1646" ph="{...}" />
+                <marker date="1548047217881" expanded="false" signature="6:114" ph="..." />
+                <marker date="1548047217881" expanded="true" signature="155:2027" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="358:527" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="590:1048" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="623:1042" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="783:945" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="1110:1544" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="1158:1276" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="1289:1538" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="1609:1759" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="1867:1935" ph="{...}" />
+                <marker date="1548047217881" expanded="true" signature="1974:2023" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -243,67 +165,69 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>_EmissionColor</find>
       <find>No Ground Detected!!!</find>
+      <find>_EmissionColor</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterHitEffect.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrWeapon.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Shader/SeeBehind.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrParachuteCharacterState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrCamera.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrPlayerUI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Shader/Unlit test.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Shader/silhouette.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Active player info/BrActivePlayerStatUI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrWeaponController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Editor/CharacterDataCreator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/MiniMap/BrMinimapController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_tools/Editor/BrRunIntro.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/LineOfSight/BrLineOfSight.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/Player.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrRing.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/CheckMaster.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrCharacterStateBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/BrDeathReport.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrMelleAttack.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/PlayerSpawner/BrPlayerSpanner.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTextCounter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/CharacterData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/PlayerTracker/BrPlayerTracker.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTimelineEvent.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Controllers ----------------.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrUnityEvents.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/UtilityScripts/Prototyping/OnClickRpc.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/LineOfSight/BrLineOfSight.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTextCounter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_tools/Editor/BrRunIntro.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Profile/ProfileManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrGroundedAimCharacterState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrRing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterShadow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Controllers ----------------.prefab" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/BrDeathReport.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/MiniMap/BrMinimapController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/PlayerTracker/BrPlayerTracker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/BrCharacterModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrFallingCharacterState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrGroundedCharacterState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrPlayerCamera.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/Kill Zone.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrDisabler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/MiniMap/BrPlayerMiniMap.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Flag/Editor/FlagDataWizard.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Cut_Scenes/BrFlyCutScene.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Animations/Falling(1).fbx.meta" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrGroundedAimCharacterState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/Kill Zone.prefab" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTimelineEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Pool/BrPoolManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Active player info/BrActivePlayerStatUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrPlayerUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterHitEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrWeapon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrCamera.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrUIKillCounter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/CharacterStateEnum.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/MiniMap/BrPlayerMiniMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrMelleAttack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrWeaponController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Cut_Scenes/BrFlyCutScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/CheckMaster.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Flag/Editor/FlagDataWizard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Animations/Falling(1).fbx.meta" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/UtilityScripts/Room/CountdownTimer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrCharacterStateBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Shader/SeeBehind.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrParachuteCharacterState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/Editor/CharacterDataCreator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Shader/Unlit test.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Shader/silhouette.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/CharacterData.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrRing.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Pool/BrPoolManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterHitEffect.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrDisabler.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/LineOfSight/BrLineOfSight.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrCamera.cs" />
@@ -319,22 +243,24 @@
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/BrCharacterModel.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrFallingCharacterState.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrParachuteCharacterState.cs" />
-        <option value="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrGroundedCharacterState.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Cut_Scenes/BrFlyCutScene.cs" />
-        <option value="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrPlayerCamera.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrMelleAttack.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Shader/SeeBehind.shader" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/Shader/silhouette.shader" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Profile/ProfileManager.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Active player info/BrActivePlayerStatUI.cs" />
-        <option value="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/BrDeathReport.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTimelineEvent.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrUnityEvents.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs" />
         <option value="$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTextCounter.cs" />
+        <option value="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterHitEffect.cs" />
+        <option value="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/BrDeathReport.cs" />
+        <option value="$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrPlayerCamera.cs" />
+        <option value="$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrUIKillCounter.cs" />
+        <option value="$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs" />
       </list>
     </option>
   </component>
@@ -349,12 +275,48 @@
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="UnityExplorer" proportions="" version="1">
       <autoscrollToSource UnityExplorer="true" />
       <autoscrollFromSource UnityExplorer="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="SolutionExplorer">
+        <option name="show-all-files" value="false" />
+      </pane>
+      <pane id="FileSystemExplorer" />
+      <pane id="UnityExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Project" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="48f920db:UnityExplorerNode$AssetsRoot" />
+            </path>
+            <path>
+              <item name="Project" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="48f920db:UnityExplorerNode$AssetsRoot" />
+              <item name="BattleRoyale" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="Project" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="48f920db:UnityExplorerNode$AssetsRoot" />
+              <item name="BattleRoyale" type="1045f7f1:UnityExplorerNode" />
+              <item name="__Controllers" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="Project" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="48f920db:UnityExplorerNode$AssetsRoot" />
+              <item name="BattleRoyale" type="1045f7f1:UnityExplorerNode" />
+              <item name="__Controllers" type="1045f7f1:UnityExplorerNode" />
+              <item name="Camera" type="1045f7f1:UnityExplorerNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-hidden-items" value="false" />
+      </pane>
+      <pane id="AssemblyExplorer" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
@@ -382,10 +344,10 @@
       <option name="pid" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="16764">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="10232">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="16764" />
+      <option name="pid" value="10232" />
       <method v="2" />
     </configuration>
   </component>
@@ -418,6 +380,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49837488" weight="0.18603411" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.1369936" />
@@ -428,7 +391,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.23076923" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -518,53 +481,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Flag/Editor/FlagDataWizard.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <marker date="1546496327710" expanded="false" signature="6:114" ph="..." />
-            <marker date="1546496327710" expanded="true" signature="162:2567" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="465:595" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="623:1109" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="789:1000" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="1143:1325" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="1201:1293" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="1358:1576" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="1386:1570" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="1603:1937" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="1759:1844" ph="{...}" />
-            <marker date="1546496327710" expanded="true" signature="1968:2563" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_CharacterModel/CharacterData.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1547431657418" expanded="false" signature="6:97" ph="..." />
-            <marker date="1547431657418" expanded="true" signature="241:1748" ph="{...}" />
-            <marker date="1547431657418" expanded="true" signature="879:1746" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/BrGroundedAimCharacterState.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <marker date="1546265408161" expanded="false" signature="6:32" ph="..." />
-            <marker date="1546265408161" expanded="true" signature="112:1278" ph="{...}" />
-            <marker date="1546265408161" expanded="true" signature="230:296" ph="{...}" />
-            <marker date="1546265408161" expanded="true" signature="331:398" ph="{...}" />
-            <marker date="1546265408161" expanded="true" signature="432:1276" ph="{...}" />
-            <marker date="1546265408161" expanded="true" signature="533:636" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrRing.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -609,50 +525,6 @@
             <marker date="1548386597995" expanded="true" signature="133:327" ph="{...}" />
             <marker date="1548386597995" expanded="true" signature="196:242" ph="{...}" />
             <marker date="1548386597995" expanded="true" signature="270:323" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Pool/BrPoolManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding>
-            <marker date="1548310172557" expanded="false" signature="6:115" ph="..." />
-            <marker date="1548310172557" expanded="true" signature="175:1909" ph="{...}" />
-            <marker date="1548310172557" expanded="false" signature="182:467" ph="Instance" />
-            <marker date="1548310172557" expanded="true" signature="282:451" ph="{...}" />
-            <marker date="1548310172557" expanded="true" signature="300:445" ph="{...}" />
-            <marker date="1548310172557" expanded="true" signature="659:714" ph="{...}" />
-            <marker date="1548310172557" expanded="true" signature="762:1045" ph="{...}" />
-            <marker date="1548310172557" expanded="true" signature="1140:1904" ph="{...}" />
-            <marker date="1548310172557" expanded="true" signature="1280:1546" ph="{...}" />
-            <marker date="1548310172557" expanded="true" signature="1649:1758" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterHitEffect.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrWeapon.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="84" column="34" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
-          <folding>
-            <marker date="1548652261700" expanded="false" signature="6:174" ph="..." />
-            <marker date="1548652261700" expanded="true" signature="213:2029" ph="{...}" />
-            <marker date="1548652261700" expanded="true" signature="967:1056" ph="{...}" />
-            <marker date="1548652261700" expanded="true" signature="1093:1138" ph="{...}" />
-            <marker date="1548652261700" expanded="true" signature="1162:1611" ph="{...}" />
-            <marker date="1548652261700" expanded="true" signature="1286:1382" ph="/* if (IsMine) ... */" />
-            <marker date="1548652261700" expanded="true" signature="1519:1605" ph="{...}" />
-            <marker date="1548652261700" expanded="true" signature="1660:1954" ph="{...}" />
-            <marker date="1548652261700" expanded="true" signature="1978:2027" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -896,21 +768,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Temp/Compiled-Mobile-Diffuse.shader" />
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrPlayerCamera.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <marker date="1548768462651" expanded="false" signature="6:97" ph="..." />
-            <marker date="1548768462651" expanded="true" signature="142:1463" ph="{...}" />
-            <marker date="1548768462651" expanded="true" signature="281:1382" ph="{...}" />
-            <marker date="1548768462651" expanded="true" signature="782:1034" ph="{...}" />
-            <marker date="1548768462651" expanded="true" signature="1161:1373" ph="{...}" />
-            <marker date="1548768462651" expanded="true" signature="1440:1461" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrMelleAttack.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -992,81 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="239" selection-start-line="239" selection-end-line="239" />
-          <folding>
-            <marker date="1548766795403" expanded="false" signature="6:155" ph="..." />
-            <marker date="1548766795403" expanded="true" signature="235:12083" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="242:337" ph="Static fields" />
-            <marker date="1548766795403" expanded="false" signature="343:811" ph="Public Fields" />
-            <marker date="1548766795403" expanded="false" signature="817:1077" ph="States" />
-            <marker date="1548766795403" expanded="false" signature="1083:2325" ph="Properties" />
-            <marker date="1548766795403" expanded="true" signature="1852:1996" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="1902:1990" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="2019:2163" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="2069:2157" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="2331:2532" ph="Privates" />
-            <marker date="1548766795403" expanded="false" signature="2538:2843" ph="Events" />
-            <marker date="1548766795403" expanded="false" signature="2888:4572" ph="Start/Awake" />
-            <marker date="1548766795403" expanded="true" signature="2933:2945" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="2963:4556" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="3046:3371" ph="Get necessary components" />
-            <marker date="1548766795403" expanded="false" signature="3381:3619" ph="Set Profile" />
-            <marker date="1548766795403" expanded="false" signature="3726:4115" ph="Create state dictionary" />
-            <marker date="1548766795403" expanded="true" signature="3846:4094" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="4578:5037" ph="Updates" />
-            <marker date="1548766795403" expanded="true" signature="4612:4897" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="4649:4822" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="4929:5021" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="5043:5774" ph="GroundCheck" />
-            <marker date="1548766795403" expanded="true" signature="5093:5758" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="5347:5686" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="5475:5676" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="5780:5991" ph="SetState" />
-            <marker date="1548766795403" expanded="true" signature="5848:5975" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="5997:7790" ph="Move and rotate" />
-            <marker date="1548766795403" expanded="true" signature="6089:6607" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="6212:6514" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="6527:6601" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="6681:7042" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="7107:7621" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="7680:7774" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="7796:8057" ph="Gizmo" />
-            <marker date="1548766795403" expanded="true" signature="7842:8041" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="7878:8035" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="8063:8136" ph="FootStep" />
-            <marker date="1548766795403" expanded="true" signature="8108:8120" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="8142:8446" ph="IK" />
-            <marker date="1548766795403" expanded="true" signature="8177:8430" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="8203:8350" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="8363:8424" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="8452:9121" ph="Photon" />
-            <marker date="1548766795403" expanded="true" signature="8550:9105" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="8586:8766" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="8779:9099" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="9127:10263" ph="TakeDamage" />
-            <marker date="1548766795403" expanded="true" signature="9261:9488" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="9600:10247" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="9959:10127" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="10027:10117" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="10269:11148" ph="Death" />
-            <marker date="1548766795403" expanded="true" signature="10343:10686" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="10731:11132" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="11154:11476" ph="Health/shield" />
-            <marker date="1548766795403" expanded="true" signature="11214:11316" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="11357:11460" ph="{...}" />
-            <marker date="1548766795403" expanded="false" signature="11482:12081" ph="OpenPara / Landing" />
-            <marker date="1548766795403" expanded="true" signature="11536:11628" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="11672:11732" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="11756:11840" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="11880:11999" ph="{...}" />
-            <marker date="1548766795403" expanded="true" signature="12029:12065" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1196,24 +978,6 @@
     <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Controllers ----------------.prefab">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/BrDeathReport.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-          <folding>
-            <marker date="1548858679262" expanded="false" signature="6:109" ph="..." />
-            <marker date="1548858679262" expanded="true" signature="153:1548" ph="{...}" />
-            <marker date="1548858679262" expanded="true" signature="452:1287" ph="{...}" />
-            <marker date="1548858679262" expanded="true" signature="539:1280" ph="{...}" />
-            <marker date="1548858679262" expanded="true" signature="580:1270" ph="{...}" />
-            <marker date="1548858679262" expanded="true" signature="734:885" ph="{...}" />
-            <marker date="1548858679262" expanded="true" signature="920:1222" ph="{...}" />
-            <marker date="1548858679262" expanded="true" signature="1314:1406" ph="{...}" />
-            <marker date="1548858679262" expanded="true" signature="1433:1545" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/MiniMap/BrMinimapController.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1239,186 +1003,380 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrPlayerUI.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrUnityEvents.cs" />
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTextCounter.cs" />
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTimelineEvent.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+        <state relative-caret-position="24">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
-            <marker date="1548069899265" expanded="false" signature="6:114" ph="..." />
-            <marker date="1548069899265" expanded="true" signature="155:2027" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="358:527" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="590:1048" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="623:1042" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="783:945" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="1110:1544" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="1158:1276" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="1289:1538" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="1609:1759" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="1867:1935" ph="{...}" />
-            <marker date="1548069899265" expanded="true" signature="1974:2023" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/PlayerTracker/BrPlayerTracker.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-          <folding>
-            <marker date="1548773505177" expanded="false" signature="6:155" ph="..." />
-            <marker date="1548773505177" expanded="true" signature="201:3224" ph="{...}" />
-            <marker date="1548773505177" expanded="false" signature="509:800" ph="Instance" />
-            <marker date="1548773505177" expanded="true" signature="613:784" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="631:778" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="950:1552" ph="Active player" />
-            <marker date="1548773505177" expanded="true" signature="1257:1536" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="1304:1530" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="1353:1520" ph="{...}" />
-            <marker date="1548773505177" expanded="false" signature="1558:1755" ph="OnMasterPlayerRegister" />
-            <marker date="1548773505177" expanded="true" signature="1785:1822" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="1907:2272" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="2350:2552" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="2617:2948" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="2651:2903" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="3011:3222" ph="{...}" />
-            <marker date="1548773505177" expanded="true" signature="3044:3145" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Active player info/BrActivePlayerStatUI.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-          <folding>
-            <marker date="1548852011484" expanded="false" signature="6:83" ph="..." />
-            <marker date="1548852011484" expanded="true" signature="134:1648" ph="{...}" />
-            <marker date="1548852011484" expanded="false" signature="404:652" ph="Instance" />
-            <marker date="1548852011484" expanded="true" signature="678:931" ph="{...}" />
-            <marker date="1548852011484" expanded="true" signature="780:924" ph="{...}" />
-            <marker date="1548852011484" expanded="true" signature="957:1170" ph="{...}" />
-            <marker date="1548852011484" expanded="true" signature="1201:1550" ph="{...}" />
-            <marker date="1548852011484" expanded="true" signature="1582:1646" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
-          <folding>
-            <marker date="1549021647899" expanded="false" signature="6:78" ph="..." />
-            <marker date="1549021647899" expanded="true" signature="125:432" ph="{...}" />
-            <marker date="1549021647899" expanded="true" signature="226:247" ph="{...}" />
-            <marker date="1549021647899" expanded="true" signature="305:430" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrUnityEvents.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <marker date="1549098457396" expanded="true" signature="6:118" ph="..." />
-            <marker date="1549098457396" expanded="true" signature="186:190" ph="{...}" />
-            <marker date="1549098457396" expanded="true" signature="240:244" ph="{...}" />
-            <marker date="1549098457396" expanded="true" signature="298:302" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <marker date="1549098599017" expanded="false" signature="6:96" ph="..." />
-            <marker date="1549098599017" expanded="true" signature="175:3608" ph="{...}" />
-            <marker date="1549098599017" expanded="false" signature="182:458" ph="Instance" />
-            <marker date="1549098599017" expanded="true" signature="276:442" ph="{...}" />
-            <marker date="1549098599017" expanded="true" signature="294:436" ph="{...}" />
-            <marker date="1549098599017" expanded="false" signature="807:1111" ph="Events" />
-            <marker date="1549098599017" expanded="true" signature="1129:1370" ph="{...}" />
-            <marker date="1549098599017" expanded="true" signature="1405:1791" ph="{...}" />
-            <marker date="1549098599017" expanded="true" signature="1519:1785" ph="{...}" />
-            <marker date="1549098599017" expanded="true" signature="1828:2150" ph="{...}" />
-            <marker date="1549098599017" expanded="true" signature="2224:2618" ph="{...}" />
-            <marker date="1549098599017" expanded="true" signature="2676:3606" ph="{...}" />
-            <marker date="1549098599017" expanded="true" signature="2803:3040" ph="{...}" />
-            <marker date="1549098599017" expanded="true" signature="3085:3525" ph="{...}" />
+            <marker date="1549030646492" expanded="false" signature="6:166" ph="..." />
+            <marker date="1549030646492" expanded="true" signature="212:1670" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="347:412" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="447:507" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="531:631" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="655:776" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="720:770" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="801:903" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="944:986" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="1021:1065" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="1113:1220" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="1261:1485" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="1326:1479" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="1528:1668" ph="{...}" />
+            <marker date="1549030646492" expanded="true" signature="1709:1767" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Kill Zone/BrKillZoneUI.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="83" column="26" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
+        <state relative-caret-position="1680">
+          <caret line="85" column="1" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
           <folding>
-            <marker date="1549098898462" expanded="false" signature="6:173" ph="..." />
-            <marker date="1549098898462" expanded="true" signature="216:2155" ph="{...}" />
-            <marker date="1549098898462" expanded="true" signature="592:1529" ph="{...}" />
-            <marker date="1549098898462" expanded="true" signature="809:1086" ph="{...}" />
-            <marker date="1549098898462" expanded="true" signature="1158:1368" ph="{...}" />
-            <marker date="1549098898462" expanded="true" signature="1199:1307" ph="{...}" />
-            <marker date="1549098898462" expanded="true" signature="1452:1522" ph="{...}" />
-            <marker date="1549098898462" expanded="true" signature="1556:2078" ph="{...}" />
-            <marker date="1549098898462" expanded="true" signature="1754:2012" ph="{...}" />
-            <marker date="1549098898462" expanded="true" signature="2114:2153" ph="{...}" />
+            <marker date="1549173163626" expanded="false" signature="6:173" ph="..." />
+            <marker date="1549173163626" expanded="true" signature="216:2155" ph="{...}" />
+            <marker date="1549173163626" expanded="true" signature="592:1529" ph="{...}" />
+            <marker date="1549173163626" expanded="true" signature="809:1086" ph="{...}" />
+            <marker date="1549173163626" expanded="true" signature="1158:1368" ph="{...}" />
+            <marker date="1549173163626" expanded="true" signature="1199:1307" ph="{...}" />
+            <marker date="1549173163626" expanded="true" signature="1452:1522" ph="{...}" />
+            <marker date="1549173163626" expanded="true" signature="1556:2078" ph="{...}" />
+            <marker date="1549173163626" expanded="true" signature="1754:2012" ph="{...}" />
+            <marker date="1549173163626" expanded="true" signature="2114:2153" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTimelineEvent.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrRotatorByInput.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="360">
+          <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
           <folding>
-            <marker date="1549013813535" expanded="false" signature="6:166" ph="..." />
-            <marker date="1549013813535" expanded="true" signature="212:1670" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="347:412" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="447:507" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="531:631" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="655:776" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="720:770" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="801:903" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="944:986" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="1021:1065" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="1113:1220" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="1261:1485" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="1326:1479" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="1528:1668" ph="{...}" />
-            <marker date="1549013813535" expanded="true" signature="1709:1767" ph="{...}" />
+            <marker date="1549031254875" expanded="false" signature="6:78" ph="..." />
+            <marker date="1549031254875" expanded="true" signature="125:432" ph="{...}" />
+            <marker date="1549031254875" expanded="true" signature="226:247" ph="{...}" />
+            <marker date="1549031254875" expanded="true" signature="305:430" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/KillZone/BrKillZone.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <marker date="1549173163625" expanded="false" signature="6:122" ph="..." />
+            <marker date="1549173163625" expanded="true" signature="175:3608" ph="{...}" />
+            <marker date="1549173163625" expanded="false" signature="182:458" ph="Instance" />
+            <marker date="1549173163625" expanded="true" signature="276:442" ph="{...}" />
+            <marker date="1549173163625" expanded="true" signature="294:436" ph="{...}" />
+            <marker date="1549173163625" expanded="false" signature="807:1111" ph="Events" />
+            <marker date="1549173163625" expanded="true" signature="1129:1370" ph="{...}" />
+            <marker date="1549173163625" expanded="true" signature="1405:1791" ph="{...}" />
+            <marker date="1549173163625" expanded="true" signature="1519:1785" ph="{...}" />
+            <marker date="1549173163625" expanded="true" signature="1828:2150" ph="{...}" />
+            <marker date="1549173163625" expanded="true" signature="2224:2618" ph="{...}" />
+            <marker date="1549173163625" expanded="true" signature="2676:3606" ph="{...}" />
+            <marker date="1549173163625" expanded="true" signature="2803:3040" ph="{...}" />
+            <marker date="1549173163625" expanded="true" signature="3085:3525" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/PlayerTracker/BrPlayerTracker.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
+          <folding>
+            <marker date="1548753511311" expanded="false" signature="6:155" ph="..." />
+            <marker date="1548753511311" expanded="true" signature="201:3224" ph="{...}" />
+            <marker date="1548753511311" expanded="false" signature="509:800" ph="Instance" />
+            <marker date="1548753511311" expanded="true" signature="613:784" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="631:778" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="950:1552" ph="Active player" />
+            <marker date="1548753511311" expanded="true" signature="1257:1536" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="1304:1530" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="1353:1520" ph="{...}" />
+            <marker date="1548753511311" expanded="false" signature="1558:1755" ph="OnMasterPlayerRegister" />
+            <marker date="1548753511311" expanded="true" signature="1785:1822" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="1907:2272" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="2350:2552" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="2617:2948" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="2651:2903" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="3011:3222" ph="{...}" />
+            <marker date="1548753511311" expanded="true" signature="3044:3145" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Pool/BrPoolManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="43" column="32" lean-forward="true" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+          <folding>
+            <marker date="1548310172557" expanded="false" signature="6:115" ph="..." />
+            <marker date="1548310172557" expanded="true" signature="175:1909" ph="{...}" />
+            <marker date="1548310172557" expanded="true" signature="182:467" ph="Instance" />
+            <marker date="1548310172557" expanded="true" signature="282:451" ph="{...}" />
+            <marker date="1548310172557" expanded="true" signature="300:445" ph="{...}" />
+            <marker date="1548310172557" expanded="true" signature="659:714" ph="{...}" />
+            <marker date="1548310172557" expanded="true" signature="762:1045" ph="{...}" />
+            <marker date="1548310172557" expanded="true" signature="1140:1904" ph="{...}" />
+            <marker date="1548310172557" expanded="true" signature="1280:1546" ph="{...}" />
+            <marker date="1548310172557" expanded="true" signature="1649:1758" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Weapon/BrWeapon.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="73" column="49" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="49" />
+          <folding>
+            <marker date="1548652261700" expanded="false" signature="6:174" ph="..." />
+            <marker date="1548652261700" expanded="true" signature="213:2029" ph="{...}" />
+            <marker date="1548652261700" expanded="true" signature="967:1056" ph="{...}" />
+            <marker date="1548652261700" expanded="true" signature="1093:1138" ph="{...}" />
+            <marker date="1548652261700" expanded="true" signature="1162:1611" ph="{...}" />
+            <marker date="1548652261700" expanded="true" signature="1286:1382" ph="/* if (IsMine) ... */" />
+            <marker date="1548652261700" expanded="true" signature="1519:1605" ph="{...}" />
+            <marker date="1548652261700" expanded="true" signature="1660:1954" ph="{...}" />
+            <marker date="1548652261700" expanded="true" signature="1978:2027" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/UtilityScripts/Prototyping/OnClickRpc.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="62" column="52" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
+          <folding>
+            <marker date="1545842012316" expanded="true" signature="0:460" ph="/*A compact script for prototyping. ... */" />
+            <marker date="1545842012316" expanded="true" signature="526:2954" ph="{...}" />
+            <marker date="1545842012316" expanded="false" signature="539:587" ph="..." />
+            <marker date="1545842012316" expanded="true" signature="594:800" ph="/// This component will instantiate a network GameObject when in a room and the user click on that component's Ga ... " />
+            <marker date="1545842012316" expanded="true" signature="869:2952" ph="{...}" />
+            <marker date="1545842012316" expanded="true" signature="1075:1365" ph="{...}" />
+            <marker date="1545842012316" expanded="true" signature="1232:1284" ph="{...}" />
+            <marker date="1545842012316" expanded="true" signature="1376:2946" ph="RPC Implementation" />
+            <marker date="1545842012316" expanded="true" signature="1565:1681" ph="{...}" />
+            <marker date="1545842012316" expanded="true" signature="1730:2926" ph="{...}" />
+            <marker date="1545842012316" expanded="true" signature="1768:1825" ph="{...}" />
+            <marker date="1545842012316" expanded="true" signature="1998:2141" ph="{...}" />
+            <marker date="1545842012316" expanded="true" signature="2504:2720" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/UtilityScripts/Room/CountdownTimer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-157">
+          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+          <folding>
+            <marker date="1545842012319" expanded="true" signature="0:1136" ph="/* This is a basic CountdownTimer. In order to start the timer, the MasterClient can add a certain entry to the  ... */" />
+            <marker date="1545842012319" expanded="false" signature="1144:1228" ph="..." />
+            <marker date="1545842012319" expanded="true" signature="1265:4000" ph="{...}" />
+            <marker date="1545842012319" expanded="true" signature="1272:2040" ph="/// This is a basic CountdownTimer. In order to start the timer, the MasterClient can add a certain entry to the  ... " />
+            <marker date="1545842012319" expanded="true" signature="2100:3998" ph="{...}" />
+            <marker date="1545842012319" expanded="true" signature="2178:2263" ph="/// OnCountdownTimerHasExpired delegate. ... " />
+            <marker date="1545842012319" expanded="true" signature="2330:2413" ph="/// Called when the timer has expired. ... " />
+            <marker date="1545842012319" expanded="true" signature="2788:2993" ph="{...}" />
+            <marker date="1545842012319" expanded="true" signature="2828:2983" ph="{...}" />
+            <marker date="1545842012319" expanded="true" signature="3023:3629" ph="{...}" />
+            <marker date="1545842012319" expanded="true" signature="3066:3118" ph="{...}" />
+            <marker date="1545842012319" expanded="true" signature="3364:3416" ph="{...}" />
+            <marker date="1545842012319" expanded="true" signature="3545:3619" ph="{...}" />
+            <marker date="1545842012319" expanded="true" signature="3715:3992" ph="{...}" />
+            <marker date="1545842012319" expanded="true" signature="3860:3982" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterHitEffect.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
+          <folding>
+            <marker date="1549203668004" expanded="false" signature="6:92" ph="..." />
+            <marker date="1549203668004" expanded="true" signature="143:1362" ph="{...}" />
+            <marker date="1549203668004" expanded="true" signature="467:606" ph="{...}" />
+            <marker date="1549203668004" expanded="true" signature="653:838" ph="{...}" />
+            <marker date="1549203668004" expanded="true" signature="676:762" ph="{...}" />
+            <marker date="1549203668004" expanded="true" signature="877:1247" ph="{...}" />
+            <marker date="1549203668004" expanded="true" signature="931:1112" ph="/* renderer.material.SetColor(&quot;_EmissionColor&quot;, hitColor); ... */" />
+            <marker date="1549203668004" expanded="true" signature="1305:1318" ph="{...}" />
+            <marker date="1549203668004" expanded="true" signature="1348:1360" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrUIKillCounter.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="586">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
           <folding>
-            <marker date="1548069899266" expanded="false" signature="6:114" ph="..." />
-            <marker date="1548069899266" expanded="true" signature="160:769" ph="{...}" />
-            <marker date="1548069899266" expanded="true" signature="294:391" ph="{...}" />
-            <marker date="1548069899266" expanded="true" signature="432:512" ph="{...}" />
-            <marker date="1548069899266" expanded="true" signature="620:767" ph="{...}" />
+            <marker date="1549205527673" expanded="false" signature="6:114" ph="..." />
+            <marker date="1549205527673" expanded="true" signature="160:779" ph="{...}" />
+            <marker date="1549205527673" expanded="true" signature="294:391" ph="{...}" />
+            <marker date="1549205527673" expanded="true" signature="432:512" ph="{...}" />
+            <marker date="1549205527673" expanded="true" signature="620:777" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/_Common/BrTextCounter.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Reproters/Death Reproter/BrDeathReport.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1186">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="582">
+          <caret line="36" column="17" lean-forward="true" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
           <folding>
-            <marker date="1549099791048" expanded="true" signature="6:126" ph="..." />
-            <marker date="1549099791048" expanded="true" signature="170:740" ph="{...}" />
-            <marker date="1549099791048" expanded="true" signature="317:375" ph="{...}" />
-            <marker date="1549099791048" expanded="true" signature="404:478" ph="{...}" />
-            <marker date="1549099791048" expanded="true" signature="510:608" ph="{...}" />
-            <marker date="1549099791048" expanded="true" signature="639:738" ph="{...}" />
+            <marker date="1549204047970" expanded="false" signature="6:109" ph="..." />
+            <marker date="1549204047970" expanded="true" signature="153:1583" ph="{...}" />
+            <marker date="1549204047970" expanded="true" signature="452:1305" ph="{...}" />
+            <marker date="1549204047970" expanded="true" signature="539:1298" ph="{...}" />
+            <marker date="1549204047970" expanded="true" signature="580:1288" ph="{...}" />
+            <marker date="1549204047970" expanded="true" signature="734:903" ph="{...}" />
+            <marker date="1549204047970" expanded="true" signature="938:1240" ph="{...}" />
+            <marker date="1549204047970" expanded="true" signature="1332:1439" ph="{...}" />
+            <marker date="1549204047970" expanded="true" signature="1466:1580" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__Controllers/Camera/BrPlayerCamera.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <marker date="1549205045249" expanded="false" signature="6:97" ph="..." />
+            <marker date="1549205045249" expanded="true" signature="142:1363" ph="{...}" />
+            <marker date="1549205045249" expanded="true" signature="289:1361" ph="{...}" />
+            <marker date="1549205045249" expanded="true" signature="775:1015" ph="{...}" />
+            <marker date="1549205045249" expanded="true" signature="933:1005" ph="{...}" />
+            <marker date="1549205045249" expanded="true" signature="1090:1352" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Local player  Info/BrPlayerUI.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-926">
+          <folding>
+            <marker date="1548047217881" expanded="false" signature="6:114" ph="..." />
+            <marker date="1548047217881" expanded="true" signature="155:2027" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="358:527" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="590:1048" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="623:1042" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="783:945" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="1110:1544" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="1158:1276" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="1289:1538" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="1609:1759" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="1867:1935" ph="{...}" />
+            <marker date="1548047217881" expanded="true" signature="1974:2023" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__UI/HUD/Active player info/BrActivePlayerStatUI.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+          <folding>
+            <marker date="1548831259250" expanded="false" signature="6:83" ph="..." />
+            <marker date="1548831259250" expanded="true" signature="134:1648" ph="{...}" />
+            <marker date="1548831259250" expanded="false" signature="404:652" ph="Instance" />
+            <marker date="1548831259250" expanded="true" signature="678:931" ph="{...}" />
+            <marker date="1548831259250" expanded="true" signature="780:924" ph="{...}" />
+            <marker date="1548831259250" expanded="true" signature="957:1170" ph="{...}" />
+            <marker date="1548831259250" expanded="true" signature="1201:1550" ph="{...}" />
+            <marker date="1548831259250" expanded="true" signature="1582:1646" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/CharacterStates/CharacterStateEnum.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+          <folding>
+            <marker date="1545626394883" expanded="true" signature="30:84" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BattleRoyale/__PlayerController/_Scripts/BrCharacterController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-173">
+          <caret line="194" column="31" selection-start-line="194" selection-start-column="31" selection-end-line="194" selection-end-column="31" />
+          <folding>
+            <marker date="1549206604735" expanded="false" signature="6:155" ph="..." />
+            <marker date="1549206604735" expanded="true" signature="235:12364" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="242:337" ph="Static fields" />
+            <marker date="1549206604735" expanded="false" signature="343:811" ph="Public Fields" />
+            <marker date="1549206604735" expanded="false" signature="817:1077" ph="States" />
+            <marker date="1549206604735" expanded="true" signature="1083:2325" ph="Properties" />
+            <marker date="1549206604735" expanded="true" signature="1852:1996" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="1902:1990" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="2019:2163" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="2069:2157" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="2331:2532" ph="Privates" />
+            <marker date="1549206604735" expanded="false" signature="2538:2845" ph="Events" />
+            <marker date="1549206604735" expanded="true" signature="2890:4574" ph="Start/Awake" />
+            <marker date="1549206604735" expanded="true" signature="2935:2947" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="2965:4558" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="3048:3373" ph="Get necessary components" />
+            <marker date="1549206604735" expanded="false" signature="3383:3621" ph="Set Profile" />
+            <marker date="1549206604735" expanded="false" signature="3728:4117" ph="Create state dictionary" />
+            <marker date="1549206604735" expanded="true" signature="3848:4096" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="4580:5041" ph="Updates" />
+            <marker date="1549206604735" expanded="true" signature="4614:4900" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="4651:4824" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="4932:5025" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="5047:5778" ph="GroundCheck" />
+            <marker date="1549206604735" expanded="true" signature="5097:5762" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="5351:5690" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="5479:5680" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="5784:5995" ph="SetState" />
+            <marker date="1549206604735" expanded="true" signature="5852:5979" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="6001:7794" ph="Move and rotate" />
+            <marker date="1549206604735" expanded="true" signature="6093:6611" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="6216:6518" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="6531:6605" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="6685:7046" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="7111:7625" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="7684:7778" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="7800:8061" ph="Gizmo" />
+            <marker date="1549206604735" expanded="true" signature="7846:8045" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="7882:8039" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="8067:8140" ph="FootStep" />
+            <marker date="1549206604735" expanded="true" signature="8112:8124" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="8146:8450" ph="IK" />
+            <marker date="1549206604735" expanded="true" signature="8181:8434" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="8207:8354" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="8367:8428" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="8456:9211" ph="Photon" />
+            <marker date="1549206604735" expanded="true" signature="8554:9195" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="8590:8807" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="8820:9189" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="9217:10363" ph="TakeDamage" />
+            <marker date="1549206604735" expanded="true" signature="9351:9578" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="9690:10347" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="10059:10227" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="10127:10217" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="10369:11429" ph="Death" />
+            <marker date="1549206604735" expanded="true" signature="10443:10889" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="10918:10967" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="11012:11413" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="11435:11757" ph="Health/shield" />
+            <marker date="1549206604735" expanded="true" signature="11495:11597" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="11638:11741" ph="{...}" />
+            <marker date="1549206604735" expanded="false" signature="11763:12362" ph="OpenPara / Landing" />
+            <marker date="1549206604735" expanded="true" signature="11817:11909" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="11953:12013" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="12037:12121" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="12161:12280" ph="{...}" />
+            <marker date="1549206604735" expanded="true" signature="12310:12346" ph="{...}" />
           </folding>
         </state>
       </provider>

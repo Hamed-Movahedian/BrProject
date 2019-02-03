@@ -18,7 +18,7 @@ public class BrCharacterHitEffect : MonoBehaviour
     void Start()
     {
         
-        _defaultColor = renderer.material.GetColor("_EmissionColor");
+        //_defaultColor = renderer.material.GetColor("_EmissionColor");
         animator = GetComponent<Animator>();
 
     }
@@ -37,9 +37,9 @@ public class BrCharacterHitEffect : MonoBehaviour
     private IEnumerator HitCorotine()
     {
         animator.SetBool("Hit", true);
-        renderer.material.SetColor("_EmissionColor", hitColor);
-        yield return new WaitForSeconds(duration);
-        renderer.material.SetColor("_EmissionColor", _defaultColor);
+        //renderer.material.SetColor("_EmissionColor", hitColor);
+        //yield return new WaitForSeconds(duration);
+        //renderer.material.SetColor("_EmissionColor", _defaultColor);
         yield return new WaitForSeconds(animDuration - duration);
 
         animator.SetBool("Hit", false);

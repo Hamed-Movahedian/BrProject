@@ -192,13 +192,13 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         //GroundCheck();
 
-        _stateDic[CurrentState].Update();
+        _stateDic[CurrentState]?.Update();
     }
 
     private void FixedUpdate()
     {
         //if (photonView.IsMine)
-        _stateDic[CurrentState].FixedUpdate();
+        _stateDic[CurrentState]?.FixedUpdate();
     }
 
     #endregion
@@ -357,6 +357,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(MovVector);
             stream.SendNext(AimVector);
             stream.SendNext(Health);
+            stream.SendNext(Shield);
             stream.SendNext(CurrentState);
         }
         else
@@ -364,6 +365,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
             MovVector = (Vector3) stream.ReceiveNext();
             AimVector = (Vector3) stream.ReceiveNext();
             Health = (int) stream.ReceiveNext();
+            Shield = (int) stream.ReceiveNext();
             var state = (CharacterStateEnum) stream.ReceiveNext();
             if (state != CurrentState)
                 SetState(state);
