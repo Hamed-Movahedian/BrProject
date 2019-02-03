@@ -11,8 +11,8 @@ namespace BR.Lobby
 {
     public class SlotList : MonoBehaviourPunCallbacks
     {
-        private const int PlayerCount = 10;
-        public List<Image> SlotImages;
+        private const int PlayerCount = 20;
+        public List<BrPlayerSlot> SlotImages;
         public CharactersList CharactersList;
 
         private readonly Player[] _players=new Player[PlayerCount];
@@ -24,7 +24,7 @@ namespace BR.Lobby
         {
             //SlotImages = GetComponentsInChildren<Image>().ToList();
 
-            _bgColor = SlotImages[0].color;
+            _bgColor = SlotImages[0].Border.color;
             
             for (int i = 0; i < PlayerCount; i++)
             {
@@ -47,11 +47,10 @@ namespace BR.Lobby
 
                     var profile = Profile.Deserialize((string)player.CustomProperties["Profile"]);
 
-                    SlotImages[i].sprite = CharactersList[profile.CurrentCharacter].FaceSprite;
-                    SlotImages[i].color = Color.white;
-                    SlotImages[i].transform.GetChild(0).GetComponent<Image>().color= 
-                        JsonUtility.FromJson<Color>((string)player.CustomProperties["Color"]);
-            return;
+                    Sprite pIcon= CharactersList[profile.CurrentCharacter].FaceSprite;
+                    Color borderColor= JsonUtility.FromJson<Color>((string)player.CustomProperties["Color"]);
+                    SlotImages[i].SetSlot(pIcon,borderColor);
+                    return;
                 }
             }
         }
@@ -72,7 +71,7 @@ namespace BR.Lobby
             {
                 if (_players[i].CustomProperties["ID"] == otherPlayer.CustomProperties["ID"])
                 {
-                    SlotImages[i].color = _bgColor;
+                    SlotImages[i].Remove();
                     _players[i] = null;
                     return;
                 }

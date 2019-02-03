@@ -19,8 +19,16 @@
         ],
         "selectedFbxPath": 0,
         "selectedPrefabPath": 0,
-        "dccOptionNames": [],
-        "dccOptionPaths": [],
+        "dccOptionNames": [
+            "3ds Max 2017",
+            "Maya 2015",
+            "Maya LT2017"
+        ],
+        "dccOptionPaths": [
+            "C:/Program Files/Autodesk/3ds Max 2017/3dsmax.exe",
+            "C:/Program Files/Autodesk/Maya2015/bin/maya.exe",
+            "C:/Program Files/Autodesk/MayaLT2017/bin/maya.exe"
+        ],
         "exportModelSettingsSerialize": {
             "exportFormat": 0,
             "rootMotionTransfer": "",
