@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BrZonePointer : MonoBehaviour
 {
+    [Multiline]
     public string ZoneName;
     public Text ZoneText;
 
