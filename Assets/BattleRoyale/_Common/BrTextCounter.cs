@@ -36,7 +36,6 @@ public class BrTextCounter : MonoBehaviour
     public void Add(int value)
     {
         counter += value;
-        Debug.Log(counter);
         text.text = counter.ToString();
         CheckEnd();
 

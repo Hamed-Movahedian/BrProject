@@ -18,12 +18,13 @@ namespace BR.Lobby
         private readonly Player[] _players=new Player[PlayerCount];
 
         private Color _bgColor;
+        
+        public static SlotList Instance;
 
         // Use this for initialization
         void Start ()
         {
-            //SlotImages = GetComponentsInChildren<Image>().ToList();
-
+            Instance = this;
             _bgColor = SlotImages[0].Border.color;
             
             for (int i = 0; i < PlayerCount; i++)
@@ -33,11 +34,12 @@ namespace BR.Lobby
 
             foreach (var player in PhotonNetwork.PlayerList)
             {
-                Add(player);
+                Add(player, true);
             }
         }
 
-        private void Add(Player player)
+
+        private void Add(Player player, bool silent)
         {
             for (int i = 0; i < PlayerCount; i++)
             {
@@ -45,11 +47,8 @@ namespace BR.Lobby
                 {
                     _players[i] = player;
 
-                    var profile = Profile.Deserialize((string)player.CustomProperties["Profile"]);
-
-                    Sprite pIcon= CharactersList[profile.CurrentCharacter].FaceSprite;
-                    Color borderColor= JsonUtility.FromJson<Color>((string)player.CustomProperties["Color"]);
-                    SlotImages[i].SetSlot(pIcon,borderColor);
+                    
+                    SlotImages[i].SetSlot(player,silent);
                     return;
                 }
             }
@@ -57,7 +56,7 @@ namespace BR.Lobby
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
-            Add(newPlayer);
+            Add(newPlayer, false);
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
