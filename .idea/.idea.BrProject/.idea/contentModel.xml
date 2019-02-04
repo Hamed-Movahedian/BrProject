@@ -92,6 +92,7 @@
             </e>
             <e p="Lobby" t="Include">
               <e p="BrPlayerSlot.cs" t="Include" />
+              <e p="BrZonePointer.cs" t="Include" />
               <e p="LobbyCounter.cs" t="Include" />
               <e p="LobbyManager.cs" t="Include" />
               <e p="PlayerMarker.cs" t="Include" />
