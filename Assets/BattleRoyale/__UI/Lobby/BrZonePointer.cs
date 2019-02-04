@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BR.Lobby;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -30,6 +31,7 @@ public class BrZonePointer : MonoBehaviour
         
         Show.Invoke();
         _active = true;
+        LobbyManager.Instance.MarkerParent.GetComponent<Button>().onClick.Invoke();
     }
 
     private void UnClicked()

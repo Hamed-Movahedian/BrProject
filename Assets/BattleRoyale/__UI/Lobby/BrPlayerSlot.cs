@@ -17,12 +17,7 @@ public class BrPlayerSlot : MonoBehaviour
         playableDirector = GetComponent<PlayableDirector>();
     }
 
-    public void SetSlot(Sprite pIcon, Color pColor)
-    {
-        //Border.color = pColor;
-        PlayerIcon.sprite = pIcon;
-    }
-
+    
     public void Remove()
     {
         playableDirector.Play();
@@ -35,7 +30,9 @@ public class BrPlayerSlot : MonoBehaviour
         PlayerIcon.sprite = SlotList.Instance.CharactersList[profile.CurrentCharacter].FaceSprite;
         Border.color = JsonUtility.FromJson<Color>((string) player.CustomProperties["Color"]);
 
-        GetComponent<BrTimelineEvent>().SetCondition(silent ? 0 : 1);
+        print($"Silent ={silent}");
+        GetComponent<BrTimelineEvent>().SetCondition(silent ? 1 : 0);
+        
         playableDirector.Play();
     }
 }

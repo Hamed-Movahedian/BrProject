@@ -8,7 +8,7 @@ using UnityEngine.Playables;
 
 public class BrTimelineEvent : MonoBehaviour
 {
-    public bool Condition=true;
+    public bool Condition = true;
     public List<NamedEvent> Events;
     private PlayableDirector director;
 
@@ -16,50 +16,52 @@ public class BrTimelineEvent : MonoBehaviour
     {
         director = GetComponent<PlayableDirector>();
     }
-    
+
     private void OnValidate()
     {
-        if(director==null)
+        if (director == null)
             Start();
     }
 
     public void Play()
     {
-        if (director && director.state==PlayState.Playing)
+        if (director && director.state == PlayState.Playing)
             director.Play();
     }
+
     public void Pause()
     {
-        if (director && director.state==PlayState.Playing)
+        if (director && director.state == PlayState.Playing)
         {
             director.Pause();
         }
     }
+
     public void Resume()
     {
-        if (director && director.state==PlayState.Playing)
+        if (director && director.state == PlayState.Playing)
             director.Resume();
     }
 
     public void SetCondition(int value)
     {
-        Condition = value==1;
+        Condition = value == 1;
     }
 
     public void ToggleCondition()
     {
         Condition = !Condition;
     }
-    
+
     public void ConditionalJump(int frame)
     {
-        if (Condition&&director && director.state==PlayState.Playing)
+        if (Condition && director && director.state == PlayState.Playing)
             Jump(frame);
-    }        
+    }
 
     public void Jump(int frame)
     {
-        if (director && director.state==PlayState.Playing)
+        if (director && director.state == PlayState.Playing)
         {
             director.Pause();
             director.time = frame / 60d;
@@ -71,10 +73,11 @@ public class BrTimelineEvent : MonoBehaviour
 
     public void CustomEvent(string Name)
     {
-        if (director && director.state==PlayState.Playing)
-            Events.FirstOrDefault(e=>e.Name==Name)?.Action.Invoke();
+        if (director && director.state == PlayState.Playing)
+            Events.FirstOrDefault(e => e.Name == Name)?.Action.Invoke();
     }
 }
+
 [Serializable]
 public class NamedEvent
 {

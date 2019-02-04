@@ -1,9 +1,10 @@
-﻿using ExitGames.Client.Photon;
+﻿using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace BR.Lobby
 {
@@ -15,8 +16,8 @@ namespace BR.Lobby
         void Start ()
         {
             Markers.ForEach(m=>m.color = JsonUtility.FromJson<Color>((string) photonView.Owner.CustomProperties["Color"]));
-            RectTransform rectTransform = transform as RectTransform;
-
+            var rectTransform = GetComponent<RectTransform>();
+            
             rectTransform.SetParent(LobbyManager.Instance.MarkerParent);
 
             if (photonView.IsMine)

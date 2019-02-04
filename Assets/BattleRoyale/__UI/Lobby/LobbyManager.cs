@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -15,12 +16,26 @@ namespace BR.Lobby
 
         private AsyncOperation asyncOperation;
 
-        // Use this for initialization
-        void Start()
+        public UnityEvent OnCloseRoom;
+
+        private void Awake()
         {
             Instance = this;
 
+        }
+
+        // Use this for initialization
+        void Start()
+        {
             var marker = PhotonNetwork.Instantiate(this.MarkerPrefab.name, Vector3.zero, Quaternion.identity);
+
+            Invoke(nameof(LoadAsync),2);
+        }
+
+        private void LoadAsync()
+        {
+            asyncOperation = SceneManager.LoadSceneAsync("Arena");
+            asyncOperation.allowSceneActivation = false;
         }
 
         public void CloseRoom()
@@ -37,8 +52,7 @@ namespace BR.Lobby
         [PunRPC]
         public void CloseRoomRpc()
         {
-            asyncOperation = SceneManager.LoadSceneAsync("Arena");
-            asyncOperation.allowSceneActivation = false;
+            OnCloseRoom.Invoke();
         }
 
         public void LoadArena()
