@@ -111,6 +111,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public TakeDamageDelegate OnTakeDamage;
 
     public UnityEvent OnDead;
+    private bool _isInitialized;
 
     #endregion
 
@@ -118,12 +119,23 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     #region Start/Awake
 
-    private void Awake()
+   
+    void OnEnable()
     {
+        if (!_isInitialized) 
+            Initialize();
     }
 
     void Start()
     {
+        if (!_isInitialized) 
+            Initialize();
+    }
+
+    private void Initialize()
+    {
+        _isInitialized = true;
+        
         if (photonView.IsMine)
             MasterCharacter = this;
 

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\CurrentProjects\BrProject" t="IncludeRecursive">
+    <e p="C:\Users\Hamed\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Hamed\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-1566460626.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Hamed\Documents\Projects\BrProject" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
@@ -92,8 +94,11 @@
             </e>
             <e p="Lobby" t="Include">
               <e p="BrPlayerSlot.cs" t="Include" />
+<<<<<<< HEAD
               <e p="BrZonePointer.cs" t="Include" />
               <e p="LobbyCounter.cs" t="Include" />
+=======
+>>>>>>> 5fddf6b5235e7954d39a5a67d0388258baf24490
               <e p="LobbyManager.cs" t="Include" />
               <e p="PlayerMarker.cs" t="Include" />
               <e p="SlotList.cs" t="Include" />
@@ -1022,7 +1027,5 @@
         <e p="bin" t="ExcludeRecursive" />
       </e>
     </e>
-    <e p="C:\Users\Hosein\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Hosein\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-523611518.00" t="ExcludeRecursive" />
   </component>
 </project>

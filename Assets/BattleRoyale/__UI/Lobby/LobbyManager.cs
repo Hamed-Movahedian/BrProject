@@ -1,5 +1,7 @@
 ﻿using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace BR.Lobby
 {
@@ -10,17 +12,47 @@ namespace BR.Lobby
         public GameObject MarkerPrefab;
 
         public RectTransform MarkerParent;
+
+        private AsyncOperation asyncOperation;
+
         // Use this for initialization
-        void Start ()
+        void Start()
         {
             Instance = this;
 
-            var marker = PhotonNetwork.Instantiate(this.MarkerPrefab.name,Vector3.zero, Quaternion.identity);
+            var marker = PhotonNetwork.Instantiate(this.MarkerPrefab.name, Vector3.zero, Quaternion.identity);
         }
 
-        // Update is called once per frame
-        void Update () {
-		
+        public void CloseRoom()
+        {
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+
+            photonView.RPC(nameof(CloseRoomRpc),RpcTarget.AllViaServer);
+            
+        }
+
+        [PunRPC]
+        public void CloseRoomRpc()
+        {
+            asyncOperation = SceneManager.LoadSceneAsync("Arena");
+            asyncOperation.allowSceneActivation = false;
+        }
+
+        public void LoadArena()
+        {
+            if (PhotonNetwork.IsMasterClient) 
+                photonView.RPC(nameof(LoadArenaRpc), RpcTarget.AllViaServer);
+        }
+
+        [PunRPC]
+        private void LoadArenaRpc()
+        {
+            asyncOperation.allowSceneActivation = true;
+
+            //PhotonNetwork.LoadLevel("Arena");
         }
     }
 }
