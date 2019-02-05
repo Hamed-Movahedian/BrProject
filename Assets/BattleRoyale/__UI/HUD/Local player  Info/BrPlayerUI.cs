@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class BrPlayerUI : MonoBehaviour
@@ -12,35 +13,31 @@ public class BrPlayerUI : MonoBehaviour
     public Text AmmoText;
     public Sprite MeleWeaponIcon;
 
+    public UnityEvent OnShow;
+    public UnityEvent OnHide;
+    
     private BrCharacterController _player;
 
-    void Start()
+    void Awake()
     {
-        ActiveUI(false);
-
-        BrPlayerTracker.Instance.OnPlayerDead += PlayerDead;
-        BrPlayerTracker.Instance.OnPlayerRegisterd += PlayerRegister;
-    }
-
-    private void PlayerRegister(BrCharacterController player)
-    {
-        if (player.isMine)
+        // master player enter
+        BrPlayerTracker.Instance.OnMasterPlayerRegister += player =>
         {
             _player = player;
 
             _player.OnStatChange += PlayerStatChange;
+            _player.WeaponController.OnStatChange += WeaponStatChange;
 
-            _player.ParachuteState.OnLanding.AddListener(() => 
+            _player.ParachuteState.OnLanding.AddListener(() =>
             {
-                ActiveUI(true);
+                OnShow.Invoke();
                 PlayerStatChange(player);
                 WeaponStatChange(_player.WeaponController);
             });
-
-            _player.WeaponController.OnStatChange += WeaponStatChange;
-
-           
-        }
+            
+            _player.OnDead.AddListener((() => OnHide.Invoke()));
+        };
+        
     }
 
     private void WeaponStatChange(BrWeaponController weapon)
@@ -66,15 +63,5 @@ public class BrPlayerUI : MonoBehaviour
         Shield.fillAmount = player.Shield / (float)player.MaxShield;
     }
 
-    private void PlayerDead(BrCharacterController victom, BrCharacterController killer, string weaponName)
-    {
-        if (victom.isMine)
-            ActiveUI(false);
-    }
-
-    private void ActiveUI(bool value)
-    {
-        gameObject.SetActive(value);
-    }
- 
+    
 }

@@ -91,6 +91,7 @@
               </e>
             </e>
             <e p="Lobby" t="Include">
+              <e p="BrLobbyAvatar.cs" t="Include" />
               <e p="BrPlayerSlot.cs" t="Include" />
               <e p="BrZonePointer.cs" t="Include" />
               <e p="LobbyManager.cs" t="Include" />

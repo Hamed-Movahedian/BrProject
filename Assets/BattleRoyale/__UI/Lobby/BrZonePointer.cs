@@ -27,11 +27,13 @@ public class BrZonePointer : MonoBehaviour
     {
         _zones.ForEach(z=>z.UnClicked());
         if (_active)
+        {
+            LobbyManager.Instance.MarkerParent.GetComponent<Button>().onClick.Invoke();
             return;
+        }
         
         Show.Invoke();
         _active = true;
-        LobbyManager.Instance.MarkerParent.GetComponent<Button>().onClick.Invoke();
     }
 
     private void UnClicked()

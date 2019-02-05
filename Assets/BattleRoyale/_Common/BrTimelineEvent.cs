@@ -34,6 +34,16 @@ public class BrTimelineEvent : MonoBehaviour
         if (director && director.state == PlayState.Playing)
         {
             director.Pause();
+            director.Evaluate();
+        }
+    }
+    public void PauseAt(int frame)
+    {
+        if (director && director.state == PlayState.Playing)
+        {
+            director.Pause();
+            director.time = frame / 60d;
+            director.Evaluate();
         }
     }
 
