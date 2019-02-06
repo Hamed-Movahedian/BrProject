@@ -30,6 +30,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     [Header("Camera")] public Transform CameraTarget;
 
     [HideInInspector] public Profile profile;
+    [HideInInspector] public BrCharacterHitEffect hitEffect;
 
     #endregion
 
@@ -53,7 +54,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public float GroundDistance { get; set; }
     public Vector3 MovVector { get; set; }
     public Vector3 AimVector { get; set; }
-    internal BrWeaponController WeaponController { get; set; }
+    public BrWeaponController WeaponController { get; set; }
 
 
     public bool IsAiming => CurrentState == CharacterStateEnum.GroundedAim;
@@ -94,7 +95,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Privates
 
     private Dictionary<CharacterStateEnum, BrCharacterStateBase> _stateDic;
-    private BrCharacterHitEffect hitEffect;
     private int health;
     private int shield;
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BrCharacterHitEffect : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class BrCharacterHitEffect : MonoBehaviour
     private bool run;
     private Coroutine corotine;
 
+    public UnityEvent OnHit;
     // Use this for initialization
     void Start()
     {
@@ -36,6 +38,7 @@ public class BrCharacterHitEffect : MonoBehaviour
 
     private IEnumerator HitCorotine()
     {
+        OnHit.Invoke();
         animator.SetBool("Hit", true);
         //renderer.material.SetColor("_EmissionColor", hitColor);
         //yield return new WaitForSeconds(duration);
@@ -47,12 +50,7 @@ public class BrCharacterHitEffect : MonoBehaviour
         run = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    
     private void endEffect()
     {
     }
