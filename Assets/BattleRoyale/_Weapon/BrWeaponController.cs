@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -85,6 +86,7 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
     #region Events
     public delegate void WeaponStatChangeDelegate(BrWeaponController weapon);
     public WeaponStatChangeDelegate OnStatChange;
+    public UnityEvent OnFire;
     #endregion
     // ************** Methods
 
@@ -220,6 +222,7 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
     #region Fire
     private void Fire()
     {
+        OnFire.Invoke();
         CurrWeapon.Fire();
 
         _timeToNextShot = CurrWeapon.FireRate;
