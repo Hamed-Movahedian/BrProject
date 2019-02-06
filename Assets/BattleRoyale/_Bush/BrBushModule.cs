@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BrBushModule : MonoBehaviour
 {
     public static readonly Dictionary<Collider,BrBushModule> Modules=new Dictionary<Collider, BrBushModule>();
 
-    public GameObject ParticleSystem;
     public Material InBushMaterial;
     public float OnFireShowDuration = 2;
     public float OnHiShowDuration = 3;
+    public UnityEvent OnHide;
+    public UnityEvent OnShow;
     
     
     private bool isInitialized;
@@ -40,8 +42,6 @@ public class BrBushModule : MonoBehaviour
         
         isInitialized = true;
 
-        ParticleSystem.SetActive(false);
-
         var collider = GetComponentInParent<CapsuleCollider>();
         
         if(collider==null)
@@ -62,7 +62,7 @@ public class BrBushModule : MonoBehaviour
             return;
         
         Show();
-        timeToShow += duration;
+        timeToShow = duration;
     }
 
     private void Update()
@@ -101,7 +101,7 @@ public class BrBushModule : MonoBehaviour
 
     private void Hide()
     {
-        ParticleSystem.SetActive(true);
+        OnHide.Invoke();
         if (characterController.isMine)
             characterModel.SetTransparent(InBushMaterial);
         else
@@ -112,8 +112,7 @@ public class BrBushModule : MonoBehaviour
 
     private void Show()
     {
-        ParticleSystem.SetActive(false);
-
+        OnShow.Invoke();
         characterModel.Show();
     }
 }
