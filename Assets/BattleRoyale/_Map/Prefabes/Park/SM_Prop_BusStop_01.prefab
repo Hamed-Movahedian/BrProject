@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 3375696}
   - component: {fileID: 2321158}
   - component: {fileID: 65779006121004566}
+  - component: {fileID: 65721546221595618}
   m_Layer: 0
   m_Name: SM_Prop_BusStop_01
   m_TagString: Untagged
@@ -41,14 +42,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194934}
-  m_LocalRotation: {x: -0, y: -0.7071067, z: -0, w: 0.7071069}
-  m_LocalPosition: {x: 88.3, y: 0, z: 36.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -118.05, y: 0, z: 89.82}
+  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
   m_Children:
   - {fileID: 445514}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!4 &445514
 Transform:
   m_ObjectHideFlags: 1
@@ -157,6 +158,18 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194934}
   m_IsPrefabAsset: 1
+--- !u!65 &65721546221595618
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.18, y: 3.0730693, z: 1.5709212}
+  m_Center: {x: 2.07, y: 1.5265418, z: -0.13114189}
 --- !u!65 &65779006121004566
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -167,5 +180,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.511345, y: 3.0730693, z: 1.5709214}
-  m_Center: {x: 0.000030517578, y: 1.5265418, z: -0.1311419}
+  m_Size: {x: 4.511345, y: 3.0730693, z: 0.72}
+  m_Center: {x: 0.000030517578, y: 1.5265418, z: -0.53}
