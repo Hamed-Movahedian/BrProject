@@ -10,23 +10,18 @@ public class BrFPS : MonoBehaviour
     private float _time = 0;
     private int _fcount = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
     {
-        while (_time<1)
-        {
-            _time += Time.deltaTime;
-            _fcount++;
-            return;
-        }
+        _time += Time.deltaTime;
+        _fcount++;
 
-        text.text = _fcount.ToString("D");
-        _time = 0;
-        _fcount = 0;
+        if (_time >= 1)
+        {
+            text.text = (_fcount / _time).ToString("F0");
+            _time = 0;
+            _fcount = 0;
+        }
     }
 }
