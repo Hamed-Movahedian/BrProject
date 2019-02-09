@@ -49,7 +49,7 @@ public class BrTimelineEvent : MonoBehaviour
 
     public void Resume()
     {
-        if (director && director.state == PlayState.Playing)
+        if (director && director.state == PlayState.Paused)
             director.Resume();
     }
 

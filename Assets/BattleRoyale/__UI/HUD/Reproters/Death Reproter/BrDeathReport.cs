@@ -18,8 +18,15 @@ public class BrDeathReport : MonoBehaviour
     {
         BrPlayerTracker.Instance.OnPlayerDead += (victom, killer, weaponName) =>
         {
+            if (BrPlayerTracker.Instance.PlayerCounter <= 1)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+            
             if (victom.isMine)
             {
+                
                 rankText.text = "#"+BrPlayerTracker.Instance.PlayerCounter.ToString();
                 
                 if (killer == null)

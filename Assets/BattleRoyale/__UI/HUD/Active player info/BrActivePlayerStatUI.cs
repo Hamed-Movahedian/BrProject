@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class BrActivePlayerStatUI : MonoBehaviour
     public Text NameText;
     public Image Health;
     public Image Shield;
+
+    public UnityEvent OnHide;
     private BrCharacterController player;
 
     private bool fristTime = true;
@@ -34,6 +37,8 @@ public class BrActivePlayerStatUI : MonoBehaviour
             if (preActivePlayer && !preActivePlayer.isMine)
                 Show();
         };
+
+        BrPlayerTracker.Instance.OnLastPlayerLeft += controller => OnHide.Invoke();
     }
 
     internal void Show()
@@ -45,7 +50,9 @@ public class BrActivePlayerStatUI : MonoBehaviour
         UpdateStat();
 
         if(fristTime)
-           Director.Play(); 
+           Director.Play();
+        
+        fristTime = false;
     }
 
     private void UpdateStat()

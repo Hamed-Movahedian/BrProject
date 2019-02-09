@@ -7,7 +7,9 @@ using UnityEngine.Events;
 public class BrKillZone : MonoBehaviourPunCallbacks
 {
     #region Instance
+
     private static BrKillZone instance;
+
     public static BrKillZone Instance
     {
         get
@@ -33,16 +35,24 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     private float currRadious;
 
 
-
     #region Events
+
     public delegate void NewCircle(Vector3 center, float Radious);
+
     public delegate void WaitForShrink(int time);
 
     public delegate void Shirinking(int time);
+
     public NewCircle OnNewCircle;
     public Shirinking Shrinking;
-    public WaitForShrink OnWaitForShrink; 
+    public WaitForShrink OnWaitForShrink;
+
     #endregion
+
+    private void Awake()
+    {
+        BrPlayerTracker.Instance.OnLastPlayerLeft += player => { gameObject.SetActive(false); };
+    }
 
     void Start()
     {
@@ -55,9 +65,13 @@ public class BrKillZone : MonoBehaviourPunCallbacks
 
     private void DamageToPlayer()
     {
+        if (!gameObject.activeSelf)
+            return;
+
         if (BrCharacterController.MasterCharacter != null && BrCharacterController.MasterCharacter.IsAlive)
         {
-            if (Vector3.Distance(BrCharacterController.MasterCharacter.transform.position, currRing.transform.position) > currRing.radious)
+            if (Vector3.Distance(BrCharacterController.MasterCharacter.transform.position,
+                    currRing.transform.position) > currRing.radious)
                 BrCharacterController.MasterCharacter.TakeDamage(DamageAmount, Vector3.back, null, null);
         }
     }
@@ -87,7 +101,6 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-
         if (_shrinkTime < 0)
             return;
 
@@ -113,10 +126,10 @@ public class BrKillZone : MonoBehaviourPunCallbacks
                 currRadious,
                 targetRing.radious,
                 (ChangeTime - _shrinkTime) / ChangeTime);
-            
-            Shrinking((int)_shrinkTime);
+
+            Shrinking((int) _shrinkTime);
         }
         else
-            OnWaitForShrink((int)(_shrinkTime - ChangeTime));
+            OnWaitForShrink((int) (_shrinkTime - ChangeTime));
     }
 }

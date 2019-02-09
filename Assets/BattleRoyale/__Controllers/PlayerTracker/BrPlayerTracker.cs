@@ -13,6 +13,14 @@ public class BrPlayerTracker : MonoBehaviour
     public PlayerDeadDelegate OnPlayerDead;
     public PlayerRegisterDelegate OnPlayerRegisterd;
 
+    #region OnLastPlayerLeft 
+
+    public delegate void OnLastPlayerLeftDel(BrCharacterController player);
+
+    public OnLastPlayerLeftDel OnLastPlayerLeft;
+
+    #endregion
+    
     #region Instance
     private static BrPlayerTracker instance;
     public static BrPlayerTracker Instance
@@ -27,7 +35,7 @@ public class BrPlayerTracker : MonoBehaviour
 
     #endregion
 
-    private List<BrCharacterController> alivePlayers = new List<BrCharacterController>();
+    public List<BrCharacterController> alivePlayers = new List<BrCharacterController>();
 
     public int PlayerCounter => alivePlayers.Count;
 
@@ -70,12 +78,15 @@ public class BrPlayerTracker : MonoBehaviour
         var killerPlayer = GetPlayerByViewID(killerViewID);
 
         alivePlayers.Remove(victimPlayer);
-        
-        OnPlayerDead(victimPlayer, killerPlayer, weaponName);
 
         // change active player
         if (victimPlayer == ActivePlayer)
             SetActivePlayer(killerPlayer);
+        
+        OnPlayerDead(victimPlayer, killerPlayer, weaponName);
+        
+        if (alivePlayers.Count == 1)
+            OnLastPlayerLeft(alivePlayers[0]);
     }
 
     private static BrCharacterController GetPlayerByViewID(int victomViewID)

@@ -10,19 +10,35 @@ public class BrDamageTextSpawner : MonoBehaviour
     public GameObject DamageTextPrefab;
     public float radious = 2;
     public List<Color> colors;
+
+    private int damageAmount = 0;
+    private int damageType = 0;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        characterController.OnTakeDamage += takeDamage;
+        characterController.OnTakeDamage += (amount, type) =>
+        {
+            if (damageAmount == 0)
+            {
+                damageAmount = amount;
+                damageType = type;
+                Invoke(nameof(takeDamage), .5f);
+            }
+            else
+            {
+                damageAmount += amount;
+            }
+        };
     }
 
-    private void takeDamage(int amount, int type)
+    private void takeDamage()
     {
         var pos = Random.insideUnitSphere * radious;
         pos.y = 0;
         var dt = BrPoolManager.Instance.Instantiate(DamageTextPrefab.name, transform.position + pos, Quaternion.identity)
             .GetComponent<BrDamageText>();
-        dt.Initialize(amount, colors[type]);
+        dt.Initialize(damageAmount, colors[damageType]);
+        damageAmount = 0;
 
     }
 
@@ -32,9 +48,5 @@ public class BrDamageTextSpawner : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radious);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

@@ -28,7 +28,7 @@
               <e p="BrPickupManager.cs" t="Include" />
             </e>
             <e p="PlayerSpawner" t="Include">
-              <e p="BrPlayerSpanner.cs" t="Include" />
+              <e p="BrGameManager.cs" t="Include" />
             </e>
             <e p="PlayerTracker" t="Include">
               <e p="BrPlayerTracker.cs" t="Include" />
@@ -90,6 +90,9 @@
                 </e>
                 <e p="Kill" t="Include">
                   <e p="BrKillReport.cs" t="Include" />
+                </e>
+                <e p="Win-Lose" t="Include">
+                  <e p="BrWinLose.cs" t="Include" />
                 </e>
               </e>
             </e>
