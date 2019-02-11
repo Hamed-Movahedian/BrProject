@@ -19,7 +19,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public LayerMask EnviromentLayerMask;
     public RaycastHit GroundHitInfo;
 
-    [Header("Stat")] public int MaxHealth = 100;
+    [Header("Stat")] 
+    public int MaxHealth = 100;
     public int MaxShield = 100;
 
     [Header("Look IK")] public bool LookIK = true;
@@ -63,27 +64,45 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public Vector3 CameraTargetPos => CameraTarget.position;
     public bool IsAlive => Health > 0;
 
+    #region Health
+
+    public BrUIBar.UpdateBar OnHealthChange;
     public int Health
     {
-        get { return health; }
+        get => health;
 
         set
         {
+            if (health == value) 
+                return;
+            
             health = value;
+            OnHealthChange?.Invoke(health);
             OnStatChange?.Invoke(this);
         }
     }
 
+    #endregion
+
+    #region Shield 
+
+    public BrUIBar.UpdateBar OnShieldChange;
     public int Shield
     {
-        get { return shield; }
+        get => shield;
 
         set
         {
+            if (shield == value)
+                return;
+            
             shield = value;
             OnStatChange?.Invoke(this);
+            OnShieldChange?.Invoke(shield);
         }
     }
+
+    #endregion
 
     public bool NeedHealth => Health < MaxHealth;
     public bool NeedShield => Shield < MaxShield;

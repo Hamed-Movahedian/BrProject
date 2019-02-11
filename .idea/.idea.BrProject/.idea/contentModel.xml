@@ -58,6 +58,9 @@
             </e>
           </e>
           <e p="__UI" t="Include">
+            <e p="Common" t="Include">
+              <e p="BrUIBar.cs" t="Include" />
+            </e>
             <e p="HUD" t="Include">
               <e p="Active player info" t="Include">
                 <e p="BrActivePlayerStatUI.cs" t="Include" />
@@ -72,10 +75,6 @@
               <e p="Kill Zone" t="Include">
                 <e p="BrKillZoneUI.cs" t="Include" />
               </e>
-              <e p="Local player  Info" t="Include">
-                <e p="BrPlayerUI.cs" t="Include" />
-                <e p="BrUIKillCounter.cs" t="Include" />
-              </e>
               <e p="Log" t="Include">
                 <e p="BrLogItem.cs" t="Include" />
                 <e p="BrLogManager.cs" t="Include" />
@@ -83,6 +82,10 @@
               <e p="MiniMap" t="Include">
                 <e p="BrMinimapController.cs" t="Include" />
                 <e p="BrPlayerMiniMap.cs" t="Include" />
+              </e>
+              <e p="Player  Info" t="Include">
+                <e p="BrPlayerUI.cs" t="Include" />
+                <e p="BrUIKillCounter.cs" t="Include" />
               </e>
               <e p="Reproters" t="Include">
                 <e p="Death Reproter" t="Include">
@@ -1002,6 +1005,24 @@
             <e p="Shaders" t="Include">
               <e p="WavySprite.shader" t="Include" />
             </e>
+          </e>
+        </e>
+        <e p="unity-ui-extensions" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="Effects" t="Include">
+              <e p="UIParticleSystem.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="UI Particle Add.shader" t="Include" />
+            <e p="UI Particle AddMultiply.shader" t="Include" />
+            <e p="UI Particle AddSmooth.shader" t="Include" />
+            <e p="UI Particle Alpha Blend.shader" t="Include" />
+            <e p="UI Particle Blend.shader" t="Include" />
+            <e p="UI Particle Multiply.shader" t="Include" />
+            <e p="UI Particle MultiplyDouble.shader" t="Include" />
+            <e p="UI Particle Premultiply Blend.shader" t="Include" />
+            <e p="UI Particle VertexLit Blended.shader" t="Include" />
           </e>
         </e>
       </e>
