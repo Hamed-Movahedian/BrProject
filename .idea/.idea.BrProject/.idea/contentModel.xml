@@ -10,6 +10,10 @@
       <e p="Assets" t="Include">
         <e p="BattleRoyale" t="Include">
           <e p="__Controllers" t="Include">
+            <e p="Air Drop" t="Include">
+              <e p="BrAirdropController.cs" t="Include" />
+              <e p="BrAirDropPlaceHolder.cs" t="Include" />
+            </e>
             <e p="Camera" t="Include">
               <e p="BrCamera.cs" t="Include" />
               <e p="BrPlayerCamera.cs" t="Include" />
