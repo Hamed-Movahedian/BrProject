@@ -18,4 +18,6 @@ public class BrAirDropPlaceHolder : MonoBehaviour
         Gizmos.color = color;
         Gizmos.DrawIcon(transform.position+Vector3.up,"AirDrop.png",true);
     }
+
+    public Vector3 GetPickupPos(int i) => transform.GetChild(i).position;
 }

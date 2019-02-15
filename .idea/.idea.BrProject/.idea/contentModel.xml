@@ -133,6 +133,7 @@
           <e p="_Common" t="Include">
             <e p="BrDisabler.cs" t="Include" />
             <e p="BrFPS.cs" t="Include" />
+            <e p="BrLocalPlayerTrigger.cs" t="Include" />
             <e p="BrPhotonEvents.cs" t="Include" />
             <e p="BrRotatorByInput.cs" t="Include" />
             <e p="BrSimpleRotator.cs" t="Include" />
