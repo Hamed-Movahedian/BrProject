@@ -71,4 +71,9 @@ public class BrPickupManager : MonoBehaviourPunCallbacks
     {
         allPickups[index].DisablePickup();
     }
+
+    public void AddPickup(BrPickupBase pickup)
+    {
+        allPickups.Add(pickup);
+    }
 }
