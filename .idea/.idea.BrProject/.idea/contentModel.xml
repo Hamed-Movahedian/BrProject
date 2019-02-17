@@ -71,6 +71,9 @@
               <e p="Alive Counter" t="Include">
                 <e p="BrUIPlayerCounter.cs" t="Include" />
               </e>
+              <e p="Exit" t="Include">
+                <e p="ExitGame.cs" t="Include" />
+              </e>
               <e p="Joystick" t="Include">
                 <e p="BrJoystick.cs" t="Include" />
                 <e p="BrJoystickController.cs" t="Include" />
@@ -1011,6 +1014,17 @@
               <e p="WavySprite.shader" t="Include" />
             </e>
           </e>
+        </e>
+        <e p="TimeMachine" t="Include">
+          <e p="Editor" t="Include">
+            <e p="TimeMachineClipInspector.cs" t="Include" />
+          </e>
+          <e p="TimelineControllerAction.cs" t="Include" />
+          <e p="TimelineControllerEvents.cs" t="Include" />
+          <e p="TimeMachineBehaviour.cs" t="Include" />
+          <e p="TimeMachineClip.cs" t="Include" />
+          <e p="TimeMachineMixerBehaviour.cs" t="Include" />
+          <e p="TimeMachineTrack.cs" t="Include" />
         </e>
         <e p="unity-ui-extensions" t="Include">
           <e p="Scripts" t="Include">
