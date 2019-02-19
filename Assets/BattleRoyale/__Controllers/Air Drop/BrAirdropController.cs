@@ -83,15 +83,15 @@ public class BrAirdropController : MonoBehaviourPun
     {
         var pickup = Instantiate<BrPickupBase>(pickup1Condidates[pIndex1]);
         pickup.transform.position = activePlaceHolder.GetPickupPos(0);
-        BrPickupManager.instance.AddPickup(pickup);
+        BrPickupManager.Instance.AddPickup(pickup);
         
         pickup = Instantiate<BrPickupBase>(pickup1Condidates[pIndex2]);
         pickup.transform.position = activePlaceHolder.GetPickupPos(1);
-        BrPickupManager.instance.AddPickup(pickup);
+        BrPickupManager.Instance.AddPickup(pickup);
 
         pickup = Instantiate<BrPickupBase>(pickup1Condidates[pIndex3]);
         pickup.transform.position = activePlaceHolder.GetPickupPos(2);
-        BrPickupManager.instance.AddPickup(pickup);
+        BrPickupManager.Instance.AddPickup(pickup);
 
         OnUnpackAirDrop.Invoke();
         Invoke(nameof(DropAirSupply), nextDropDelay);

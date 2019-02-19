@@ -15,6 +15,7 @@ public class BrPickupBase : MonoBehaviour
 
     private BrCharacterController _currentPlayer=null;
     private float _timeToGetReward=0;
+    public int Index { get; set; }
 
     // Use this for initialization
     void Start ()
@@ -41,7 +42,7 @@ public class BrPickupBase : MonoBehaviour
 
     protected virtual void GetReward(BrCharacterController currentPlayer)
     {
-        BrPickupManager.instance.DisablePickup(this);
+        BrPickupManager.Instance.DisablePickup(this);
     }
 
     public void DisablePickup()

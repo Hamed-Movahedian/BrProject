@@ -27,9 +27,6 @@
             <e p="LevelBounds" t="Include">
               <e p="BrLevelBound.cs" t="Include" />
             </e>
-            <e p="Pickup" t="Include">
-              <e p="BrPickupManager.cs" t="Include" />
-            </e>
             <e p="PlayerSpawner" t="Include">
               <e p="BrGameManager.cs" t="Include" />
             </e>
@@ -165,8 +162,11 @@
           </e>
           <e p="_Pickups" t="Include">
             <e p="BrAmmoPickup.cs" t="Include" />
+            <e p="BrDeadDropup.cs" t="Include" />
             <e p="BrHealthPickup.cs" t="Include" />
             <e p="BrPickupBase.cs" t="Include" />
+            <e p="BrPickupManager.cs" t="Include" />
+            <e p="BrPickupPlaceHolder.cs" t="Include" />
             <e p="BrShieldPickup.cs" t="Include" />
             <e p="BrWeaponPickup.cs" t="Include" />
           </e>
