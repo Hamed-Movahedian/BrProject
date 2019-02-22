@@ -135,6 +135,7 @@
             <e p="BrFPS.cs" t="Include" />
             <e p="BrLocalPlayerTrigger.cs" t="Include" />
             <e p="BrPhotonEvents.cs" t="Include" />
+            <e p="BrRandom.cs" t="Include" />
             <e p="BrRotatorByInput.cs" t="Include" />
             <e p="BrSimpleRotator.cs" t="Include" />
             <e p="BrTextCounter.cs" t="Include" />
@@ -162,6 +163,8 @@
           </e>
           <e p="_Pickups" t="Include">
             <e p="BrAmmoPickup.cs" t="Include" />
+            <e p="BrChestPickup.cs" t="Include" />
+            <e p="BrChestPlaceHolder.cs" t="Include" />
             <e p="BrDeadDropup.cs" t="Include" />
             <e p="BrHealthPickup.cs" t="Include" />
             <e p="BrPickupBase.cs" t="Include" />
@@ -175,6 +178,7 @@
           </e>
           <e p="_tools" t="Include">
             <e p="Editor" t="Include">
+              <e p="BrExecuteOnPlay.cs" t="Include" />
               <e p="BrRunIntro.cs" t="Include" />
             </e>
           </e>

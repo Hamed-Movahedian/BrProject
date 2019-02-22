@@ -21,16 +21,16 @@ public class BrPickupPlaceHolder : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position,Radious);
     }
 
-    public BrPickupBase Evaluate(Random random)
+    public void Evaluate(Random random)
     {
         gameObject.SetActive(false);
         
         if(random.Next(100)>Chance)
-            return null;
+            return ;
 
         var prefab = Prefabs[random.Next(Prefabs.Count)];
 
-        return Instantiate(prefab, transform.position, transform.rotation);
+        BrPickupManager.Instance.AddPickup(Instantiate(prefab, transform.position, transform.rotation));
         
 
     }

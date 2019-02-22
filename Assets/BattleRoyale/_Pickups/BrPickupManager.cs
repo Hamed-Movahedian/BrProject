@@ -28,50 +28,30 @@ public class BrPickupManager : MonoBehaviourPunCallbacks
     public int chanceFactor = 1;
     public List<BrPickupPlaceHolder> placeHolders;
     private List<BrPickupBase> allPickups=new List<BrPickupBase>();
+    public System.Random random;
+    public List<BrPickupBase> scenePickups;
 
     [ContextMenu("Collect")]
     public void CollectAllPickups()
     {
         placeHolders = FindObjectsOfType<BrPickupPlaceHolder>().ToList();
+        scenePickups = FindObjectsOfType<BrPickupBase>().ToList();
     }
-
-    private void Awake()
-    {
-        
-    }
+   
 
     // Use this for initialization
-    void Start()
+    IEnumerator Start()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            int seed = Random.Range(0, 9999);
-            photonView.RPC(nameof(InitializeRpc),RpcTarget.All,seed);
-        }
-    }
+        random = BrRandom.CreateNew();
 
-    [PunRPC]
-    private void InitializeRpc(int seed)
-    {
-        StartCoroutine(InitializeCoroutine(seed));
+        scenePickups.ForEach(sp=>sp.Evaluate(random));
         
-    }
-
-    private IEnumerator InitializeCoroutine(int seed)
-    {
-        var random = new System.Random(seed);
-
         var delta =Mathf.Max(placeHolders.Count / 60,2);
 
         for (int i = 0; i < placeHolders.Count;)
         {
-            for (int j = 0; j < delta && i < placeHolders.Count; j++,i++)
-            {
-                var pickup = placeHolders[i].Evaluate(random);
-
-                if (pickup != null) 
-                    AddPickup(pickup);
-            }
+            for (int j = 0; j < delta && i < placeHolders.Count; j++,i++) 
+                placeHolders[i].Evaluate(random);
 
             yield return null;
         }

@@ -43,9 +43,8 @@ namespace BR
         /// </summary>
         void Awake()
         {
-            // #Critical
-            // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
             PhotonNetwork.AutomaticallySyncScene = true;
+            
             var userId = Random.Range(-10000,10000).ToString();
 
             print($"UserId ={userId}");
@@ -88,7 +87,14 @@ namespace BR
 
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
-            var success = PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
+            var success = PhotonNetwork.CreateRoom(null, new RoomOptions
+            {
+                MaxPlayers = maxPlayersPerRoom,
+                CustomRoomProperties = new Hashtable()
+                {
+                    {"Seed",Random.Range(0,10000)}
+                }
+            });
         }
 
         

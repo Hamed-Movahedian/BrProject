@@ -8,36 +8,39 @@ public class BrDeadDropup : MonoBehaviour
 {
     public List<BrWeaponPickup> WeaponsPrefabs;
     public List<BrPickupBase> Prefabs;
-    private BrCharacterController localPlayer;
+
+    private System.Random random;
 
     private void Awake()
     {
-        BrPlayerTracker.Instance.OnMasterPlayerRegister += player =>
+        random = BrRandom.CreateNew();
+
+        BrPlayerTracker.Instance.OnPlayerDead += (player, killer, weaponName) =>
         {
-            localPlayer = player;
-            player.OnDead.AddListener(() =>
-            {
-                var pos = localPlayer.transform.position + Quaternion.Euler(0,90,0)*localPlayer.transform.forward;
-                var pos2 = localPlayer.transform.position + Quaternion.Euler(0,-90,0)*localPlayer.transform.forward;
-                
-                var weapon = localPlayer.WeaponController.CurrWeapon;
+            Transform playerTransform = player.transform;
 
-                BrPickupBase pickup=null;
-                
-                if (weapon) pickup = WeaponsPrefabs.FirstOrDefault(w => w.WeaponName == weapon.gameObject.name);
+            var angle = random.Next(0, 360);
+            
+            var pos = playerTransform.position + Quaternion.Euler(0, angle, 0) * playerTransform.forward;
+            var pos2 = playerTransform.position +
+                       Quaternion.Euler(0, angle+random.Next(50, 310), 0) * playerTransform.forward;
 
-                if (pickup == null)
-                    pickup = Prefabs[Random.Range(0, Prefabs.Count)];
-                
-                BrPickupManager.Instance.AddPickup(
-                    PhotonNetwork.Instantiate(pickup.name, pos, Quaternion.identity).GetComponent<BrPickupBase>());
-                
-                if (pickup == null)
-                    pickup = Prefabs[Random.Range(0, Prefabs.Count)];
-                
-                BrPickupManager.Instance.AddPickup(
-                    PhotonNetwork.Instantiate(pickup.name, pos2, Quaternion.identity).GetComponent<BrPickupBase>());
-            });
+            var weapon = player.WeaponController.CurrWeapon;
+
+            BrPickupBase pickup = null;
+
+            if (weapon) pickup = WeaponsPrefabs.FirstOrDefault(w => w.WeaponName == weapon.gameObject.name);
+
+            if (pickup == null)
+                pickup = Prefabs[random.Next(Prefabs.Count)];
+
+            BrPickupManager.Instance.AddPickup(
+                Instantiate(pickup, pos, Quaternion.identity));
+
+            pickup = Prefabs[random.Next(0, Prefabs.Count)];
+
+            BrPickupManager.Instance.AddPickup(
+                Instantiate(pickup, pos2, Quaternion.identity));
         };
     }
 }
