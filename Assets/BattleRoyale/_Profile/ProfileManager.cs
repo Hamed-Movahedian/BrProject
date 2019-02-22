@@ -105,6 +105,14 @@ public class ProfileManager : MonoBehaviour
         }
     }
 
+    public void SetMatchStat(MatchStats thisMatchStats)
+    {
+        PlayerProfile.PlayerStat.ChangeStats(thisMatchStats);
+        SaveProfile();
+        
+    }
+    
+    
     [ContextMenu("Save")]
     public void SaveProfile()
     {
@@ -144,6 +152,7 @@ public class Profile
     public int CurrentPara;
     public List<string> FriendsUserID;
     public List<string> RequestFrindUserID;
+    public int CoinCount;
 
     public Statistics PlayerStat;
 
@@ -172,4 +181,28 @@ public struct Statistics
     public int SupplyDrop;
     public int SupplyCreates;
     public int Experience;
+
+    public void ChangeStats(MatchStats thisMatchStats)
+    {
+        SupplyDrop += thisMatchStats.SupplyDrop;
+        SupplyCreates += thisMatchStats.SupplyCreates;
+        GunsCollected += thisMatchStats.GunsCollected;
+        ItemsCollected += thisMatchStats.ItemsCollected;
+        TotalKills += thisMatchStats.Kills;
+        DoubleKills += thisMatchStats.DoubleKills;
+        TripleKills += thisMatchStats.TripleKills;
+        TotalWins += thisMatchStats.Wins;
+        TotalBattles++;
+    }
+}
+public class MatchStats
+{
+    public int Wins;
+    public int Kills;
+    public int DoubleKills;
+    public int TripleKills;
+    public int ItemsCollected;
+    public int GunsCollected;
+    public int SupplyDrop;
+    public int SupplyCreates;
 }

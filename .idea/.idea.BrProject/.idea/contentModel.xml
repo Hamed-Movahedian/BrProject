@@ -174,6 +174,7 @@
             <e p="BrWeaponPickup.cs" t="Include" />
           </e>
           <e p="_Profile" t="Include">
+            <e p="BrMatchstatRecorder.cs" t="Include" />
             <e p="ProfileManager.cs" t="Include" />
           </e>
           <e p="_tools" t="Include">
