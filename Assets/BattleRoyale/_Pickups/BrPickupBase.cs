@@ -9,6 +9,7 @@ using Random = System.Random;
 [RequireComponent(typeof(SphereCollider))]
 public class BrPickupBase : MonoBehaviour
 {
+    public GameObject PickEffect;
     public float Duration = 2;
     public Image Image;
 
@@ -48,6 +49,11 @@ public class BrPickupBase : MonoBehaviour
 
     public virtual void DisablePickup()
     {
+        if (PickEffect)
+        {
+            PickEffect.transform.parent = null;
+            PickEffect.gameObject.SetActive(true);
+        }
         gameObject.SetActive(false);
     }
 

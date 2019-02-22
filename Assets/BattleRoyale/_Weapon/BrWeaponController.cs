@@ -265,8 +265,9 @@ public class BrWeaponController : MonoBehaviourPunCallbacks, IPunObservable
     #endregion
 
     #region Ammo
-    public void PickupAmmo(int bulletCount)
+    public void PickupAmmo(int bullets)
     {
+        int bulletCount = bullets * CurrWeapon.MaxBullets / 100;
         if (BulletCount <= 0)
         {
             BulletCount += bulletCount;
