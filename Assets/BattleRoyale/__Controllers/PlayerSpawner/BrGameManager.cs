@@ -1,6 +1,8 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
     public class BrGameManager : MonoBehaviourPunCallbacks
@@ -22,6 +24,8 @@ using UnityEngine.SceneManagement;
         #endregion
         
         public GameObject playerPrefab;
+
+        public UnityEvent OnMatchFinished;
         
         void Start()
         {
@@ -40,8 +44,21 @@ using UnityEngine.SceneManagement;
             }
         }
 
+        public void FinishMatch()
+        {
+            ExitGame();
+        }
+        
+        
         public void ExitGame()
         {
+            OnMatchFinished.Invoke();
+
+        }
+
+        public void GotoMain()
+        {
+            
             PhotonNetwork.LeaveRoom();
             SceneManager.LoadScene("MainMenu");
         }

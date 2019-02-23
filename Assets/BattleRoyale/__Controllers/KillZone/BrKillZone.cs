@@ -49,6 +49,14 @@ public class BrKillZone : MonoBehaviourPunCallbacks
 
     #endregion
 
+    #region OnNewCircleExtented
+
+    public delegate void OnNewCircleExtentedDel(BrRing curr, BrRing target, float delay, float shrinkTime);
+
+    public OnNewCircleExtentedDel OnNewCircleExtented;
+
+    #endregion
+
     private void Awake()
     {
         BrPlayerTracker.Instance.OnLastPlayerLeft += player => { gameObject.SetActive(false); };
@@ -87,8 +95,11 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     [PunRPC]
     public void NewCircleRPC(Vector3 center, float radious)
     {
+        // for the first time
         targetRing.gameObject.SetActive(true);
         gameObject.SetActive(true);
+
+
         targetRing.transform.localPosition = center;
         targetRing.radious = radious;
         _shrinkTime = TimeToNextRing + ChangeTime;
@@ -96,6 +107,8 @@ public class BrKillZone : MonoBehaviourPunCallbacks
         currCenter = currRing.transform.localPosition;
         currRadious = currRing.radious;
         OnNewCircle(targetRing.transform.position, radious);
+
+        OnNewCircleExtented(currRing, targetRing, TimeToNextRing, ChangeTime);
     }
 
     // Update is called once per frame

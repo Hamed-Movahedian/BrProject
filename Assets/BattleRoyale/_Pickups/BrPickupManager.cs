@@ -27,9 +27,17 @@ public class BrPickupManager : MonoBehaviourPunCallbacks
 
     public int chanceFactor = 1;
     public List<BrPickupPlaceHolder> placeHolders;
-    private List<BrPickupBase> allPickups=new List<BrPickupBase>();
+    private List<BrPickupBase> allPickups = new List<BrPickupBase>();
     public System.Random random;
     public List<BrPickupBase> scenePickups;
+
+    #region OnPickedup
+
+    public delegate void OnPickedupDel(BrCharacterController player, BrPickupBase pickup);
+
+    public OnPickedupDel OnPickedup;
+
+    #endregion
 
     [ContextMenu("Collect")]
     public void CollectAllPickups()
@@ -37,42 +45,45 @@ public class BrPickupManager : MonoBehaviourPunCallbacks
         placeHolders = FindObjectsOfType<BrPickupPlaceHolder>().ToList();
         scenePickups = FindObjectsOfType<BrPickupBase>().ToList();
     }
-   
+
 
     // Use this for initialization
     IEnumerator Start()
     {
         random = BrRandom.CreateNew();
 
-        scenePickups.ForEach(sp=>sp.Evaluate(random));
-        
-        var delta =Mathf.Max(placeHolders.Count / 60,2);
+        scenePickups.ForEach(sp => sp.Evaluate(random));
+
+        var delta = Mathf.Max(placeHolders.Count / 60, 2);
 
         for (int i = 0; i < placeHolders.Count;)
         {
-            for (int j = 0; j < delta && i < placeHolders.Count; j++,i++) 
+            for (int j = 0; j < delta && i < placeHolders.Count; j++, i++)
                 placeHolders[i].Evaluate(random);
 
             yield return null;
         }
-        
     }
 
-    public void DisablePickup(BrPickupBase pickup)
+    public void PickPickup(BrPickupBase pickup, BrCharacterController player)
     {
         if (pickup.Index >= 0)
-            photonView.RPC(nameof(DisablePickupRpc), RpcTarget.All, pickup.Index);
+            photonView.RPC(nameof(PickPickupRpc), RpcTarget.All, pickup.Index,player.UserID);
     }
 
     [PunRPC]
-    public void DisablePickupRpc(int index)
+    public void PickPickupRpc(int index,string userID)
     {
-        allPickups[index].DisablePickup();
+        var pickup = allPickups[index];
+        
+        pickup.DisablePickup();
+        
+        OnPickedup(BrPlayerTracker.Instance[userID], pickup);
     }
+
     public void AddPickup(BrPickupBase pickup)
     {
         pickup.Index = allPickups.Count;
         allPickups.Add(pickup);
     }
-
 }

@@ -65,6 +65,10 @@
               <e p="Active player info" t="Include">
                 <e p="BrActivePlayerStatUI.cs" t="Include" />
               </e>
+              <e p="AirDrop" t="Include">
+                <e p="BrAirDropArrow.cs" t="Include" />
+                <e p="BrAirDropUI.cs" t="Include" />
+              </e>
               <e p="Alive Counter" t="Include">
                 <e p="BrUIPlayerCounter.cs" t="Include" />
               </e>

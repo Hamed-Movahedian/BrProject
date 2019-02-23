@@ -31,4 +31,9 @@ public class BrRing : MonoBehaviour
         setup();
 
     }
+
+    public bool IsInside(Vector3 position)
+    {
+        return (transform.position - position).sqrMagnitude < radious * radious;
+    }
 }

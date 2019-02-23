@@ -64,6 +64,7 @@ public class BrPlayerTracker : MonoBehaviour
     public delegate void OnMasterPlayerRegisterDel(BrCharacterController masterPlayer);
 
     public OnMasterPlayerRegisterDel OnMasterPlayerRegister;
+    private Dictionary<string,BrCharacterController> UserIdDic=new Dictionary<string, BrCharacterController>();
 
     #endregion
     
@@ -123,6 +124,12 @@ public class BrPlayerTracker : MonoBehaviour
 
         alivePlayers.Add(player);
 
+        UserIdDic[player.UserID] = player;
+        
         OnPlayerRegisterd(player);
+        
+        
     }
+
+    public BrCharacterController this[string userID] => UserIdDic[userID];
 }

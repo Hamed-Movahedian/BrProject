@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BrAirDropPlaceHolder : MonoBehaviour
 {
+    [HideInInspector]
+    public float Priority = 1;
     [SerializeField]
     private float radious = 3;
 

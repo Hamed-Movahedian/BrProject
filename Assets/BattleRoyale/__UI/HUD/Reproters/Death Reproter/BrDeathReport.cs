@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.UI;
-
 public class BrDeathReport : MonoBehaviour
 {
     public string NoKillerText;
@@ -27,7 +26,7 @@ public class BrDeathReport : MonoBehaviour
             if (victom.isMine)
             {
                 
-                rankText.text = "#"+BrPlayerTracker.Instance.PlayerCounter.ToString();
+                rankText.text = "# "+BrPlayerTracker.Instance.PlayerCounter+1;
                 
                 if (killer == null)
                 {   // no killer

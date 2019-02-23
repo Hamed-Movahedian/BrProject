@@ -44,7 +44,7 @@ public class BrPickupBase : MonoBehaviour
 
     protected virtual void GetReward(BrCharacterController currentPlayer)
     {
-        BrPickupManager.Instance.DisablePickup(this);
+        BrPickupManager.Instance.PickPickup(this,currentPlayer);
     }
 
     public virtual void DisablePickup()

@@ -7,6 +7,7 @@ public class BrLocalPlayerTrigger : MonoBehaviour
 {
     public UnityEvent OnEnter;
     public UnityEvent OnExit;
+    public string LastUserID { get; set; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,9 +15,12 @@ public class BrLocalPlayerTrigger : MonoBehaviour
             return;
         
         var characterController = other.GetComponent<BrCharacterController>();
-            
-        if(characterController && characterController.isMine)
+
+        if (characterController && characterController.isMine)
+        {
             OnEnter.Invoke();
+            LastUserID = characterController.UserID;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
