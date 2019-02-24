@@ -26,13 +26,14 @@ public class BrAirdropController : MonoBehaviourPun
 
 
     public List<BrAirDropPlaceHolder> locations;
-    public float firstDropDelay = 2;
-    public float nextDropDelay = 5;
+    public float Delay = 3;
     public PlayableDirector airDropDirector;
     public Transform airDropRoot;
+
     public List<BrPickupBase> pickup1Condidates;
     public List<BrPickupBase> pickup2Condidates;
     public List<BrPickupBase> pickup3Condidates;
+
     public UnityEvent OnNewAirDrop;
     public UnityEvent OnUnpackAirDrop;
 
@@ -46,105 +47,100 @@ public class BrAirdropController : MonoBehaviourPun
 
     private int activePlaceHolderIndex = -1;
 
-    private void Awake()
+    private List<int> innerIndexies = new List<int>();
+    private List<int> outterIndexies = new List<int>();
+    private System.Random random;
+
+    private BrAirDropPlaceHolder activePlaceHolder => locations[activePlaceHolderIndex];
+    public Vector3 DropPosition => airDropRoot.position;
+
+    private void Start()
     {
-        BrPlayerTracker.Instance.OnMasterPlayerRegister += player =>
-        {
-            player.ParachuteState.OnLanding.AddListener((() => { Invoke(nameof(DropAirSupply), firstDropDelay); }));
-        };
+        random = BrRandom.CreateNew();
         
+        innerIndexies = Enumerable.Range(0, locations.Count).ToList();
+
         //New area
         BrKillZone.Instance.OnNewCircleExtented += (curr, target, delay, shrinkTime) =>
         {
-            int minIndex = -1;
-            float minValue = float.MaxValue;
-            
-            List<int> deletedIndex=new List<int>();
-
-            var center = (curr.transform.position + target.transform.position) / 2;
-            var radious = (curr.radious + target.radious) / 2;
-
-            radious *= radious;
-            
-            for (int i = 0; i < locations.Count; i++)
-            {
-                if(!curr.IsInside(locations[i].transform.position))
-                    deletedIndex.Add(i);
-                else
-                {
-                    var magnitude = Vector3.SqrMagnitude(center - locations[i].transform.position);
-                    var distance = Mathf.Abs(magnitude - radious);
-
-                    if (distance < minValue)
-                    {
-                        minValue = distance;
-                        minIndex = i;
-                    }
-                }
-            }
-
-            if (minIndex==-1)
-                return;
-            
-            
+            StartCoroutine(SelectPositionCoroutine(curr, target));
         };
     }
 
-    private void DropAirSupply()
+    private IEnumerator SelectPositionCoroutine(BrRing curr, BrRing target)
     {
-        if(activePlaceHolderIndex!=-1)
-            locations.RemoveAt(activePlaceHolderIndex);
+        var startTime = Time.time;
+        var endTime = startTime + Delay;
         
-        if (!PhotonNetwork.IsMasterClient)
-            return;
+        outterIndexies.Clear();
 
-        if(locations.Count==0)
-            return;
+        foreach (var i in innerIndexies)
+        {
+            if (!target.IsInside(locations[i].transform.position))
+                outterIndexies.Add(i);
+
+            if (Time.time - startTime > 0.005)
+            {
+                yield return null;
+                startTime = Time.time;
+            }
+        }
+
+        yield return null;
         
-        var i = Random.Range(0, locations.Count);
-        photonView.RPC(nameof(DropAirSupplyRpc), RpcTarget.AllViaServer, i);
+        outterIndexies.ForEach(i => innerIndexies.Remove(i));
+
+        while (Time.time<endTime)
+            yield return null;
+
+        int selectedIndex = -1;
+
+        if (outterIndexies.Count > 0)
+            selectedIndex = outterIndexies.RandomSelection(random);
+        else if (innerIndexies.Count > 0)
+            selectedIndex = innerIndexies.RandomSelection(random);
+        else
+            yield break;
+        
+        if(PhotonNetwork.IsMasterClient)
+            photonView.RPC(nameof(DropAirSupplyRpc), RpcTarget.All, selectedIndex);
+
     }
-
-    
 
     [PunRPC]
     private void DropAirSupplyRpc(int posIndex)
     {
         activePlaceHolderIndex = posIndex;
         airDropRoot.position = locations[posIndex].transform.position;
+        airDropDirector.Stop();
         airDropDirector.Play();
         OnNewAirDrop.Invoke();
     }
 
     public void Unpack(BrLocalPlayerTrigger playerTrigger)
     {
-        var pIndex1 = Random.Range(0, pickup1Condidates.Count);
-        var pIndex2 = Random.Range(0, pickup2Condidates.Count);
-        var pIndex3 = Random.Range(0, pickup3Condidates.Count);
-        photonView.RPC(nameof(UnpackRpc), RpcTarget.Others, pIndex1, pIndex2, pIndex3, playerTrigger.LastUserID);
-        UnpackRpc(pIndex1, pIndex2, pIndex3, playerTrigger.LastUserID);
+        photonView.RPC(nameof(UnpackRpc), RpcTarget.Others, playerTrigger.LastUserID);
+        
+        UnpackRpc(playerTrigger.LastUserID);
     }
 
     [PunRPC]
-    private void UnpackRpc(int pIndex1, int pIndex2, int pIndex3, string userID)
+    private void UnpackRpc(string userID)
     {
-        var pickup = Instantiate<BrPickupBase>(pickup1Condidates[pIndex1]);
-        pickup.transform.position = activePlaceHolder.GetPickupPos(0);
-        BrPickupManager.Instance.AddPickup(pickup);
+        BrPickupManager.Instance.InstantiatePickup(
+                pickup1Condidates.RandomSelection(random),
+                activePlaceHolder.GetPickupPos(0));
 
-        pickup = Instantiate<BrPickupBase>(pickup1Condidates[pIndex2]);
-        pickup.transform.position = activePlaceHolder.GetPickupPos(1);
-        BrPickupManager.Instance.AddPickup(pickup);
+        BrPickupManager.Instance.InstantiatePickup(
+                pickup2Condidates.RandomSelection(random),
+                activePlaceHolder.GetPickupPos(1));
 
-        pickup = Instantiate<BrPickupBase>(pickup1Condidates[pIndex3]);
-        pickup.transform.position = activePlaceHolder.GetPickupPos(2);
-        BrPickupManager.Instance.AddPickup(pickup);
+        BrPickupManager.Instance.InstantiatePickup(
+                pickup3Condidates.RandomSelection(random),
+                activePlaceHolder.GetPickupPos(2));
 
         OnUnpackAirDrop.Invoke();
         OnUnpack(BrPlayerTracker.Instance[userID]);
-        Invoke(nameof(DropAirSupply), nextDropDelay);
     }
 
-    private BrAirDropPlaceHolder activePlaceHolder => locations[activePlaceHolderIndex];
-    public Vector3 DropPosition => airDropRoot.position;
 }

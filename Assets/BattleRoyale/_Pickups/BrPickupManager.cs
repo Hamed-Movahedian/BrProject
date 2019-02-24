@@ -86,4 +86,9 @@ public class BrPickupManager : MonoBehaviourPunCallbacks
         pickup.Index = allPickups.Count;
         allPickups.Add(pickup);
     }
+
+    public void InstantiatePickup(BrPickupBase prefab, Vector3 pos)
+    {
+        AddPickup(Instantiate(prefab,pos,Quaternion.identity));
+    }
 }

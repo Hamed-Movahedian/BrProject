@@ -65,8 +65,8 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     void Start()
     {
         gameObject.SetActive(false);
-        if (PhotonNetwork.IsMasterClient)
-            Invoke(nameof(CreateNextCircle), StartNewCircleDelay);
+        
+        Invoke(nameof(CreateNextCircle), StartNewCircleDelay);
 
         InvokeRepeating(nameof(DamageToPlayer), StartNewCircleDelay, DamageRate);
     }
@@ -86,10 +86,13 @@ public class BrKillZone : MonoBehaviourPunCallbacks
 
     private void CreateNextCircle()
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
         var nextR = currRing.radious * .7f;
         Vector3 nextCenter = Random.insideUnitCircle * (currRing.radious - nextR);
         nextCenter = new Vector3(nextCenter.x, 0, nextCenter.y) + currRing.transform.localPosition;
-        photonView.RPC("NewCircleRPC", RpcTarget.AllViaServer, nextCenter, nextR);
+        photonView.RPC(nameof(NewCircleRPC), RpcTarget.AllViaServer, nextCenter, nextR);
     }
 
     [PunRPC]
