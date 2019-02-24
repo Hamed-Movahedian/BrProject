@@ -8,7 +8,7 @@ public class BrShieldPickup : BrPickupBase
     protected override void GetReward(BrCharacterController currentPlayer)
     {
         base.GetReward(currentPlayer);
-        currentPlayer.AddShield(Sheild);
+        currentPlayer.Shield+=Sheild;
     }
     protected override bool CanPickup(BrCharacterController controller)
     {

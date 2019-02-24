@@ -44,7 +44,6 @@
             <e p="_Scripts" t="Include">
               <e p="BrCharacterController.cs" t="Include" />
               <e p="BrCharacterHitEffect.cs" t="Include" />
-              <e p="BrCharacterShadow.cs" t="Include" />
               <e p="CharacterStates" t="Include">
                 <e p="BrCharacterStateBase.cs" t="Include" />
                 <e p="BrFallingCharacterState.cs" t="Include" />
@@ -190,6 +189,7 @@
               <e p="BrRunIntro.cs" t="Include" />
             </e>
             <e p="ListExtensions.cs" t="Include" />
+            <e p="MathfExtensions.cs" t="Include" />
           </e>
           <e p="_Weapon" t="Include">
             <e p="BrMelleAttack.cs" t="Include" />

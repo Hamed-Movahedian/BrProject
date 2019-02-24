@@ -15,7 +15,7 @@ public class BrJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private Vector2 _startPos;
     private Vector2 _currentPosition;
     private Vector3 _joyPosition;
-    private bool _isDraging=false;
+    private bool _isDraging;
     public Vector3 Value3 => new Vector3(Direction.x, 0, Direction.y) / _max;
 
 
@@ -78,4 +78,8 @@ public class BrJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     }
 
 
+    public void SetActive(bool value)
+    {
+        gameObject.SetActive(value);
+    }
 }

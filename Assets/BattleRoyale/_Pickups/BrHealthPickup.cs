@@ -6,7 +6,7 @@ class BrHealthPickup : BrPickupBase
     protected override void GetReward(BrCharacterController currentPlayer)
     {
         base.GetReward(currentPlayer);
-        currentPlayer.AddHealth(Health);
+        currentPlayer.Health+=Health;
     }
 
     protected override bool CanPickup(BrCharacterController controller)

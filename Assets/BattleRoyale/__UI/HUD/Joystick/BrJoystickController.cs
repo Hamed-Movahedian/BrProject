@@ -13,44 +13,42 @@ public class BrJoystickController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        SetAimJoyisticActive(false);
-        SetMovementJoyisticActive(false);
-        BrPlayerTracker.Instance.OnPlayerRegisterd += OnPlayerRegisterd;
-        BrPlayerTracker.Instance.OnPlayerDead += OnPlayerDead;
-    }
-
-    private void OnPlayerDead(BrCharacterController victom, BrCharacterController killer, string weaponName)
-    {
-        if (victom.isMine)
-        {
-            SetAimJoyisticActive(false);
-            SetMovementJoyisticActive(false);
-
-        }
-    }
-
-    private void OnPlayerRegisterd(BrCharacterController player)
-    {
-        if (player.isMine)
+        
+        AimJoystick.SetActive(false);
+        
+        MovementJoystick.SetActive(false);
+        
+        BrPlayerTracker.Instance.OnMasterPlayerRegister += player =>
         {
             player.ParachuteState.OnOpenPara.AddListener(() =>
             {
-                SetMovementJoyisticActive(true);
+                MovementJoystick.SetActive(true);
             });
 
             player.ParachuteState.OnLanding.AddListener(() =>
             {
-                SetAimJoyisticActive(true);
+                AimJoystick.SetActive(true);
             });
-        }
+            
+            player.OnDead.AddListener(() =>
+            {
+                AimJoystick.SetActive(false);
+                MovementJoystick.SetActive(false);
+            });
+        };
+        
     }
 
-    public void SetMovementJoyisticActive(bool b)
+    private void Update()
     {
-        MovementJoystick.gameObject.SetActive(b);
+        var masterCharacter = BrCharacterController.MasterCharacter;
+        
+        if (masterCharacter == null) 
+            return;
+
+        var rotation = Quaternion.Euler(0, BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0);
+        
+        masterCharacter.AimVector = rotation *AimJoystick.Value3;
+        masterCharacter.MovVector = rotation *MovementJoystick.Value3;
     }
-    public void SetAimJoyisticActive(bool b)
-    {
-        AimJoystick.gameObject.SetActive(b);
-    } 
 }
