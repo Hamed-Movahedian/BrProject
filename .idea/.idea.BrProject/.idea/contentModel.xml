@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\CurrentProjects\BrProject" t="IncludeRecursive">
+    <e p="C:\Program Files (x86)\Android\android-sdk\platforms\android-25\data\res" t="IncludeRecursive" />
+    <e p="C:\Users\Hamed\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Hamed\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-1566460626.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Hamed\Documents\Projects\BrProject" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
@@ -119,6 +122,11 @@
               <e p="ProbSelectButton.cs" t="Include" />
               <e p="ProbSelectList.cs" t="Include" />
             </e>
+          </e>
+          <e p="_AI" t="Include">
+            <e p="BrAIConteroller.cs" t="Include" />
+            <e p="BrAiNavMesh.cs" t="Include" />
+            <e p="BrAiParatchute.cs" t="Include" />
           </e>
           <e p="_Bush" t="Include">
             <e p="BrBushModule.cs" t="Include" />
@@ -982,6 +990,9 @@
         <e p="StreamingAssets" t="Include">
           <e p="settings.txt" t="Include" />
         </e>
+        <e p="Temp" t="Include">
+          <e p="NavMeshTest.cs" t="Include" />
+        </e>
         <e p="ThirdParties" t="Include">
           <e p="CafeBazaarIAB" t="Include">
             <e p="AbstractManager.cs" t="Include" />
@@ -1102,7 +1113,5 @@
         <e p="bin" t="ExcludeRecursive" />
       </e>
     </e>
-    <e p="C:\Users\Hosein\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Hosein\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-523611518.00" t="ExcludeRecursive" />
   </component>
 </project>
