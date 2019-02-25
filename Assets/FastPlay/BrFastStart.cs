@@ -12,8 +12,13 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class BrFastStart : MonoBehaviour
 {
+    
     public bool HaveAI = true;
 
+    [Header("Location")] 
+    public bool PreDefined = false;
+    public Vector3 Location=new Vector3(0.05f,-.1f,0);
+    
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -35,10 +40,13 @@ public class BrFastStart : MonoBehaviour
             yield return null;
 
         yield return new WaitForSeconds(2);
+        
+        Vector3 loc = PreDefined ? Location : new Vector3(Random.Range(-0.35f, 0.35f), Random.Range(-0.35f, 0.35f), 0);
+        
 
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable
         {
-            {"Pos", JsonUtility.ToJson(new Vector3(Random.Range(-0.35f, 0.35f), Random.Range(-0.35f, 0.35f), 0))}
+            {"Pos", JsonUtility.ToJson(loc)}
         });
 
         FindObjectOfType<LobbyManager>().CloseRoom();

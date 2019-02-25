@@ -15,6 +15,7 @@
             "."
         ],
         "fbxSavePaths": [
+            "Temp",
             "."
         ],
         "selectedFbxPath": 0,
@@ -37,7 +38,7 @@
             "include": 0,
             "lodLevel": 1,
             "objectPosition": 0,
-            "exportUnrendered": false
+            "exportUnrendered": true
         },
         "convertToPrefabSettingsSerialize": {
             "exportFormat": 0,
