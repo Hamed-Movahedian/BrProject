@@ -9,7 +9,6 @@ public class BrExecuteOnPlay
 {
     static BrExecuteOnPlay()
     {
-        Debug.Log("SingleEntryPoint. Up and running");
         EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
      

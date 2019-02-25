@@ -1,18 +1,37 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class BrJoystickController : MonoBehaviour
 {
-    public static BrJoystickController Instance;
+    #region Instance
+    
+    private static BrJoystickController _instance;
+    
+    public static BrJoystickController Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = FindObjectOfType<BrJoystickController>();
+            return _instance;
+        }
+    }
+    
+    #endregion
 
     public BrJoystick MovementJoystick;
     public BrJoystick AimJoystick;
 
     private void Awake()
     {
-        Instance = this;
+        if ((string) PhotonNetwork.LocalPlayer.CustomProperties["AI"] == "1")
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         
         AimJoystick.SetActive(false);
         
