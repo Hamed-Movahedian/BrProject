@@ -16,9 +16,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     #region Public Fields
 
-    public LayerMask EnviromentLayerMask;
-    public RaycastHit GroundHitInfo;
-
     [Header("Stat")] 
     public int MaxHealth = 100;
     public int MaxShield = 100;
@@ -37,7 +34,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     #region States
 
-    [Header("States")] public BrFallingCharacterState FallingState;
+    [Header("States")] 
+    public BrFallingCharacterState FallingState;
     public BrParachuteCharacterState ParachuteState;
     public BrGroundedCharacterState GroundedState;
     public BrGroundedAimCharacterState GroundedAimState;
@@ -46,27 +44,22 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     #region Properties
 
-    public CharacterStateEnum CurrentState { get; private set; }
     public Animator Animator { get; set; }
     public Rigidbody RigidBody { get; set; }
     public CapsuleCollider CapsuleCollider { get; set; }
     public BrCharacterModel characterModel { get; set; }
-    public bool IsGrounded { get; set; }
-    public float GroundDistance { get; set; }
     public Vector3 MovVector { get; set; }
     public Vector3 AimVector { get; set; }
     public BrWeaponController WeaponController { get; set; }
 
-
-    public bool IsAiming => CurrentState == CharacterStateEnum.GroundedAim;
     public bool isMine => photonView.IsMine;
 
-    public Vector3 CameraTargetPos => CameraTarget.position;
     public bool IsAlive => Health > 0;
 
     #region Health
 
     public BrUIBar.UpdateBar OnHealthChange;
+    private int health;
     public int Health
     {
         get => health;
@@ -75,8 +68,9 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (health == value) 
                 return;
+
+            health = value.Between(0, MaxHealth);
             
-            health = value;
             OnHealthChange?.Invoke(health);
             OnStatChange?.Invoke(this);
         }
@@ -87,6 +81,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Shield 
 
     public BrUIBar.UpdateBar OnShieldChange;
+    private int shield;
+
     public int Shield
     {
         get => shield;
@@ -95,8 +91,9 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (shield == value)
                 return;
+
+            shield = value.Between(0, MaxShield);
             
-            shield = value;
             OnStatChange?.Invoke(this);
             OnShieldChange?.Invoke(shield);
         }
@@ -113,9 +110,10 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     #region Privates
 
+    private CharacterStateEnum CurrentState { get; set; }
+    
     private Dictionary<CharacterStateEnum, BrCharacterStateBase> _stateDic;
-    private int health;
-    private int shield;
+    
 
     #endregion
 
@@ -136,7 +134,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     // ********************** Methods
 
-    #region Start/Awake
+    #region Initialize
 
    
     void OnEnable()
@@ -215,51 +213,12 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     void Update()
     {
-        if (photonView.IsMine)
-        {
-            MovVector = BrJoystickController.Instance.MovementJoystick.Value3;
-            AimVector = BrJoystickController.Instance.AimJoystick.Value3;
-        }
-
-        //GroundCheck();
-
         _stateDic[CurrentState]?.Update();
     }
 
     private void FixedUpdate()
     {
-        //if (photonView.IsMine)
         _stateDic[CurrentState]?.FixedUpdate();
-    }
-
-    #endregion
-
-    #region GroundCheck
-
-    public void GroundCheck()
-    {
-        IsGrounded = false;
-
-
-        if (Physics.Raycast(
-            transform.position + Vector3.up * CapsuleCollider.height,
-            Vector3.down,
-            out GroundHitInfo,
-            Mathf.Infinity,
-            EnviromentLayerMask))
-        {
-            GroundDistance = GroundHitInfo.distance - CapsuleCollider.height;
-
-            if (GroundDistance < 0.2f)
-            {
-                IsGrounded = true;
-                if (GroundDistance < 0)
-                    transform.position = GroundHitInfo.point;
-                GroundDistance = 0;
-            }
-        }
-        else
-            Debug.LogError("No Ground Detected!!!");
     }
 
     #endregion
@@ -281,19 +240,15 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (!isMine)
             return;
+        
         var magnitude = MovVector.magnitude;
 
         if (magnitude > 0.1)
-
         {
-            Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) *
-                                MovVector;
-
-
-            Rotate(rotationSpeed, direction);
+            Rotate(rotationSpeed, MovVector);
 
             if (moveSpeed > 0)
-                Move(moveSpeed, direction);
+                Move(moveSpeed, MovVector);
         }
         else
         {
@@ -305,12 +260,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (!isMine)
             return;
-        Vector3 direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) *
-                            MovVector;
 
-        direction = Quaternion.Euler(0, 0 + BrCamera.Instance.MainCamera.transform.eulerAngles.y, 0) * AimVector;
-
-        Rotate(rotationSpeed, direction);
+        Rotate(rotationSpeed, AimVector);
     }
 
     private void Rotate(float rotationSpeed, Vector3 direction)
@@ -353,15 +304,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     #endregion
-
-    #region FootStep
-
-    private void FootStep()
-    {
-    }
-
-    #endregion
-
+ 
     #region IK
 
     void OnAnimatorIK()
@@ -433,16 +376,9 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         if (isMine || (killer && killer.isMine))
             OnTakeDamage(damage, Shield > 0 ? 0 : 1);
-        
+
         if (Shield > 0)
-        {
             Shield -= damage;
-            if (Shield < 0)
-            {
-                Health += Shield;
-                Shield = 0;
-            }
-        }
         else
             Health -= damage;
 
@@ -492,25 +428,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     #endregion
 
-    #region Health/shield
-
-    public void AddHealth(int health)
-    {
-        Health += health;
-        if (Health > MaxHealth)
-            Health = MaxHealth;
-    }
-
-    internal void AddShield(int sheild)
-    {
-        Shield += sheild;
-
-        if (Shield > MaxShield)
-            Shield = MaxShield;
-    }
-
-    #endregion
-
     #region OpenPara / Landing
 
     public void OpenPara()
@@ -536,7 +453,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     {
         SetState(CharacterStateEnum.Grounded);
         enabled = false;
-        Invoke("EndLandig", 0.5f);
+        Invoke(nameof(EndLandig), 0.5f);
     }
 
     private void EndLandig()

@@ -15,8 +15,6 @@ public class BrExecuteOnPlay
      
     private static void OnPlayModeChanged(PlayModeStateChange playModeStateChange)
     {
-        Debug.Log("OnPlayModeChanged");
-
         if (BrPickupManager.Instance != null)
         {
             BrPickupManager.Instance.CollectAllPickups();

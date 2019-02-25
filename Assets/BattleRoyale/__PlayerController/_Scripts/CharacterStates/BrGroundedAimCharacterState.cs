@@ -25,17 +25,11 @@ public class BrGroundedAimCharacterState : BrCharacterStateBase
             return;
         }
 
-        var direction = 
-            Quaternion.Euler(0, BrCamera.Instance.MainCamera.transform.eulerAngles.y - _controller.transform.eulerAngles.y, 0) 
+        var direction = Quaternion.Euler(0, - _controller.transform.eulerAngles.y, 0) 
             * _controller.MovVector;
-        //var direction = _controller.MovVector;
 
         _controller.Animator.SetFloat("X", direction.x, AnimatorDampValue, Time.deltaTime);
         _controller.Animator.SetFloat("Y", direction.z, AnimatorDampValue, Time.deltaTime);
-
-        // stick to ground
-        if (_controller.GroundDistance > 0)
-            _controller.transform.position = _controller.GroundHitInfo.point;
 
         _controller.MoveAndRotateToAim(0, RotationSpeed);
     }
