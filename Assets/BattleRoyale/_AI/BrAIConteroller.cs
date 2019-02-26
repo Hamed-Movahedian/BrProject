@@ -44,10 +44,11 @@ public class BrAIConteroller : MonoBehaviour
     public OnSetDestinationDel OnSetDestination;
     
     #endregion
-    
+
+    public Transform TestDestination;
     private void Awake()
     {
-        if ((string) PhotonNetwork.LocalPlayer.CustomProperties["AI"] == "0")
+        if (PhotonNetwork.LocalPlayer.CustomProperties["AI"].ToString() == "0")
         {
             gameObject.SetActive(false);
             OnInitialize(null);
@@ -59,7 +60,15 @@ public class BrAIConteroller : MonoBehaviour
         {
             OnInitialize(player);
             player.OnDead.AddListener(() => OnDestory());
+            
+            // Test ...
+            player.ParachuteState.OnOpenPara.AddListener(()=>Invoke(nameof(TestSetDest),Random.Range(0.5f,3)));
         };
+    }
+
+    private void TestSetDest()
+    {
+        SetDestination(TestDestination.position);
     }
 
     public void SetDestination(Vector3 pos)

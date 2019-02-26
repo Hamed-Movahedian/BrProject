@@ -27,7 +27,7 @@ public class BrJoystickController : MonoBehaviour
 
     private void Awake()
     {
-        if ((string) PhotonNetwork.LocalPlayer.CustomProperties["AI"] == "1")
+        if ( PhotonNetwork.LocalPlayer.CustomProperties["AI"].ToString() == "1")
         {
             gameObject.SetActive(false);
             return;

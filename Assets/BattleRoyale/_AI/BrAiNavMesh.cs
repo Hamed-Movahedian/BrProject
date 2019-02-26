@@ -8,14 +8,15 @@ public class BrAiNavMesh : MonoBehaviour
     public NavMeshAgent NavMeshAgent;
 
     private BrCharacterController player;
-    private Vector3 destination=Vector3.zero;
-    public float ArriveDistance=.3f;
+    private Vector3 destination = Vector3.zero;
+    public float ArriveDistance = .3f;
+    private Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
     {
         enabled = false;
-        
+
         BrAIConteroller.Instance.OnInitialize += player =>
         {
             if (player == null)
@@ -23,6 +24,7 @@ public class BrAiNavMesh : MonoBehaviour
                 gameObject.SetActive(false);
                 return;
             }
+
             this.player = player;
 
             // Activate on landing
@@ -32,18 +34,14 @@ public class BrAiNavMesh : MonoBehaviour
                 NavMeshAgent.Warp(player.transform.position);
                 transform.position = player.transform.position = NavMeshAgent.nextPosition;
                 transform.SetParent(player.transform);
-                
-                if(destination!=Vector3.zero)
-                    NavMeshAgent.SetDestination(destination);
 
+                if (destination != Vector3.zero)
+                    NavMeshAgent.SetDestination(destination);
             });
-            
+
             // Disable on dead!
-            player.OnDead.AddListener(() =>
-            {
-                enabled = false;
-            });
-            
+            player.OnDead.AddListener(() => { enabled = false; });
+
             // Set destination
             BrAIConteroller.Instance.OnSetDestination += pos =>
             {
@@ -58,13 +56,15 @@ public class BrAiNavMesh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var dir = player.transform.position-NavMeshAgent.destination;
+        var dir = player.transform.position - NavMeshAgent.destination;
 
         dir.y = 0;
 
-        if (Vector3.SqrMagnitude(dir) < ArriveDistance * ArriveDistance)
+        var arriveD = Vector3.SqrMagnitude(dir);
+        
+        if (arriveD < ArriveDistance * ArriveDistance)
         {
-            dir=Vector3.zero;
+            dir= Vector3.zero;
         }
         else
         {
@@ -73,6 +73,7 @@ public class BrAiNavMesh : MonoBehaviour
             dir.y = 0;
         }
 
-        player.MovVector = dir.normalized;
+        //player.MovVector = arriveD > 1 ? dir.normalized : dir;
+        player.MovVector = Vector3.SmoothDamp(player.MovVector,dir,ref velocity,0.3f);
     }
 }

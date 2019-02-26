@@ -16,6 +16,11 @@ public class BrLineOfSight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if ( PhotonNetwork.LocalPlayer.CustomProperties["AI"].ToString() == "1")
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         defaultColor=LineOfSight.material.GetColor("_TintColor");
 
         if (PhotonView.IsMine)

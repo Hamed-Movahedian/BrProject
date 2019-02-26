@@ -5,13 +5,13 @@ using UnityEngine;
 public class BrAiParatchute : MonoBehaviour
 {
     private BrCharacterController player;
-    private Vector3 destination;
+    private Vector3 destination=Vector3.zero;
     public float ArriveDistance=.1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        enabled = true;
+        enabled = false;
         
         BrAIConteroller.Instance.OnInitialize += player =>
         {
@@ -24,7 +24,12 @@ public class BrAiParatchute : MonoBehaviour
             this.player = player;
             
             // enable on para open
-            player.ParachuteState.OnOpenPara.AddListener(() => enabled = true);
+            player.ParachuteState.OnOpenPara.AddListener(() =>
+            {
+                enabled = true;
+                destination = player.transform.position;
+                
+            });
             
             // disable on landing
             player.ParachuteState.OnLanding.AddListener(() => enabled = false);
@@ -41,7 +46,7 @@ public class BrAiParatchute : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var dir = player.transform.position-destination;
+        var dir = destination-player.transform.position;
 
         dir.y = 0;
         
