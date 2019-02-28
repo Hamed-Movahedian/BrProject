@@ -13,13 +13,15 @@ public class BrFallingCharacterState : BrCharacterStateBase
     public override void OnEnter()
     {
         _controller.gameObject.SetActive(false);
-        //_controller.characterModel.Hide();
+
+        if (isMine)
+            _controller.NavMeshAgent.updatePosition = false;
+
         OnStartFalling.Invoke();
     }
 
     public override void OnExit()
     {
         base.OnExit();
-        
     }
 }
