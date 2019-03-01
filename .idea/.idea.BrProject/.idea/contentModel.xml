@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Hamed\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Hamed\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-1566460626.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Hamed\Documents\Projects\BrProject" t="IncludeRecursive">
+    <e p="C:\CurrentProjects\BrProject" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
@@ -116,6 +114,7 @@
               <e p="SlotList.cs" t="Include" />
             </e>
             <e p="MainMenu" t="Include">
+              <e p="BrPlayerShowStat.cs" t="Include" />
               <e p="Launcher.cs" t="Include" />
               <e p="PlayerNameInputField.cs" t="Include" />
               <e p="ProbSelectButton.cs" t="Include" />
@@ -130,6 +129,9 @@
               <e p="SharedVariables.cs" t="Include" />
             </e>
             <e p="Tasks" t="Include">
+              <e p="NeedHealth.cs" t="Include" />
+              <e p="NeedShield.cs" t="Include" />
+              <e p="NeedWeapon.cs" t="Include" />
               <e p="ObjectInRange.cs" t="Include" />
             </e>
           </e>
@@ -190,6 +192,8 @@
             <e p="BrWeaponPickup.cs" t="Include" />
           </e>
           <e p="_Profile" t="Include">
+            <e p="BrExpManager.cs" t="Include" />
+            <e p="BrLevelupSlider.cs" t="Include" />
             <e p="BrMatchstatRecorder.cs" t="Include" />
             <e p="ProfileManager.cs" t="Include" />
           </e>
@@ -876,6 +880,7 @@
         <e p="FastPlay" t="Include">
           <e p="BrAiToggle.cs" t="Include" />
           <e p="BrFastStart.cs" t="Include" />
+          <e p="RemoveMeshes.cs" t="Include" />
         </e>
         <e p="FbxExporters" t="Include">
           <e p="Editor" t="Include">
@@ -1770,5 +1775,7 @@
         <e p="bin" t="ExcludeRecursive" />
       </e>
     </e>
+    <e p="C:\Users\Hosein\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Hosein\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-523611518.00" t="ExcludeRecursive" />
   </component>
 </project>

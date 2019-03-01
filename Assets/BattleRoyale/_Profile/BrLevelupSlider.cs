@@ -22,18 +22,20 @@ public class BrLevelupSlider : MonoBehaviour
         _prexp = (level > 0) ? BrExpManager.CalXp(level - 1) : 0;
         _nextxp = BrExpManager.CalXp(level);
 
+        Debug.Log(string.Format("Level : {0} \n start XP : {1} \n Current Level : {2} \n Next Level: {3}",level,exp,_prexp,_nextxp));
+
         float percentXp = (float)(exp - _prexp) / (_nextxp - _prexp);
         ExperienceSlider.fillAmount = percentXp;
         LevelText.text = PersianFixer.Fix((level + 1).ToString(), true, true);
-        StartCoroutine(ShowExpChange(addedXp+exp));
+        StartCoroutine(ShowExpChange(addedXp + exp));
     }
 
     IEnumerator ShowExpChange(int Desier)
     {
-        float speed = (Desier - exp)/3;
+        float speed = 1;// (Desier - exp)/3;
         showChange:
         Debug.Log(level);
-        ExperienceSlider.fillAmount = 0;
+        //ExperienceSlider.fillAmount = 0;
 
         while (exp < Desier)
         {
@@ -45,11 +47,16 @@ public class BrLevelupSlider : MonoBehaviour
                 _nextxp = BrExpManager.CalXp(level);
                 exp--;
                 LevelText.text = PersianFixer.Fix((level + 1).ToString(), true, true);
+                ExperienceSlider.fillAmount = 0;
                 goto showChange;
             }
             float amount = (float)(exp - _prexp) / (_nextxp - _prexp);
-
-            yield return ChangeSlider(speed,amount);
+            Debug.Log(exp);
+            Debug.Log(amount);
+            Debug.Log(level);
+            ExperienceSlider.fillAmount = amount;// / speed;
+            yield return null;
+            //yield return ChangeSlider(speed,amount);
         }
 
 
@@ -57,9 +64,9 @@ public class BrLevelupSlider : MonoBehaviour
 
     private IEnumerator ChangeSlider(float speed, float amount)
     {
-        while (ExperienceSlider.fillAmount<amount)
+        while (ExperienceSlider.fillAmount < amount)
         {
-            ExperienceSlider.fillAmount += amount/speed;
+            ExperienceSlider.fillAmount += amount / speed;
             yield return null;
         }
         ExperienceSlider.fillAmount = amount;

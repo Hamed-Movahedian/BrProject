@@ -15,6 +15,7 @@ public class BrSettingsWindow : EditorWindow
 {
     public static int RunCount = 4;
     private static string lastBuildPath="";
+    private static string BuildAddress=@"C:\CurrentProjects\APK\BR\BattleRoyal.exe";
 
 
     void OnGUI()
@@ -52,7 +53,7 @@ public class BrSettingsWindow : EditorWindow
     static void RunLastBuild()
     {
         CloseAllInstances();
-        OnPostprocessBuild(BuildTarget.StandaloneWindows64,@"C:\Users\Hamed\Documents\Projects\APKs\Br\BattleRoyal.exe");
+        OnPostprocessBuild(BuildTarget.StandaloneWindows64,BuildAddress);
     }
 
     static void CloseAllInstances()
@@ -69,6 +70,8 @@ public class BrSettingsWindow : EditorWindow
     public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
     {
         lastBuildPath=pathToBuiltProject;
+        BuildAddress = pathToBuiltProject;
+
         if (target == BuildTarget.StandaloneWindows || target == BuildTarget.StandaloneWindows64)
         {
             var width = 1920 / 2;

@@ -160,7 +160,7 @@ public class BrMatchstatRecorder : MonoBehaviour
 
     public void ShowStats()
     {
-        Avatar.SetProfile(ProfileManager.Instance().PlayerProfile);
+        if (Avatar != null) Avatar.SetProfile(ProfileManager.Instance().PlayerProfile);
         thisMatchStat.PlayTime = _finishTime - _startTime;
         win = rank == 1;
         thisMatchStat.Wins = win ? 1 : 0;

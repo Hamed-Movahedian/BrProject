@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class BrExpManager
 {
-    private const int Multiplyer = 1;
+    private const int Multiplyer = 10;
     public static MatchXP CalculateXP(MatchStats match)
     {
         Statistics stat = playerStat;

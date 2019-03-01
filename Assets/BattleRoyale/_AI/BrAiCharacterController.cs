@@ -20,9 +20,9 @@ public class BrAiCharacterController : MonoBehaviour
 
         behaviorTree = GetComponent<BehaviorTree>();
 
-        characterController.ParachuteState.OnOpenPara.AddListener(()=>
+        characterController.ParachuteState.OnLanding.AddListener(()=>
         {
-            Invoke(nameof(StartTree),Random.Range(0.5f,1));
+            Invoke(nameof(StartTree),0.1f);//,Random.Range(0.5f,1));
         });
         
     }

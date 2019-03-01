@@ -26,7 +26,9 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
                 return TaskStatus.Failure;
 
             var pos = transform.position;
+            
             pos.y = BrLevelBound.Instance.Y;
+            
             if (!dirty && (lastPos - pos).sqrMagnitude > updateDistance * updateDistance)
                 dirty = true;
 
@@ -55,7 +57,7 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
 
             }
 
-            return result.Value == null ? TaskStatus.Failure : TaskStatus.Success;
+            return (result.Value == null || !result.Value.activeSelf)  ? TaskStatus.Failure : TaskStatus.Success;
         }
     }
 }
