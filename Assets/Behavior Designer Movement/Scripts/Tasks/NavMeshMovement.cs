@@ -34,6 +34,9 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         /// </summary>
         public override void OnStart()
         {
+            if(navMeshAgent==null)
+                navMeshAgent = gameObject.GetComponentInParent<NavMeshAgent>();
+            
             navMeshAgent.speed = speed.Value;
             navMeshAgent.angularSpeed = angularSpeed.Value;
             navMeshAgent.isStopped = false;

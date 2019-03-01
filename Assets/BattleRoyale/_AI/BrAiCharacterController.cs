@@ -9,7 +9,7 @@ public class BrAiCharacterController : MonoBehaviour
     private BehaviorTree behaviorTree;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (!BrAIConteroller.Instance.IsActive)
         {
@@ -20,11 +20,15 @@ public class BrAiCharacterController : MonoBehaviour
 
         behaviorTree = GetComponent<BehaviorTree>();
 
-        characterController.ParachuteState.OnLanding.AddListener(()=>
+        characterController.ParachuteState.OnOpenPara.AddListener(()=>
         {
-            behaviorTree.EnableBehavior();
+            Invoke(nameof(StartTree),Random.Range(0.5f,1));
         });
         
     }
 
+    private void StartTree()
+    {
+        behaviorTree.EnableBehavior();
+    }
 }

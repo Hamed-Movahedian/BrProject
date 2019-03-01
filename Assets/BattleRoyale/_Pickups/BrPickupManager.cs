@@ -25,12 +25,16 @@ public class BrPickupManager : MonoBehaviourPunCallbacks
 
     #endregion
 
-    public int chanceFactor = 1;
     public List<BrPickupPlaceHolder> placeHolders;
     private List<BrPickupBase> allPickups = new List<BrPickupBase>();
     public System.Random random;
     public List<BrPickupBase> scenePickups;
 
+    public LayerMask WeaponLayer;
+    public LayerMask HealthLayer;
+    public LayerMask AmmoLayer;
+    public LayerMask ShieldLayer;
+    public LayerMask ChestLayer;
     #region OnPickedup
 
     public delegate void OnPickedupDel(BrCharacterController player, BrPickupBase pickup);

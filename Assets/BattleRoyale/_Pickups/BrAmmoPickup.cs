@@ -1,6 +1,6 @@
 ﻿using Photon.Pun;
 
-class BrAmmoPickup : BrPickupBase
+public class BrAmmoPickup : BrPickupBase
 {
     public int BulletCount=50;
     protected override void GetReward(BrCharacterController currentPlayer)

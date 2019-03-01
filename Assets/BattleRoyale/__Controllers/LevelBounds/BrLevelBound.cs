@@ -24,6 +24,7 @@ public class BrLevelBound : MonoBehaviour
     public Bounds levelBound = new Bounds();
 
     public Vector3 Center => levelBound.center;
+    public float Y => Center.y;
 
     private void OnDrawGizmos()
     {

@@ -1,6 +1,6 @@
 ﻿using Photon.Pun;
 
-class BrHealthPickup : BrPickupBase
+public class BrHealthPickup : BrPickupBase
 {
     public int Health=50;
     protected override void GetReward(BrCharacterController currentPlayer)

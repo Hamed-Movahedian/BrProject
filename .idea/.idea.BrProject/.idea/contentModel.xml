@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Program Files (x86)\Android\android-sdk\platforms\android-25\data\res" t="IncludeRecursive" />
     <e p="C:\Users\Hamed\.Rider2018.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Hamed\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-1566460626.00" t="ExcludeRecursive" />
     <e p="C:\Users\Hamed\Documents\Projects\BrProject" t="IncludeRecursive">
@@ -127,6 +126,12 @@
             <e p="BrAiCharacterController.cs" t="Include" />
             <e p="BrAIConteroller.cs" t="Include" />
             <e p="BrAiMovement.cs" t="Include" />
+            <e p="SharedVariable" t="Include">
+              <e p="SharedVariables.cs" t="Include" />
+            </e>
+            <e p="Tasks" t="Include">
+              <e p="ObjectInRange.cs" t="Include" />
+            </e>
           </e>
           <e p="_Bush" t="Include">
             <e p="BrBushModule.cs" t="Include" />
@@ -1644,9 +1649,6 @@
         </e>
         <e p="StreamingAssets" t="Include">
           <e p="settings.txt" t="Include" />
-        </e>
-        <e p="Temp" t="Include">
-          <e p="NavMeshTest.cs" t="Include" />
         </e>
         <e p="ThirdParties" t="Include">
           <e p="CafeBazaarIAB" t="Include">
