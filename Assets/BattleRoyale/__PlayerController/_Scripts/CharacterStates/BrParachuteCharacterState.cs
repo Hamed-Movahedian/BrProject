@@ -32,10 +32,13 @@ public class BrParachuteCharacterState : BrCharacterStateBase
 
     public override void OnExit()
     {
-/*
         if (isMine)
-            _controller.characterModel.Show();
-*/
+        {
+            _controller.NavMeshAgent.updatePosition = true;
+            _controller.NavMeshAgent.Warp(_controller.transform.position);
+            _controller.transform.position = _controller.NavMeshAgent.nextPosition;
+        }
+
         Shadow.SetActive(true);
 
         _controller.Animator.SetBool("OnGround", true);

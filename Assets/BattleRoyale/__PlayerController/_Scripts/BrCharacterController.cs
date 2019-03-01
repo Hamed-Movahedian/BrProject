@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
@@ -44,7 +45,11 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     #region Properties
 
+    public CharacterStateEnum CurrentState { get; set; }
+
     public Animator Animator { get; set; }
+    public NavMeshAgent NavMeshAgent { get; set; }
+
     public Rigidbody RigidBody { get; set; }
     public CapsuleCollider CapsuleCollider { get; set; }
     public BrCharacterModel characterModel { get; set; }
@@ -110,7 +115,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     #region Privates
 
-    private CharacterStateEnum CurrentState { get; set; }
     
     private Dictionary<CharacterStateEnum, BrCharacterStateBase> _stateDic;
     
@@ -152,25 +156,32 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     private void Initialize()
     {
         _isInitialized = true;
-        
-        if (photonView.IsMine)
-            MasterCharacter = this;
 
         #region Get necessary components
 
         RigidBody = GetComponent<Rigidbody>();
         CapsuleCollider = GetComponent<CapsuleCollider>();
         Animator = GetComponent<Animator>();
+        NavMeshAgent = GetComponent<NavMeshAgent>();
         WeaponController = GetComponent<BrWeaponController>();
         hitEffect = GetComponent<BrCharacterHitEffect>();
+        characterModel = GetComponent<BrCharacterModel>();
 
         #endregion
+
+        if (photonView.IsMine)
+        {
+            if(MasterCharacter==null)
+                MasterCharacter = this;
+            
+        }
+        else
+            NavMeshAgent.enabled = false;
 
         #region Set Profile
 
         profile = Profile.Deserialize((string) photonView.Owner.CustomProperties["Profile"]);
 
-        characterModel = GetComponent<BrCharacterModel>();
         characterModel.SetProfile(profile);
 
         #endregion
@@ -348,6 +359,16 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     #endregion
 
+    #region OnAnimatorMove
+
+    private void OnAnimatorMove()
+    {
+        if(NavMeshAgent.updatePosition)
+            NavMeshAgent.Move(Animator.deltaPosition);
+    }
+
+    #endregion
+    
     #region TakeDamage
 
     internal void TakeDamage(int bulletDamage, Vector3 bulletDir, BrCharacterController killer, string weaponName)

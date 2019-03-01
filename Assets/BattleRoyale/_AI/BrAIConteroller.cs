@@ -20,53 +20,24 @@ public class BrAIConteroller : MonoBehaviour
     }
     
     #endregion
-    
-    #region OnDestory
-    
-    public delegate void OnDestoryDel();
-    
-    public OnDestoryDel OnDestory;
-    
-    #endregion
-    
-    #region OnInitialize
-    
-    public delegate void OnInitializeDel(BrCharacterController player);
-    
-    public OnInitializeDel OnInitialize;
-    
-    #endregion
-    
-    #region OnSetDestination
-    
-    public delegate void OnSetDestinationDel(Vector3 pos);
-    
-    public OnSetDestinationDel OnSetDestination;
-    
-    #endregion
-    
-    private void Awake()
+
+    #region PlayerCount
+
+    private int playerCount = -1;
+
+    public int PlayerCount
     {
-        if ((string) PhotonNetwork.LocalPlayer.CustomProperties["AI"] == "0")
+        get
         {
-            gameObject.SetActive(false);
-            OnInitialize(null);
-            return;
+            if (playerCount == -1)
+            {
+                playerCount = (int) PhotonNetwork.LocalPlayer.CustomProperties["AI"];
+            }
+            return playerCount;
         }
-        
-        //Register player
-        BrPlayerTracker.Instance.OnMasterPlayerRegister += player =>
-        {
-            OnInitialize(player);
-            player.OnDead.AddListener(() => OnDestory());
-        };
     }
 
-    public void SetDestination(Vector3 pos)
-    {
-        Destination = pos;
-        OnSetDestination(pos);
-    }
-
-    public Vector3 Destination { get; private set; }
+    #endregion
+    public bool IsActive => PlayerCount > 0;
+   
 }
