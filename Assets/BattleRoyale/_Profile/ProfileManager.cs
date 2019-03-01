@@ -197,6 +197,7 @@ public struct Statistics
 }
 public class MatchStats
 {
+    public float PlayTime;
     public int Wins;
     public int Kills;
     public int DoubleKills;

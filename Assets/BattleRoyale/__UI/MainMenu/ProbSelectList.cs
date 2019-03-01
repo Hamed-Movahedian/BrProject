@@ -11,12 +11,17 @@ public class ProbSelectList : MonoBehaviour
 
     [Header("Character")]
     public BrCharacterModel ShowCharacter, MainCharacter;
+    public RawImage CharacterImage;
 
     [Header("Para")]
     public Para ShowPara;
+    public RawImage ParaImage;
+
 
     [Header("Flag")]
     public Flag ShowFlag;
+    public RawImage FlagImage;
+
 
     public ProfileManager Manager
     {
@@ -39,15 +44,17 @@ public class ProbSelectList : MonoBehaviour
     private ProbType _probsType;
     private int _allProbs;
     private List<int> _availableprobs;
-    private int _currentProb,_selectedCharacter,_selectedPara,_selectedFlag,_selectedEmot;
-    
+    private int _currentProb, _selectedCharacter, _selectedPara, _selectedFlag, _selectedEmot;
+
     public void CreatPlayerList(int probType)
     {
-        GetComponentInChildren<ScrollRect>().verticalNormalizedPosition = 1;
         probType = Mathf.Clamp(probType, 0, 3);
         ShowCharacter.gameObject.SetActive(false);
+        CharacterImage.gameObject.SetActive(false);
         ShowFlag.gameObject.SetActive(false);
+        FlagImage.gameObject.SetActive(false);
         ShowPara.gameObject.SetActive(false);
+        ParaImage.gameObject.SetActive(false);
 
         foreach (ProbSelectButton button in _activeButtons)
         {
@@ -64,6 +71,7 @@ public class ProbSelectList : MonoBehaviour
                 _availableprobs = Profile.AvalableCharacters;
                 _currentProb = _selectedCharacter;
                 Manager.CharactersList.Characters[_currentProb].SetToCharacter(ShowCharacter);
+                CharacterImage.gameObject.SetActive(true);
                 ShowCharacter.gameObject.SetActive(true);
                 _allProbs = Manager.CharactersList.Characters.Length;
                 break;
@@ -71,6 +79,7 @@ public class ProbSelectList : MonoBehaviour
                 _availableprobs = Profile.AvalableParas;
                 _currentProb = _selectedPara;
                 Manager.ParasList.Paras[_currentProb].SetToPara(ShowPara);
+                ParaImage.gameObject.SetActive(true);
                 ShowPara.gameObject.SetActive(true);
                 _allProbs = Manager.ParasList.Paras.Length;
                 break;
@@ -78,6 +87,7 @@ public class ProbSelectList : MonoBehaviour
                 _availableprobs = Profile.AvalableFlags;
                 _currentProb = _selectedFlag;
                 Manager.FlagsList.Flags[_currentProb].SetToFlag(ShowFlag);
+                FlagImage.gameObject.SetActive(true);
                 ShowFlag.gameObject.SetActive(true);
                 _allProbs = Manager.FlagsList.Flags.Length;
                 break;
@@ -89,7 +99,8 @@ public class ProbSelectList : MonoBehaviour
         {
             ProbSelectButton prefab = GetButton();
             prefab.transform.SetParent(Panel);
-            prefab.transform.localScale=Vector3.one;
+            prefab.gameObject.SetActive(true);
+            prefab.transform.localScale = Vector3.one;
             prefab.SetProbButton(
                 Manager.GetProbIcon(probIndex, _probsType),
                 probIndex,
@@ -97,7 +108,12 @@ public class ProbSelectList : MonoBehaviour
                 _availableprobs.Contains(probIndex)
                 );
         }
-        SetListSize(_allProbs);
+        Invoke(nameof(InitiateScroll),.01f);
+    }
+
+    private void InitiateScroll()
+    {
+        GetComponentInChildren<ScrollRect>().horizontalNormalizedPosition = 0;
     }
 
     private void InitializeCurrentProbs(Profile profile)
@@ -110,13 +126,14 @@ public class ProbSelectList : MonoBehaviour
 
     private void SetListSize(int buttonsCount)
     {
+        return;
         VerticalLayoutGroup verticalLayoutGroup = Panel.GetComponent<VerticalLayoutGroup>();
         Vector2 delta = Panel.GetComponent<RectTransform>().sizeDelta;
         delta.y = -verticalLayoutGroup.spacing + verticalLayoutGroup.padding.top + verticalLayoutGroup.padding.bottom;
         delta.y += buttonsCount * (verticalLayoutGroup.spacing + ProbButtonPrefab.GetComponent<RectTransform>().sizeDelta.y);
         Panel.GetComponent<RectTransform>().sizeDelta = delta;
     }
-    
+
     public void ShowProb(int active)
     {
         switch (_probsType)
@@ -149,8 +166,8 @@ public class ProbSelectList : MonoBehaviour
         Manager.CharactersList.Characters[_selectedCharacter].SetToCharacter(MainCharacter);
         Profile.CurrentCharacter = _selectedCharacter;
         Profile.CurrentFlag = _selectedFlag;
-        Profile.CurrentPara= _selectedPara;
-        Profile.CurrentEmote= _selectedEmot;
+        Profile.CurrentPara = _selectedPara;
+        Profile.CurrentEmote = _selectedEmot;
         Manager.SaveProfile();
     }
 
@@ -163,7 +180,7 @@ public class ProbSelectList : MonoBehaviour
     {
         InitializeCurrentProbs(Manager.PlayerProfile);
     }
-    
+
     public void ClearButtonList()
     {
         foreach (ProbSelectButton button in _activeButtons)

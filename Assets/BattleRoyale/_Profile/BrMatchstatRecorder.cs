@@ -8,42 +8,86 @@ using UnityEngine.UI;
 
 public class BrMatchstatRecorder : MonoBehaviour
 {
+    public BrCharacterModel Avatar;
+
+
     public Text KillCount;
     public Text KillPoint;
     public Text WinPoint;
-    [FormerlySerializedAs("Rank")] public Text RankText;
+    public Text MatchText;
+    [FormerlySerializedAs("Rank")]
+    public Text RankText;
     public GameObject WinText;
-    
+
+    public BrLevelupSlider levelSlider;
+
+
     private float lastKilTime;
     private float lastDoubleKilTime;
-    private MatchStats thisMatchStat=new MatchStats();
+    private MatchStats thisMatchStat = new MatchStats();
 
     private bool win;
     private int rank = 1;
-
+    private int _exp;
+    private int _level;
     // Start is called before the first frame update
+
+
+
+    #region Instance
+    private static BrMatchstatRecorder instance;
+    private float _startTime;
+    private float _finishTime;
+
+    public static BrMatchstatRecorder Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<BrMatchstatRecorder>();
+            return instance;
+        }
+    }
+
+    #endregion
+
+
+    #region Initialize
+
     void Start()
     {
-        
-        BrGameManager.Instance.OnMatchFinished.AddListener(()=> ShowStats());
-        
+        Statistics stat = ProfileManager.Instance().PlayerProfile.PlayerStat;
+        _level = stat.Level;
+        _exp = stat.Experience;
+        BrGameManager.Instance.OnMatchFinished.AddListener(() =>
+        {
+            rank = Mathf.Max(BrPlayerTracker.Instance.PlayerCounter, rank);
+
+            if (rank == 1)
+                _finishTime = Time.time;
+
+            ShowStats();
+        });
+        BrPlayerTracker.Instance.OnMasterPlayerRegister += (player) => _startTime = Time.time;
         // Kill counter
         BrPlayerTracker.Instance.OnPlayerDead += (victim, killer, weaponName) =>
         {
+            _finishTime = Time.time;
+
             if (killer == BrCharacterController.MasterCharacter)
                 RecordKill();
 
             if (victim == BrCharacterController.MasterCharacter)
-                rank = BrPlayerTracker.Instance.PlayerCounter+1;
+                rank = BrPlayerTracker.Instance.PlayerCounter + 1;
         };
-        
+
         //Pickup counter
         BrPickupManager.Instance.OnPickedup += (player, pickup) =>
         {
             if (player == BrCharacterController.MasterCharacter)
                 RecordPickup(pickup);
         };
-        
+
         // AirDrop counter
         BrAirdropController.Instance.OnUnpack += player =>
         {
@@ -52,29 +96,34 @@ public class BrMatchstatRecorder : MonoBehaviour
         };
     }
 
+
+    #endregion
+
+    #region Recorders
+
     public void RecordKill()
     {
-        float killTime=Time.time;
-        
-        if (killTime-lastKilTime<1)
+        float killTime = Time.time;
+
+        if (killTime - lastKilTime < 4)
         {
-            if (killTime-lastDoubleKilTime<1)
+            if (killTime - lastDoubleKilTime < 4)
             {
                 thisMatchStat.TripleKills++;
                 thisMatchStat.DoubleKills--;
                 lastKilTime = 0;
-                lastDoubleKilTime=0;
+                lastDoubleKilTime = 0;
             }
             else
             {
                 thisMatchStat.DoubleKills++;
-                lastDoubleKilTime=killTime;
-                lastKilTime=killTime;
+                lastDoubleKilTime = killTime;
+                lastKilTime = killTime;
             }
         }
         else
-            lastKilTime=killTime;
-        
+            lastKilTime = killTime;
+
         thisMatchStat.Kills++;
 
     }
@@ -84,13 +133,13 @@ public class BrMatchstatRecorder : MonoBehaviour
         switch (pickUp)
         {
             case BrChestPickup brChestPickup:
-                thisMatchStat.SupplyCreates ++;
+                thisMatchStat.SupplyCreates++;
                 break;
             case BrWeaponPickup brWeaponPickup:
                 thisMatchStat.GunsCollected++;
                 break;
             default:
-                thisMatchStat.ItemsCollected ++;
+                thisMatchStat.ItemsCollected++;
                 break;
         }
     }
@@ -105,25 +154,48 @@ public class BrMatchstatRecorder : MonoBehaviour
         thisMatchStat.SupplyCreates++;
     }
 
+
+    #endregion
+
+
     public void ShowStats()
     {
-        win = rank==1;
-        thisMatchStat.Wins =win ?1:0;
+        Avatar.SetProfile(ProfileManager.Instance().PlayerProfile);
+        thisMatchStat.PlayTime = _finishTime - _startTime;
+        win = rank == 1;
+        thisMatchStat.Wins = win ? 1 : 0;
         WinText.SetActive(win);
         RankText.gameObject.SetActive(!win);
-        RankText.text = "# "+rank;
+        RankText.text = "# " + rank;
+        MatchXP xp = BrExpManager.CalculateXP(thisMatchStat);
         KillCount.text = thisMatchStat.Kills.ToString();
-        KillPoint.text = (thisMatchStat.Kills * 5).ToString();
-        WinPoint.text = (thisMatchStat.Wins * 20).ToString();
+        KillPoint.text = (xp.K + xp.Dk + xp.Tk).ToString();
+        WinPoint.text = xp.W.ToString();
+        int total = xp.P + xp.K + xp.Dk + xp.Tk + xp.W + xp.AP;
+        MatchText.text = total.ToString();
+
+        levelSlider.addedXp = total;
+
         GetComponent<PlayableDirector>().Play();
         SaveMatchRecordToProfile();
     }
-    
+
+
     public void SaveMatchRecordToProfile()
     {
         Debug.Log(thisMatchStat.ToString());
         ProfileManager.Instance().SetMatchStat(thisMatchStat);
-        thisMatchStat=new MatchStats();
+        thisMatchStat = new MatchStats();
     }
-    
+
+}
+
+public struct MatchXP
+{
+    public int K;
+    public int Dk;
+    public int Tk;
+    public int AP;
+    public int W;
+    public int P;
 }
