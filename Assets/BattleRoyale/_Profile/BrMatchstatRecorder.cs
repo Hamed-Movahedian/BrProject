@@ -15,6 +15,7 @@ public class BrMatchstatRecorder : MonoBehaviour
     public Text KillPoint;
     public Text WinPoint;
     public Text MatchText;
+    
     [FormerlySerializedAs("Rank")]
     public Text RankText;
     public GameObject WinText;
@@ -57,7 +58,7 @@ public class BrMatchstatRecorder : MonoBehaviour
     void Start()
     {
         Statistics stat = ProfileManager.Instance().PlayerProfile.PlayerStat;
-        _level = stat.Level;
+        _level = BrExpManager.CalLevel(stat.Experience);
         _exp = stat.Experience;
         BrGameManager.Instance.OnMatchFinished.AddListener(() =>
         {
@@ -171,7 +172,7 @@ public class BrMatchstatRecorder : MonoBehaviour
         KillCount.text = thisMatchStat.Kills.ToString();
         KillPoint.text = (xp.K + xp.Dk + xp.Tk).ToString();
         WinPoint.text = xp.W.ToString();
-        int total = xp.P + xp.K + xp.Dk + xp.Tk + xp.W + xp.AP;
+        int total = xp.K + xp.Dk + xp.Tk + xp.W + xp.AP;
         MatchText.text = total.ToString();
 
         levelSlider.addedXp = total;

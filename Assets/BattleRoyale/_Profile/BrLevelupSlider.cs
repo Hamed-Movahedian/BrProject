@@ -16,8 +16,10 @@ public class BrLevelupSlider : MonoBehaviour
 
     private void OnEnable()
     {
-        Statistics stat = ProfileManager.Instance().PlayerProfile.PlayerStat;
-        level = stat.Level;
+        var profileManager = ProfileManager.Instance();
+        
+        Statistics stat = profileManager.PlayerProfile.PlayerStat;
+        level = BrExpManager.CalLevel(stat.Experience);
         exp = stat.Experience;
         _prexp = (level > 0) ? BrExpManager.CalXp(level - 1) : 0;
         _nextxp = BrExpManager.CalXp(level);
@@ -27,7 +29,12 @@ public class BrLevelupSlider : MonoBehaviour
         float percentXp = (float)(exp - _prexp) / (_nextxp - _prexp);
         ExperienceSlider.fillAmount = percentXp;
         LevelText.text = PersianFixer.Fix((level + 1).ToString(), true, true);
-        StartCoroutine(ShowExpChange(addedXp + exp));
+        int newXP = addedXp + exp;
+        StartCoroutine(ShowExpChange(newXP));
+        stat.Experience = newXP;
+        //stat.Level = BrExpManager.CalLevel(newXP);
+        profileManager.PlayerProfile.PlayerStat=stat;
+        profileManager.SaveProfile();
     }
 
     IEnumerator ShowExpChange(int Desier)

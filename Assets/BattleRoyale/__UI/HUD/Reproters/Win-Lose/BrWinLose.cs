@@ -40,9 +40,9 @@ public class BrWinLose : MonoBehaviour
         RemoteWinerName.text = player.UserID;
         
         StatText.text =
-            profile.PlayerStat.Level.ToString() + "\n" +
-            profile.PlayerStat.TotalWins.ToString() + "\n" +
-            profile.PlayerStat.TotalKills.ToString();
+            BrExpManager.CalLevel(profile.PlayerStat.Experience) + "\n" +
+            profile.PlayerStat.TotalWins+ "\n" +
+            profile.PlayerStat.TotalKills;
 
         Health.fillAmount = player.Health / (float) player.MaxHealth;
         Shield.fillAmount = player.Shield / (float) player.MaxShield;
