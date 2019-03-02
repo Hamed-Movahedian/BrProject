@@ -114,6 +114,7 @@
               <e p="SlotList.cs" t="Include" />
             </e>
             <e p="MainMenu" t="Include">
+              <e p="BrObjectRotator.cs" t="Include" />
               <e p="BrPlayerShowStat.cs" t="Include" />
               <e p="Launcher.cs" t="Include" />
               <e p="PlayerNameInputField.cs" t="Include" />
@@ -195,6 +196,9 @@
             <e p="BrExpManager.cs" t="Include" />
             <e p="BrLevelupSlider.cs" t="Include" />
             <e p="BrMatchstatRecorder.cs" t="Include" />
+            <e p="BrPlayerAvatar.cs" t="Include" />
+            <e p="BrPlayerCoin.cs" t="Include" />
+            <e p="BrPlayerTicket.cs" t="Include" />
             <e p="ProfileManager.cs" t="Include" />
           </e>
           <e p="_tools" t="Include">

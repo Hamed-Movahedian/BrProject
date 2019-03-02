@@ -39,7 +39,8 @@ public static class BrExpManager
     public static int CalXp(int l)
     {
         int xp = 0;
-        for (int i = 0; i <= l; i++) xp += (int) Math.Round(10 * Mathf.Pow(1.122f, l), 5) * Multiplyer;
+        for (int i = 0; i <= l; i++) 
+            xp += (int) Math.Round(10 * Mathf.Pow(1.122f, i), 5) * Multiplyer;
         
         return xp;
     }

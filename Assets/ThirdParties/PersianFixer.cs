@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class PersianFixer
 {
+/*
     public static string Fix(string word)
     {
         return ArabicFixer.Fix(word.Replace("ی", "ي"));
@@ -15,8 +16,9 @@ public static class PersianFixer
     {
         return ArabicFixer.Fix(word.Replace("ی", "ي"), rtl);
     }
+*/
 
-    public static string Fix(string word, bool tashkil, bool hindi)
+    public static string Fix(string word, bool tashkil=true, bool hindi=true)
     {
         return ArabicFixer.Fix(word.Replace("ی", "ي"), tashkil, hindi);
     }

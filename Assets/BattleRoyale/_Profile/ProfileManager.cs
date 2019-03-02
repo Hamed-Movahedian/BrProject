@@ -42,6 +42,19 @@ public class ProfileManager : MonoBehaviour
 
 #if UNITY_EDITOR
         var filepath = string.Format(@"Assets/StreamingAssets/{0}", fileName);
+        if (!File.Exists(filepath))
+        {
+            PlayerProfile=new Profile();
+            string content = JsonUtility.ToJson(PlayerProfile);
+            Debug.Log(content);
+/*            File.Create(filepath);
+            */
+            File.WriteAllText(filepath,content);
+            while (!File.Exists(filepath))
+            {
+                
+            }
+        }
 #else
         // check if file exists in Application.persistentDataPath
         var filepath = string.Format("{0}/{1}", Application.persistentDataPath, fileName);
@@ -112,7 +125,6 @@ public class ProfileManager : MonoBehaviour
         
     }
     
-    
     [ContextMenu("Save")]
     public void SaveProfile()
     {
@@ -142,20 +154,21 @@ public class Profile
 {
     public string UserID;
 
-    public List<int> AvalableCharacters;
-    public int CurrentCharacter;
-    public List<int> AvalableFlags;
-    public int CurrentFlag;
-    public List<int> AvalableEmotes;
-    public int CurrentEmote;
-    public List<int> AvalableParas;
-    public int CurrentPara;
+    public List<int> AvalableCharacters=new List<int>{0,1};
+    public int CurrentCharacter=0;
+    public List<int> AvalableFlags=new List<int>{0};
+    public int CurrentFlag=0;
+    public List<int> AvalableEmotes=new List<int>{0};
+    public int CurrentEmote=0;
+    public List<int> AvalableParas=new List<int>{0};
+    public int CurrentPara=0;
     public List<string> FriendsUserID;
     public List<string> RequestFrindUserID;
-    public int CoinCount;
+    public int CoinCount=100;
+    public int TicketCount=10;
 
-    public Statistics PlayerStat;
-
+    public Statistics PlayerStat=new Statistics(0);
+    
     public string Serialize()
     {
         return JsonUtility.ToJson(this);
@@ -181,6 +194,20 @@ public struct Statistics
     public int SupplyDrop;
     public int SupplyCreates;
     public int Experience;
+
+    public Statistics(int i)
+    {
+        TotalBattles = i;
+        TotalWins = i;
+        TotalKills = i;
+        DoubleKills = i;
+        TripleKills = i;
+        ItemsCollected = i;
+        GunsCollected = i;
+        SupplyDrop = i;
+        SupplyCreates = i;
+        Experience = i;
+    }
 
     public void ChangeStats(MatchStats thisMatchStats)
     {
