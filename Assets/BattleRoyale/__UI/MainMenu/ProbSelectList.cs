@@ -59,6 +59,7 @@ public class ProbSelectList : MonoBehaviour
         foreach (ProbSelectButton button in _activeButtons)
         {
             button.gameObject.SetActive(false);
+            button.transform.parent = CacheContent;
             _deactiveButtons.Add(button);
         }
         _activeButtons.Clear();
@@ -105,7 +106,8 @@ public class ProbSelectList : MonoBehaviour
                 Manager.GetProbIcon(probIndex, _probsType),
                 probIndex,
                 this,
-                _availableprobs.Contains(probIndex)
+                _availableprobs.Contains(probIndex),
+                _currentProb==probIndex
                 );
         }
         Invoke(nameof(InitiateScroll),.01f);

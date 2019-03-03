@@ -20,6 +20,10 @@ namespace BR.Lobby
             
             rectTransform.SetParent(LobbyManager.Instance.MarkerParent);
 
+            var parentScale = transform.parent.localScale;
+
+            rectTransform.localScale = new Vector3(1 / parentScale.x, 1 / parentScale.y, 1 / parentScale.z);
+
             if (photonView.IsMine)
             {
                 rectTransform.localPosition = new Vector3(

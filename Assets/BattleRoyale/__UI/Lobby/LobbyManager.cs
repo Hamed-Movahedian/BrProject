@@ -21,15 +21,13 @@ namespace BR.Lobby
         private void Awake()
         {
             Instance = this;
-
         }
 
         // Use this for initialization
         void Start()
         {
             var marker = PhotonNetwork.Instantiate(this.MarkerPrefab.name, Vector3.zero, Quaternion.identity);
-
-            Invoke(nameof(LoadAsync),2);
+            Invoke(nameof(LoadAsync), 2);
         }
 
         private void LoadAsync()
@@ -45,8 +43,7 @@ namespace BR.Lobby
 
             PhotonNetwork.CurrentRoom.IsOpen = false;
 
-            photonView.RPC(nameof(CloseRoomRpc),RpcTarget.AllViaServer);
-            
+            photonView.RPC(nameof(CloseRoomRpc), RpcTarget.AllViaServer);
         }
 
         [PunRPC]
@@ -57,7 +54,7 @@ namespace BR.Lobby
 
         public void LoadArena()
         {
-            if (PhotonNetwork.IsMasterClient) 
+            if (PhotonNetwork.IsMasterClient)
                 photonView.RPC(nameof(LoadArenaRpc), RpcTarget.AllViaServer);
         }
 
