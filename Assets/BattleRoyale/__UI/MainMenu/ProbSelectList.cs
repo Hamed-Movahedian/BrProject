@@ -150,7 +150,7 @@ public class ProbSelectList : MonoBehaviour
                 break;
             case ProbType.Flag:
                 Manager.FlagsList.Flags[active].SetToFlag(ShowFlag);
-                ShowFlag.GetComponent<Animator>().SetTrigger("Reset");
+                ShowFlag.GetComponentInChildren<Animator>().SetTrigger("Reset");
                 _selectedFlag = active;
                 break;
             case ProbType.Emot:
