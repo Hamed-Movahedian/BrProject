@@ -35,15 +35,16 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public override TaskStatus OnUpdate()
         {
             CalculateFinalTarget();
-            
+
             if (Vector3.Magnitude(transform.position - finalTarget) > fleedDistance.Value) {
                 return TaskStatus.Success;
             }
 
             if (HasArrived()) {
-                if (!hasMoved) {
+                /*if (!hasMoved) {
                     return TaskStatus.Failure;
-                }
+                }*/
+                
                 if (!SetDestination(Target())) {
                     return TaskStatus.Failure;
                 }
@@ -62,6 +63,11 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 
         private void CalculateFinalTarget()
         {
+            if (targets.Value.Count==1)
+            {
+                finalTarget = targets.Value[0].transform.position;
+                return;
+            }
             finalTarget = Vector3.zero;
             targets.Value.ForEach(t => finalTarget += t.transform.position);
             finalTarget /= targets.Value.Count;
@@ -70,6 +76,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         // Flee in the opposite direction
         private Vector3 Target()
         {
+            CalculateFinalTarget();
+
             return transform.position + (transform.position - finalTarget).normalized * lookAheadDistance.Value;
         }
 

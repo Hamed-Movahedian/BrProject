@@ -9,34 +9,40 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
     [TaskCategory("BattleRoyale")]
     public class TargetSelection : BrAiConditionalBase
     {
+        public bool FleeTargets = true;
         public SharedGameObjectList Targets;
-        private BrFleeTargertSelection targertSelection;
+        
+        
+        private BrTargetSelection targetSelection;
         private GameObject target;
 
 
         public override void OnAwake()
         {
             base.OnAwake();
-            targertSelection = aiBehaviour.FleeTargertSelection;
+            
+            targetSelection = FleeTargets ? 
+                aiBehaviour.fleeTargetSelection:
+                aiBehaviour.attackTargetSelection;
         }
 
         public override TaskStatus OnUpdate()
         {
-            switch (targertSelection.Method)
+            switch (targetSelection.Method)
             {
-                case BrFleeTargertSelection.MethodEnum.Closest:
+                case BrTargetSelection.MethodEnum.Closest:
                     SelectClosestTarget();
                     break;
                 
-                case BrFleeTargertSelection.MethodEnum.All:
+                case BrTargetSelection.MethodEnum.All:
                     SelectAllTargets();
                     break;
                 
-                case BrFleeTargertSelection.MethodEnum.Random:
+                case BrTargetSelection.MethodEnum.Random:
                     SelectRandomTargets();
                     break;
                 
-                case BrFleeTargertSelection.MethodEnum.Weakest:
+                case BrTargetSelection.MethodEnum.Weakest:
                     SelectWeakestTargets();
                     break;
                 
@@ -77,6 +83,7 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
             foreach (var player in aiController.playersInRange)
             {
                 var sqrMagnitude = (player.transform.position - transform.position).sqrMagnitude;
+                
                 if (sqrMagnitude < min)
                 {
                     min = sqrMagnitude;

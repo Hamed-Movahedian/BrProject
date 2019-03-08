@@ -14,7 +14,7 @@ public class BrFallingCharacterState : BrCharacterStateBase
     {
         _controller.gameObject.SetActive(false);
 
-        if (isMine)
+        //if (isMine)
             _controller.NavMeshAgent.updatePosition = false;
 
         OnStartFalling.Invoke();

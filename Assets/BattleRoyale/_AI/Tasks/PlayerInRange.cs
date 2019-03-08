@@ -38,6 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
                 for (var i = 0; i < size; i++)
                 {
                     var character = BrCharacterDictionary.Instance.GetCharacter(colliders[i]);
+                    
                     if (character && character != characterController)
                         playersInRange.Add(character);
                 }

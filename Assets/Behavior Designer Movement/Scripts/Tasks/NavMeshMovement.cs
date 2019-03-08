@@ -91,7 +91,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         protected bool SamplePosition(Vector3 position)
         {
             NavMeshHit hit;
-            return NavMesh.SamplePosition(position, out hit, navMeshAgent.height * 2, NavMesh.AllAreas);
+            return NavMesh.SamplePosition(position, out hit, navMeshAgent.height * 5, NavMesh.AllAreas);
         }
 
         /// <summary>

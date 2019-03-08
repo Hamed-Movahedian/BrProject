@@ -363,6 +363,9 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnAnimatorMove()
     {
+        if (!isMine)
+            return;
+        
         if(NavMeshAgent.updatePosition)
             NavMeshAgent.Move(Animator.deltaPosition);
     }

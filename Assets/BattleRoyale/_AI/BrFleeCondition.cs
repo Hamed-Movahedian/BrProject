@@ -13,6 +13,7 @@ public class BrFleeCondition
     }
 
     public List<ConditionEnum> Conditions;
+    
     [Range(0,1)]
     public float HealthThreshold=.3f;
 
@@ -30,7 +31,7 @@ public class BrFleeCondition
                         return true;
                     break;
                 case ConditionEnum.EnemyCounter:
-                    if (controller.playersInRange.Count > EnemyCounter)
+                    if (controller.playersInRange.Count >= EnemyCounter)
                         return true;
                     break;
                 case ConditionEnum.Always:

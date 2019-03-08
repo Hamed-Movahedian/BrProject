@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class BrFleeTargertSelection
+public class BrTargetSelection
 {
     public enum MethodEnum
     {
