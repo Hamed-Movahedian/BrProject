@@ -5,14 +5,8 @@ using BehaviorDesigner.Runtime.Tasks;
 namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
 {
 	[TaskCategory("BattleRoyale")]
-	public class NeedWeapon : Conditional
+	public class NeedWeapon : BrAiConditionalBase
 	{
-		private BrCharacterController characterController;
-
-		public override void OnStart()
-		{
-			characterController = gameObject.GetComponentInParent<BrCharacterController>();
-		}
 		
 		public override TaskStatus OnUpdate()
 		{

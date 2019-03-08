@@ -5,19 +5,19 @@ using BehaviorDesigner.Runtime.Tasks;
 namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
 {
     [TaskCategory("BattleRoyale")]
-    public class NeedHealth : BrAiConditionalBase
+    public class MustFlee : BrAiConditionalBase
     {
-        private BrAiHealthPickup healthPickup;
+        private BrFleeCondition condition;
 
         public override void OnAwake()
         {
             base.OnAwake();
-            healthPickup = aiBehaviour.HealthPickup;
+            condition = aiBehaviour.FleeCondition;
         }
 
         public override TaskStatus OnUpdate()
         {
-            return characterController.Health < characterController.MaxHealth * healthPickup.Threshold
+            return condition.IsValid(aiController)
                 ? TaskStatus.Success
                 : TaskStatus.Failure;
         }

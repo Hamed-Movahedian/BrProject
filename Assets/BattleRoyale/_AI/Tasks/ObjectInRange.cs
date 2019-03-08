@@ -5,7 +5,6 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
 {
     [TaskCategory("BattleRoyale")]
     //[TaskIcon("Assets/Behavior Designer Movement/Editor/Icons/{SkinColor}WithinDistanceIcon.png")]
-
     public class ObjectInRange : Conditional
     {
         public float distance = 18;
@@ -15,10 +14,7 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
 
         private bool dirty = true;
         private Vector3 lastPos;
-
-        public override void OnStart()
-        {
-        }
+        private Collider[] colliders = new Collider[40];
 
         public override TaskStatus OnUpdate()
         {
@@ -26,9 +22,9 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
                 return TaskStatus.Failure;
 
             var pos = transform.position;
-            
+
             pos.y = BrLevelBound.Instance.Y;
-            
+
             if (!dirty && (lastPos - pos).sqrMagnitude > updateDistance * updateDistance)
                 dirty = true;
 
@@ -38,13 +34,15 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
                 dirty = false;
                 lastPos = pos;
 
-                var colliders =
-                    Physics.OverlapSphere(pos, distance, layer, QueryTriggerInteraction.Collide);
+
+                var size = Physics.OverlapSphereNonAlloc(pos, distance, colliders, layer,
+                    QueryTriggerInteraction.Collide);
 
                 var min = distance * distance + 10;
 
-                foreach (var collider in colliders)
+                for (var i = 0; i < size; i++)
                 {
+                    var collider = colliders[i];
                     var delta = collider.transform.position - pos;
                     delta.y = 0;
                     var sqrMagnitude = delta.sqrMagnitude;
@@ -54,10 +52,9 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
                         result.Value = collider.gameObject;
                     }
                 }
-
             }
 
-            return (result.Value == null || !result.Value.activeSelf)  ? TaskStatus.Failure : TaskStatus.Success;
+            return (result.Value == null || !result.Value.activeSelf) ? TaskStatus.Failure : TaskStatus.Success;
         }
     }
 }
