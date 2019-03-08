@@ -7,4 +7,9 @@ public class FlagsList : ScriptableObject
 {
     public FlagData[] Flags;
 
+    public FlagData this[int index]
+    {
+        get { return Flags[index]; }
+        set { Flags[index] = value; }
+    }
 }

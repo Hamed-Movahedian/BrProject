@@ -6,4 +6,10 @@ using UnityEngine;
 public class ParasList : ScriptableObject
 {
     public ParaData[] Paras;
+    
+    public ParaData this[int index]
+    {
+        get { return Paras[index]; }
+        set { Paras[index] = value; }
+    }
 }
