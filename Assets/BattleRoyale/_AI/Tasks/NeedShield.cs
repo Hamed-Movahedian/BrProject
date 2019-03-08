@@ -5,19 +5,20 @@ using BehaviorDesigner.Runtime.Tasks;
 namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
 {
 	[TaskCategory("BattleRoyale")]
-	public class NeedShield : Conditional
+	public class NeedShield : BrAiConditionalBase
 	{
-		private BrCharacterController characterController;
+		private BrAiShieldPickup shieldPickup;
 
-		public override void OnStart()
+		public override void OnAwake()
 		{
-			characterController = gameObject.GetComponentInParent<BrCharacterController>();
+			base.OnAwake();
+			shieldPickup = aiBehaviour.ShieldPickup;
 		}
-		
+
 		public override TaskStatus OnUpdate()
 		{
 			
-			return characterController.NeedShield ?
+			return characterController.Shield <characterController.MaxShield*shieldPickup.Threshold ?
 				TaskStatus.Success :
 				TaskStatus.Failure;
 		}

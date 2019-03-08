@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\CurrentProjects\BrProject" t="IncludeRecursive">
+    <e p="C:\Users\Hamed\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Hamed\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-1566460626.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Hamed\Documents\Projects\BrProject" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
@@ -41,6 +43,7 @@
           <e p="__PlayerController" t="Include">
             <e p="_Scripts" t="Include">
               <e p="BrCharacterController.cs" t="Include" />
+              <e p="BrCharacterDictionary.cs" t="Include" />
               <e p="BrCharacterHitEffect.cs" t="Include" />
               <e p="CharacterStates" t="Include">
                 <e p="BrCharacterStateBase.cs" t="Include" />
@@ -124,17 +127,25 @@
             </e>
           </e>
           <e p="_AI" t="Include">
+            <e p="BrAiBehavioursAsset.cs" t="Include" />
             <e p="BrAiCharacterController.cs" t="Include" />
             <e p="BrAIConteroller.cs" t="Include" />
             <e p="BrAiMovement.cs" t="Include" />
+            <e p="BrFleeCondition.cs" t="Include" />
+            <e p="BrFleeTargertSelection.cs" t="Include" />
             <e p="SharedVariable" t="Include">
               <e p="SharedVariables.cs" t="Include" />
             </e>
             <e p="Tasks" t="Include">
+              <e p="BrAiConditionalBase.cs" t="Include" />
+              <e p="BrAiTaskBase.cs" t="Include" />
+              <e p="MustFlee.cs" t="Include" />
               <e p="NeedHealth.cs" t="Include" />
               <e p="NeedShield.cs" t="Include" />
               <e p="NeedWeapon.cs" t="Include" />
               <e p="ObjectInRange.cs" t="Include" />
+              <e p="PlayerInRange.cs" t="Include" />
+              <e p="TargetSelection.cs" t="Include" />
             </e>
           </e>
           <e p="_Bush" t="Include">
@@ -865,6 +876,7 @@
               <e p="Cover.cs" t="Include" />
               <e p="Evade.cs" t="Include" />
               <e p="Flee.cs" t="Include" />
+              <e p="FleeAdvance.cs" t="Include" />
               <e p="Flock.cs" t="Include" />
               <e p="Follow.cs" t="Include" />
               <e p="LeaderFollow.cs" t="Include" />
@@ -1712,11 +1724,6 @@
         <e p="StreamingAssets" t="Include">
           <e p="settings.txt" t="Include" />
         </e>
-        <e p="Temp" t="Include">
-          <e p="Editor" t="Include">
-            <e p="Replace.cs" t="Include" />
-          </e>
-        </e>
         <e p="ThirdParties" t="Include">
           <e p="CafeBazaarIAB" t="Include">
             <e p="AbstractManager.cs" t="Include" />
@@ -1837,7 +1844,5 @@
         <e p="bin" t="ExcludeRecursive" />
       </e>
     </e>
-    <e p="C:\Users\Hosein\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Hosein\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-523611518.00" t="ExcludeRecursive" />
   </component>
 </project>
