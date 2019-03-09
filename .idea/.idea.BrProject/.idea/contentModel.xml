@@ -128,6 +128,9 @@
               <e p="ProbSelectButton.cs" t="Include" />
               <e p="ProbSelectList.cs" t="Include" />
             </e>
+            <e p="TemporaryShow" t="Include">
+              <e p="BrShowPropTemporary.cs" t="Include" />
+            </e>
           </e>
           <e p="_AI" t="Include">
             <e p="BrAiBehavioursAsset.cs" t="Include" />

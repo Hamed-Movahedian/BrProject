@@ -11,20 +11,24 @@ public class ProbSelectButton : MonoBehaviour
     private Button _button;
 
     public Color notAvailableColor;
-    
+
     public Color BorderSelectColor;
     public Color borderBaseColor;
 
-    public void SetProbButton(Texture2D image, int active, ProbSelectList list, bool hasProb,bool isCurrent)
+    public void SetProbButton(Texture2D image, int active, ProbSelectList list, bool hasProb, bool isCurrent)
     {
-        _button=GetComponent<Button>();
-        _button.interactable = hasProb;
-        Border.color =isCurrent? BorderSelectColor:borderBaseColor;
-        ButtonImage.color=hasProb? Color.white:notAvailableColor;
-        
-        _button.onClick.RemoveAllListeners();
-        _button.onClick.AddListener(() => list.ShowProb(active));
-        ButtonImage.texture = image;
-    }
+        _button = GetComponent<Button>();
+        //_button.interactable = hasProb;
+        Border.color = isCurrent ? BorderSelectColor : borderBaseColor;
+        ButtonImage.color = hasProb ? Color.white : notAvailableColor;
 
+        _button.onClick.RemoveAllListeners();
+        if (hasProb)
+            _button.onClick.AddListener(() => list.ShowProb(active));
+        else
+            _button.onClick.AddListener(() => list.PreviewProb(active));
+        
+        ButtonImage.texture = image;
+        
+    }
 }

@@ -4,6 +4,30 @@ using UnityEngine;
 
 public class BrRewardProgress : MonoBehaviour
 {
+    
+    #region Instance
+
+    private static BrRewardProgress instance;
+
+    public static BrRewardProgress Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<BrRewardProgress>();
+            return instance;
+        }
+    }
+
+
+    #endregion
+    
+    public delegate void SelectProb(ProbType type, int index);
+
+    public SelectProb OnProbSelected;
+
+
+    
     public LevelRewardButton ButtonPrefab;
     public GameObject Sectors;
     

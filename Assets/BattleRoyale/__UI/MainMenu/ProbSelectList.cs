@@ -5,22 +5,40 @@ using UnityEngine.UI;
 
 public class ProbSelectList : MonoBehaviour
 {
+    #region Instance
+
+    private static ProbSelectList instance;
+
+    public static ProbSelectList Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<ProbSelectList>();
+            return instance;
+        }
+    }
+
+    #endregion
+
+
     public ProbSelectButton ProbButtonPrefab;
     public RectTransform CacheContent;
     public RectTransform Panel;
 
-    [Header("Character")]
-    public BrCharacterModel ShowCharacter, MainCharacter;
+    [Header("Character")] public BrCharacterModel ShowCharacter, MainCharacter;
     public RawImage CharacterImage;
 
-    [Header("Para")]
-    public Para ShowPara;
+    [Header("Para")] public Para ShowPara;
     public RawImage ParaImage;
 
 
-    [Header("Flag")]
-    public Flag ShowFlag;
+    [Header("Flag")] public Flag ShowFlag;
     public RawImage FlagImage;
+
+    public delegate void SelectLockProb(ProbType type, int index);
+
+    public SelectLockProb OnLockProbSelected;
 
 
     public ProfileManager Manager
@@ -32,6 +50,7 @@ public class ProbSelectList : MonoBehaviour
             return _manager;
         }
     }
+
     public Profile Profile
     {
         get { return _profile ?? (_profile = Manager.PlayerProfile); }
@@ -62,9 +81,10 @@ public class ProbSelectList : MonoBehaviour
             button.transform.parent = CacheContent;
             _deactiveButtons.Add(button);
         }
+
         _activeButtons.Clear();
 
-        _probsType = (ProbType)probType;
+        _probsType = (ProbType) probType;
 
         switch (_probsType)
         {
@@ -107,10 +127,11 @@ public class ProbSelectList : MonoBehaviour
                 probIndex,
                 this,
                 _availableprobs.Contains(probIndex),
-                _currentProb==probIndex
-                );
+                _currentProb == probIndex
+            );
         }
-        Invoke(nameof(InitiateScroll),.01f);
+
+        Invoke(nameof(InitiateScroll), .01f);
     }
 
     private void InitiateScroll()
@@ -132,7 +153,8 @@ public class ProbSelectList : MonoBehaviour
         VerticalLayoutGroup verticalLayoutGroup = Panel.GetComponent<VerticalLayoutGroup>();
         Vector2 delta = Panel.GetComponent<RectTransform>().sizeDelta;
         delta.y = -verticalLayoutGroup.spacing + verticalLayoutGroup.padding.top + verticalLayoutGroup.padding.bottom;
-        delta.y += buttonsCount * (verticalLayoutGroup.spacing + ProbButtonPrefab.GetComponent<RectTransform>().sizeDelta.y);
+        delta.y += buttonsCount *
+                   (verticalLayoutGroup.spacing + ProbButtonPrefab.GetComponent<RectTransform>().sizeDelta.y);
         Panel.GetComponent<RectTransform>().sizeDelta = delta;
     }
 
@@ -160,6 +182,7 @@ public class ProbSelectList : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
         //_currentProb = active;
     }
 
@@ -190,6 +213,7 @@ public class ProbSelectList : MonoBehaviour
             button.transform.SetParent(CacheContent);
             _deactiveButtons.Add(button);
         }
+
         _activeButtons.Clear();
     }
 
@@ -205,14 +229,22 @@ public class ProbSelectList : MonoBehaviour
         {
             newButton = Instantiate(ProbButtonPrefab);
         }
+
         _activeButtons.Add(newButton);
         return newButton;
     }
 
+    public void PreviewProb(int active)
+    {
+        OnLockProbSelected(_probsType, active);
+    }
 }
 
 [Serializable]
 public enum ProbType
 {
-    Character, Para, Flag, Emot
+    Character,
+    Para,
+    Flag,
+    Emot
 }
