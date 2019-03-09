@@ -36,5 +36,8 @@ public class LevelRewardButton : MonoBehaviour
                 ProbImage.gameObject.SetActive(false);
                 break;
         }
+        
+        GetComponent<Button>().onClick.RemoveAllListeners();
+        GetComponent<Button>().onClick.AddListener(()=>list.ShowProb(reward));
     }
 }

@@ -23,6 +23,23 @@ public struct Reward
     public RewardType type;
     public int Value;
 
+    public ProbType GetProb()
+    {
+        switch (type)
+        {
+            case RewardType.Character:
+                return ProbType.Character;
+            case RewardType.Para:
+                return ProbType.Para;
+            case RewardType.Flag:
+                return ProbType.Flag;
+            case RewardType.Emot:
+                return ProbType.Emot;
+            default:
+                return ProbType.NoProb;
+        }
+        
+    }
 }
 
 [Serializable]

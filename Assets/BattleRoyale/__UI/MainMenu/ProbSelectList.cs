@@ -246,5 +246,6 @@ public enum ProbType
     Character,
     Para,
     Flag,
-    Emot
+    Emot,
+    NoProb
 }

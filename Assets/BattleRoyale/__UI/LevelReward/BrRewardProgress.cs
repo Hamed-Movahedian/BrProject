@@ -72,5 +72,15 @@ public class BrRewardProgress : MonoBehaviour
         }
     }
 
+    public void ShowProb(Reward reward)
+    {
+        ProbType probType = reward.GetProb();
+        
+        if (probType==ProbType.NoProb)
+            return;
+        
+        OnProbSelected(probType, reward.Value);
+    }
+
 
 }
