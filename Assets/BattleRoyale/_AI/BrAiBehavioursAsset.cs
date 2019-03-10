@@ -16,7 +16,6 @@ public class BrAiBehavioursAsset : ScriptableObject
     [Header("Flee")]
     public BrFleeCondition FleeCondition;
 
-    public BrTargetSelection fleeTargetSelection;
     public BrTargetSelection attackTargetSelection;
 }
 

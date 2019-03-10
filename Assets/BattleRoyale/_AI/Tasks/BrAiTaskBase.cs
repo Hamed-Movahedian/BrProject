@@ -1,6 +1,6 @@
 namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
 {
-    public class BrAiTaskBase : Task
+    public class BrAiTaskBase : Action
     {
         protected BrCharacterController characterController;
         protected BrAiCharacterController aiController;

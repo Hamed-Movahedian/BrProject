@@ -7,6 +7,7 @@ public class BrFleeCondition
 {
     public enum ConditionEnum
     {
+        NoWeapon,
         HealthBelowThreshold,
         EnemyCounter,
         Always
@@ -36,6 +37,10 @@ public class BrFleeCondition
                     break;
                 case ConditionEnum.Always:
                     return true;
+                    break;
+                case ConditionEnum.NoWeapon:
+                    if (!controller.character.WeaponController.Armed)
+                        return true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

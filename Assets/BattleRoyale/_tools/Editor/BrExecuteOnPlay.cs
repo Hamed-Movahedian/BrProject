@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Rider.Unity.Editor;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEditor;
 
 [InitializeOnLoad]
 public class BrExecuteOnPlay
