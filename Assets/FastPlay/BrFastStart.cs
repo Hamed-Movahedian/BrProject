@@ -15,14 +15,13 @@ public class BrFastStart : MonoBehaviour
     
     public bool HaveAI = true;
 
-    [Header("Location")] 
-    public bool PreDefined = false;
-    public Vector3 Location=new Vector3(0.05f,-.1f,0);
+    public int playerCount = 3;
     
     // Start is called before the first frame update
     IEnumerator Start()
     {
         DontDestroyOnLoad(gameObject);
+        
         while (SceneManager.GetActiveScene().name != "MainMenu")
             yield return null;
 
@@ -31,44 +30,67 @@ public class BrFastStart : MonoBehaviour
         Toggle toggle = FindObjectOfType<Toggle>();
 
         toggle.isOn = HaveAI;
-
-        yield return new WaitForSeconds(0.1f);
-
-        FindObjectOfType<Launcher>().Connect();
-
+        
         while (SceneManager.GetActiveScene().name != "Lobby")
             yield return null;
 
-        yield return new WaitForSeconds(2);
-        
-        Vector3 loc = PreDefined ? Location : new Vector3(Random.Range(-0.35f, 0.35f), Random.Range(-0.35f, 0.35f), 0);
-        
+        yield return  new WaitForSeconds(0.1f);
 
-        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable
+        LobbyManager.Instance.ArenaLoading = false;
+        
+        print("Wait for players connect");
+
+        // Wait for players to connect
+        yield return 
+            new WaitWhile(()=>PhotonNetwork.CurrentRoom.PlayerCount<playerCount);
+
+        yield return  new WaitForSeconds(1);
+
+        print("players connected");
+
+        if (PhotonNetwork.IsMasterClient)
         {
-            {"Pos", JsonUtility.ToJson(loc)}
-        });
-
-        FindObjectOfType<LobbyManager>().CloseRoom();
-
-        FindObjectOfType<LobbyManager>().LoadArena();
+            print("Arena load");
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.LoadLevel("Arena");
+        }
+        
+        print("Wait for arena");
 
         while (SceneManager.GetActiveScene().name != "Arena")
             yield return null;
 
-        var director = FindObjectOfType<BrFlyCutScene>().GetComponent<PlayableDirector>();
-        if (director && director.state == PlayState.Playing)
+        //yield return  new WaitForSeconds(0.1f);
+        
+        BrFlyCutScene.Instance.OnStartFalling.AddListener(() =>
         {
+            var director = FindObjectOfType<BrFlyCutScene>().GetComponent<PlayableDirector>();
+
+ 
             director.Pause();
             director.time = 226 / 60d;
             director.Evaluate();
             director.Play();
-        }
+        });
+
+/*
+        FindObjectOfType<LobbyManager>().CloseRoom();
+
+        FindObjectOfType<LobbyManager>().LoadArena();
+        
+        print("Wait for arena to load");
+
+        while (SceneManager.GetActiveScene().name != "Arena")
+            yield return null;
+
+
+        print("Arena loaded");
+
+        yield return  new WaitForSeconds(1);
+*/
+        
+        
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }

@@ -47,8 +47,8 @@ public class BrFlyCutScene : MonoBehaviour
             
             // set initial pos
 
-            StartCutScene();
             SetTransforms();
+            StartCutScene();
         };
         
     }

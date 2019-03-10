@@ -18,6 +18,8 @@ namespace BR.Lobby
 
         public UnityEvent OnCloseRoom;
 
+        public bool ArenaLoading = true;
+
         private void Awake()
         {
             Instance = this;
@@ -32,6 +34,9 @@ namespace BR.Lobby
 
         private void LoadAsync()
         {
+            if (!ArenaLoading)
+                return;
+            
             asyncOperation = SceneManager.LoadSceneAsync("Arena");
             asyncOperation.allowSceneActivation = false;
         }
@@ -54,6 +59,7 @@ namespace BR.Lobby
 
         public void LoadArena()
         {
+
             if (PhotonNetwork.IsMasterClient)
                 photonView.RPC(nameof(LoadArenaRpc), RpcTarget.AllViaServer);
         }

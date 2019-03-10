@@ -903,6 +903,7 @@
         <e p="FastPlay" t="Include">
           <e p="BrAiToggle.cs" t="Include" />
           <e p="BrFastStart.cs" t="Include" />
+          <e p="BrPlayerSpawner.cs" t="Include" />
           <e p="RemoveMeshes.cs" t="Include" />
         </e>
         <e p="FbxExporters" t="Include">
