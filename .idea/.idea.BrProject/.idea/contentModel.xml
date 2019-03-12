@@ -150,6 +150,7 @@
               <e p="BrAiTaskBase.cs" t="Include" />
               <e p="Fire.cs" t="Include" />
               <e p="MustFlee.cs" t="Include" />
+              <e p="NeedAmmo.cs" t="Include" />
               <e p="NeedHealth.cs" t="Include" />
               <e p="NeedShield.cs" t="Include" />
               <e p="NeedWeapon.cs" t="Include" />
