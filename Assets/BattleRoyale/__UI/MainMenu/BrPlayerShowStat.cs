@@ -42,8 +42,8 @@ public class BrPlayerShowStat : MonoBehaviour
         if (LevelText != null) LevelText.text = PersianFixer.Fix((level+1).ToString(), true, true);
         if (WinCounText != null) WinCounText.text = stats.TotalWins.ToString();
         if (KillCountText != null) KillCountText.text = stats.TotalKills.ToString();
-        int preXp = (level == 0 ? 0 : BrExpManager.CalXp(level - 1));
-        int nextXp = BrExpManager.CalXp(level);
+        int preXp = BrExpManager.CalXp(level );
+        int nextXp = BrExpManager.CalXp(level+1);
         LevelProgressImage.fillAmount =
             (float)
             (stats.Experience - preXp) /
