@@ -139,6 +139,7 @@
             <e p="BrAiBehavioursAsset.cs" t="Include" />
             <e p="BrAiCharacterController.cs" t="Include" />
             <e p="BrAIConteroller.cs" t="Include" />
+            <e p="BrAimBehaviour.cs" t="Include" />
             <e p="BrAiMovement.cs" t="Include" />
             <e p="BrFleeCondition.cs" t="Include" />
             <e p="BrTargetSelection.cs" t="Include" />
@@ -149,6 +150,7 @@
               <e p="BrAiConditionalBase.cs" t="Include" />
               <e p="BrAiTaskBase.cs" t="Include" />
               <e p="Fire.cs" t="Include" />
+              <e p="KillZoneCondition.cs" t="Include" />
               <e p="MustFlee.cs" t="Include" />
               <e p="NeedAmmo.cs" t="Include" />
               <e p="NeedHealth.cs" t="Include" />

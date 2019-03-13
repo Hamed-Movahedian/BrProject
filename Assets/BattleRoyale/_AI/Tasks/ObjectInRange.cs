@@ -43,6 +43,10 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
                 for (var i = 0; i < size; i++)
                 {
                     var collider = colliders[i];
+
+                    if(BrKillZone.Instance.IsInDanger(collider.transform.position))
+                        continue;
+                    
                     var delta = collider.transform.position - pos;
                     delta.y = 0;
                     var sqrMagnitude = delta.sqrMagnitude;

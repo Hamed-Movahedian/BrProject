@@ -68,6 +68,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                 dir += v;
             }
 
+            
+            
             return transform.position + dir.normalized * lookAheadDistance.Value;
         }
 

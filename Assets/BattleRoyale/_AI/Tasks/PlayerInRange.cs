@@ -37,6 +37,9 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
 
                 for (var i = 0; i < size; i++)
                 {
+                    if(BrKillZone.Instance.IsInDanger(colliders[i].transform.position))
+                        continue;
+                    
                     var character = BrCharacterDictionary.Instance.GetCharacter(colliders[i]);
                     
                     if (character && character != characterController)
