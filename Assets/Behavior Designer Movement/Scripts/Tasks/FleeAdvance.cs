@@ -7,25 +7,22 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
     [HelpURL("https://www.opsive.com/support/documentation/behavior-designer-movement-pack/")]
     [TaskIcon("Assets/Behavior Designer Movement/Editor/Icons/{SkinColor}FleeIcon.png")]
     public class FleeAdvance : NavMeshMovement
-    {
-        
-        [Tooltip("The agent has fleed when the magnitude is greater than this value")]
-        public SharedFloat fleedDistance = 20;
+    {        
         [Tooltip("The distance to look ahead when fleeing")]
         public SharedFloat lookAheadDistance = 5;
-        [Tooltip("The GameObject that the agent is fleeing from")]
-        public SharedGameObjectList targets;
 
         private bool hasMoved;
-        private Vector3 finalTarget;
+        private BrAiCharacterController aiController;
 
+        public override void OnAwake()
+        {
+            aiController = ((SharedAiCharacterController) Owner.GetVariable("AiCharacterController")).Value;
+        }
         public override void OnStart()
         {
             base.OnStart();
 
             hasMoved = false;
-            
-            CalculateFinalTarget();
 
             SetDestination(Target());
         }
@@ -34,12 +31,6 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         // Return running if the agent is still fleeing
         public override TaskStatus OnUpdate()
         {
-            CalculateFinalTarget();
-
-            if (Vector3.Magnitude(transform.position - finalTarget) > fleedDistance.Value) {
-                return TaskStatus.Success;
-            }
-
             if (HasArrived()) {
                 /*if (!hasMoved) {
                     return TaskStatus.Failure;
@@ -61,24 +52,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             return TaskStatus.Running;
         }
 
-        private void CalculateFinalTarget()
-        {
-            if (targets.Value.Count==1)
-            {
-                finalTarget = targets.Value[0].transform.position;
-                return;
-            }
-            finalTarget = Vector3.zero;
-            targets.Value.ForEach(t => finalTarget += t.transform.position);
-            finalTarget /= targets.Value.Count;
-        }
-
         // Flee in the opposite direction
         private Vector3 Target()
         {
-            CalculateFinalTarget();
+            var dir = Vector3.zero;
+            
+            foreach (var player in aiController.playersInRange)
+            {
+                var v = transform.position - player.transform.position;
+                
+                var magnitude = Mathf.Max(0.0001f,v.sqrMagnitude);
+                
+                v = v.normalized * (1 / magnitude);
 
-            return transform.position + (transform.position - finalTarget).normalized * lookAheadDistance.Value;
+                dir += v;
+            }
+
+            
+            
+            return transform.position + dir.normalized * lookAheadDistance.Value;
         }
 
         // Return false if the position isn't valid on the NavMesh.
@@ -94,10 +86,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public override void OnReset()
         {
             base.OnReset();
-
-            fleedDistance = 20;
             lookAheadDistance = 5;
-            targets = null;
         }
     }
 }

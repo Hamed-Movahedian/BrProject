@@ -9,33 +9,20 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
     [TaskCategory("BattleRoyale")]
     public class TargetSelection : BrAiConditionalBase
     {
-        public bool FleeTargets = true;
-        public SharedGameObjectList Targets;
+        public SharedGameObject Target;
         
         
-        private BrTargetSelection targetSelection;
         private GameObject target;
 
 
-        public override void OnAwake()
-        {
-            base.OnAwake();
-            
-            targetSelection = FleeTargets ? 
-                aiBehaviour.fleeTargetSelection:
-                aiBehaviour.attackTargetSelection;
-        }
-
         public override TaskStatus OnUpdate()
         {
-            switch (targetSelection.Method)
+            Target.Value = null;
+            
+            switch (aiBehaviour.attackTargetSelection.Method)
             {
                 case BrTargetSelection.MethodEnum.Closest:
                     SelectClosestTarget();
-                    break;
-                
-                case BrTargetSelection.MethodEnum.All:
-                    SelectAllTargets();
                     break;
                 
                 case BrTargetSelection.MethodEnum.Random:
@@ -50,28 +37,22 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
                     throw new ArgumentOutOfRangeException();
             }
             
-            return Targets.Value.Count>0
+            return Target.Value!=null
                 ? TaskStatus.Success
                 : TaskStatus.Failure;
         }
 
         private void SelectWeakestTargets()
         {
-            Targets.Value.Clear();
-            Targets.Value.Add(
-                aiController.playersInRange.Select(p=>(p.Health,p)).Min().Item2.gameObject);
+            
+            if(aiController.playersInRange.Count>0)
+                Target.Value=aiController.playersInRange.Select(p=>(p.Health,p)).Min().Item2.gameObject;
         }
 
         private void SelectRandomTargets()
         {
-            Targets.Value.Clear();
-            Targets.Value.Add(aiController.playersInRange.RandomSelection().gameObject);
-        }
-
-        private void SelectAllTargets()
-        {
-            Targets.Value.Clear();
-            Targets.Value.AddRange(aiController.playersInRange.Select(p => p.gameObject));
+            if(aiController.playersInRange.Count>0)
+            Target.Value=aiController.playersInRange.RandomSelection().gameObject;
         }
 
         private void SelectClosestTarget()
@@ -91,10 +72,7 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
                 }
             }
 
-            Targets.Value.Clear();
-
-            if (target != null)
-                Targets.Value.Add(target);
+            Target.Value=target;
         }
     }
 }

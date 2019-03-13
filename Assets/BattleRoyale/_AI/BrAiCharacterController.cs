@@ -19,7 +19,7 @@ public class BrAiCharacterController : MonoBehaviour
     {
         if (!BrAIConteroller.Instance.IsActive || !character.isMine)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
             return;
         }
 

@@ -20,6 +20,9 @@ public class BrKillZone : MonoBehaviourPunCallbacks
         }
     }
 
+    public bool IsShrinking => _shrinkTime > 0 && _shrinkTime <= ChangeTime;
+    
+
     #endregion
 
     public BrRing currRing;
@@ -117,7 +120,7 @@ public class BrKillZone : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (_shrinkTime < 0)
+        if (_shrinkTime <= 0)
             return;
 
         _shrinkTime -= Time.deltaTime;
@@ -147,5 +150,22 @@ public class BrKillZone : MonoBehaviourPunCallbacks
         }
         else
             OnWaitForShrink((int) (_shrinkTime - ChangeTime));
+    }
+
+    public bool IsOutside(Vector3 position)
+    {
+        return !currRing.IsInside(position);
+    }
+    public bool IsInBetween(Vector3 position)
+    {
+        return currRing.IsInside(position) && !targetRing.IsInside(position); 
+    }
+
+    public bool IsInDanger(Vector3 position)
+    {
+        if (IsShrinking)
+            return !targetRing.IsInside(position);
+        
+        return !currRing.IsInside(position);
     }
 }

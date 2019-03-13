@@ -5,20 +5,10 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 {
     public abstract class NavMeshMovement : Movement
     {
-        [Tooltip("The speed of the agent")]
-        public SharedFloat speed = 10;
-        [Tooltip("The angular speed of the agent")]
-        public SharedFloat angularSpeed = 120;
-        [Tooltip("The agent has arrived when the destination is less than the specified amount. This distance should be greater than or equal to the NavMeshAgent StoppingDistance.")]
         public SharedFloat arriveDistance = 0.2f;
-        [Tooltip("Should the NavMeshAgent be stopped when the task ends?")]
-        public SharedBool stopOnTaskEnd = true;
-        [Tooltip("Should the NavMeshAgent rotation be updated when the task ends?")]
-        public SharedBool updateRotation = true;
 
         // Component references
         protected NavMeshAgent navMeshAgent;
-        private bool startUpdateRotation;
 
         /// <summary>
         /// Cache the component references.
@@ -37,11 +27,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             if(navMeshAgent==null)
                 navMeshAgent = gameObject.GetComponentInParent<NavMeshAgent>();
             
-            navMeshAgent.speed = speed.Value;
-            navMeshAgent.angularSpeed = angularSpeed.Value;
             navMeshAgent.isStopped = false;
-            startUpdateRotation = navMeshAgent.updateRotation;
-            UpdateRotation(updateRotation.Value);
         }
 
         /// <summary>
@@ -102,6 +88,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         {
             // The path hasn't been computed yet if the path is pending.
             float remainingDistance;
+            
             if (navMeshAgent.pathPending) {
                 remainingDistance = float.PositiveInfinity;
             } else {
@@ -116,7 +103,6 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         /// </summary>
         protected override void Stop()
         {
-            UpdateRotation(startUpdateRotation);
             if (navMeshAgent.hasPath) {
                 navMeshAgent.isStopped = true;
             }
@@ -127,11 +113,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         /// </summary>
         public override void OnEnd()
         {
-            if (stopOnTaskEnd.Value) {
-                Stop();
-            } else {
-                UpdateRotation(startUpdateRotation);
-            }
+            
         }
 
         /// <summary>
@@ -147,10 +129,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         /// </summary>
         public override void OnReset()
         {
-            speed = 10;
-            angularSpeed = 120;
             arriveDistance = 1;
-            stopOnTaskEnd = true;
         }
     }
 }

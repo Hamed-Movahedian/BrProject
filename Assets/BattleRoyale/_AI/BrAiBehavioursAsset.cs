@@ -15,9 +15,11 @@ public class BrAiBehavioursAsset : ScriptableObject
 
     [Header("Flee")]
     public BrFleeCondition FleeCondition;
-
-    public BrTargetSelection fleeTargetSelection;
+    
+    [Header("Attack")]
     public BrTargetSelection attackTargetSelection;
+
+    public BrAimBehaviour AimBehaviour;
 }
 
 #region Pickup classes

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BehaviorDesigner.Runtime;
 using UnityEngine;
 
 public class BrCharacterDictionary : MonoBehaviour
@@ -39,5 +40,14 @@ public class BrCharacterDictionary : MonoBehaviour
             return characterController;
         
         return null;
+    }
+
+    public BrCharacterController GetCharacter(GameObject go)
+    {
+        if (GameObjectDic.TryGetValue(go, out var characterController))
+            return characterController;
+        
+        return null;
+
     }
 }
