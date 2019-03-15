@@ -59,26 +59,22 @@ public class BrRewardProgress : MonoBehaviour
         {
             foreach (Reward reward in level.BattlePassReward)
             {
-                var button = Instantiate(ButtonPrefab);
-                button.transform.parent = BattlePassRewards;
+                var button = Instantiate(ButtonPrefab,BattlePassRewards,true);
                 button.transform.localScale=Vector3.one;
                 button.SetButton(reward,this);
             }
             
-            var o = Instantiate(Sectors);
-            o.transform.parent=BattlePassRewards;
+            var o = Instantiate(Sectors, BattlePassRewards, true);
             o.transform.localScale=Vector3.one;
             
             foreach (Reward reward in level.StandardReward)
             {
-                var button = Instantiate(ButtonPrefab);
-                button.transform.parent = StandardRewards;
+                var button = Instantiate(ButtonPrefab, StandardRewards, true);
                 button.transform.localScale=Vector3.one;
                 button.SetButton(reward,this);
             }
             
-            o = Instantiate(Sectors);
-            o.transform.parent=StandardRewards;
+            o = Instantiate(Sectors,StandardRewards,true);
             o.transform.localScale=Vector3.one;
 
         }

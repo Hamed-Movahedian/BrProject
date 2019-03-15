@@ -9,6 +9,13 @@ public class BrLevelRewards : ScriptableObject
     [SerializeField]
     public List<LevelReward> LevelRewards;
 
+    public LevelReward this[int index]
+    {
+        get => LevelRewards[index];
+        set => LevelRewards[index] = value;
+    }
+
+
 }
 
 

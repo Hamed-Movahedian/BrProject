@@ -8,6 +8,7 @@ public class FlagData : ScriptableObject
     public string Name;
     public Texture2D Icon;
     public Texture2D Image;
+    public Sprite Sprite;
 
     public void SetToFlag(Flag flag)
     {

@@ -13,6 +13,9 @@ public class ParaData : ScriptableObject
 
     [HideInInspector]
     public Vector3 ParaOffsetPos;
+
+    public Sprite Sprite;
+
     public void SetToPara(Para para)
     {
         para.ParaModel.mesh = ParaModel;

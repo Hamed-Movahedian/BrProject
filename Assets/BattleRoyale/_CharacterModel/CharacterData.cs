@@ -10,6 +10,7 @@ public class CharacterData : ScriptableObject
     public Texture2D FaceIcon;
     public Sprite FaceSprite;
     public Texture2D BodyIcon;
+    public Sprite BodySprite;
 
 
     [Header("Character Body")]
