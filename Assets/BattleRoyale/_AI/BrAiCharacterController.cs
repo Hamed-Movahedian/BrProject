@@ -14,6 +14,7 @@ public class BrAiCharacterController : MonoBehaviour
     [NonSerialized]
     public List<BrCharacterController> playersInRange=new List<BrCharacterController>();
 
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,4 +37,6 @@ public class BrAiCharacterController : MonoBehaviour
     {
         behaviorTree.EnableBehavior();
     }
+
+
 }
