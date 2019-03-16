@@ -24,15 +24,11 @@ public class BrJoystickController : MonoBehaviour
 
     public BrJoystick MovementJoystick;
     public BrJoystick AimJoystick;
+    private BrCharacterController masterCharacter=null;
 
     private void Awake()
     {
-        if (PhotonNetwork.LocalPlayer.CustomProperties["AI"].ToString() == "1")
-        if (BrAIConteroller.Instance.IsActive)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
+        gameObject.SetActive(false);
         
         AimJoystick.SetActive(false);
         
@@ -40,6 +36,13 @@ public class BrJoystickController : MonoBehaviour
         
         BrPlayerTracker.Instance.OnMasterPlayerRegister += player =>
         {
+            if(player.IsAi)
+                return;
+
+            masterCharacter = player;
+            
+            gameObject.SetActive(true);
+
             player.ParachuteState.OnOpenPara.AddListener(() =>
             {
                 MovementJoystick.SetActive(true);
@@ -61,8 +64,6 @@ public class BrJoystickController : MonoBehaviour
 
     private void Update()
     {
-        var masterCharacter = BrCharacterController.MasterCharacter;
-        
         if (masterCharacter == null) 
             return;
 

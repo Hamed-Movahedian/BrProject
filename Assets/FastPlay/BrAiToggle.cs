@@ -20,7 +20,7 @@ public class BrAiToggle : MonoBehaviour
     {
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable
         {
-            {"AI", haveAi ? 1 : 0}
+            {"Admin", haveAi ? 1 : 0}
         });
         Debug.Log(haveAi);
     }

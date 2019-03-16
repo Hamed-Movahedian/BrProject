@@ -45,11 +45,9 @@ public class ProfileManager : MonoBehaviour
         if (!File.Exists(filepath))
         {
             PlayerProfile=new Profile();
-            string content = JsonUtility.ToJson(PlayerProfile);
-            Debug.Log(content);
-/*            File.Create(filepath);
-            */
-            File.WriteAllText(filepath,content);
+            
+            File.WriteAllText(filepath,PlayerProfile.Serialize());
+            
             while (!File.Exists(filepath))
             {
                 
@@ -96,7 +94,7 @@ public class ProfileManager : MonoBehaviour
 #endif
         _filePath = filepath;
         string profileString = File.ReadAllText(_filePath);
-        PlayerProfile = JsonUtility.FromJson<Profile>(profileString);
+        PlayerProfile = Profile.Deserialize(profileString);
         StartCoroutine(LoadMainMenu());
     }
 
@@ -128,8 +126,7 @@ public class ProfileManager : MonoBehaviour
     [ContextMenu("Save")]
     public void SaveProfile()
     {
-        string content = JsonUtility.ToJson(PlayerProfile);
-        File.WriteAllText(_filePath, content);
+        File.WriteAllText(_filePath, PlayerProfile.Serialize());
     }
 
     public Texture2D GetProbIcon(int idnex, ProbType probsType)
@@ -154,6 +151,7 @@ public class Profile
 {
     public string UserID;
 
+    public int AiBehaviorIndex = -1;
     public List<int> AvalableCharacters=new List<int>{0,1};
     public int CurrentCharacter=0;
     public List<int> AvalableFlags=new List<int>{0};

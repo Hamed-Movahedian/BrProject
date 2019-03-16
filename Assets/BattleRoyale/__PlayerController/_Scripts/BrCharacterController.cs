@@ -30,6 +30,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     [HideInInspector] public Profile profile;
     [HideInInspector] public BrCharacterHitEffect hitEffect;
+    [HideInInspector] public int AiIndex=-1;
 
     #endregion
 
@@ -60,6 +61,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public bool isMine => photonView.IsMine;
 
     public bool IsAlive => Health > 0;
+    public bool IsAi => AiIndex != -1;
 
     #region Health
 
@@ -180,7 +182,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         #region Set Profile
 
-        profile = Profile.Deserialize((string) photonView.Owner.CustomProperties["Profile"]);
+        profile = Profile.Deserialize((string) photonView.InstantiationData[0]);
 
         characterModel.SetProfile(profile);
 

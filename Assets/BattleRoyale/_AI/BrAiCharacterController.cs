@@ -18,7 +18,7 @@ public class BrAiCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (!BrAIConteroller.Instance.IsActive || !character.isMine)
+        if (!character.IsAi)
         {
             Destroy(gameObject);
             return;
@@ -28,7 +28,7 @@ public class BrAiCharacterController : MonoBehaviour
         
         character.ParachuteState.OnLanding.AddListener(()=>
         {
-            Invoke(nameof(StartTree),0.1f);//,Random.Range(0.5f,1));
+            Invoke(nameof(StartTree),0.1f);
         });
         
     }
