@@ -57,20 +57,23 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         {
             var dir = Vector3.zero;
             
-            foreach (var player in aiController.playersInRange)
-            {
-                var v = transform.position - player.transform.position;
-                
-                var magnitude = Mathf.Max(0.0001f,v.sqrMagnitude);
-                
-                v = v.normalized * (1 / magnitude);
+            foreach (var player in aiController.playersInRange) 
+                dir += AddInverse(player.transform.position);
 
-                dir += v;
-            }
-
-            
+            dir+=AddInverse(BrKillZone.Instance.GetNearestPointOnOuterCircle(transform.position));
             
             return transform.position + dir.normalized * lookAheadDistance.Value;
+        }
+
+        private Vector3 AddInverse(Vector3 playerPos)
+        {
+            var v = transform.position - playerPos;
+
+            var magnitude = Mathf.Max(0.0001f, v.sqrMagnitude);
+
+            return v.normalized * (1 / magnitude);
+           
+            
         }
 
         // Return false if the position isn't valid on the NavMesh.

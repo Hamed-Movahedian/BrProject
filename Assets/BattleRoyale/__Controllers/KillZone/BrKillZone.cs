@@ -168,4 +168,15 @@ public class BrKillZone : MonoBehaviourPunCallbacks
         
         return !currRing.IsInside(position);
     }
+
+    public Vector3 GetNearestPointOnOuterCircle(Vector3 position)
+    {
+        return BrMathExtention.FindLineCircleIntersections(
+            currRing.transform.position.x,
+            currRing.transform.position.z,
+            currRing.radious,
+            targetRing.transform.position,
+            position);
+        
+    }
 }
