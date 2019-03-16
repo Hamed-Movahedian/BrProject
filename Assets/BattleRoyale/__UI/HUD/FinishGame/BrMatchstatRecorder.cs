@@ -173,16 +173,21 @@ public class BrMatchstatRecorder : MonoBehaviour
         KillPoint.text = (xp.K + xp.Dk + xp.Tk).ToString();
         WinPoint.text = xp.W.ToString();
         _matchTotalXp = xp.K + xp.Dk + xp.Tk + xp.W + xp.AP;
-        MatchText.text = _matchTotalXp.ToString();
-
-        rewardShow.gameObject.SetActive(true);
         
-        Invoke("ShowReward",1f);
+        MatchText.text = _matchTotalXp.ToString();
+        
+        thisMatchStat.Experience = _matchTotalXp;
+        
+        rewardShow.gameObject.SetActive(true);
         
         levelSlider.addedXp = _matchTotalXp;
 
         GetComponent<PlayableDirector>().Play();
+        
         SaveMatchRecordToProfile();
+        
+        Invoke("ShowReward",1f);
+
     }
 
     private void ShowReward()

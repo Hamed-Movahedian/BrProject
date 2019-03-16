@@ -78,7 +78,7 @@ public class ProbSelectList : MonoBehaviour
         foreach (ProbSelectButton button in _activeButtons)
         {
             button.gameObject.SetActive(false);
-            button.transform.parent = CacheContent;
+            button.transform.SetParent(CacheContent);
             _deactiveButtons.Add(button);
         }
 

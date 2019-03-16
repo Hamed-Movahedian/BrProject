@@ -212,6 +212,7 @@ public struct Statistics
     public void ChangeStats(MatchStats thisMatchStats)
     {
         SupplyDrop += thisMatchStats.SupplyDrop;
+        Experience += thisMatchStats.Experience;
         SupplyCreates += thisMatchStats.SupplyCreates;
         GunsCollected += thisMatchStats.GunsCollected;
         ItemsCollected += thisMatchStats.ItemsCollected;
@@ -233,4 +234,5 @@ public class MatchStats
     public int GunsCollected;
     public int SupplyDrop;
     public int SupplyCreates;
+    public int Experience;
 }

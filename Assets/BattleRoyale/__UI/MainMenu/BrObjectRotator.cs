@@ -11,10 +11,18 @@ public class BrObjectRotator : MonoBehaviour
     private float _currentPos;
     private float _startPos;
     private int _width;
+    private Quaternion _rotation;
 
-    private void Start()
+    private void OnEnable()
     {
         _width = Screen.width;
+        _rotation = ObjectToRotate.transform.localRotation;
+        
+    }
+
+    private void OnDisable()
+    {
+        ObjectToRotate.transform.localRotation = _rotation;
     }
 
     public void OnDrag(BaseEventData data)

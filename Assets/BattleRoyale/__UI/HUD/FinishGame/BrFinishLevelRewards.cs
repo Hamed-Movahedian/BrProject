@@ -17,21 +17,30 @@ public class BrFinishLevelRewards : MonoBehaviour
     public CharactersList CharactersList;
 
 
-    private int _level;
+    private int _newLevel;
     private Profile profile;
+    private int _currLevel;
 
 
     public void ShowRewards(int exp)
     {
         profile = ProfileManager.Instance().PlayerProfile;
         int experience = profile.PlayerStat.Experience;
-        _level = BrExpManager.CalLevel(experience + exp);
-        if (BrExpManager.CalLevel(experience) == _level)
+        _newLevel = BrExpManager.CalLevel(experience);
+        _currLevel = BrExpManager.CalLevel(experience-exp);
+        if (_currLevel == _newLevel)
             return;
-        LevelReward rewards = rewardsList[_level - 1];
+        
         List<Reward> allRewards = new List<Reward>();
-        allRewards.AddRange(rewards.StandardReward);
-        allRewards.AddRange(rewards.BattlePassReward);
+        LevelReward rewards = new LevelReward();
+        for (int i = _currLevel; i < _newLevel; i++)
+        {
+            rewards.StandardReward.AddRange(rewardsList[i].StandardReward);
+            rewards.BattlePassReward.AddRange(rewardsList[i].BattlePassReward);
+            allRewards.AddRange(rewardsList[i].StandardReward);
+            allRewards.AddRange(rewardsList[i].BattlePassReward);
+        }
+        
 
         foreach (Reward reward in allRewards)
         {
@@ -58,6 +67,7 @@ public class BrFinishLevelRewards : MonoBehaviour
                     throw new ArgumentOutOfRangeException();
             }
         }
+        ProfileManager.Instance().SaveProfile();
 
         StartCoroutine(ShowRewardImage(rewards));
     }
