@@ -30,7 +30,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
     [HideInInspector] public Profile profile;
     [HideInInspector] public BrCharacterHitEffect hitEffect;
-    [HideInInspector] public int AiIndex=-1;
+    [HideInInspector] public bool IsAi=false;
 
     #endregion
 
@@ -61,7 +61,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public bool isMine => photonView.IsMine;
 
     public bool IsAlive => Health > 0;
-    public bool IsAi => AiIndex != -1;
 
     #region Health
 
@@ -112,6 +111,8 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     public bool NeedShield => Shield < MaxShield;
 
     public string UserID => profile.UserID;
+    public bool IsMaster => this == MasterCharacter;
+    public int ViewID => photonView.ViewID;
 
     #endregion
 
@@ -171,13 +172,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
 
         #endregion
 
-        if (photonView.IsMine)
-        {
-            if(MasterCharacter==null)
-                MasterCharacter = this;
-            
-        }
-        else
+        if (!photonView.IsMine)
             NavMeshAgent.enabled = false;
 
         #region Set Profile

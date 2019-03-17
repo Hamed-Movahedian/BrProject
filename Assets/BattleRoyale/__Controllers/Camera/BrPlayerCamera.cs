@@ -22,7 +22,7 @@ public class BrPlayerCamera : MonoBehaviour
         virtualCamera.Priority = 10;
 
         // active if only this is master player
-        virtualCamera.gameObject.SetActive(_characterController.isMine);
+        virtualCamera.gameObject.SetActive(_characterController.IsMaster);
 
 
         BrPlayerTracker.Instance.OnActivePlayerChange += (player, activePlayer) =>
@@ -38,7 +38,7 @@ public class BrPlayerCamera : MonoBehaviour
 
         _characterController.ParachuteState.OnLanding.AddListener((() =>
         {
-            if (_characterController.isMine)
+            if (_characterController.IsMaster)
                 transform.position = BrFlyCutScene.Instance.VirtualCamera.transform.position;
             
             transform.rotation = BrFlyCutScene.Instance.VirtualCamera.transform.rotation;

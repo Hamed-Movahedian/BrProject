@@ -64,21 +64,20 @@ public class BrPlayerTracker : MonoBehaviour
     public delegate void OnMasterPlayerRegisterDel(BrCharacterController masterPlayer);
 
     public OnMasterPlayerRegisterDel OnMasterPlayerRegister;
-    private Dictionary<string,BrCharacterController> UserIdDic=new Dictionary<string, BrCharacterController>();
 
     #endregion
     
     private void Awake()
     {
-        instance = this;
+        OnMasterPlayerRegister += SetActivePlayer;
+        OnPlayerRegisterd += alivePlayers.Add;
+        OnPlayerDead += (victim, killer, weaponName) => alivePlayers.Remove(victim);
     }
 
     internal void PlayerDead(int victimViewID, int killerViewID, string weaponName)
     {
-        var victimPlayer = GetPlayerByViewID(victimViewID);
-        var killerPlayer = GetPlayerByViewID(killerViewID);
-
-        alivePlayers.Remove(victimPlayer);
+        var victimPlayer = BrCharacterDictionary.Instance.GetCharacter(victimViewID);
+        var killerPlayer = BrCharacterDictionary.Instance.GetCharacter(killerViewID);
 
         // change active player
         if (victimPlayer == ActivePlayer)
@@ -90,16 +89,6 @@ public class BrPlayerTracker : MonoBehaviour
             OnLastPlayerLeft(alivePlayers[0]);
     }
 
-    private static BrCharacterController GetPlayerByViewID(int victomViewID)
-    {
-
-        return victomViewID==-1 ? 
-            null :
-            PhotonNetwork
-                    .GetPhotonView(victomViewID)
-                    .GetComponent<BrCharacterController>();
-    }
-
     internal void SetActivePlayer(BrCharacterController player)
     {
         if (player == null)
@@ -109,6 +98,7 @@ public class BrPlayerTracker : MonoBehaviour
                 .OrderBy(c => Vector3.Distance(c.transform.position, ActivePlayer.transform.position))
                 .FirstOrDefault();
         }
+        
         ActivePlayer = player;
        
     }
@@ -116,20 +106,9 @@ public class BrPlayerTracker : MonoBehaviour
 
     public void RegisterPlayer(BrCharacterController player)
     {
-        if (player.isMine)
-        {
-            SetActivePlayer(player);
+        if (player.IsMaster) 
             OnMasterPlayerRegister(player);
-        }
-
-        alivePlayers.Add(player);
-
-        UserIdDic[player.UserID] = player;
         
         OnPlayerRegisterd(player);
-        
-        
     }
-
-    public BrCharacterController this[string userID] => UserIdDic[userID];
 }

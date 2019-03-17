@@ -82,7 +82,7 @@ public class BrPickupManager : MonoBehaviourPunCallbacks
         
         pickup.DisablePickup();
         
-        OnPickedup(BrPlayerTracker.Instance[userID], pickup);
+        OnPickedup(BrCharacterDictionary.Instance.GetCharacter(userID), pickup);
     }
 
     public void AddPickup(BrPickupBase pickup)

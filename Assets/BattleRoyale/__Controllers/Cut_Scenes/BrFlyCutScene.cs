@@ -26,48 +26,52 @@ public class BrFlyCutScene : MonoBehaviour
     public PlayableDirector Director;
     public BrCharacterModel CutScenePlayer;
     public CinemachineVirtualCamera VirtualCamera;
-    
-    [Header("Events")]
-    public UnityEvent OnStartFalling;
+
+    [Header("Events")] public UnityEvent OnStartFalling;
     public UnityEvent OnOpenPara;
     public UnityEvent OnLanding;
-    
-    private BrCharacterController _player;
+
+    private List<BrCharacterController> players = new List<BrCharacterController>();
 
     // ********************************** methods
 
     private void Awake()
     {
         // Master player register
-        BrPlayerTracker.Instance.OnMasterPlayerRegister += player =>
+        BrPlayerTracker.Instance.OnPlayerRegisterd += player =>
         {
-            _player = player;
+            if (!player.isMine)
+                return;
 
-            CutScenePlayer.SetProfile(_player.profile);
-            
+            players.Add(player);
+
+            if (player.IsMaster)
+                CutScenePlayer.SetProfile(player.profile);
+
             // set initial pos
 
             SetTransforms();
             StartCutScene();
         };
-        
     }
 
     private void SetTransforms()
     {
-        var position = _player.transform.position;
-        position.y = transform.position.y;
-        transform.position = position;
+        foreach (var player in players)
+        {
+            var position = player.transform.position;
 
-        position.y = CutScenePlayer.transform.position.y;
-        // set player transform;
-        _player.transform.position = position;
-        //_player.transform.rotation = CutScenePlayer.transform.rotation;
+            position.y = CutScenePlayer.transform.position.y;
+
+            player.transform.position = position;
+        }
+
+        transform.position = BrCharacterController.MasterCharacter.transform.position;
     }
 
     private void Update()
     {
-        if(_player)
+        if (players.Count > 0)
             SetTransforms();
     }
 
@@ -76,14 +80,16 @@ public class BrFlyCutScene : MonoBehaviour
         Director.Play();
         OnStartFalling.Invoke();
     }
-    
+
     public void OpenPara()
     {
         if (!Application.isPlaying)
             return;
-        
+
         OnOpenPara.Invoke();
-        _player.OpenPara();
+
+        players.ForEach(p => p.OpenPara());
+
         CutScenePlayer.gameObject.SetActive(false);
     }
 
@@ -91,10 +97,10 @@ public class BrFlyCutScene : MonoBehaviour
     {
         if (!Application.isPlaying)
             return;
-        
+
         OnLanding.Invoke();
-        _player.Land();
-        _player = null;
+        players.ForEach(p => p.Land());
+        players = null;
         gameObject.SetActive(false);
     }
 }

@@ -140,7 +140,8 @@ public class BrAirdropController : MonoBehaviourPun
                 activePlaceHolder.GetPickupPos(2));
 
         OnUnpackAirDrop.Invoke();
-        OnUnpack(BrPlayerTracker.Instance[userID]);
+        
+        OnUnpack(BrCharacterDictionary.Instance.GetCharacter(userID));
     }
 
 }

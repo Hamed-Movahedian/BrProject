@@ -22,7 +22,8 @@ public class BrObjectRotator : MonoBehaviour
 
     private void OnDisable()
     {
-        ObjectToRotate.transform.localRotation = _rotation;
+        if (ObjectToRotate != null) 
+            ObjectToRotate.transform.localRotation = _rotation;
     }
 
     public void OnDrag(BaseEventData data)

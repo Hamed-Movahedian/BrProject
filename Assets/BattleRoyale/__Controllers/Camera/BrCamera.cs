@@ -24,18 +24,5 @@ public class BrCamera : MonoBehaviour
 
     public Camera MainCamera;
     public CinemachineBrain Brain;
-
-    private BrCharacterController _character;
-
-    private void Awake()
-    {
-        BrPlayerTracker.Instance.OnActivePlayerChange += (player, controller) => 
-            {
-                if (!controller)
-                    return;
-
-                _character = controller;
-                
-            };
-    }
+    
 }

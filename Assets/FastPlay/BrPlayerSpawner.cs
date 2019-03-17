@@ -35,6 +35,8 @@ public class BrPlayerSpawner : MonoBehaviour
     {
         BrGameManager.Instance.OnStart += () =>
         {
+            BrCharacterController.MasterCharacter = null;
+            
             if (PhotonNetwork.LocalPlayer.CustomProperties["Admin"].ToString() == "1")
             {
                 AdminSpawner();
@@ -73,11 +75,14 @@ public class BrPlayerSpawner : MonoBehaviour
 
             // setup character
             var characterController = aiCharacterController.character;
-            characterController.AiIndex = i;
             characterController.profile = profile;
+            characterController.IsAi = true;
+            
+            if (BrCharacterController.MasterCharacter == null)
+                BrCharacterController.MasterCharacter = characterController;
 
             // setup ai
-            aiCharacterController.aiBehaviour = AiBehaviours[profile.AiBehaviorIndex];
+            aiCharacterController.aiBehaviour = AiBehaviours.RandomSelection();
         }
     }
 
@@ -108,8 +113,10 @@ public class BrPlayerSpawner : MonoBehaviour
 
             position = BrLevelBound.Instance.GetLevelPos(position);
 
-            PhotonNetwork.Instantiate(this.playerPrefab.name, position, Quaternion.identity, 0,
+            var go = PhotonNetwork.Instantiate(this.playerPrefab.name, position, Quaternion.identity, 0,
                 new []{PhotonNetwork.LocalPlayer.CustomProperties["Profile"]});
+
+            BrCharacterController.MasterCharacter = go.GetComponent<BrCharacterController>();
         }
     }
 

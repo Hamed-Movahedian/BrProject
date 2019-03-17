@@ -55,28 +55,35 @@ public class BrRewardProgress : MonoBehaviour
         
         rew = true;
 
-        foreach (LevelReward level in RewardsList.LevelRewards)
+        for (var i = 0; i < RewardsList.LevelRewards.Count; i++)
         {
+            LevelReward level = RewardsList.LevelRewards[i];
             foreach (Reward reward in level.BattlePassReward)
             {
-                var button = Instantiate(ButtonPrefab,BattlePassRewards,true);
-                button.transform.localScale=Vector3.one;
-                button.SetButton(reward,this);
+                var button = Instantiate(ButtonPrefab, BattlePassRewards, true);
+                button.transform.localScale = Vector3.one;
+                button.SetButton(reward, this);
             }
-            
+
             var o = Instantiate(Sectors, BattlePassRewards, true);
-            o.transform.localScale=Vector3.one;
+            o.transform.localScale = Vector3.one;
+            o.GetComponentInChildren<Text>().text=
+                o.GetComponentInChildren<Text>().
+                    text.Replace("*",
+                        PersianFixer.Fix((i + 1).ToString()));
             
             foreach (Reward reward in level.StandardReward)
             {
                 var button = Instantiate(ButtonPrefab, StandardRewards, true);
-                button.transform.localScale=Vector3.one;
-                button.SetButton(reward,this);
+                button.transform.localScale = Vector3.one;
+                button.SetButton(reward, this);
             }
-            
-            o = Instantiate(Sectors,StandardRewards,true);
-            o.transform.localScale=Vector3.one;
 
+            o = Instantiate(Sectors, StandardRewards, true);
+            o.transform.localScale = Vector3.one;
+            o.GetComponentInChildren<Text>().text=
+                o.GetComponentInChildren<Text>().
+                    text.Replace("*", PersianFixer.Fix((i + 1).ToString()));
         }
     }
 
@@ -91,26 +98,30 @@ public class BrRewardProgress : MonoBehaviour
         int last = BrExpManager.CalXp(20);
         float sl = 0;
         int count = 0;
-        
+        slider.maxValue = 0;
         for (int i = 0; i < RewardsList.LevelRewards.Count; i++)
         {
             count += RewardsList.LevelRewards[i].BattlePassReward.Count;
+            slider.maxValue += 0.5f;
         }
+
+        slider.maxValue += count;
 
         for (int i = 0; i < level; i++)
         {
-            sl += (float)RewardsList.LevelRewards[i].BattlePassReward.Count / count;
+            sl += RewardsList.LevelRewards[i].BattlePassReward.Count+0.5f ;
         }
         float sl2 = 0;
 
         for (int i = 0; i < level+1; i++)
         {
-            sl2 += (float) RewardsList.LevelRewards[i].BattlePassReward.Count / count;
+            sl2 += RewardsList.LevelRewards[i].BattlePassReward.Count + 0.5f;
         }
 
         float levelLenth = sl2 - sl;
         
         sl +=((float)(xp - cuExp) / (nEXP - cuExp))*(levelLenth);
+        //sl += (level)/ (2f * count);
         
         Debug.Log(sl);
         Debug.Log(sl2);

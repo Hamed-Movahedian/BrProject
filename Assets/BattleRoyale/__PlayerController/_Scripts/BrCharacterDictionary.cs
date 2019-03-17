@@ -25,12 +25,21 @@ public class BrCharacterDictionary : MonoBehaviour
 
     private Dictionary<Collider,BrCharacterController> ColliderDic=
         new Dictionary<Collider, BrCharacterController>();
+    
+    private Dictionary<string,BrCharacterController> UserIdDic=
+        new Dictionary<string, BrCharacterController>();
+
+    private Dictionary<int,BrCharacterController> ViewIdDic=
+        new Dictionary<int, BrCharacterController>();
+
     private void Awake()
     {
         BrPlayerTracker.Instance.OnPlayerRegisterd += player =>
         {
             GameObjectDic[player.gameObject] = player;
             ColliderDic[player.CapsuleCollider] = player;
+            UserIdDic[player.UserID] = player;
+            ViewIdDic[player.ViewID] = player;
         };
     }
 
@@ -49,5 +58,21 @@ public class BrCharacterDictionary : MonoBehaviour
         
         return null;
 
+    }
+
+    public BrCharacterController GetCharacter(string userID)
+    {
+        if (UserIdDic.TryGetValue(userID, out var characterController))
+            return characterController;
+        
+        return null;
+    }
+
+    public BrCharacterController GetCharacter(int viewID)
+    {
+        if (ViewIdDic.TryGetValue(viewID, out var characterController))
+            return characterController;
+        
+        return null;
     }
 }
