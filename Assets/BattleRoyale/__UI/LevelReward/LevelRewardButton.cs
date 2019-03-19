@@ -7,10 +7,13 @@ using UnityEngine.UI;
 public class LevelRewardButton : MonoBehaviour
 {
     public RawImage ProbImage;
+    public GameObject LockIcon;
 
-
-    public void SetButton(Reward reward, BrRewardProgress list)
+    public void SetButton(Reward reward, BrRewardProgress list, bool battle)
     {
+        if (battle)
+            LockIcon.SetActive(ProfileManager.Instance().PlayerProfile.HasBattlePass == 0);
+
         switch (reward.type)
         {
             case Reward.RewardType.Character:
@@ -38,6 +41,6 @@ public class LevelRewardButton : MonoBehaviour
         }
         
         GetComponent<Button>().onClick.RemoveAllListeners();
-        GetComponent<Button>().onClick.AddListener(()=>list.ShowProb(reward));
+        GetComponent<Button>().onClick.AddListener(()=>list.ShowProb(reward,battle));
     }
 }

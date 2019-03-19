@@ -164,9 +164,10 @@ public class Profile
     public List<string> RequestFrindUserID;
     public int CoinCount=100;
     public int TicketCount=10;
+    public int HasBattlePass=0;
 
     public Statistics PlayerStat=new Statistics(0);
-    
+
     public string Serialize()
     {
         return JsonUtility.ToJson(this);

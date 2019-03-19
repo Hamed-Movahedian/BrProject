@@ -33,10 +33,15 @@ public class BrFlyCutScene : MonoBehaviour
 
     private List<BrCharacterController> players = new List<BrCharacterController>();
 
+    private int playerCount;
     // ********************************** methods
 
     private void Awake()
     {
+        BrPlayerSpawner.Instance.OnPlayerSpawned += player =>
+        {
+            playerCount++;
+        };
         // Master player register
         BrPlayerTracker.Instance.OnPlayerRegisterd += player =>
         {
@@ -46,10 +51,18 @@ public class BrFlyCutScene : MonoBehaviour
             players.Add(player);
 
             if (player.IsMaster)
+            {
                 CutScenePlayer.SetProfile(player.profile);
+                
+                
+                transform.position=player.transform.position;
+            }
 
             // set initial pos
 
+            if(players.Count<playerCount)
+                return;
+            
             SetTransforms();
             StartCutScene();
         };
@@ -66,12 +79,12 @@ public class BrFlyCutScene : MonoBehaviour
             player.transform.position = position;
         }
 
-        transform.position = BrCharacterController.MasterCharacter.transform.position;
+        
     }
 
     private void Update()
     {
-        if (players.Count > 0)
+        if (players.Count==playerCount)
             SetTransforms();
     }
 

@@ -6,24 +6,21 @@ using UnityEngine.Playables;
 
 public class BrShowPropTemporary : MonoBehaviour
 {
-    [Header("Character")]
-    public GameObject Character;
+    [Header("Character")] public GameObject Character;
     public CharactersList CharactersList;
     public GameObject CharacterImage;
-    [Header("Para")]
-    public GameObject Para;
+    [Header("Para")] public GameObject Para;
     public ParasList ParasList;
     public GameObject ParaImage;
 
-    [Header("Flag")]
-    public GameObject Flag;
+    [Header("Flag")] public GameObject Flag;
     public FlagsList FlagsList;
     public GameObject FlagImage;
     public BrRewardProgress brRewardProgress;
     public ProbSelectList probSelectList;
 
 
-    public void ShowProb(ProbType type, int index)
+    public void ShowProb(ProbType type, int index, bool needBP = false)
     {
         Character.SetActive(false);
         Flag.SetActive(false);
@@ -61,19 +58,14 @@ public class BrShowPropTemporary : MonoBehaviour
             default:
                 break;
         }
-        
+
         GetComponent<PlayableDirector>().Play();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        probSelectList.OnLockProbSelected += ShowProb;
+        probSelectList.OnLockProbSelected +=(type, index) =>  ShowProb(type,index,false);
         brRewardProgress.OnProbSelected += ShowProb;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

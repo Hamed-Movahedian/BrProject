@@ -20,7 +20,7 @@ public class BrMinimapController : MonoBehaviour
     {
         BrPlayerTracker.Instance.OnPlayerRegisterd += player =>
         {
-            if (player.isMine)
+            if (player.IsMaster)
             {
                 player.ParachuteState.OnOpenPara.AddListener(() =>
                 {
@@ -31,7 +31,7 @@ public class BrMinimapController : MonoBehaviour
 
         BrPlayerTracker.Instance.OnPlayerDead += (victom, killer, weaponName) =>
         {
-            if(victom.isMine)
+            if(victom.IsMaster)
                 OnHideMiniMap.Invoke();
         };
     }

@@ -33,6 +33,9 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
                 
                 var weapon = characterController.WeaponController.CurrWeapon;
 
+                if (!weapon)
+                    return TaskStatus.Running;
+                
                 // set direction
                 var dir = Target.Value.transform.position - characterController.transform.position;
 
@@ -42,18 +45,15 @@ namespace BehaviorDesigner.Runtime.Tasks.BattleRoyale
  
                 var targetSpeed = (Target.Value.transform.position - lastTargetPos) / Interval;
                 
-                Debug.Log($"targetSpeed={targetSpeed}");
-                Debug.Log($"bulletTime={bulletTime}");
                 var pPos = Target.Value.transform.position+ targetSpeed*5* bulletTime;
                 
-                Debug.DrawLine(Target.Value.transform.position,pPos,Color.red,1);
-                Debug.DrawLine(characterController.transform.position,pPos,Color.green,1);
+                //Debug.DrawLine(Target.Value.transform.position,pPos,Color.red,1);
+                //Debug.DrawLine(characterController.transform.position,pPos,Color.green,1);
 
                 var pDir = pPos-characterController.transform.position;
                 
                 var aim=Vector3.Lerp(dir,pDir,aiBehaviour.AimBehaviour.predictionAccuracy);
                 
-                Debug.Log($"aiBehaviour.AimBehaviour.predictionAccuracy={aiBehaviour.AimBehaviour.predictionAccuracy}");
 
 
                 // set origin

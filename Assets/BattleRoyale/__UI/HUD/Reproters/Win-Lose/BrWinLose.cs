@@ -25,7 +25,7 @@ public class BrWinLose : MonoBehaviour
         {
             CharacterModel.SetProfile(player.profile);
 
-            if (player.isMine)
+            if (player.IsMaster)
                 Win(player);
             else
                 Lose(player);

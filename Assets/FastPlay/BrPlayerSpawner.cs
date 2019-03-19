@@ -23,20 +23,27 @@ public class BrPlayerSpawner : MonoBehaviour
     #endregion
 
     public bool SpawnUserPlayerInAdmin = false;
-    
+
     public GameObject playerPrefab;
 
     public List<Profile> AiProfiles;
 
     public List<BrAiBehavioursAsset> AiBehaviours;
 
+    #region OnPlayerSpawned
+    
+        public delegate void OnPlayerSpawnedDel(BrCharacterController player);
+    
+        public OnPlayerSpawnedDel OnPlayerSpawned;
+    
+        #endregion
 
     private void Awake()
     {
         BrGameManager.Instance.OnStart += () =>
         {
             BrCharacterController.MasterCharacter = null;
-            
+
             if (PhotonNetwork.LocalPlayer.CustomProperties["Admin"].ToString() == "1")
             {
                 AdminSpawner();
@@ -50,9 +57,9 @@ public class BrPlayerSpawner : MonoBehaviour
 
     private void AdminSpawner()
     {
-        if(SpawnUserPlayerInAdmin)
+        if (SpawnUserPlayerInAdmin)
             SpawnUserPlayer();
-        
+
         var locations = GameObject.FindGameObjectsWithTag("AiSpawnLocation").ToList();
 
         if (locations.Count == 0)
@@ -69,7 +76,7 @@ public class BrPlayerSpawner : MonoBehaviour
             locations.Remove(location);
 
             var playerGo = PhotonNetwork.Instantiate(this.playerPrefab.name, location.transform.position,
-                Quaternion.identity, 0,new []{profile.Serialize()});
+                Quaternion.identity, 0, new[] {profile.Serialize()});
 
             var aiCharacterController = playerGo.GetComponentInChildren<BrAiCharacterController>();
 
@@ -77,12 +84,14 @@ public class BrPlayerSpawner : MonoBehaviour
             var characterController = aiCharacterController.character;
             characterController.profile = profile;
             characterController.IsAi = true;
-            
+
             if (BrCharacterController.MasterCharacter == null)
                 BrCharacterController.MasterCharacter = characterController;
 
             // setup ai
             aiCharacterController.aiBehaviour = AiBehaviours.RandomSelection();
+            
+            OnPlayerSpawned?.Invoke(characterController);
         }
     }
 
@@ -114,9 +123,14 @@ public class BrPlayerSpawner : MonoBehaviour
             position = BrLevelBound.Instance.GetLevelPos(position);
 
             var go = PhotonNetwork.Instantiate(this.playerPrefab.name, position, Quaternion.identity, 0,
-                new []{PhotonNetwork.LocalPlayer.CustomProperties["Profile"]});
+                new[] {PhotonNetwork.LocalPlayer.CustomProperties["Profile"]});
 
-            BrCharacterController.MasterCharacter = go.GetComponent<BrCharacterController>();
+            var characterController = go.GetComponent<BrCharacterController>();
+            
+            BrCharacterController.MasterCharacter = characterController;
+            
+            OnPlayerSpawned?.Invoke(characterController);
+
         }
     }
 

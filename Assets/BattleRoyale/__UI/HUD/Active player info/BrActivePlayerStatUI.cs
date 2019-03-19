@@ -34,7 +34,7 @@ public class BrActivePlayerStatUI : MonoBehaviour
         {
             player = nextActivePlayer;
 
-            if (preActivePlayer && !preActivePlayer.isMine)
+            if (preActivePlayer && !preActivePlayer.IsMaster)
                 Show();
         };
 

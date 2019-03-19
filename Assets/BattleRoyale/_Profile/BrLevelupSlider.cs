@@ -58,9 +58,7 @@ public class BrLevelupSlider : MonoBehaviour
                 goto showChange;
             }
             float amount = (float)(exp - _prexp) / (_nextxp - _prexp);
-            Debug.Log(exp);
-            Debug.Log(amount);
-            Debug.Log(level);
+            
             ExperienceSlider.fillAmount = amount;// / speed;
             yield return null;
             //yield return ChangeSlider(speed,amount);

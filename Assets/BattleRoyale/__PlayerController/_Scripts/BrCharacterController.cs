@@ -144,16 +144,20 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
     #region Initialize
 
    
-    void OnEnable()
+/*    void OnEnable()
     {
         if (!_isInitialized) 
             Initialize();
-    }
+    }*/
 
     void Start()
     {
         if (!_isInitialized) 
             Initialize();
+        
+        // Register player
+        BrPlayerTracker.Instance.RegisterPlayer(this);
+
     }
 
     private void Initialize()
@@ -211,8 +215,6 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         CurrentState = CharacterStateEnum.Falling;
         _stateDic[CurrentState].OnEnter();
 
-        // Register player
-        BrPlayerTracker.Instance.RegisterPlayer(this);
     }
 
     #endregion
@@ -363,7 +365,7 @@ public class BrCharacterController : MonoBehaviourPunCallbacks, IPunObservable
         if (!isMine)
             return;
         
-        if(NavMeshAgent.updatePosition)
+        if(NavMeshAgent != null && NavMeshAgent.updatePosition)
             NavMeshAgent.Move(Animator.deltaPosition);
     }
 

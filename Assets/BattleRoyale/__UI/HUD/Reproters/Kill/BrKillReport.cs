@@ -13,7 +13,7 @@ public class BrKillReport : MonoBehaviour
 
         BrPlayerTracker.Instance.OnPlayerDead += (victim, killer, weaponName) =>
         {
-            if (!killer || !killer.isMine) return;
+            if (!killer || !killer.IsMaster) return;
             
             for (int i = 0; i < Directors.Count; i++)
             {

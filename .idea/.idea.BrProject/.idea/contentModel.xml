@@ -114,6 +114,7 @@
             </e>
             <e p="LevelReward" t="Include">
               <e p="BrLevelRewards.cs" t="Include" />
+              <e p="BrLevelText.cs" t="Include" />
               <e p="BrRewardProgress.cs" t="Include" />
               <e p="LevelRewardButton.cs" t="Include" />
             </e>

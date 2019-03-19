@@ -23,7 +23,7 @@ public class BrDeathReport : MonoBehaviour
                 return;
             }
             
-            if (victom.isMine)
+            if (victom.IsMaster)
             {
                 
                 rankText.text = "# "+BrPlayerTracker.Instance.PlayerCounter+1;

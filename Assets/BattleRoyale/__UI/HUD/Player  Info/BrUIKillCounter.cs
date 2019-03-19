@@ -25,10 +25,10 @@ public class BrUIKillCounter : MonoBehaviour
 
     private void PlayerDead(BrCharacterController victom, BrCharacterController killer, string weaponName)
     {
-        if (killer && killer.isMine)
+        if (killer && killer.IsMaster)
             UpdateTexts(++killCount);
 
-        if (victom.isMine)
+        if (victom.IsMaster)
             gameObject.SetActive(false);
 
     }

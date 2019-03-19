@@ -26,7 +26,7 @@ public class BrRewardProgress : MonoBehaviour
     
     public delegate void SelectProb(ProbType type, int index);
 
-    public SelectProb OnProbSelected;
+    public Action<ProbType, int, bool> OnProbSelected;
 
 
     
@@ -62,7 +62,7 @@ public class BrRewardProgress : MonoBehaviour
             {
                 var button = Instantiate(ButtonPrefab, BattlePassRewards, true);
                 button.transform.localScale = Vector3.one;
-                button.SetButton(reward, this);
+                button.SetButton(reward, this,true);
             }
 
             var o = Instantiate(Sectors, BattlePassRewards, true);
@@ -76,7 +76,7 @@ public class BrRewardProgress : MonoBehaviour
             {
                 var button = Instantiate(ButtonPrefab, StandardRewards, true);
                 button.transform.localScale = Vector3.one;
-                button.SetButton(reward, this);
+                button.SetButton(reward, this,false);
             }
 
             o = Instantiate(Sectors, StandardRewards, true);
@@ -129,14 +129,17 @@ public class BrRewardProgress : MonoBehaviour
         slider.value = sl;
     }
 
-    public void ShowProb(Reward reward)
+    public void ShowProb(Reward reward, bool battle)
     {
         ProbType probType = reward.GetProb();
         
         if (probType==ProbType.NoProb)
             return;
         
-        OnProbSelected(probType, reward.Value);
+        OnProbSelected(
+            probType,
+            reward.Value,
+            (battle&&ProfileManager.Instance().PlayerProfile.HasBattlePass==0));
     }
 
 
