@@ -31,7 +31,7 @@ public class BrFinishLevelRewards : MonoBehaviour
         if (_currLevel == _newLevel)
             return;
         
-        List<Reward> allRewards = new List<Reward>();
+        List<Inventory> allRewards = new List<Inventory>();
         LevelReward rewards = new LevelReward();
         for (int i = _currLevel; i < _newLevel; i++)
         {
@@ -42,26 +42,26 @@ public class BrFinishLevelRewards : MonoBehaviour
         }
         
 
-        foreach (Reward reward in allRewards)
+        foreach (Inventory reward in allRewards)
         {
             switch (reward.type)
             {
-                case Reward.RewardType.Character:
+                case InventoryType.Character:
                     profile.AvalableCharacters.Add(reward.Value);
                     break;
-                case Reward.RewardType.Para:
+                case InventoryType.Para:
                     profile.AvalableParas.Add(reward.Value);
                     break;
-                case Reward.RewardType.Flag:
+                case InventoryType.Flag:
                     profile.AvalableFlags.Add(reward.Value);
                     break;
-                case Reward.RewardType.Emot:
+                case InventoryType.Emot:
                     profile.AvalableEmotes.Add(reward.Value);
                     break;
-                case Reward.RewardType.Coin:
+                case InventoryType.Coin:
                     profile.CoinCount += (reward.Value);
                     break;
-                case Reward.RewardType.Nothing:
+                case InventoryType.Nothing:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -75,29 +75,29 @@ public class BrFinishLevelRewards : MonoBehaviour
     private IEnumerator ShowRewardImage(LevelReward rewards)
     {
         int i = 0;
-        foreach (Reward reward in rewards.BattlePassReward)
+        foreach (Inventory reward in rewards.BattlePassReward)
         {
             Sprite probimage=null;
             
             switch (reward.type)
             {
-                case Reward.RewardType.Character:
+                case InventoryType.Character:
                     probimage = CharactersList[reward.Value].BodySprite;
                     break;
-                case Reward.RewardType.Para:
+                case InventoryType.Para:
                     probimage = ParasList[reward.Value].Sprite;
                     
                     break;
-                case Reward.RewardType.Flag:
+                case InventoryType.Flag:
                     probimage = FlagsList[reward.Value].Sprite;
 
                     break;
-                case Reward.RewardType.Emot:
+                case InventoryType.Emot:
                     probimage = CharactersList[reward.Value].BodySprite;
                     break;
-                case Reward.RewardType.Coin:
+                case InventoryType.Coin:
                     break;
-                case Reward.RewardType.Nothing:
+                case InventoryType.Nothing:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -111,29 +111,29 @@ public class BrFinishLevelRewards : MonoBehaviour
         }
         
         i = 0;
-        foreach (Reward reward in rewards.StandardReward)
+        foreach (Inventory reward in rewards.StandardReward)
         {
             Sprite probimage=null;
             
             switch (reward.type)
             {
-                case Reward.RewardType.Character:
+                case InventoryType.Character:
                     probimage = CharactersList[reward.Value].BodySprite;
                     break;
-                case Reward.RewardType.Para:
+                case InventoryType.Para:
                     probimage = ParasList[reward.Value].Sprite;
                     
                     break;
-                case Reward.RewardType.Flag:
+                case InventoryType.Flag:
                     probimage = FlagsList[reward.Value].Sprite;
 
                     break;
-                case Reward.RewardType.Emot:
+                case InventoryType.Emot:
                     probimage = CharactersList[reward.Value].BodySprite;
                     break;
-                case Reward.RewardType.Coin:
+                case InventoryType.Coin:
                     break;
-                case Reward.RewardType.Nothing:
+                case InventoryType.Nothing:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

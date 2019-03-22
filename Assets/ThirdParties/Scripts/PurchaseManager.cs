@@ -23,9 +23,8 @@ public class PurchaseManager : MonoBehaviour
 #endif
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void BuyItem(string itemId)
     {
-
+        throw new System.NotImplementedException();
     }
 }

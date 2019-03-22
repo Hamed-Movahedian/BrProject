@@ -9,29 +9,29 @@ public class LevelRewardButton : MonoBehaviour
     public RawImage ProbImage;
     public GameObject LockIcon;
 
-    public void SetButton(Reward reward, BrRewardProgress list, bool battle)
+    public void SetButton(Inventory inventory, BrRewardProgress list, bool battle)
     {
         if (battle)
             LockIcon.SetActive(ProfileManager.Instance().PlayerProfile.HasBattlePass == 0);
 
-        switch (reward.type)
+        switch (inventory.type)
         {
-            case Reward.RewardType.Character:
-                ProbImage.texture = list.Characters[reward.Value].BodyIcon;
+            case InventoryType.Character:
+                ProbImage.texture = list.Characters[inventory.Value].BodyIcon;
                 break;
-            case Reward.RewardType.Para:
-                ProbImage.texture = list.Paras[reward.Value].Icon;
+            case InventoryType.Para:
+                ProbImage.texture = list.Paras[inventory.Value].Icon;
 
                 break;
-            case Reward.RewardType.Flag:
-                ProbImage.texture = list.Flags[reward.Value].Icon;
+            case InventoryType.Flag:
+                ProbImage.texture = list.Flags[inventory.Value].Icon;
 
                 break;
-            case Reward.RewardType.Emot:
-                ProbImage.texture = list.Paras[reward.Value].Icon;
+            case InventoryType.Emot:
+                ProbImage.texture = list.Paras[inventory.Value].Icon;
 
                 break;
-            case Reward.RewardType.Coin:
+            case InventoryType.Coin:
                 ProbImage.texture = list.CoinIcon;
 
                 break;
@@ -41,6 +41,6 @@ public class LevelRewardButton : MonoBehaviour
         }
         
         GetComponent<Button>().onClick.RemoveAllListeners();
-        GetComponent<Button>().onClick.AddListener(()=>list.ShowProb(reward,battle));
+        GetComponent<Button>().onClick.AddListener(()=>list.ShowProb(inventory,battle));
     }
 }

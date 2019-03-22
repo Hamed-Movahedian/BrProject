@@ -58,7 +58,7 @@ public class BrRewardProgress : MonoBehaviour
         for (var i = 0; i < RewardsList.LevelRewards.Count; i++)
         {
             LevelReward level = RewardsList.LevelRewards[i];
-            foreach (Reward reward in level.BattlePassReward)
+            foreach (Inventory reward in level.BattlePassReward)
             {
                 var button = Instantiate(ButtonPrefab, BattlePassRewards, true);
                 button.transform.localScale = Vector3.one;
@@ -72,7 +72,7 @@ public class BrRewardProgress : MonoBehaviour
                     text.Replace("*",
                         PersianFixer.Fix((i + 1).ToString()));
             
-            foreach (Reward reward in level.StandardReward)
+            foreach (Inventory reward in level.StandardReward)
             {
                 var button = Instantiate(ButtonPrefab, StandardRewards, true);
                 button.transform.localScale = Vector3.one;
@@ -129,16 +129,16 @@ public class BrRewardProgress : MonoBehaviour
         slider.value = sl;
     }
 
-    public void ShowProb(Reward reward, bool battle)
+    public void ShowProb(Inventory inventory, bool battle)
     {
-        ProbType probType = reward.GetProb();
+        ProbType probType = inventory.GetProb();
         
         if (probType==ProbType.NoProb)
             return;
         
         OnProbSelected(
             probType,
-            reward.Value,
+            inventory.Value,
             (battle&&ProfileManager.Instance().PlayerProfile.HasBattlePass==0));
     }
 

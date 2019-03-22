@@ -20,27 +20,23 @@ public class BrLevelRewards : ScriptableObject
 
 
 [Serializable]
-public struct Reward
+public struct Inventory
 {
-    public enum RewardType
-    {
-        Character,Para,Flag,Emot,Coin,Nothing
-    }
 
-    public RewardType type;
+    public InventoryType type;
     public int Value;
 
     public ProbType GetProb()
     {
         switch (type)
         {
-            case RewardType.Character:
+            case InventoryType.Character:
                 return ProbType.Character;
-            case RewardType.Para:
+            case InventoryType.Para:
                 return ProbType.Para;
-            case RewardType.Flag:
+            case InventoryType.Flag:
                 return ProbType.Flag;
-            case RewardType.Emot:
+            case InventoryType.Emot:
                 return ProbType.Emot;
             default:
                 return ProbType.NoProb;
@@ -53,7 +49,11 @@ public struct Reward
 public struct LevelReward
 {
     //[SerializeField]
-    public List<Reward> StandardReward;
-    public List<Reward> BattlePassReward;
+    public List<Inventory> StandardReward;
+    public List<Inventory> BattlePassReward;
 
+}
+public enum InventoryType
+{
+    Character,Para,Flag,Emot,Coin,Nothing
 }
