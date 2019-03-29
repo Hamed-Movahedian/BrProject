@@ -18,7 +18,6 @@ public class ProfileManager : MonoBehaviour
         return _instane ?? (_instane = FindObjectOfType<ProfileManager>());
     }
 
-
     #endregion
 
     public Profile PlayerProfile;
@@ -44,13 +43,12 @@ public class ProfileManager : MonoBehaviour
         var filepath = string.Format(@"Assets/StreamingAssets/{0}", fileName);
         if (!File.Exists(filepath))
         {
-            PlayerProfile=new Profile();
-            
-            File.WriteAllText(filepath,PlayerProfile.Serialize());
-            
+            PlayerProfile = new Profile();
+
+            File.WriteAllText(filepath, PlayerProfile.Serialize());
+
             while (!File.Exists(filepath))
             {
-                
             }
         }
 #else
@@ -64,25 +62,30 @@ public class ProfileManager : MonoBehaviour
             // open StreamingAssets directory and load the db ->
 
 #if UNITY_ANDROID
-            var loadDb = new WWW("jar:file://" + Application.dataPath + "!/assets/" + fileName);  // this is the path to your StreamingAssets in android
+            var loadDb =
+ new WWW("jar:file://" + Application.dataPath + "!/assets/" + fileName);  // this is the path to your StreamingAssets in android
             while (!loadDb.isDone) { }  // CAREFUL here, for safety reasons you shouldn't let this while loop unattended, place a timer and error check
             // then save to Application.persistentDataPath
             File.WriteAllBytes(filepath, loadDb.bytes);
 #elif UNITY_IOS
-                 var loadDb = Application.dataPath + "/Raw/" + fileName;  // this is the path to your StreamingAssets in iOS
+                 var loadDb =
+ Application.dataPath + "/Raw/" + fileName;  // this is the path to your StreamingAssets in iOS
                 // then save to Application.persistentDataPath
                 File.Copy(loadDb, filepath);
 #elif UNITY_WP8
-                var loadDb = Application.dataPath + "/StreamingAssets/" + fileName;  // this is the path to your StreamingAssets in iOS
+                var loadDb =
+ Application.dataPath + "/StreamingAssets/" + fileName;  // this is the path to your StreamingAssets in iOS
                 // then save to Application.persistentDataPath
                 File.Copy(loadDb, filepath);
 
 #elif UNITY_WINRT
-		var loadDb = Application.dataPath + "/StreamingAssets/" + fileName;  // this is the path to your StreamingAssets in iOS
+		var loadDb =
+ Application.dataPath + "/StreamingAssets/" + fileName;  // this is the path to your StreamingAssets in iOS
 		// then save to Application.persistentDataPath
 		File.Copy(loadDb, filepath);
 #else
-	var loadDb = Application.dataPath + "/StreamingAssets/" + fileName;  // this is the path to your StreamingAssets in iOS
+	var loadDb =
+ Application.dataPath + "/StreamingAssets/" + fileName;  // this is the path to your StreamingAssets in iOS
 	// then save to Application.persistentDataPath
 	File.Copy(loadDb, filepath);
 
@@ -108,7 +111,8 @@ public class ProfileManager : MonoBehaviour
 
     private void SetPlayerModel()
     {
-        BrCharacterModel mainMenuCharacter = FindObjectsOfType<BrCharacterModel>().FirstOrDefault(c => c.gameObject.name.Contains("Main"));
+        BrCharacterModel mainMenuCharacter = FindObjectsOfType<BrCharacterModel>()
+            .FirstOrDefault(c => c.gameObject.name.Contains("Main"));
         if (mainMenuCharacter)
         {
             CharactersList.Characters[PlayerProfile.CurrentCharacter].SetToCharacter(mainMenuCharacter);
@@ -120,29 +124,66 @@ public class ProfileManager : MonoBehaviour
     {
         PlayerProfile.PlayerStat.ChangeStats(thisMatchStats);
         SaveProfile();
-        
     }
-    
+
     [ContextMenu("Save")]
     public void SaveProfile()
     {
         File.WriteAllText(_filePath, PlayerProfile.Serialize());
     }
 
-    public Texture2D GetProbIcon(int idnex, ProbType probsType)
+    public Texture2D GetProbIcon(int index, ProbType probType)
     {
-        switch (probsType)
+        switch (probType)
         {
             case ProbType.Character:
-                return CharactersList.Characters[idnex].BodyIcon;
+                return CharactersList.Characters[index].BodyIcon;
             case ProbType.Para:
-                return ParasList.Paras[idnex].Icon;
+                return ParasList.Paras[index].Icon;
             case ProbType.Flag:
-                return FlagsList.Flags[idnex].Icon;
+                return FlagsList.Flags[index].Icon;
             case ProbType.Emot:
-                return CharactersList.Characters[idnex].BodyIcon;
+                return CharactersList.Characters[index].BodyIcon;
         }
+
         return null;
+    }
+
+    public void AddProb(ProbType type, int index)
+    {
+        switch (type)
+        {
+            case ProbType.Character:
+                PlayerProfile.AvalableCharacters.Add(index);
+                break;
+            case ProbType.Para:
+                PlayerProfile.AvalableParas.Add(index);
+                break;
+            case ProbType.Flag:
+                PlayerProfile.AvalableFlags.Add(index);
+                break;
+            case ProbType.Emot:
+                PlayerProfile.AvalableEmotes.Add(index);
+                break;
+        }
+
+        SaveProfile();
+    }
+
+    public bool HaveItem(ProbType probType, int index)
+    {
+        switch (probType)
+        {
+            case ProbType.Character:
+                return PlayerProfile.AvalableCharacters.Contains(index);
+            case ProbType.Para:
+                return PlayerProfile.AvalableParas.Contains(index);
+            case ProbType.Flag:
+                return PlayerProfile.AvalableFlags.Contains(index);
+            case ProbType.Emot:
+                return PlayerProfile.AvalableEmotes.Contains(index);
+        }
+        return false;
     }
 }
 
@@ -152,21 +193,21 @@ public class Profile
     public string UserID;
 
     public int AiBehaviorIndex = -1;
-    public List<int> AvalableCharacters=new List<int>{0,1};
-    public int CurrentCharacter=0;
-    public List<int> AvalableFlags=new List<int>{0};
-    public int CurrentFlag=0;
-    public List<int> AvalableEmotes=new List<int>{0};
-    public int CurrentEmote=0;
-    public List<int> AvalableParas=new List<int>{0};
-    public int CurrentPara=0;
+    public List<int> AvalableCharacters = new List<int> {0, 1};
+    public int CurrentCharacter = 0;
+    public List<int> AvalableFlags = new List<int> {0};
+    public int CurrentFlag = 0;
+    public List<int> AvalableEmotes = new List<int> {0};
+    public int CurrentEmote = 0;
+    public List<int> AvalableParas = new List<int> {0};
+    public int CurrentPara = 0;
     public List<string> FriendsUserID;
     public List<string> RequestFrindUserID;
-    public int CoinCount=100;
-    public int TicketCount=10;
-    public int HasBattlePass=0;
+    public int CoinCount = 100;
+    public int TicketCount = 10;
+    public int HasBattlePass = 0;
 
-    public Statistics PlayerStat=new Statistics(0);
+    public Statistics PlayerStat = new Statistics(0);
 
     public string Serialize()
     {
@@ -222,6 +263,7 @@ public struct Statistics
         TotalBattles++;
     }
 }
+
 public class MatchStats
 {
     public float PlayTime;

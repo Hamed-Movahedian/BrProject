@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class BrStoreList : MonoBehaviour
 {
     public BrStoreItemButton ButtonPrefab;
-    
+
     public RectTransform Content;
     public RectTransform CacheContent;
 
@@ -17,33 +17,62 @@ public class BrStoreList : MonoBehaviour
     public CharactersList CharactersList;
     public ParasList ParasList;
     public FlagsList FlagsList;
-    
-    public delegate UnityEvent SelectLockProb(ProbType type, int index);
-    [HideInInspector]public SelectLockProb OnProbSelected;
-    private List<BrStoreItemButton> _activeButtons=new List<BrStoreItemButton>();
-    private List<BrStoreItemButton> _deactiveButtons=new List<BrStoreItemButton>();
+
+    public delegate void SelectLockProb(ProbType type, int index, int price);
+
+    [HideInInspector] public SelectLockProb OnProbSelected;
+
+
+
+    private List<BrStoreItemButton> _activeButtons = new List<BrStoreItemButton>();
+    private List<BrStoreItemButton> _deactiveButtons = new List<BrStoreItemButton>();
     private bool marketIsReady;
+
+
+    #region Instance
+
+    private static BrStoreList instance;
+    private ProfileManager _profileManage;
+
+    public static BrStoreList Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<BrStoreList>();
+            return instance;
+        }
+    }
+
+    #endregion
+
 
     void Start()
     {
+        _profileManage = ProfileManager.Instance();
+
+        PurchaseManager.Instance.OnItemPurchased += PurchaseSucceed;
+
         ClearButtonList();
         foreach (IngameStoreItem item in StoreItems)
         {
-            Sprite icon=null;
+            if (ProfileManager.Instance().HaveItem(item.ItemType, item.Index))
+                continue;
+            Sprite icon = null;
             switch (item.ItemType)
             {
                 case ProbType.Character:
                     icon = CharactersList[item.Index].BodySprite;
                     break;
-                case ProbType.Para:                    
+                case ProbType.Para:
                     icon = ParasList[item.Index].Sprite;
 
                     break;
-                case ProbType.Flag:                    
+                case ProbType.Flag:
                     icon = FlagsList[item.Index].Sprite;
 
                     break;
-                case ProbType.Emot:                    
+                case ProbType.Emot:
                     icon = CharactersList[item.Index].BodySprite;
 
                     break;
@@ -53,38 +82,77 @@ public class BrStoreList : MonoBehaviour
 
             BrStoreItemButton button = GetButton();
             button.GetComponent<RectTransform>().SetParent(Content);
-            button.transform.localScale=Vector3.one;
+            button.transform.localScale = Vector3.one;
             button.InitializeButton(
                 icon,
                 item.Price,
                 false,
-                delegate { Selected(item.ItemType, item.Price); });
+                delegate { Selected(item.ItemType, item.Index, item.Price); });
         }
 
         foreach (MarketItem item in PurchaseItems)
         {
             BrStoreItemButton button = GetButton();
             button.GetComponent<RectTransform>().SetParent(Content);
-            button.transform.localScale=Vector3.one;
+            button.transform.localScale = Vector3.one;
             button.InitializeButton(
                 item.ItemIcon,
                 item.Price,
                 false,
-                delegate { Purchase(item.ItemId); });
+                delegate { Purchase(item); });
         }
-        
     }
 
-    private void Purchase(string itemId)
+    private void ProbSelected(ProbType type, int index)
     {
-        PurchaseManager.BuyItem(itemId);
     }
 
-    private void Selected(ProbType probType, int price)
+    private void PurchaseSucceed(string itemId)
     {
-        OnProbSelected?.Invoke(probType, price);
+        foreach (MarketItem item in PurchaseItems)
+        {
+            if (item.ItemId == itemId)
+            {
+                ProfileManager.Instance().PlayerProfile.CoinCount += item.CoinCount;
+                ProfileManager.Instance().SaveProfile();
+                PurchaseManager.Instance.OnCoinCountChanged?.Invoke(ProfileManager.Instance().PlayerProfile.CoinCount);
+                PurchaseManager.Consume(itemId);
+                return;
+            }
+        }
     }
 
+    private void Purchase(MarketItem item)
+    {
+        PurchaseManager.Instance.BuyItem(item.ItemId);
+    }
+
+    private void Selected(ProbType probType, int index, int price)
+    {
+        OnProbSelected?.Invoke(probType, index, price);
+    }
+
+    public void BuyItem(ProbType type, int index, int price)
+    {
+        if (price > _profileManage.PlayerProfile.CoinCount)
+        {
+            NeedMoreCoins();
+            return;
+        }
+
+        _profileManage.PlayerProfile.CoinCount -= price;
+        PurchaseManager.Instance.OnCoinCountChanged?.Invoke(_profileManage.PlayerProfile.CoinCount);
+        _profileManage.AddProb(type, index);
+        BrStoreList.Instance.ReInitiate();
+    }
+    
+    
+
+
+    private void NeedMoreCoins()
+    {
+        print("Need More Coin");
+    }
 
     public void ClearButtonList()
     {
@@ -114,11 +182,16 @@ public class BrStoreList : MonoBehaviour
         return newButton;
     }
 
+    public void ReInitiate()
+    {
+        Start();
+    }
 }
 
 [Serializable]
 public struct MarketItem
 {
+    public int CoinCount;
     public string ItemId;
     public Sprite ItemIcon;
     public int Price;

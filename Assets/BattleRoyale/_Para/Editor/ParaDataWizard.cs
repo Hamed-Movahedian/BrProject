@@ -21,6 +21,7 @@ public class ParaDataWizard : ScriptableWizard
     public Mesh ParaMesh;
     public Mesh RiserMesh;
     public Texture2D ParaTexture;
+    public Vector3 ParaLocalPos;
 
 
 
@@ -38,7 +39,7 @@ public class ParaDataWizard : ScriptableWizard
         ParaData para = CreatePara();
 
 
-        string path = "Assets/Player/ParasData/" + Name + ".asset";
+        string path = "Assets/BattleRoyale/_Para/Data/" + Name + ".asset";
         if (File.Exists(path))
         {
             if (!EditorUtility.DisplayDialog("ParaData Over Write",
@@ -74,7 +75,7 @@ public class ParaDataWizard : ScriptableWizard
             ParaMesh = ParaData.ParaModel;
             RiserMesh = ParaData.RiserModel;
             Icon = ParaData.Icon;
-
+            ParaLocalPos = ParaData.ParaOffsetPos;
 
             ParaData = null;
             _data = null;
@@ -96,6 +97,7 @@ public class ParaDataWizard : ScriptableWizard
         }
 
         Para.ParaModel.mesh = ParaMesh;
+        Para.ParaModel.transform.localPosition =ParaLocalPos;
         Para.ParaModel.GetComponent<Renderer>().material.mainTexture = ParaTexture;
         Para.RiserModel.mesh = RiserMesh;
 
@@ -106,16 +108,17 @@ public class ParaDataWizard : ScriptableWizard
     {
         Camera iconCam = Para.transform.Find("IconCam").GetComponent<Camera>();
         RenderTexture icon = iconCam.targetTexture;
+        RenderTexture.active = icon;
 
         Texture2D iconPhoto = new Texture2D(icon.width, icon.height, TextureFormat.ARGB32, false);
-
-        iconCam.Render();
-        RenderTexture.active = icon;
         iconPhoto.ReadPixels(new Rect(0, 0, icon.width, icon.height), 0, 0);
+        RenderTexture.active = null;
+
+        //iconCam.Render();
 
         byte[] iconByte;
         iconByte = iconPhoto.EncodeToPNG();
-        string iconPath = "Assets/Player/ParasData/Icons/" + Name + "_Icon.png";
+        string iconPath = "Assets/BattleRoyale/_Para/Icons/" + Name + "_Icon.png";
         System.IO.File.WriteAllBytes(iconPath, iconByte);
 
     }

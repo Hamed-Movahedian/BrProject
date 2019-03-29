@@ -8,6 +8,7 @@ public class LevelRewardButton : MonoBehaviour
 {
     public RawImage ProbImage;
     public GameObject LockIcon;
+    public Text text;
 
     public void SetButton(Inventory inventory, BrRewardProgress list, bool battle)
     {
