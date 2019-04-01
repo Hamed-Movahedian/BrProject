@@ -21,11 +21,12 @@ public class ProfileManager : MonoBehaviour
     #endregion
 
     public Profile PlayerProfile;
-
     public CharactersList CharactersList;
     public ParasList ParasList;
     public FlagsList FlagsList;
 
+    public BrLevelRewards levelRewards;
+    
     private string _filePath;
 
     public void Start()
@@ -184,6 +185,27 @@ public class ProfileManager : MonoBehaviour
                 return PlayerProfile.AvalableEmotes.Contains(index);
         }
         return false;
+    }
+
+    public void GiveBattlePass()
+    {
+        PlayerProfile.HasBattlePass=1;
+        int level = BrExpManager.CalLevel(PlayerProfile.PlayerStat.Experience);
+
+        for (var i = 0; i < level; i++)
+        {
+            LevelReward reward = levelRewards.LevelRewards[i];
+            foreach (Inventory inventory in reward.BattlePassReward)
+            {
+                if (inventory.GetProb() == ProbType.NoProb)
+                    continue;
+
+                if (!HaveItem(inventory.GetProb(), inventory.Value))
+                {
+                    AddProb(inventory.GetProb(), inventory.Value);
+                }
+            }
+        }
     }
 }
 

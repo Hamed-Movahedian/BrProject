@@ -6,12 +6,17 @@ using UnityEngine.Events;
 
 public class BrStoreList : MonoBehaviour
 {
+
+
     public BrStoreItemButton ButtonPrefab;
 
-    public RectTransform Content;
+    public RectTransform InGameItemsContent;
+    public RectTransform TicketsContent;
+    public RectTransform BazaarContent;
     public RectTransform CacheContent;
 
-    public List<IngameStoreItem> StoreItems;
+    public List<InGameStoreItem> StoreItems;
+    public List<TicketPack> TicketPacks;
     public List<MarketItem> PurchaseItems;
 
     public CharactersList CharactersList;
@@ -22,7 +27,7 @@ public class BrStoreList : MonoBehaviour
 
     [HideInInspector] public SelectLockProb OnProbSelected;
 
-
+    public UnityEvent OnLowCoin;
 
     private List<BrStoreItemButton> _activeButtons = new List<BrStoreItemButton>();
     private List<BrStoreItemButton> _deactiveButtons = new List<BrStoreItemButton>();
@@ -54,7 +59,8 @@ public class BrStoreList : MonoBehaviour
         PurchaseManager.Instance.OnItemPurchased += PurchaseSucceed;
 
         ClearButtonList();
-        foreach (IngameStoreItem item in StoreItems)
+        
+        foreach (InGameStoreItem item in StoreItems)
         {
             if (ProfileManager.Instance().HaveItem(item.ItemType, item.Index))
                 continue;
@@ -81,34 +87,51 @@ public class BrStoreList : MonoBehaviour
             }
 
             BrStoreItemButton button = GetButton();
-            button.GetComponent<RectTransform>().SetParent(Content);
+            button.GetComponent<RectTransform>().SetParent(InGameItemsContent);
             button.transform.localScale = Vector3.one;
             button.InitializeButton(
                 icon,
                 item.Price,
-                false,
+                0,
+                MarketItemType.Prob,
                 delegate { Selected(item.ItemType, item.Index, item.Price); });
+        }
+        
+        foreach (TicketPack item in TicketPacks)
+        {
+            BrStoreItemButton button = GetButton();
+            button.GetComponent<RectTransform>().SetParent(TicketsContent);
+            button.transform.localScale = Vector3.one;
+            button.InitializeButton(
+                item.ItemIcon,
+                item.Price,
+                item.TicketCount,
+                MarketItemType.Ticket,
+                delegate { AddTicket(item); });
         }
 
         foreach (MarketItem item in PurchaseItems)
         {
             BrStoreItemButton button = GetButton();
-            button.GetComponent<RectTransform>().SetParent(Content);
+            button.GetComponent<RectTransform>().SetParent(BazaarContent);
             button.transform.localScale = Vector3.one;
             button.InitializeButton(
                 item.ItemIcon,
                 item.Price,
-                false,
+                item.CoinCount,
+                MarketItemType.Coin,
                 delegate { Purchase(item); });
         }
     }
 
-    private void ProbSelected(ProbType type, int index)
+    private void AddTicket(TicketPack ticketPack)
     {
+        
     }
 
     private void PurchaseSucceed(string itemId)
     {
+        Debug.Log(itemId);
         foreach (MarketItem item in PurchaseItems)
         {
             if (item.ItemId == itemId)
@@ -124,6 +147,7 @@ public class BrStoreList : MonoBehaviour
 
     private void Purchase(MarketItem item)
     {
+        Debug.Log("Purchase started in app");
         PurchaseManager.Instance.BuyItem(item.ItemId);
     }
 
@@ -143,7 +167,7 @@ public class BrStoreList : MonoBehaviour
         _profileManage.PlayerProfile.CoinCount -= price;
         PurchaseManager.Instance.OnCoinCountChanged?.Invoke(_profileManage.PlayerProfile.CoinCount);
         _profileManage.AddProb(type, index);
-        BrStoreList.Instance.ReInitiate();
+        ReInitiate();
     }
     
     
@@ -152,6 +176,7 @@ public class BrStoreList : MonoBehaviour
     private void NeedMoreCoins()
     {
         print("Need More Coin");
+        OnLowCoin.Invoke();
     }
 
     public void ClearButtonList()
@@ -186,6 +211,20 @@ public class BrStoreList : MonoBehaviour
     {
         Start();
     }
+
+    public void BuyBattlePass(int price)
+    {
+        if (price > _profileManage.PlayerProfile.CoinCount)
+        {
+            NeedMoreCoins();
+            return;
+        }
+
+        _profileManage.PlayerProfile.CoinCount -= price;
+        PurchaseManager.Instance.OnCoinCountChanged?.Invoke(_profileManage.PlayerProfile.CoinCount);
+        _profileManage.GiveBattlePass();
+        ReInitiate();
+    }
 }
 
 [Serializable]
@@ -198,9 +237,17 @@ public struct MarketItem
 }
 
 [Serializable]
-public struct IngameStoreItem
+public struct InGameStoreItem
 {
     public ProbType ItemType;
     public int Index;
+    public int Price;
+}
+
+[Serializable]
+public class TicketPack
+{
+    public int TicketCount;
+    public Sprite ItemIcon;
     public int Price;
 }

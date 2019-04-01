@@ -135,6 +135,7 @@
               <e p="ProbSelectList.cs" t="Include" />
             </e>
             <e p="Store" t="Include">
+              <e p="BrBattlePassButton.cs" t="Include" />
               <e p="BrStore.cs" t="Include" />
               <e p="BrStoreItemButton.cs" t="Include" />
               <e p="BrStoreList.cs" t="Include" />
@@ -1826,33 +1827,6 @@
             <e p="UI Particle MultiplyDouble.shader" t="Include" />
             <e p="UI Particle Premultiply Blend.shader" t="Include" />
             <e p="UI Particle VertexLit Blended.shader" t="Include" />
-          </e>
-        </e>
-        <e p="VolumetricLight" t="Include">
-          <e p="Editor" t="Include">
-            <e p="ImageEffects" t="Include">
-              <e p="TonemappingEditor.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Scripts" t="Include">
-            <e p="BilateralBlur.shader" t="Include" />
-            <e p="BlitAdd.shader" t="Include" />
-            <e p="VolumetricLight.cs" t="Include" />
-            <e p="VolumetricLight.shader" t="Include" />
-            <e p="VolumetricLightRenderer.cs" t="Include" />
-          </e>
-          <e p="Standard Assets" t="Include">
-            <e p="Effects" t="Include">
-              <e p="ImageEffects" t="Include">
-                <e p="Scripts" t="Include">
-                  <e p="PostEffectsBase.cs" t="Include" />
-                  <e p="Tonemapping.cs" t="Include" />
-                </e>
-                <e p="Shaders" t="Include">
-                  <e p="Tonemapper.shader" t="Include" />
-                </e>
-              </e>
-            </e>
           </e>
         </e>
       </e>
