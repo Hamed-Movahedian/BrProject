@@ -40,7 +40,7 @@ public class BrCharacterModel : MonoBehaviour
     {
         
         CharactersList.Characters[profile.CurrentCharacter].SetToCharacter(this);
-        para.parasList.Paras[profile.CurrentPara].SetToPara(para);
+        if(para) para.parasList.Paras[profile.CurrentPara].SetToPara(para);
         _profile = profile;
     }
 

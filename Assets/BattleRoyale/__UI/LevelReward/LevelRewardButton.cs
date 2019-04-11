@@ -10,7 +10,7 @@ public class LevelRewardButton : MonoBehaviour
     public GameObject LockIcon;
     public Text text;
 
-    public void SetButton(Inventory inventory, BrRewardProgress list, bool battle)
+    public void SetButton(Inventory inventory, BrRewardProgress list, bool battle, int level)
     {
         if (battle)
             LockIcon.SetActive(ProfileManager.Instance().PlayerProfile.HasBattlePass == 0);
@@ -42,6 +42,6 @@ public class LevelRewardButton : MonoBehaviour
         }
         
         GetComponent<Button>().onClick.RemoveAllListeners();
-        GetComponent<Button>().onClick.AddListener(()=>list.ShowProb(inventory,battle));
+        GetComponent<Button>().onClick.AddListener(() => list.PreviewProb(inventory,battle,level));
     }
 }

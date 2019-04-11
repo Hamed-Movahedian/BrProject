@@ -28,7 +28,9 @@ public class BrRewardProgress : MonoBehaviour
     
     public delegate void SelectProb(ProbType type, int index);
 
+    //public Action<ProbType, int, bool> OnProbSelected;
     public Action<ProbType, int, bool> OnProbSelected;
+    public Action<ProbType, int,string,string, bool> OnProbSelectednew;
 
 
     
@@ -65,7 +67,7 @@ public class BrRewardProgress : MonoBehaviour
             {
                 var button = Instantiate(ButtonPrefab, BattlePassRewards, true);
                 button.transform.localScale = Vector3.one;
-                button.SetButton(reward, this,true);
+                button.SetButton(reward, this,true,i+1);
             }
 
             var o = Instantiate(Sectors, BattlePassRewards, true);
@@ -79,7 +81,7 @@ public class BrRewardProgress : MonoBehaviour
             {
                 var button = Instantiate(ButtonPrefab, StandardRewards, true);
                 button.transform.localScale = Vector3.one;
-                button.SetButton(reward, this,false);
+                button.SetButton(reward, this,false,i+1);
             }
 
             o = Instantiate(Sectors, StandardRewards, true);
@@ -133,6 +135,7 @@ public class BrRewardProgress : MonoBehaviour
         sessionProgress = sl;
     }
 
+/*
     public void ShowProb(Inventory inventory, bool battle)
     {
         ProbType probType = inventory.GetProb();
@@ -144,6 +147,23 @@ public class BrRewardProgress : MonoBehaviour
             probType,
             inventory.Value,
             (battle&&ProfileManager.Instance().PlayerProfile.HasBattlePass==0));
+    }
+    
+    */
+
+    public void PreviewProb(Inventory inventory, bool battle,int level)
+    {
+        ProbType probType = inventory.GetProb();
+        
+        if (probType==ProbType.NoProb)
+            return;
+        
+        OnProbSelectednew(
+            probType,
+            inventory.Value,
+            PersianFixer.Fix("جایزه سطح " + level.ToString()) ,
+            "",
+            battle&&ProfileManager.Instance().PlayerProfile.HasBattlePass==0);
     }
 
 

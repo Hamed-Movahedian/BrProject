@@ -16,11 +16,14 @@ public class BrShowPropTemporary : MonoBehaviour
     [Header("Flag")] public GameObject Flag;
     public FlagsList FlagsList;
     public GameObject FlagImage;
-    public BrRewardProgress brRewardProgress;
+
+    [Header("References")] public BrRewardProgress brRewardProgress;
     public ProbSelectList probSelectList;
 
+    [Header("Window Att")] public Text Title;
     public Text Description;
     public Button BuyButton;
+    [Multiline] public string PurchaseItemDescribe;
     private ProfileManager profileManager;
 
 
@@ -72,18 +75,68 @@ public class BrShowPropTemporary : MonoBehaviour
     {
         profileManager = ProfileManager.Instance();
 
-        probSelectList.OnLockProbSelected += (type, index) => ShowProb(type, index, false);
+        probSelectList.OnLockProbSelected += PreviewProb;
         BrStoreList.Instance.OnProbSelected += ShowBuyItem;
-        brRewardProgress.OnProbSelected += ShowProb;
+        //brRewardProgress.OnProbSelected += ShowProb;
+        brRewardProgress.OnProbSelectednew += PreviewProb;
+    }
+
+
+    public void PreviewProb(ProbType type, int index, string title, string describe, bool needBP = false)
+    {
+        Title.text = title;
+        Description.text = describe;
+
+        Character.SetActive(false);
+        Flag.SetActive(false);
+        Para.SetActive(false);
+        CharacterImage.SetActive(false);
+        ParaImage.SetActive(false);
+        FlagImage.SetActive(false);
+        BuyButton.gameObject.SetActive(false);
+        //Description.gameObject.SetActive(false);
+
+        switch (type)
+        {
+            case ProbType.Character:
+                CharactersList[index].SetToCharacter(Character.GetComponent<BrCharacterModel>());
+                Character.SetActive(true);
+                CharacterImage.SetActive(true);
+
+                break;
+            case ProbType.Para:
+                ParasList[index].SetToPara(Para.GetComponent<Para>());
+                Para.SetActive(true);
+                ParaImage.SetActive(true);
+
+                break;
+            case ProbType.Flag:
+                FlagsList[index].SetToFlag(Flag.GetComponent<Flag>());
+                Flag.SetActive(true);
+                FlagImage.SetActive(true);
+
+                break;
+            case ProbType.Emot:
+                CharactersList[index].SetToCharacter(Character.GetComponent<BrCharacterModel>());
+                Character.SetActive(true);
+                CharacterImage.SetActive(true);
+
+                break;
+            default:
+                break;
+        }
+
+        GetComponent<PlayableDirector>().Play();
     }
 
     private void ShowBuyItem(ProbType type, int index, int price)
     {
-        ShowProb(type, index);
+        string describe = PurchaseItemDescribe.Replace("****", PersianFixer.Fix(price.ToString()));
+        string title = PersianFixer.Fix("خرید");
+        PreviewProb(type, index, title,describe);
         BuyButton.gameObject.SetActive(true);
         BuyButton.onClick.RemoveAllListeners();
         BuyButton.onClick.AddListener(() => BrStoreList.Instance.BuyItem(type, index, price));
-        Description.text = price.ToString();
+        Description.gameObject.SetActive(true);
     }
-
 }

@@ -60,6 +60,7 @@
           </e>
           <e p="__UI" t="Include">
             <e p="Common" t="Include">
+              <e p="BrButtonClickSound.cs" t="Include" />
               <e p="BrUIBar.cs" t="Include" />
             </e>
             <e p="HUD" t="Include">
@@ -129,8 +130,9 @@
             <e p="MainMenu" t="Include">
               <e p="BrObjectRotator.cs" t="Include" />
               <e p="BrPlayerShowStat.cs" t="Include" />
+              <e p="BrSetPlayerName.cs" t="Include" />
               <e p="Launcher.cs" t="Include" />
-              <e p="PlayerNameInputField.cs" t="Include" />
+              <e p="PlayerName.cs" t="Include" />
               <e p="ProbSelectButton.cs" t="Include" />
               <e p="ProbSelectList.cs" t="Include" />
             </e>
@@ -206,6 +208,11 @@
             <e p="FlagData.cs" t="Include" />
             <e p="FlagsList.cs" t="Include" />
           </e>
+          <e p="_Map" t="Include">
+            <e p="MainMenuScene" t="Include">
+              <e p="BrMainMenuCharacter.cs" t="Include" />
+            </e>
+          </e>
           <e p="_Para" t="Include">
             <e p="Editor" t="Include">
               <e p="ParaDataWizard.cs" t="Include" />
@@ -258,6 +265,9 @@
             <e p="LineOfSight" t="Include">
               <e p="BrLineOfSight.cs" t="Include" />
             </e>
+          </e>
+          <e p="Web" t="Include">
+            <e p="BrServerController.cs" t="Include" />
           </e>
         </e>
         <e p="Behavior Designer" t="Include">

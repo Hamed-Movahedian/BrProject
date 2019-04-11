@@ -31,8 +31,21 @@ public class ProfileManager : MonoBehaviour
 
     public void Start()
     {
+        SceneManager.sceneLoaded += OnSceneChange;
         DontDestroyOnLoad(this.gameObject);
         LoadProfile();
+    }
+
+    private void OnSceneChange(Scene scene, LoadSceneMode loadMode)
+    {
+        if (scene.buildIndex==3) TakeTicket();
+    }
+
+    private void TakeTicket()
+    {
+        if (PlayerProfile.HasBattlePass>0)return;
+        PlayerProfile.TicketCount--;
+        SaveProfile();
     }
 
     [ContextMenu("Load")]
@@ -99,28 +112,16 @@ public class ProfileManager : MonoBehaviour
         _filePath = filepath;
         string profileString = File.ReadAllText(_filePath);
         PlayerProfile = Profile.Deserialize(profileString);
-        StartCoroutine(LoadMainMenu());
+        LoadMainMenu();
     }
 
-    public IEnumerator LoadMainMenu()
+    public void LoadMainMenu()
     {
         SceneManager.LoadScene(1);
-        while (SceneManager.GetActiveScene().name == "Intro")
-            yield return null;
-        SetPlayerModel();
     }
 
-    private void SetPlayerModel()
-    {
-        BrCharacterModel mainMenuCharacter = FindObjectsOfType<BrCharacterModel>()
-            .FirstOrDefault(c => c.gameObject.name.Contains("Main"));
-        if (mainMenuCharacter)
-        {
-            CharactersList.Characters[PlayerProfile.CurrentCharacter].SetToCharacter(mainMenuCharacter);
-            mainMenuCharacter.BodySkinnedMesh.gameObject.SetActive(true);
-        }
-    }
-
+    
+    
     public void SetMatchStat(MatchStats thisMatchStats)
     {
         PlayerProfile.PlayerStat.ChangeStats(thisMatchStats);

@@ -17,6 +17,8 @@ public class BrDeathReport : MonoBehaviour
     {
         BrPlayerTracker.Instance.OnPlayerDead += (victom, killer, weaponName) =>
         {
+            BrPlayerTracker.Instance.OnLastPlayerLeft += player => gameObject.SetActive(false);
+            
             if (BrPlayerTracker.Instance.PlayerCounter <= 1)
             {
                 gameObject.SetActive(false);

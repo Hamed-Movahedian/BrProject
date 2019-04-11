@@ -30,7 +30,7 @@ public class BrStoreList : MonoBehaviour
     public UnityEvent OnLowCoin;
 
     private List<BrStoreItemButton> _activeButtons = new List<BrStoreItemButton>();
-    private List<BrStoreItemButton> _deactiveButtons = new List<BrStoreItemButton>();
+    private List<BrStoreItemButton> _deActiveButtons = new List<BrStoreItemButton>();
     private bool marketIsReady;
 
 
@@ -126,7 +126,14 @@ public class BrStoreList : MonoBehaviour
 
     private void AddTicket(TicketPack ticketPack)
     {
-        
+        if (ticketPack.Price>_profileManage.PlayerProfile.CoinCount) NeedMoreCoins();
+        else
+        {
+            _profileManage.PlayerProfile.CoinCount -= ticketPack.Price;
+            _profileManage.PlayerProfile.TicketCount += ticketPack.TicketCount;
+            _profileManage.SaveProfile();
+        }
+
     }
 
     private void PurchaseSucceed(string itemId)
@@ -184,7 +191,7 @@ public class BrStoreList : MonoBehaviour
         foreach (BrStoreItemButton button in _activeButtons)
         {
             button.transform.SetParent(CacheContent);
-            _deactiveButtons.Add(button);
+            _deActiveButtons.Add(button);
         }
 
         _activeButtons.Clear();
@@ -193,10 +200,10 @@ public class BrStoreList : MonoBehaviour
     private BrStoreItemButton GetButton()
     {
         BrStoreItemButton newButton;
-        if (_deactiveButtons.Count > 0)
+        if (_deActiveButtons.Count > 0)
         {
-            newButton = _deactiveButtons[0];
-            _deactiveButtons.RemoveAt(0);
+            newButton = _deActiveButtons[0];
+            _deActiveButtons.RemoveAt(0);
         }
         else
         {

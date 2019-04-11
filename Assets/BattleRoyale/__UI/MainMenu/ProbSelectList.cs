@@ -36,7 +36,7 @@ public class ProbSelectList : MonoBehaviour
     [Header("Flag")] public Flag ShowFlag;
     public RawImage FlagImage;
 
-    public delegate void SelectLockProb(ProbType type, int index);
+    public delegate void SelectLockProb(ProbType type, int index,string title,string describe,bool needbp);
 
     public SelectLockProb OnLockProbSelected;
 
@@ -120,7 +120,7 @@ public class ProbSelectList : MonoBehaviour
         {
             ProbSelectButton prefab = GetButton();
             prefab.transform.SetParent(Panel);
-            prefab.gameObject.SetActive(true);
+            //prefab.gameObject.SetActive(true);
             prefab.transform.localScale = Vector3.one;
             prefab.SetProbButton(
                 Manager.GetProbIcon(probIndex, _probsType),
@@ -236,7 +236,7 @@ public class ProbSelectList : MonoBehaviour
 
     public void PreviewProb(int active)
     {
-        OnLockProbSelected(_probsType, active);
+        OnLockProbSelected(_probsType, active,"","",false);
     }
 }
 
