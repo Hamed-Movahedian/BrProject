@@ -6,7 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterData", menuName = "BattleRoyal/CharacterData", order = 2)]
 public class CharacterData : ScriptableObject
 {
+    [HideInInspector]
+    public int ID = -1;
     public string Name;
+    public bool HasByDefault = false;
     public Texture2D FaceIcon;
     public Sprite FaceSprite;
     public Texture2D BodyIcon;
