@@ -60,6 +60,7 @@
           </e>
           <e p="__UI" t="Include">
             <e p="Common" t="Include">
+              <e p="BrButtonClickSound.cs" t="Include" />
               <e p="BrUIBar.cs" t="Include" />
             </e>
             <e p="HUD" t="Include">
@@ -129,12 +130,14 @@
             <e p="MainMenu" t="Include">
               <e p="BrObjectRotator.cs" t="Include" />
               <e p="BrPlayerShowStat.cs" t="Include" />
+              <e p="BrSetPlayerName.cs" t="Include" />
               <e p="Launcher.cs" t="Include" />
-              <e p="PlayerNameInputField.cs" t="Include" />
+              <e p="PlayerName.cs" t="Include" />
               <e p="ProbSelectButton.cs" t="Include" />
               <e p="ProbSelectList.cs" t="Include" />
             </e>
             <e p="Store" t="Include">
+              <e p="BrBattlePassButton.cs" t="Include" />
               <e p="BrStore.cs" t="Include" />
               <e p="BrStoreItemButton.cs" t="Include" />
               <e p="BrStoreList.cs" t="Include" />
@@ -205,6 +208,11 @@
             <e p="FlagData.cs" t="Include" />
             <e p="FlagsList.cs" t="Include" />
           </e>
+          <e p="_Map" t="Include">
+            <e p="MainMenuScene" t="Include">
+              <e p="BrMainMenuCharacter.cs" t="Include" />
+            </e>
+          </e>
           <e p="_Para" t="Include">
             <e p="Editor" t="Include">
               <e p="ParaDataWizard.cs" t="Include" />
@@ -257,6 +265,9 @@
             <e p="LineOfSight" t="Include">
               <e p="BrLineOfSight.cs" t="Include" />
             </e>
+          </e>
+          <e p="Web" t="Include">
+            <e p="BrServerController.cs" t="Include" />
           </e>
         </e>
         <e p="Behavior Designer" t="Include">
@@ -1769,6 +1780,9 @@
           <e p="Editor" t="Include">
             <e p="SetArabicTextExample.cs" t="Include" />
           </e>
+          <e p="JsonDotNet" t="Include">
+            <e p="link.xml" t="Include" />
+          </e>
           <e p="PersianFixer.cs" t="Include" />
           <e p="Scripts" t="Include">
             <e p="AdVideoManager.cs" t="Include" />
@@ -1826,33 +1840,6 @@
             <e p="UI Particle MultiplyDouble.shader" t="Include" />
             <e p="UI Particle Premultiply Blend.shader" t="Include" />
             <e p="UI Particle VertexLit Blended.shader" t="Include" />
-          </e>
-        </e>
-        <e p="VolumetricLight" t="Include">
-          <e p="Editor" t="Include">
-            <e p="ImageEffects" t="Include">
-              <e p="TonemappingEditor.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Scripts" t="Include">
-            <e p="BilateralBlur.shader" t="Include" />
-            <e p="BlitAdd.shader" t="Include" />
-            <e p="VolumetricLight.cs" t="Include" />
-            <e p="VolumetricLight.shader" t="Include" />
-            <e p="VolumetricLightRenderer.cs" t="Include" />
-          </e>
-          <e p="Standard Assets" t="Include">
-            <e p="Effects" t="Include">
-              <e p="ImageEffects" t="Include">
-                <e p="Scripts" t="Include">
-                  <e p="PostEffectsBase.cs" t="Include" />
-                  <e p="Tonemapping.cs" t="Include" />
-                </e>
-                <e p="Shaders" t="Include">
-                  <e p="Tonemapper.shader" t="Include" />
-                </e>
-              </e>
-            </e>
           </e>
         </e>
       </e>

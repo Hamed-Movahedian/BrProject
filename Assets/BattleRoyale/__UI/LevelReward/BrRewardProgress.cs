@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
+using Slider = UnityEngine.UI.Slider;
 
 public class BrRewardProgress : MonoBehaviour
 {
@@ -26,7 +28,9 @@ public class BrRewardProgress : MonoBehaviour
     
     public delegate void SelectProb(ProbType type, int index);
 
+    //public Action<ProbType, int, bool> OnProbSelected;
     public Action<ProbType, int, bool> OnProbSelected;
+    public Action<ProbType, int,string,string, bool> OnProbSelectednew;
 
 
     
@@ -44,6 +48,7 @@ public class BrRewardProgress : MonoBehaviour
     public Texture CoinIcon;
     public Slider slider;
     private bool rew=false;
+    private float sessionProgress;
 
     private void OnEnable()
     {
@@ -62,7 +67,7 @@ public class BrRewardProgress : MonoBehaviour
             {
                 var button = Instantiate(ButtonPrefab, BattlePassRewards, true);
                 button.transform.localScale = Vector3.one;
-                button.SetButton(reward, this,true);
+                button.SetButton(reward, this,true,i+1);
             }
 
             var o = Instantiate(Sectors, BattlePassRewards, true);
@@ -76,7 +81,7 @@ public class BrRewardProgress : MonoBehaviour
             {
                 var button = Instantiate(ButtonPrefab, StandardRewards, true);
                 button.transform.localScale = Vector3.one;
-                button.SetButton(reward, this,false);
+                button.SetButton(reward, this,false,i+1);
             }
 
             o = Instantiate(Sectors, StandardRewards, true);
@@ -85,6 +90,9 @@ public class BrRewardProgress : MonoBehaviour
                 o.GetComponentInChildren<Text>().
                     text.Replace("*", PersianFixer.Fix((i + 1).ToString()));
         }
+        ScrollRect scrollRect = GetComponentInChildren<ScrollRect>();
+        Debug.Log(scrollRect.horizontalNormalizedPosition);
+        scrollRect.horizontalNormalizedPosition=sessionProgress;
     }
 
 
@@ -118,17 +126,16 @@ public class BrRewardProgress : MonoBehaviour
             sl2 += RewardsList.LevelRewards[i].BattlePassReward.Count + 0.5f;
         }
 
-        float levelLenth = sl2 - sl;
+        float levelLength = sl2 - sl;
         
-        sl +=((float)(xp - cuExp) / (nEXP - cuExp))*(levelLenth);
+        sl +=((float)(xp - cuExp) / (nEXP - cuExp))*(levelLength);
         //sl += (level)/ (2f * count);
-        
-        Debug.Log(sl);
-        Debug.Log(sl2);
-        Debug.Log(levelLenth);
+
         slider.value = sl;
+        sessionProgress = sl;
     }
 
+/*
     public void ShowProb(Inventory inventory, bool battle)
     {
         ProbType probType = inventory.GetProb();
@@ -140,6 +147,23 @@ public class BrRewardProgress : MonoBehaviour
             probType,
             inventory.Value,
             (battle&&ProfileManager.Instance().PlayerProfile.HasBattlePass==0));
+    }
+    
+    */
+
+    public void PreviewProb(Inventory inventory, bool battle,int level)
+    {
+        ProbType probType = inventory.GetProb();
+        
+        if (probType==ProbType.NoProb)
+            return;
+        
+        OnProbSelectednew(
+            probType,
+            inventory.Value,
+            PersianFixer.Fix("جایزه سطح " + level.ToString()) ,
+            "",
+            battle&&ProfileManager.Instance().PlayerProfile.HasBattlePass==0);
     }
 
 

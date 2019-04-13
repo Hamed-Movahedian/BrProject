@@ -2,6 +2,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace BR
 {
@@ -20,6 +21,8 @@ namespace BR
         [SerializeField]
         private byte maxPlayersPerRoom = 2;
 
+        [SerializeField]
+        private UnityEvent noTicketEvent;
         #endregion
 
 
@@ -120,6 +123,12 @@ namespace BR
         /// </summary>
         public void Connect()
         {
+            if (ProfileManager.Instance().PlayerProfile.TicketCount<1)
+            {
+                noTicketEvent.Invoke();
+                return;
+            }
+            
             _isConnecting = true;
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);

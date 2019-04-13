@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
@@ -161,6 +162,7 @@ public class BrMatchstatRecorder : MonoBehaviour
 
     public void ShowStats()
     {
+        PhotonNetwork.LeaveRoom();
         if (Avatar != null) Avatar.SetProfile(ProfileManager.Instance().PlayerProfile);
         thisMatchStat.PlayTime = _finishTime - _startTime;
         win = rank == 1;

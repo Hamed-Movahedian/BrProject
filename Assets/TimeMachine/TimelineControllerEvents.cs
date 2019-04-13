@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class TimelineControllerEvents : MonoBehaviour
 {
+    public bool Condition;
     [Serializable]
     public class NamedEvent
     {
@@ -18,7 +19,14 @@ public class TimelineControllerEvents : MonoBehaviour
 
     public void RunEvent(string eventName)
     {
+        if (!Condition)    return;
+        Debug.Log("Running Event "+eventName);
         events.FirstOrDefault(e=>e.Name==eventName)?.Event.Invoke();
+    }
+
+    public void SetCondition(bool c)
+    {
+        Condition = c;
     }
 }
 

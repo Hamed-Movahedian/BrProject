@@ -29,6 +29,7 @@ public class ProbSelectButton : MonoBehaviour
             _button.onClick.AddListener(() => list.PreviewProb(active));
         
         ButtonImage.texture = image;
+        gameObject.SetActive(true);
         
     }
 }
