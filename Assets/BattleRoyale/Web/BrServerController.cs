@@ -6,8 +6,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
-[CreateAssetMenu(fileName = "ServerController", menuName = "BattleRoyal/Server Controller")]
-public class BrServerController : ScriptableObject
+public class BrServerController : MonoBehaviour
 {
     #region Instance
 
@@ -18,14 +17,41 @@ public class BrServerController : ScriptableObject
         get
         {
             if (instance == null)
-                instance = Resources.Load<BrServerController>("ServerController");
+                instance = FindObjectOfType<BrServerController>();
             return instance;
         }
     }
 
-    #endregion
+#endregion
 
+    #region OnSend
+    
+        public delegate void OnSendDel(UnityWebRequest request);
+    
+        public OnSendDel OnSend;
+    
+        #endregion
+
+    #region OnFail
+    
+        public delegate void OnFailDel(UnityWebRequest request);
+    
+        public OnFailDel OnFail;
+    
+        #endregion
+        
+    #region OnSuccess
+    
+        public delegate void OnSuccessDel(UnityWebRequest request);
+    
+        public OnSuccessDel OnSuccess;
+    
+        #endregion
+        
     public string URL = @"http://localhost:3794";
+    private UnityWebRequest request;
+    private bool waitForRetry;
+
 
     #region PostRequst
 
@@ -68,19 +94,29 @@ public class BrServerController : ScriptableObject
         Action<string> onSuccess,
         Action<UnityWebRequest> onError = null)
     {
-        UnityWebRequest request = PostRequest(url, bodyData);
+        request = PostRequest(url, bodyData);
 
-        var asyncOperation = request.SendWebRequest();
-
-        yield return asyncOperation;
-
-        if (!request.isHttpError && !request.isNetworkError)
+        while (true)
         {
-            onSuccess?.Invoke(request.downloadHandler.text);
-        }
-        else
-        {
-            onError?.Invoke(request);
+            var asyncOperation = request.SendWebRequest();
+
+            yield return asyncOperation;
+
+            if (!request.isHttpError && !request.isNetworkError)
+            {
+                onSuccess?.Invoke(request.downloadHandler.text);
+                OnSuccess?.Invoke(request);
+                break;
+            }
+            else
+            {
+                onError?.Invoke(request);
+                OnFail?.Invoke(request);
+                
+                waitForRetry = true;
+                while (waitForRetry)
+                    yield return null;
+            }
         }
     }
 
@@ -125,4 +161,9 @@ public class BrServerController : ScriptableObject
 #endif
 
     #endregion
+
+    public void Retry()
+    {
+        waitForRetry = false;
+    }
 }

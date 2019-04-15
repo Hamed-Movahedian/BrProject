@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class ProfileManager : MonoBehaviour
 {
     #region Singleton
@@ -33,7 +34,9 @@ public class ProfileManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneChange;
         DontDestroyOnLoad(this.gameObject);
-        LoadProfile();
+        
+        //LoadProfile();
+        LoadMainMenu();
     }
 
     private void OnSceneChange(Scene scene, LoadSceneMode loadMode)
@@ -112,12 +115,13 @@ public class ProfileManager : MonoBehaviour
         _filePath = filepath;
         string profileString = File.ReadAllText(_filePath);
         PlayerProfile = Profile.Deserialize(profileString);
-        LoadMainMenu();
+        //LoadMainMenu();
     }
 
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(1);
+        
     }
 
     

@@ -36,7 +36,7 @@ public class FlagsList : ScriptableObject
             flagsJson.ToString(),
             output =>
             {
-                var newIds = JsonConvert.DeserializeObject<List<int>>(
+                List<int> newIds = JsonConvert.DeserializeObject<List<int>>(
                     output);
                 
                 for (int i = 0; i < Flags.Length; i++)

@@ -45,7 +45,11 @@ public class PurchaseManager : MonoBehaviour
             "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDd+IlpeNJRf25jGcQxyNnaM2F7ieP5q6yt3PGnizCrzWIbHoLmquM3ZQbPWXSYjpYEJ2dbIHROEvZHD4+oQOEm2skVGCRpbq2nFZm9p1QKstTwbYnWI1bRmeRil/G56VrMt1CvmN3pmgQ/CW6N4aZJawbn/58M+2c0Fwz9AUIECYhB6GHrmqtmBVq2u8zVE62hjK/Ri1QH6bSspvl73feIfDA+yQ4NWV1gwNT9KXECAwEAAQ==");
 
         IABEventManager.purchaseSucceededEvent += purchase => OnItemPurchased.Invoke(purchase.ProductId);
+#if UNITY_ANDROID
+
         IABEventManager.purchaseSucceededEvent += NewMethod;
+        
+#endif
         IABEventManager.purchaseFailedEvent += NewMethod2;
 
 #endif
@@ -56,13 +60,15 @@ public class PurchaseManager : MonoBehaviour
         Debug.Log("Purchase Failed");
     }
 
-/*
+#if UNITY_ANDROID
+
     private void NewMethod(BazaarPurchase BP)
     {
         Debug.Log("Purchase Done");
         Debug.Log(BP.ProductId);
     }
-*/
+#endif
+
 
     public void BuyItem(string itemId)
     {

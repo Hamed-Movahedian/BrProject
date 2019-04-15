@@ -52,4 +52,10 @@ public class CharacterData : ScriptableObject
         character.HipAttachmentMaterial.material = HipAttachmentMaterial;
         character.HipAttachmentMesh.transform.localPosition = HipPosisionOffset;
     }
+
+    [ContextMenu("Show ID")]
+    void ShowID()
+    {
+        Debug.Log(ID);
+    }
 }
