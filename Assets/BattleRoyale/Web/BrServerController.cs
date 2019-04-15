@@ -110,7 +110,7 @@ public class BrServerController : ScriptableObject
 
             UnityEditor.EditorUtility.DisplayDialog(
                 "Post Request",
-                $"Success \n{text}"
+                $"Success"
                 , "Ok");
         }
         else

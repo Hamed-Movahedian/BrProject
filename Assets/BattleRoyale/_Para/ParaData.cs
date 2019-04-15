@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Para Data", menuName = "BattleRoyal/Para Data", order = 4)]
 public class ParaData : ScriptableObject
 {
+    [HideInInspector]
+    public int ID = -1;
+    public bool HasByDefault = false;
     public string Name;
     public Texture2D Icon;
     public Texture2D Texture;

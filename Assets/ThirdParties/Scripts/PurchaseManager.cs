@@ -56,11 +56,13 @@ public class PurchaseManager : MonoBehaviour
         Debug.Log("Purchase Failed");
     }
 
+/*
     private void NewMethod(BazaarPurchase BP)
     {
         Debug.Log("Purchase Done");
         Debug.Log(BP.ProductId);
     }
+*/
 
     public void BuyItem(string itemId)
     {
@@ -76,6 +78,6 @@ public class PurchaseManager : MonoBehaviour
 
     public static void Consume(string itemId)
     {
-        BazaarIAB.consumeProduct(itemId);
+        //BazaarIAB.consumeProduct(itemId);
     }
 }
