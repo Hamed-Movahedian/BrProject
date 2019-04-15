@@ -17,6 +17,7 @@ public class CharactersList : ScriptableObject
         set { Characters[index] = value; }
     }
 
+#if UNITY_EDITOR
     [ContextMenu("Sync")]
     void Sync()
     {
@@ -34,6 +35,21 @@ public class CharactersList : ScriptableObject
         BrServerController.Instance.PostEditor(
             "Characters/Sync",
             charactersJson.ToString(),
-            output => { Debug.Log(output); });
+            output =>
+            {
+                var newIds = JsonConvert.DeserializeObject<List<int>>(
+                    output);
+                
+                for (int i = 0; i < Characters.Length; i++)
+                {
+                    Characters[i].ID = newIds[i];
+                    UnityEditor.EditorUtility.SetDirty(Characters[i]);
+
+                }
+                UnityEditor.EditorUtility.SetDirty(this);
+                UnityEditor.AssetDatabase.SaveAssets();
+            });
     }
+#endif
+    
 }
