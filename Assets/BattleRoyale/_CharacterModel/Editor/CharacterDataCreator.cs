@@ -60,7 +60,7 @@ public class CharacterDataCreator : ScriptableWizard
         CharacterData character = CreateCharacter();
 
 
-        string path = "Assets/Player/CharactersData/" + Name + ".asset";
+        string path = "Assets/BattleRoyale/_CharacterModel/Data/" + Name + ".asset";
         if (File.Exists(path))
         {
             if (!EditorUtility.DisplayDialog("CharacterData Over Write",
@@ -209,7 +209,7 @@ public class CharacterDataCreator : ScriptableWizard
 
         byte[] faceByte;
         faceByte = facePhoto.EncodeToPNG();
-        string facePath = "Assets/Player/CharactersData/Icons/" + Name + "_face.png";
+        string facePath = "Assets/BattleRoyale/_CharacterModel/Icons/" + Name + "_face.png";
         System.IO.File.WriteAllBytes(facePath, faceByte);
 
         bodyCam.Render();
@@ -218,7 +218,7 @@ public class CharacterDataCreator : ScriptableWizard
 
         byte[] bodyByte;
         bodyByte = bodyPhoto.EncodeToPNG();
-        string bodyPath = "Assets/Player/CharactersData/Icons/" + Name + "_body.png";
+        string bodyPath = "Assets/BattleRoyale/_CharacterModel/Icons/" + Name + "_body.png";
         System.IO.File.WriteAllBytes(bodyPath, bodyByte);
 
     }

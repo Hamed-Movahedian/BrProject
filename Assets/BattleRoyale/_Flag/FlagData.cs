@@ -16,7 +16,7 @@ public class FlagData : ScriptableObject
 
         if (sprite)
             sprite.texture = Image;
-        else
-            flag.gameObject.GetComponent<MeshRenderer>().material.mainTexture = Image;
+        
+        flag.gameObject.GetComponent<MeshRenderer>().material.mainTexture = Image;
     }
 }

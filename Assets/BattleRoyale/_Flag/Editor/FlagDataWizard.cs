@@ -33,7 +33,7 @@ public class FlagDataWizard : ScriptableWizard
         FlagData flag= CreateFlag();
 
 
-        string path = "Assets/Player/FlagsData/" + Name + ".asset";
+        string path = "Assets/BattleRoyale/_Flag/Data/" + Name + ".asset";
         if (File.Exists(path))
         {
             if (!EditorUtility.DisplayDialog("FlagData Over Write",
@@ -92,7 +92,7 @@ public class FlagDataWizard : ScriptableWizard
 
     public void CreatIcons()
     {
-        Camera iconCam = Flag.transform.Find("IconCam").GetComponent<Camera>();
+        Camera iconCam = Flag.GetComponentInChildren<Camera>();
         RenderTexture icon = iconCam.targetTexture;
 
         Texture2D iconPhoto = new Texture2D(icon.width, icon.height, TextureFormat.ARGB32, false);
@@ -103,7 +103,7 @@ public class FlagDataWizard : ScriptableWizard
 
         byte[] iconByte;
         iconByte = iconPhoto.EncodeToPNG();
-        string iconPath = "Assets/Player/FlagsData/Icons/" + Name + "_Icon.png";
+        string iconPath = "Assets/BattleRoyale/_Flag/Icons/" + Name + "_Icon.png";
         System.IO.File.WriteAllBytes(iconPath, iconByte);
 
     }
