@@ -100,7 +100,8 @@ public class BrPlayerSpawner : MonoBehaviour
         // set random profiles for TEST
         for (int i = 0; i < AiProfiles.Count; i++)
         {
-            AiProfiles[i].UserID = $"AI-{i}";
+            AiProfiles[i].Name = $"AI";
+            AiProfiles[i].ID = i;
             AiProfiles[i].CurrentCharacter =
                 Random.Range(0, ProfileManager.Instance().CharactersList.Characters.Length);
             AiProfiles[i].CurrentFlag = Random.Range(0, ProfileManager.Instance().FlagsList.Flags.Length);

@@ -16,7 +16,7 @@ public class BrBattlePassButton : MonoBehaviour
     private void OnEnable()
     {
         _button = GetComponent<Button>();
-        _hasBP = ProfileManager.Instance().PlayerProfile.HasBattlePass == 1;
+        _hasBP = ProfileManager.Instance().PlayerProfile.HasBattlePass;
 
         
         Initialize();

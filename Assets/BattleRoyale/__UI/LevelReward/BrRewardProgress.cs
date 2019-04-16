@@ -163,7 +163,7 @@ public class BrRewardProgress : MonoBehaviour
             inventory.Value,
             PersianFixer.Fix("جایزه سطح " + level.ToString()) ,
             "",
-            battle&&ProfileManager.Instance().PlayerProfile.HasBattlePass==0);
+            battle&&!ProfileManager.Instance().PlayerProfile.HasBattlePass);
     }
 
 

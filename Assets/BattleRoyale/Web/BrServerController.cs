@@ -90,7 +90,16 @@ public class BrServerController : MonoBehaviour
 
     #region Post
 
-    public IEnumerator Post(
+    public void Post(
+        string url,
+        string bodyData,
+        Action<string> onSuccess,
+        Action<UnityWebRequest> onError = null)
+    {
+        StartCoroutine(PostCoroutine(url, bodyData, onSuccess, onError));
+    }
+
+    private IEnumerator PostCoroutine(
         string url, 
         string bodyData,
         Action<string> onSuccess,

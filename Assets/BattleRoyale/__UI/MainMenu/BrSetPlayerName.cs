@@ -16,16 +16,16 @@ public class BrSetPlayerName : MonoBehaviour
     
     public void GetPlayerName()
     {
-        string userID = ProfileManager.Instance().PlayerProfile.UserID;
+        string name = ProfileManager.Instance().PlayerProfile.Name;
+        Submit.interactable = false;
 
-        if (userID == "")
+        if (name == "")
         {
             Cancel.interactable = false;
             return;
         }
 
-        var nickName = userID.Split('#')[0];
-        NameInput.text = nickName;
+        NameInput.text = name;
         Cancel.interactable = true;
     }
 
@@ -40,7 +40,7 @@ public class BrSetPlayerName : MonoBehaviour
             return;
         }
 
-        ProfileManager.Instance().PlayerProfile.UserID = value+"#"+GetPlayerCode();
+        ProfileManager.Instance().PlayerProfile.Name = value;
         ProfileManager.Instance().SaveProfile();
         PhotonNetwork.NickName = value;
         OnNameSubmited.Invoke();
@@ -53,7 +53,7 @@ public class BrSetPlayerName : MonoBehaviour
 
     public void CheckNameAvailability()
     {
-        bool b = NameInput.text.Length > 5;
+        bool b = NameInput.text.Length > 2;
         NameInput.textComponent.color = b ? Available : Forbiden;
         Submit.interactable= b;
     }

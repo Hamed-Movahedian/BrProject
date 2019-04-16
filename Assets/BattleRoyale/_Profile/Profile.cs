@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class Profile
 {
-    public string UserID;
+    public string UserID=>$"{Name}#{ID}";
     public int ID;
     public string Name;
     public int AiBehaviorIndex = -1;
@@ -28,7 +28,7 @@ public class Profile
     public int TicketCount = 10;
     public bool HasBattlePass = false;
 
-    public Statistics PlayerStat = new Statistics(0);
+    public Statistics PlayerStat = new Statistics();
 
     public string Serialize()
     {
@@ -43,27 +43,40 @@ public class Profile
     public static Profile Create(string text)
     {
         var jInput = JToken.Parse(text);
-        
-        var jPlayer = jInput["player"];
 
         var profile = new Profile()
         {
-            ID=(int) jPlayer["Id"],
-            Name = (string) jPlayer["Name"],
-            AiBehaviorIndex=(int) jPlayer["AiBehaviorIndex"],
+            ID=(int) jInput["Id"],
+            Name = ((string) jInput["Name"]).Replace(" ",""),
+            AiBehaviorIndex=(int) jInput["AiBehaviorIndex"],
             
-            CurrentCharacter = (int) jPlayer["CurrentCharacter"],
-            CurrentFlag = (int) jPlayer["CurrentFlag"],
-            CurrentPara = (int) jPlayer["CurrentPara"],
-            CurrentEmote = (int) jPlayer["CurrentEmote"],
+            CurrentCharacter = (int) jInput["CurrentCharacter"],
+            CurrentFlag = (int) jInput["CurrentFlag"],
+            CurrentPara = (int) jInput["CurrentPara"],
+            CurrentEmote = (int) jInput["CurrentEmote"],
             
             AvalableCharacters= jInput["Characters"].Values<int>().ToList(),
+            AvalableFlags= jInput["Flags"].Values<int>().ToList(),
+            AvalableEmotes= jInput["Emotes"].Values<int>().ToList(),
+            AvalableParas= jInput["Parachutes"].Values<int>().ToList(),
             
-            CoinCount=(int) jPlayer["CoinCount"],
-            TicketCount=(int) jPlayer["TicketCount"],
-            HasBattlePass=(bool) jPlayer["HasBattlePass"],
+            CoinCount=(int) jInput["CoinCount"],
+            TicketCount=(int) jInput["TicketCount"],
+            HasBattlePass=(bool) jInput["HasBattlePass"],
 
-            
+            PlayerStat = new Statistics
+            {
+                TotalBattles = jInput["TotalBattles"].Value<int>(),
+                TotalWins = jInput["TotalWins"].Value<int>(),
+                TotalKills = jInput["TotalKills"].Value<int>(),
+                DoubleKills = jInput["DoubleKills"].Value<int>(),
+                TripleKills = jInput["TripleKills"].Value<int>(),
+                ItemsCollected = jInput["ItemsCollected"].Value<int>(),
+                GunsCollected = jInput["GunsCollected"].Value<int>(),
+                SupplyDrop = jInput["SupplyDrop"].Value<int>(),
+                SupplyCreates = jInput["SupplyCreates"].Value<int>(),
+                Experience = jInput["Experience"].Value<int>(),
+            }
         };
 
         return profile;

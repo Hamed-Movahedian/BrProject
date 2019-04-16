@@ -15,6 +15,7 @@ public struct Statistics
     public int SupplyCreates;
     public int Experience;
 
+/*
     public Statistics(int i)
     {
         TotalBattles = i;
@@ -28,6 +29,7 @@ public struct Statistics
         SupplyCreates = i;
         Experience = i;
     }
+*/
 
     public void ChangeStats(MatchStats thisMatchStats)
     {

@@ -24,21 +24,21 @@ namespace BR
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during initialization phase.
         /// </summary>
-        void Start()
+        void OnEnable()
         {
-            string userID = ProfileManager.Instance().PlayerProfile.UserID;
-            
-            if (userID == "")
+            string name = ProfileManager.Instance().PlayerProfile.Name;
+            Debug.Log(name);
+            Debug.Log(name.Length);
+            if (name.Replace(" ","").Length<2)
             {
                 OnNoNameSubmited.Invoke();
                 return;
             }
 
-            var nickName = userID.Split(IdSeparator)[0];
-            NameText.text = nickName;
-            UserId.text = userID;
+            NameText.text = name;
+            UserId.text = ProfileManager.Instance().PlayerProfile.UserID;
 
-            PhotonNetwork.NickName = nickName;
+            PhotonNetwork.NickName = name;
         }
 
         #endregion
@@ -59,7 +59,7 @@ namespace BR
                 return;
             }
 
-            ProfileManager.Instance().PlayerProfile.UserID = value;
+            ProfileManager.Instance().PlayerProfile.Name = value;
             PhotonNetwork.NickName = value;
         }
 

@@ -13,7 +13,7 @@ public class LevelRewardButton : MonoBehaviour
     public void SetButton(Inventory inventory, BrRewardProgress list, bool battle, int level)
     {
         if (battle)
-            LockIcon.SetActive(ProfileManager.Instance().PlayerProfile.HasBattlePass == 0);
+            LockIcon.SetActive(!ProfileManager.Instance().PlayerProfile.HasBattlePass);
 
         switch (inventory.type)
         {

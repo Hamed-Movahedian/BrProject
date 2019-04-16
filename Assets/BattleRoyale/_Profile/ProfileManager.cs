@@ -50,11 +50,12 @@ public class ProfileManager : MonoBehaviour
         else
         {
             BrServerController.Instance.Post(
-                "Players/CreatePlayer",
-                "",
+                "Players/GetInitialInfo",
+                "-1",
                 player =>
                 {
-                    PlayerProfile=Profile.Create(info);
+                    PlayerProfile=Profile.Create(player);
+                    PlayerPrefs.SetInt(PlayerIDKey,PlayerProfile.ID);
                     LoadMainMenu();
                 });
             
@@ -68,7 +69,7 @@ public class ProfileManager : MonoBehaviour
 
     private void TakeTicket()
     {
-        if (PlayerProfile.HasBattlePass>0)return;
+        if (PlayerProfile.HasBattlePass)return;
         PlayerProfile.TicketCount--;
         SaveProfile();
     }
@@ -157,7 +158,7 @@ public class ProfileManager : MonoBehaviour
     [ContextMenu("Save")]
     public void SaveProfile()
     {
-        File.WriteAllText(_filePath, PlayerProfile.Serialize());
+        //File.WriteAllText(_filePath, PlayerProfile.Serialize());
     }
 
     public Texture2D GetProbIcon(int index, ProbType probType)
@@ -213,10 +214,10 @@ public class ProfileManager : MonoBehaviour
         }
         return false;
     }
-
+    
     public void GiveBattlePass()
     {
-        PlayerProfile.HasBattlePass=1;
+        PlayerProfile.HasBattlePass=true;
         int level = BrExpManager.CalLevel(PlayerProfile.PlayerStat.Experience);
 
         for (var i = 0; i < level; i++)
