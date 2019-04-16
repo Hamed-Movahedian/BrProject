@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\CurrentProjects\BrProject" t="IncludeRecursive">
+    <e p="C:\Users\Hamed\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Hamed\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-1566460626.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Hamed\Documents\Projects\BrProject" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
@@ -239,7 +241,10 @@
             <e p="BrPlayerAvatar.cs" t="Include" />
             <e p="BrPlayerCoin.cs" t="Include" />
             <e p="BrPlayerTicket.cs" t="Include" />
+            <e p="MatchStats.cs" t="Include" />
+            <e p="Profile.cs" t="Include" />
             <e p="ProfileManager.cs" t="Include" />
+            <e p="Statistics.cs" t="Include" />
           </e>
           <e p="_tools" t="Include">
             <e p="BrMathExtention.cs" t="Include" />
@@ -1759,10 +1764,7 @@
           <e p="settings.txt" t="Include" />
         </e>
         <e p="Temp" t="Include">
-          <e p="Editor" t="Include">
-            <e p="Replace.cs" t="Include" />
-          </e>
-          <e p="LevelXpDebug.cs" t="Include" />
+          <e p="IKTest.cs" t="Include" />
         </e>
         <e p="ThirdParties" t="Include">
           <e p="CafeBazaarIAB" t="Include">
@@ -1860,7 +1862,5 @@
         <e p="bin" t="ExcludeRecursive" />
       </e>
     </e>
-    <e p="C:\Users\Hosein\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Hosein\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_BrProject.-523611518.00" t="ExcludeRecursive" />
   </component>
 </project>

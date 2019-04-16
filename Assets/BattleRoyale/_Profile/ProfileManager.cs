@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -29,6 +27,7 @@ public class ProfileManager : MonoBehaviour
     public BrLevelRewards levelRewards;
     
     private string _filePath;
+    private static readonly string PlayerIDKey = "PlayerID";
 
     public void Start()
     {
@@ -36,7 +35,30 @@ public class ProfileManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         
         //LoadProfile();
-        LoadMainMenu();
+        if (PlayerPrefs.HasKey(PlayerIDKey))
+        {
+            int id = PlayerPrefs.GetInt(PlayerIDKey);
+            BrServerController.Instance.Post(
+                "Players/GetInitialInfo",
+                id.ToString(),
+                info =>
+                {
+                    PlayerProfile=Profile.Create(info);
+                    LoadMainMenu();
+                });
+        }
+        else
+        {
+            BrServerController.Instance.Post(
+                "Players/CreatePlayer",
+                "",
+                player =>
+                {
+                    PlayerProfile=Profile.Create(info);
+                    LoadMainMenu();
+                });
+            
+        }
     }
 
     private void OnSceneChange(Scene scene, LoadSceneMode loadMode)
@@ -212,95 +234,4 @@ public class ProfileManager : MonoBehaviour
             }
         }
     }
-}
-
-[Serializable]
-public class Profile
-{
-    public string UserID;
-
-    public int AiBehaviorIndex = -1;
-    public List<int> AvalableCharacters = new List<int> {0, 1};
-    public int CurrentCharacter = 0;
-    public List<int> AvalableFlags = new List<int> {0};
-    public int CurrentFlag = 0;
-    public List<int> AvalableEmotes = new List<int> {0};
-    public int CurrentEmote = 0;
-    public List<int> AvalableParas = new List<int> {0};
-    public int CurrentPara = 0;
-    public List<string> FriendsUserID;
-    public List<string> RequestFrindUserID;
-    public int CoinCount = 100;
-    public int TicketCount = 10;
-    public int HasBattlePass = 0;
-
-    public Statistics PlayerStat = new Statistics(0);
-
-    public string Serialize()
-    {
-        return JsonUtility.ToJson(this);
-    }
-
-    public static Profile Deserialize(string text)
-    {
-        return JsonUtility.FromJson<Profile>(text);
-    }
-}
-
-[Serializable]
-public struct Statistics
-{
-    //public int Level;
-    public int TotalBattles;
-    public int TotalWins;
-    public int TotalKills;
-    public int DoubleKills;
-    public int TripleKills;
-    public int ItemsCollected;
-    public int GunsCollected;
-    public int SupplyDrop;
-    public int SupplyCreates;
-    public int Experience;
-
-    public Statistics(int i)
-    {
-        TotalBattles = i;
-        TotalWins = i;
-        TotalKills = i;
-        DoubleKills = i;
-        TripleKills = i;
-        ItemsCollected = i;
-        GunsCollected = i;
-        SupplyDrop = i;
-        SupplyCreates = i;
-        Experience = i;
-    }
-
-    public void ChangeStats(MatchStats thisMatchStats)
-    {
-        SupplyDrop += thisMatchStats.SupplyDrop;
-        Experience += thisMatchStats.Experience;
-        SupplyCreates += thisMatchStats.SupplyCreates;
-        GunsCollected += thisMatchStats.GunsCollected;
-        ItemsCollected += thisMatchStats.ItemsCollected;
-        TotalKills += thisMatchStats.Kills;
-        DoubleKills += thisMatchStats.DoubleKills;
-        TripleKills += thisMatchStats.TripleKills;
-        TotalWins += thisMatchStats.Wins;
-        TotalBattles++;
-    }
-}
-
-public class MatchStats
-{
-    public float PlayTime;
-    public int Wins;
-    public int Kills;
-    public int DoubleKills;
-    public int TripleKills;
-    public int ItemsCollected;
-    public int GunsCollected;
-    public int SupplyDrop;
-    public int SupplyCreates;
-    public int Experience;
 }

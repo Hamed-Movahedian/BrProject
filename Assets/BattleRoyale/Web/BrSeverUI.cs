@@ -31,10 +31,13 @@ public class BrSeverUI : MonoBehaviour
     public void Retry()
     {
         BrServerController.Instance.Retry();
+        ButtonPanel.SetActive(false);
+
     }
 
     public void Exit()
     {
         Application.Quit();
+        ButtonPanel.SetActive(false);
     }
 }

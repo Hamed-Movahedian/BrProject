@@ -90,7 +90,9 @@ public class BrServerController : MonoBehaviour
 
     #region Post
 
-    public IEnumerator Post(string url, string bodyData,
+    public IEnumerator Post(
+        string url, 
+        string bodyData,
         Action<string> onSuccess,
         Action<UnityWebRequest> onError = null)
     {
@@ -104,8 +106,8 @@ public class BrServerController : MonoBehaviour
 
             if (!request.isHttpError && !request.isNetworkError)
             {
-                onSuccess?.Invoke(request.downloadHandler.text);
                 OnSuccess?.Invoke(request);
+                onSuccess?.Invoke(request.downloadHandler.text);
                 break;
             }
             else
