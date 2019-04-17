@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -159,6 +160,14 @@ public class ProfileManager : MonoBehaviour
     public void SaveProfile()
     {
         //File.WriteAllText(_filePath, PlayerProfile.Serialize());
+
+        var data = JsonConvert.SerializeObject(PlayerProfile);
+        
+        BrServerController.Instance.Post(
+            "Players/Save",
+            data,
+            null
+            );
     }
 
     public Texture2D GetProbIcon(int index, ProbType probType)

@@ -28,7 +28,7 @@ public class Profile
     public int TicketCount = 10;
     public bool HasBattlePass = false;
 
-    public Statistics PlayerStat = new Statistics();
+    public Statistics PlayerStat;
 
     public string Serialize()
     {

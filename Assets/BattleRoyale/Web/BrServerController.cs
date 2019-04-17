@@ -52,6 +52,10 @@ public class BrServerController : MonoBehaviour
     private UnityWebRequest request;
     private bool waitForRetry;
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     #region PostRequst
 
@@ -105,10 +109,12 @@ public class BrServerController : MonoBehaviour
         Action<string> onSuccess,
         Action<UnityWebRequest> onError = null)
     {
-        request = PostRequest(url, bodyData);
-
         while (true)
         {
+            request = PostRequest(url, bodyData);
+
+            OnSend?.Invoke(request);
+
             var asyncOperation = request.SendWebRequest();
 
             yield return asyncOperation;
