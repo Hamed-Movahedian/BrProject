@@ -40,6 +40,8 @@ public class PurchaseManager : MonoBehaviour
 
     void Start()
     {
+        OnItemPurchased += PurchaseSucceed;
+
 #if UNITY_ANDROID
         BazaarIAB.init(
             "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDd+IlpeNJRf25jGcQxyNnaM2F7ieP5q6yt3PGnizCrzWIbHoLmquM3ZQbPWXSYjpYEJ2dbIHROEvZHD4+oQOEm2skVGCRpbq2nFZm9p1QKstTwbYnWI1bRmeRil/G56VrMt1CvmN3pmgQ/CW6N4aZJawbn/58M+2c0Fwz9AUIECYhB6GHrmqtmBVq2u8zVE62hjK/Ri1QH6bSspvl73feIfDA+yQ4NWV1gwNT9KXECAwEAAQ==");
@@ -48,7 +50,6 @@ public class PurchaseManager : MonoBehaviour
 #if UNITY_ANDROID
 
         IABEventManager.purchaseSucceededEvent += NewMethod;
-        
 #endif
         IABEventManager.purchaseFailedEvent += NewMethod2;
 
@@ -64,7 +65,6 @@ public class PurchaseManager : MonoBehaviour
 
     private void NewMethod(BazaarPurchase BP)
     {
-        Debug.Log("Purchase Done");
         Debug.Log(BP.ProductId);
     }
 #endif
@@ -73,17 +73,44 @@ public class PurchaseManager : MonoBehaviour
     public void BuyItem(string itemId)
     {
 #if UNITY_ANDROID
-        Debug.Log("Purchase started in Bazaar");
 
         BazaarIAB.purchaseProduct(itemId);
-
-        Debug.Log("Purchase Done in Bazaar");
 
 #endif
     }
 
-    public static void Consume(string itemId)
+    private void PurchaseSucceed(string itemId)
     {
-        //BazaarIAB.consumeProduct(itemId);
+        foreach (MarketItem item in BrStoreList.Instance.PurchaseItems)
+        {
+            if (item.ItemId == itemId)
+            {
+                ProfileManager.Instance().PlayerProfile.CoinCount += item.CoinCount;
+                ProfileManager.Instance().SaveProfile();
+                OnCoinCountChanged?.Invoke(ProfileManager.Instance().PlayerProfile.CoinCount);
+                Consume(itemId);
+                return;
+            }
+        }
+    }
+
+
+    private static void Consume(string itemId)
+    {
+#if UNITY_ANDROID
+        BazaarIAB.consumeProduct(itemId);
+#endif
+    }
+
+    public bool PayCoin(int price)
+    {
+        if (price > ProfileManager.Instance().PlayerProfile.CoinCount)
+            return false;
+        
+        
+        ProfileManager.Instance().PlayerProfile.CoinCount -= price;
+        ProfileManager.Instance().SaveProfile();
+        OnCoinCountChanged?.Invoke(ProfileManager.Instance().PlayerProfile.CoinCount);
+        return true;
     }
 }

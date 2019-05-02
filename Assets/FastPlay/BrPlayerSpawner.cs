@@ -67,7 +67,7 @@ public class BrPlayerSpawner : MonoBehaviour
 
         SetupAiProfiles();
 
-        for (var i = 0; i < AiProfiles.Count; i++)
+        for (var i = 0; i < Mathf.Min(AiProfiles.Count,locations.Count); i++)
         {
             var profile = AiProfiles[i];
 

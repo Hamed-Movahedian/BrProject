@@ -7,17 +7,21 @@ public class BrPlayerCoin : MonoBehaviour
 {
     private void Start()
     {
-        PurchaseManager.Instance.OnCoinCountChanged+=SetTextValue;
 
     }
 
     private void OnEnable()
     {
+        PurchaseManager.Instance.OnCoinCountChanged+=SetTextValue;
+        print("Added set Text");
+
+
         SetTextValue(ProfileManager.Instance().PlayerProfile.CoinCount);
     }
 
     private void SetTextValue(int coinCount)
     {
+        print("setting Text");
         GetComponent<Text>().text = PersianFixer.Fix(coinCount.ToString());
     }
 }

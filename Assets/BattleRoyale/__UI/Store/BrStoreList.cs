@@ -23,6 +23,8 @@ public class BrStoreList : MonoBehaviour
     public ParasList ParasList;
     public FlagsList FlagsList;
 
+    public GameObject HeaderGameObject;
+    
     public delegate void SelectLockProb(ProbType type, int index, int price);
 
     [HideInInspector] public SelectLockProb OnProbSelected;
@@ -56,7 +58,6 @@ public class BrStoreList : MonoBehaviour
     {
         _profileManage = ProfileManager.Instance();
 
-        PurchaseManager.Instance.OnItemPurchased += PurchaseSucceed;
 
         ClearButtonList();
         
@@ -107,7 +108,7 @@ public class BrStoreList : MonoBehaviour
                 item.Price,
                 item.TicketCount,
                 MarketItemType.Ticket,
-                delegate { AddTicket(item); });
+                delegate{AddTicket(item);});
         }
 
         foreach (MarketItem item in PurchaseItems)
@@ -120,13 +121,13 @@ public class BrStoreList : MonoBehaviour
                 item.Price,
                 item.CoinCount,
                 MarketItemType.Coin,
-                delegate { Purchase(item); });
+                delegate{Purchase(item);});
         }
     }
 
     private void AddTicket(TicketPack ticketPack)
     {
-        if (ticketPack.Price>_profileManage.PlayerProfile.CoinCount) NeedMoreCoins();
+        if (!PurchaseManager.Instance.PayCoin(ticketPack.Price)) NeedMoreCoins();
         else
         {
             _profileManage.PlayerProfile.CoinCount -= ticketPack.Price;
@@ -136,25 +137,8 @@ public class BrStoreList : MonoBehaviour
 
     }
 
-    private void PurchaseSucceed(string itemId)
-    {
-        Debug.Log(itemId);
-        foreach (MarketItem item in PurchaseItems)
-        {
-            if (item.ItemId == itemId)
-            {
-                ProfileManager.Instance().PlayerProfile.CoinCount += item.CoinCount;
-                ProfileManager.Instance().SaveProfile();
-                PurchaseManager.Instance.OnCoinCountChanged?.Invoke(ProfileManager.Instance().PlayerProfile.CoinCount);
-                PurchaseManager.Consume(itemId);
-                return;
-            }
-        }
-    }
-
     private void Purchase(MarketItem item)
     {
-        Debug.Log("Purchase started in app");
         PurchaseManager.Instance.BuyItem(item.ItemId);
     }
 
@@ -165,24 +149,15 @@ public class BrStoreList : MonoBehaviour
 
     public void BuyItem(ProbType type, int index, int price)
     {
-        if (price > _profileManage.PlayerProfile.CoinCount)
-        {
-            NeedMoreCoins();
-            return;
-        }
+        if (!PurchaseManager.Instance.PayCoin(price)) NeedMoreCoins();
 
-        _profileManage.PlayerProfile.CoinCount -= price;
-        PurchaseManager.Instance.OnCoinCountChanged?.Invoke(_profileManage.PlayerProfile.CoinCount);
         _profileManage.AddProb(type, index);
+        
         ReInitiate();
     }
     
-    
-
-
     private void NeedMoreCoins()
     {
-        print("Need More Coin");
         OnLowCoin.Invoke();
     }
 

@@ -50,6 +50,17 @@ public class CharactersList : ScriptableObject
                 UnityEditor.AssetDatabase.SaveAssets();
             });
     }
+
+    [ContextMenu("ResetID")]
+    public void ResetID()
+    {
+        for (var index = 0; index < Characters.ToList().Count; index++)
+        {
+            var character = Characters.ToList()[index];
+            character.ID = index+1;
+        }
+    }
+    
 #endif
     
 }
