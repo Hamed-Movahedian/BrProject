@@ -11,11 +11,8 @@ public class CharactersList : ScriptableObject
 {
     public CharacterData[] Characters;
 
-    public CharacterData this[int index]
-    {
-        get { return Characters[index]; }
-        set { Characters[index] = value; }
-    }
+    public CharacterData this[int index] 
+        => Characters.FirstOrDefault(c=>c.ID==index);
 
 #if UNITY_EDITOR
     [ContextMenu("Sync")]
@@ -50,17 +47,7 @@ public class CharactersList : ScriptableObject
                 UnityEditor.AssetDatabase.SaveAssets();
             });
     }
-
-    [ContextMenu("ResetID")]
-    public void ResetID()
-    {
-        for (var index = 0; index < Characters.ToList().Count; index++)
-        {
-            var character = Characters.ToList()[index];
-            character.ID = index+1;
-        }
-    }
-    
+ 
 #endif
     
 }
