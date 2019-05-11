@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CharacterData" Collapsed="true">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgAAAAAgBIAsAAAAAIEAQQAAAACACQAAAAAAAACAAA=</HashCode>
+      <FileName>Assets\BattleRoyale\_CharacterModel\CharacterData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharactersList">
+    <Position X="3.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACACAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\BattleRoyale\_CharacterModel\CharactersList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Characters" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ProfileManager">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAQBIACAAISAAAJJCAEAAAAAAAABQQAAAAAAAYCA=</HashCode>
+      <FileName>Assets\BattleRoyale\_Profile\ProfileManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="CharactersList" />
+      <Field Name="ParasList" />
+      <Field Name="FlagsList" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ParasList">
+    <Position X="3.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\BattleRoyale\_Para\ParasList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="this[System.Int32]" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="Paras" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ParaData">
+    <Position X="6.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAYAAAAAAAAgAAAAAAEAAQAAAAAAAAQAAIAAAEAEAA=</HashCode>
+      <FileName>Assets\BattleRoyale\_Para\ParaData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlagsList" Collapsed="true">
+    <Position X="3.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAACACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\BattleRoyale\_Flag\FlagsList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Flags" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="FlagData" Collapsed="true">
+    <Position X="7" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAEAAQAAAAAABAQABAAAAEAAAA=</HashCode>
+      <FileName>Assets\BattleRoyale\_Flag\FlagData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmoteData">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAEAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\BattleRoyale\_Emotes\EmoteData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
